@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ──────────────────────────────────────────────────────────────
+   Design Tokens — CSS Custom Properties (RGB triplets for /<alpha-value>)
+   Light mode = root | Dark mode = [data-theme="dark"] OR .dark
+   ────────────────────────────────────────────────────────────── */
+@layer base {
+  :root {
+    /* Background */
+    --bg-canvas:   250 248 244;
+    --bg-surface:  255 255 255;
+    --bg-elevated: 242 239 232;
+    --bg-sunken:   237 233 224;
+
+    /* Ink (text) */
+    --ink-50:  247 247 246;
+    --ink-100: 230 229 226;
+    --ink-200: 205 203 197;
+    --ink-400: 130 127 118;
+    --ink-600:  74  72  66;
+    --ink-800:  38  37  31;
+    --ink-900:  21  20  15;
+
+    /* Accent — Terracotta */
+    --accent-50:  251 241 234;
+    --accent-500: 184 116  74;
+    --accent-600: 140  86  52;
+
+    /* Secondary accent — Forest */
+    --forest-700: 58 74 63;
+
+    /* Semantic */
+    --success: 58 107 71;
+    --warning: 166 107 30;
+    --danger:  148  52  43;
+    --info:     61  90 122;
+
+    /* Fonts injected via next/font in layout.tsx */
+    /* --font-sans, --font-serif */
+  }
+
+  :root.dark,
+  [data-theme="dark"] {
+    --bg-canvas:   21 20 15;
+    --bg-surface:  31 30 24;
+    --bg-elevated: 43 41 34;
+    --bg-sunken:   16 15 11;
+
+    --ink-50:  31 30 24;
+    --ink-100: 43 41 34;
+    --ink-200: 58 56 47;
+    --ink-400: 111 108 97;
+    --ink-600: 168 164 150;
+    --ink-800: 230 225 212;
+    --ink-900: 245 242 236;
+
+    --accent-50:  58 42 30;
+    --accent-500: 208 140 94;
+    --accent-600: 229 164 122;
+
+    --forest-700: 123 155 131;
+
+    --success: 123 178 138;
+    --warning: 212 155  92;
+    --danger:  216 122 111;
+    --info:    143 175 204;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    background-color: rgb(var(--bg-canvas));
+  }
+
+  body {
+    @apply bg-canvas text-ink-800 antialiased font-sans;
+    font-feature-settings: 'ss01', 'cv11';
+  }
+
+  /* Anchor offset for sticky header on TOC jump links */
+  :target { scroll-margin-top: 96px; }
+
+  /* Focus-visible — WCAG AA */
+  *:focus-visible {
+    @apply outline-none;
+    box-shadow:
+      0 0 0 2px rgb(var(--bg-canvas)),
+      0 0 0 4px rgb(var(--accent-500));
+    border-radius: 4px;
+  }
+
+  /* Selection — branded */
+  ::selection {
+    background-color: rgb(var(--accent-500) / 0.25);
+    color: rgb(var(--ink-900));
+  }
+
+  /* Reduced motion — respect OS pref */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .text-pretty  { text-wrap: pretty; }
+
+  /* Editorial drop-cap for first paragraph */
+  .drop-cap::first-letter {
+    @apply font-serif float-left text-[64px] leading-[56px] mr-3 mt-1 text-ink-900;
+  }
+
+  /* ──────────────────────────────────────────────────────────
+     MOTION UTILITIES
+     ────────────────────────────────────────────────────────── */
+
+  /* Stagger: child auto-delays in 60ms beats, max 8 children */
+  .stagger > *           { animation-fill-mode: both; }
+  .stagger > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger > *:nth-child(2) { animation-delay: 60ms; }
+  .stagger > *:nth-child(3) { animation-delay: 120ms; }
+  .stagger > *:nth-child(4) { animation-delay: 180ms; }
+  .stagger > *:nth-child(5) { animation-delay: 240ms; }
+  .stagger > *:nth-child(6) { animation-delay: 300ms; }
+  .stagger > *:nth-child(7) { animation-delay: 360ms; }
+  .stagger > *:nth-child(8) { animation-delay: 420ms; }
+
+  /* Native dialog animations */
+  dialog[open]            { animation: modal-in 260ms cubic-bezier(0.32, 0.72, 0, 1) both; }
+  dialog[open]::backdrop  { animation: backdrop-in 260ms ease-out both; background: rgba(21,20,15,0.4); }
+
+  /* Touch-only tap feedback — no hover ghosting on desktop */
+  @media (hover: none) and (pointer: coarse) {
+    .tap-shrink:active { transform: scale(0.97); transition: transform 80ms cubic-bezier(0.5, 1.4, 0.5, 1); }
+  }
+
+  /* Horizontal swipe rail — scroll-snap, zero JS */
+  .swipe-rail {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 16px;
+    scrollbar-width: none;
+    overscroll-behavior-x: contain;
+    -webkit-overflow-scrolling: touch;
+  }
+  .swipe-rail::-webkit-scrollbar { display: none; }
+  .swipe-rail > * { scroll-snap-align: start; flex: 0 0 auto; }
+
+  /* Skeleton shimmer */
+  .skeleton {
+    @apply relative overflow-hidden bg-elevated rounded-md;
+  }
+  .skeleton::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
+    animation: shimmer 1400ms linear infinite;
+  }
+
+  /* Disable iOS pull-to-refresh on body */
+  html, body { overscroll-behavior-y: contain; }
+}
