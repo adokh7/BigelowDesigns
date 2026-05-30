@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import { Inter, Fraunces } from 'next/font/google';
+import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/JsonLd';
@@ -94,6 +95,13 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        {/* Ahrefs Web Analytics — loads after page is interactive, no hydration impact */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="YhbFfA3VBAMsYXMqB0wX6g"
+          strategy="afterInteractive"
+        />
+
         <CompareProvider>
           <AnalyticsListener />
           <Header />

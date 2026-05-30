@@ -93,3 +93,8 @@ export function getRelatedArticles(article: Article, limit = 3): Article[] {
 export function getAllCategorySlugs(): string[] {
   return [...new Set(getAllArticles().map((a) => a.category))];
 }
+
+/** Look up a single article by slug, ignoring category. */
+export function getArticleBySlugOnly(slug: string): Article | null {
+  return getAllArticles().find((a) => a.slug === slug) ?? null;
+}

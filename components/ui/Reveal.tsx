@@ -11,7 +11,7 @@ interface RevealProps {
   /** Once revealed, never hide again. Default true. */
   once?: boolean;
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 }
 
 /**
@@ -52,7 +52,6 @@ export function Reveal({
 
   return (
     <Tag
-      // @ts-expect-error — dynamic tag ref
       ref={ref}
       style={{
         transitionDelay: `${delay}ms`,

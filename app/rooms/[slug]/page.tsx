@@ -1,0 +1,424 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import clsx from 'clsx';
+
+import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { ArticleCard } from '@/components/ArticleCard';
+import { Reveal } from '@/components/ui/Reveal';
+import { AdSlot } from '@/components/ui/AdSlot';
+import { JsonLd } from '@/components/JsonLd';
+
+import { getArticlesByCategory } from '@/lib/articles';
+import { buildBreadcrumbSchema } from '@/lib/schema';
+import { siteConfig } from '@/lib/site';
+import type { Article } from '@/types/article';
+
+// ─── Room types (formerly in lib/pricing) ────────────────────
+type RoomType = 'kitchen' | 'living-room' | 'bedroom' | 'bathroom' | 'home-office' | 'outdoor';
+
+const ROOM_LABELS: Record<RoomType, string> = {
+  kitchen:       'Kitchen',
+  'living-room': 'Living Room',
+  bedroom:       'Bedroom',
+  bathroom:      'Bathroom',
+  'home-office': 'Home Office',
+  outdoor:       'Outdoor',
+};
+
+export const revalidate = 3600;
+// Only slugs returned by generateStaticParams are valid; everything else → 404
+export const dynamicParams = false;
+
+// ─── Room editorial data ──────────────────────────────────────
+type RoomMeta = {
+  headline: string;
+  description: string;
+  heroImage: string;
+  heroImageAlt: string;
+};
+
+const ROOM_META: Record<RoomType, RoomMeta> = {
+  'living-room': {
+    headline: 'Where the day finally unwinds.',
+    description:
+      'From the sofa that anchors the room to the lamp that sets the mood — every piece we cover is tested, considered, and chosen for how real people actually live.',
+    heroImage: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=1600&q=85',
+    heroImageAlt: 'A sunlit minimalist living room with a cream modular sofa and oak floors',
+  },
+  kitchen: {
+    headline: 'The room that earns every square foot.',
+    description:
+      'Cabinet hardware, countertop choices, bar stools that survive breakfast. We cover the kitchen decisions that compound — the ones you only want to make once.',
+    heroImage: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=85',
+    heroImageAlt: 'A modern kitchen with marble counters, brass fixtures, and open shelving',
+  },
+  bedroom: {
+    headline: 'Designed for the sleep you actually deserve.',
+    description:
+      'Bed frames built to last, bedding that ages like fine linen, lighting that doesn\'t betray you at 10pm. The bedroom is where design decisions matter most.',
+    heroImage: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=1600&q=85',
+    heroImageAlt: 'A serene bedroom with linen bedding, warm morning light, and oak floors',
+  },
+  bathroom: {
+    headline: 'A few quiet minutes. Make them count.',
+    description:
+      'Vanities built for daily use, tiles that age with dignity, hardware worth spending on. The bathroom is small in footprint and large in impact — and we treat it that way.',
+    heroImage: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=85',
+    heroImageAlt: 'A clean bathroom with white marble tiles and polished brass fixtures',
+  },
+  'home-office': {
+    headline: 'Work from home. Actually live there too.',
+    description:
+      'A desk that respects your back, a chair you don\'t need to justify, lighting that doesn\'t turn you into a ghost on video calls. The home office, done properly.',
+    heroImage: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1600&q=85',
+    heroImageAlt: 'A clean, minimal home office with a wooden desk, a task lamp, and a plant',
+  },
+  outdoor: {
+    headline: 'The room without a ceiling.',
+    description:
+      'Teak furniture that weathers seasons with grace, planters that belong in the ground, lighting that keeps the evening alive. Outdoor design, taken seriously.',
+    heroImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=1600&q=85',
+    heroImageAlt: 'A beautifully designed outdoor terrace with modern lounge furniture and warm lighting',
+  },
+};
+
+const VALID_SLUGS = Object.keys(ROOM_LABELS) as RoomType[];
+
+// ─── Static params ────────────────────────────────────────────
+export function generateStaticParams() {
+  return VALID_SLUGS.map((slug) => ({ slug }));
+}
+
+// ─── Metadata ─────────────────────────────────────────────────
+type PageProps = { params: Promise<{ slug: string }> };
+
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  if (!VALID_SLUGS.includes(slug as RoomType)) return {};
+
+  const room = slug as RoomType;
+  const meta = ROOM_META[room];
+  const label = ROOM_LABELS[room];
+  const title = `${label} Ideas, Guides & Tested Picks | ${siteConfig.name}`;
+  const url = `${siteConfig.url}/rooms/${slug}`;
+
+  return {
+    title,
+    description: meta.description,
+    alternates: { canonical: url },
+    openGraph: {
+      type: 'website',
+      url,
+      title,
+      description: meta.description,
+      images: [{ url: meta.heroImage, width: 1600, height: 900, alt: meta.heroImageAlt }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description: meta.description,
+      images: [meta.heroImage],
+    },
+  };
+}
+
+// ─── Page ─────────────────────────────────────────────────────
+export default async function RoomCategoryPage({ params }: PageProps) {
+  const { slug } = await params;
+
+  if (!VALID_SLUGS.includes(slug as RoomType)) notFound();
+
+  const room = slug as RoomType;
+  const meta = ROOM_META[room];
+  const label = ROOM_LABELS[room];
+  const articles = getArticlesByCategory(room);
+
+  const breadcrumbItems = [
+    { name: 'Home',  url: '/'      },
+    { name: 'Rooms', url: '/rooms' },
+    { name: label,   url: `/rooms/${slug}` },
+  ];
+
+  return (
+    <>
+      <JsonLd data={[buildBreadcrumbSchema(breadcrumbItems)]} />
+
+      {/* ═══════════════════════════════════════════════════════
+          HERO — cinematic full-bleed image, text at bottom
+          ═══════════════════════════════════════════════════════ */}
+      <div className="relative min-h-[58vh] overflow-hidden md:min-h-[72vh]">
+        {/* Background image */}
+        <Image
+          src={meta.heroImage}
+          alt={meta.heroImageAlt}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          className="object-cover"
+        />
+
+        {/* Gradient overlays — top (for breadcrumbs) + bottom (for text) */}
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/20 to-ink-900/30"
+        />
+
+        {/* Breadcrumbs — top-left */}
+        <div className="absolute left-0 right-0 top-0 px-4 pt-5 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-page">
+            <nav aria-label="Breadcrumb">
+              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
+                {breadcrumbItems.map((item, idx) => {
+                  const isLast = idx === breadcrumbItems.length - 1;
+                  return (
+                    <li key={item.url} className="flex items-center gap-1.5">
+                      {idx > 0 && <span aria-hidden="true">/</span>}
+                      {isLast ? (
+                        <span aria-current="page" className="text-white/90">
+                          {item.name}
+                        </span>
+                      ) : (
+                        <Link
+                          href={item.url}
+                          className="transition-colors duration-quick hover:text-white"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+              </ol>
+            </nav>
+          </div>
+        </div>
+
+        {/* Hero text — bottom-left */}
+        <div className="absolute inset-x-0 bottom-0 px-4 pb-10 sm:px-6 lg:px-8 lg:pb-16">
+          <div className="mx-auto max-w-page">
+            <div className="max-w-3xl">
+              <p className="text-eyebrow uppercase tracking-[0.18em] text-white/60">
+                Rooms · {label}
+              </p>
+              <h1 className="mt-3 text-balance font-serif text-display-lg leading-tight text-white">
+                {meta.headline}
+              </h1>
+              <p className="mt-4 max-w-2xl text-pretty text-body-lg text-white/70">
+                {meta.description}
+              </p>
+
+              {/* Trust stats */}
+              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-body-sm text-white/50">
+                {articles.length > 0 && (
+                  <>
+                    <span>
+                      {articles.length} {articles.length === 1 ? 'guide' : 'guides'}
+                    </span>
+                    <span aria-hidden="true">·</span>
+                  </>
+                )}
+                <span>Independently tested</span>
+                <span aria-hidden="true">·</span>
+                <span>0 sponsored reviews</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          AD STRIP — leaderboard between hero and content
+          ═══════════════════════════════════════════════════════ */}
+      <div className="border-b border-ink-100 bg-elevated/30 py-5">
+        <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
+          <AdSlot variant="leaderboard" />
+        </div>
+      </div>
+
+      {/* ═══════════════════════════════════════════════════════
+          GUIDES GRID — real articles or editorial placeholders
+          ═══════════════════════════════════════════════════════ */}
+      <Reveal>
+        <section
+          aria-labelledby="guides-heading"
+          className="mx-auto max-w-page px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+        >
+          <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="text-eyebrow uppercase tracking-[0.16em] text-accent-600">
+                The essential reads
+              </p>
+              <h2
+                id="guides-heading"
+                className="mt-2 text-balance font-serif text-h1 text-ink-900"
+              >
+                {articles.length > 0
+                  ? `${label} guides from the studio.`
+                  : `${label} guides — in progress.`}
+              </h2>
+            </div>
+            {articles.length > 0 && (
+              <Link
+                href="/guides"
+                className="flex-shrink-0 text-body font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500"
+              >
+                See all guides →
+              </Link>
+            )}
+          </header>
+
+          {articles.length > 0 ? (
+            <RealArticleGrid articles={articles} room={room} label={label} />
+          ) : (
+            <EmptyState label={label} />
+          )}
+        </section>
+      </Reveal>
+
+    </>
+  );
+}
+
+// ─── Real article grid ────────────────────────────────────────
+// First article gets a featured hero treatment; the rest fill a 3-col grid.
+function RealArticleGrid({
+  articles,
+  room,
+  label,
+}: {
+  articles: Article[];
+  room: RoomType;
+  label: string;
+}) {
+  const [featured, ...rest] = articles;
+
+  return (
+    <div className="mt-10 space-y-10">
+      {/* Featured — large format */}
+      <FeaturedArticleCard article={featured} />
+
+      {/* Remaining — standard 3-col grid */}
+      {rest.length > 0 && (
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
+          {rest.map((a, idx) => (
+            <ArticleCard key={a.slug} article={a} priority={idx === 0} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+// ─── Featured article card (large format) ────────────────────
+function FeaturedArticleCard({ article }: { article: Article }) {
+  const href = `/${article.category}/${article.slug}`;
+  const fmt = (iso: string) =>
+    new Date(iso).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
+
+  return (
+    <article className="group grid gap-8 md:grid-cols-2 md:items-center">
+      {/* Image */}
+      <Link href={href} className="block overflow-hidden rounded-2xl">
+        <div className="relative aspect-[4/3] overflow-hidden bg-elevated">
+          <Image
+            src={article.heroImage}
+            alt={article.heroImageAlt}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+            className="object-cover transition-transform duration-smooth ease-out group-hover:scale-[1.03]"
+          />
+        </div>
+      </Link>
+
+      {/* Copy */}
+      <div>
+        <p className="text-eyebrow uppercase tracking-[0.16em] text-accent-600">
+          {article.categoryLabel}
+        </p>
+        <h2 className="mt-3 text-balance font-serif text-h1 text-ink-900">
+          <Link href={href} className="transition-colors duration-quick hover:text-accent-600">
+            {article.title}
+          </Link>
+        </h2>
+        <p className="mt-4 text-pretty text-body-lg text-ink-600 line-clamp-3">
+          {article.excerpt}
+        </p>
+        <div className="mt-5 flex flex-wrap items-center gap-x-4 gap-y-1 text-body-sm text-ink-400">
+          <span>{article.readingTime} min read</span>
+          <span aria-hidden="true">·</span>
+          <time dateTime={article.updatedAt ?? article.publishedAt}>
+            {fmt(article.updatedAt ?? article.publishedAt)}
+          </time>
+        </div>
+        <Link
+          href={href}
+          className={clsx(
+            'mt-6 inline-flex items-center gap-2',
+            'text-body font-semibold text-accent-600',
+            'transition-colors duration-quick hover:text-accent-500',
+          )}
+        >
+          Read the guide
+          <svg
+            width="15"
+            height="15"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M5 12h14M13 5l7 7-7 7" />
+          </svg>
+        </Link>
+      </div>
+    </article>
+  );
+}
+
+// ─── Empty state ──────────────────────────────────────────────
+// Shown when no real articles exist yet for this room category.
+function EmptyState({ label }: { label: string }) {
+  return (
+    <div className="mt-10 flex items-start gap-4 rounded-2xl border border-ink-100 bg-elevated/40 p-6 sm:items-center">
+      <span className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full bg-accent-50">
+        <svg
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="text-accent-600"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="10" />
+          <path d="M12 8v4M12 16h.01" />
+        </svg>
+      </span>
+      <div>
+        <p className="font-semibold text-ink-900">
+          {label} guides are in progress.
+        </p>
+        <p className="mt-1 text-body-sm text-ink-600">
+          Our editors are testing and writing now — subscribe to be notified when
+          they publish.{' '}
+          <Link
+            href="/newsletter"
+            className="font-medium text-accent-600 transition-colors duration-quick hover:text-accent-500"
+          >
+            Get notified →
+          </Link>
+        </p>
+      </div>
+    </div>
+  );
+}

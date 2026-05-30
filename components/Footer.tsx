@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
 import { NewsletterForm } from '@/components/interactive/NewsletterForm';
+import { BrandLogo } from '@/components/BrandLogo';
 
 const SOCIALS = [
   { label: 'Instagram', href: 'https://instagram.com/bigelowdesigns', icon: InstagramIcon },
@@ -19,16 +20,16 @@ export function Footer() {
       >
         <div className="mx-auto max-w-page px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="text-eyebrow text-accent">The Sunday Letter</p>
+            <p className="text-eyebrow text-accent">The Bigelow Edit</p>
             <h2
               id="footer-newsletter"
               className="mt-3 font-serif text-h1 text-canvas text-balance"
             >
-              One room a week. Nothing more.
+              The Bigelow Edit.
             </h2>
             <p className="mx-auto mt-4 max-w-lg text-body-lg text-canvas/70 text-pretty">
-              Sundays only. The week&apos;s best room, one product worth knowing,
-              and zero noise.
+              Weekly interior trends, honest furniture reviews, and considered
+              styling tips — delivered directly to your inbox.
             </p>
 
             <div className="mt-10">
@@ -45,9 +46,10 @@ export function Footer() {
           <div className="md:col-span-4">
             <Link
               href="/"
-              className="font-serif text-2xl font-semibold tracking-tight text-canvas"
+              aria-label={`${siteConfig.name} — Home`}
+              className="inline-block text-canvas transition-colors duration-quick hover:text-accent"
             >
-              {siteConfig.shortName}
+              <BrandLogo variant="lg" theme="dark" />
             </Link>
             <p className="mt-4 max-w-xs text-body-sm text-canvas/60">
               {siteConfig.description}
@@ -60,7 +62,7 @@ export function Footer() {
                   <a
                     href={href}
                     target="_blank"
-                    rel="me noopener"
+                    rel="me noopener noreferrer"
                     aria-label={label}
                     className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-canvas/70 transition-colors duration-quick ease-out hover:border-accent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink-900"
                   >
@@ -71,30 +73,30 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Rooms */}
+          {/* Room Guides */}
           <FooterColumn
-            label="Rooms"
-            links={
-              siteConfig.nav.find((n) => n.label === 'Rooms')?.children ?? []
-            }
+            label="Room Guides"
+            links={siteConfig.nav[0].children}
           />
 
-          {/* Styles */}
+          {/* Explore */}
           <FooterColumn
-            label="Styles"
-            links={
-              siteConfig.nav.find((n) => n.label === 'Styles')?.children ?? []
-            }
+            label="Explore"
+            links={[
+              { label: 'Furniture Reviews', href: '/reviews'       },
+              { label: 'Design Trends',     href: '/design-trends' },
+              { label: 'Newsletter',        href: '/newsletter'    },
+            ]}
           />
 
           {/* Site */}
           <FooterColumn
             label="Site"
             links={[
-              { label: 'About', href: '/about' },
-              { label: 'Contact', href: '/contact' },
-              { label: 'Reviews', href: '/reviews' },
-              { label: 'Guides', href: '/guides' },
+              { label: 'About',          href: '/about'   },
+              { label: 'Contact',        href: '/contact' },
+              { label: 'Privacy Policy', href: '/privacy' },
+              { label: 'Terms of Service', href: '/terms' },
             ]}
           />
         </div>
@@ -103,7 +105,7 @@ export function Footer() {
       {/* Bottom strip */}
       <div className="border-t border-white/10">
         <div className="mx-auto flex max-w-page flex-col gap-4 px-4 py-8 sm:px-6 md:flex-row md:items-center md:justify-between lg:px-8">
-          <p className="text-body-sm text-canvas/50">
+          <p className="text-body-sm text-canvas/50" suppressHydrationWarning>
             © {new Date().getFullYear()} {siteConfig.name}. Made slowly in
             Brooklyn &amp; London.
           </p>
@@ -111,23 +113,23 @@ export function Footer() {
             <li>
               <Link
                 href="/privacy"
-                className="text-canvas/60 hover:text-accent"
+                className="text-canvas/70 transition-colors duration-quick hover:text-accent"
               >
-                Privacy
+                Privacy Policy
               </Link>
             </li>
             <li>
               <Link
                 href="/terms"
-                className="text-canvas/60 hover:text-accent"
+                className="text-canvas/70 transition-colors duration-quick hover:text-accent"
               >
-                Terms
+                Terms of Service
               </Link>
             </li>
             <li>
               <Link
                 href="/affiliate-disclosure"
-                className="text-canvas/60 hover:text-accent"
+                className="text-canvas/70 transition-colors duration-quick hover:text-accent"
               >
                 Affiliate Disclosure
               </Link>
@@ -158,7 +160,7 @@ function FooterColumn({
   links,
 }: {
   label: string;
-  links: { label: string; href: string }[];
+  links: readonly { label: string; href: string }[];
 }) {
   return (
     <nav aria-label={label} className="md:col-span-2 lg:col-span-2">

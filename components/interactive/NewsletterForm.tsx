@@ -111,10 +111,10 @@ export function NewsletterForm({
         )}
       >
         <p className={clsx('font-serif text-h3', isDark ? 'text-canvas' : 'text-ink-900')}>
-          You&apos;re in.
+          Thank you for subscribing.
         </p>
         <p className={clsx('mt-2 text-body', isDark ? 'text-canvas/70' : 'text-ink-600')}>
-          Check your inbox for a quick confirmation. The first letter lands Sunday.
+          Welcome to the Bigelow Edit.
         </p>
       </div>
     );
@@ -254,7 +254,7 @@ export function NewsletterForm({
           isDark ? 'text-canvas/50' : 'text-ink-400',
         )}
       >
-        Read by 42,000 design-minded homeowners. Unsubscribe in one click.
+        No spam. Unsubscribe anytime.
       </p>
     </form>
   );

@@ -2,41 +2,30 @@ export const siteConfig = {
   name: 'Bigelow Designs',
   shortName: 'Bigelow',
   description:
-    'Interior design inspiration, room ideas, and honest product reviews for modern American & British homes.',
+    'Editorial interior design guides, honest furniture reviews, and design trend coverage for modern homes.',
   url: 'https://bigelowdesigns.com',
   ogImage: 'https://bigelowdesigns.com/og-default.jpg',
   locale: 'en_US',
   twitterHandle: '@bigelowdesigns',
   publisher: {
     name: 'Bigelow Designs',
-    logo: 'https://bigelowdesigns.com/logo.png',
+    logo: 'https://bigelowdesigns.com/bigelow-interior-design-logo.webp',
   },
   nav: [
     {
-      label: 'Rooms',
+      label: 'Room Guides',
       href: '/rooms',
       children: [
         { label: 'Living Room', href: '/rooms/living-room' },
-        { label: 'Kitchen', href: '/rooms/kitchen' },
-        { label: 'Bedroom', href: '/rooms/bedroom' },
-        { label: 'Bathroom', href: '/rooms/bathroom' },
+        { label: 'Kitchen',     href: '/rooms/kitchen'     },
+        { label: 'Bedroom',     href: '/rooms/bedroom'     },
+        { label: 'Bathroom',    href: '/rooms/bathroom'    },
         { label: 'Home Office', href: '/rooms/home-office' },
-        { label: 'Outdoor', href: '/rooms/outdoor' },
+        { label: 'Outdoor',     href: '/rooms/outdoor'     },
       ],
     },
-    {
-      label: 'Styles',
-      href: '/styles',
-      children: [
-        { label: 'Scandinavian', href: '/styles/scandinavian' },
-        { label: 'Japandi', href: '/styles/japandi' },
-        { label: 'Mid-Century Modern', href: '/styles/mid-century-modern' },
-        { label: 'Farmhouse', href: '/styles/farmhouse' },
-        { label: 'Coastal', href: '/styles/coastal' },
-      ],
-    },
-    { label: 'Guides', href: '/guides' },
-    { label: 'Reviews', href: '/reviews' },
+    { label: 'Furniture Reviews', href: '/reviews'       },
+    { label: 'Design Trends',    href: '/design-trends' },
   ],
 } as const;
 

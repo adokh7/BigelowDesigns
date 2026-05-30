@@ -46,6 +46,13 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Invalid email.' }, { status: 400 });
   }
 
+  // ── Log to terminal (dev visibility) ─────────────────────────
+  // Replace this with your email provider call when ready.
+  // e.g. Resend, ConvertKit, Buttondown, Mailchimp, etc.
+  console.log(
+    `[Newsletter] New subscriber: ${email} | source: ${body.source ?? 'unknown'} | ${new Date().toISOString()}`,
+  );
+
   // TODO: integrate with email provider (Resend / ConvertKit / Buttondown)
   // Example shape:
   //

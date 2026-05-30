@@ -142,12 +142,16 @@ const config: Config = {
         'spring-snap': 'cubic-bezier(0.34, 1.56, 0.64, 1)',
       },
       animation: {
-        'fade-rise':  'fade-rise 420ms cubic-bezier(0.32, 0.72, 0, 1) both',
-        'fade-zoom':  'fade-zoom 260ms cubic-bezier(0.32, 0.72, 0, 1) both',
-        'fade-in':    'fade-in 420ms cubic-bezier(0.32, 0.72, 0, 1) both',
-        'modal-in':   'modal-in 260ms cubic-bezier(0.32, 0.72, 0, 1) both',
-        'backdrop-in':'backdrop-in 260ms ease-out both',
-        'shimmer':    'shimmer 1400ms linear infinite',
+        'fade-rise':      'fade-rise 420ms cubic-bezier(0.32, 0.72, 0, 1) both',
+        'fade-rise-hero': 'fade-rise 900ms cubic-bezier(0.16, 1, 0.3, 1) both',
+        'fade-zoom':      'fade-zoom 260ms cubic-bezier(0.32, 0.72, 0, 1) both',
+        'fade-in':        'fade-in 420ms cubic-bezier(0.32, 0.72, 0, 1) both',
+        'fade-in-slow':   'fade-in 1200ms ease-out both',
+        'modal-in':       'modal-in 260ms cubic-bezier(0.32, 0.72, 0, 1) both',
+        'backdrop-in':    'backdrop-in 260ms ease-out both',
+        'shimmer':        'shimmer 1400ms linear infinite',
+        'ken-burns':      'ken-burns 14000ms ease-out forwards',
+        'scroll-hint':    'scroll-hint 2200ms ease-in-out infinite',
       },
       keyframes: {
         'fade-rise':   { from: { opacity: '0', transform: 'translateY(12px)' }, to: { opacity: '1', transform: 'translateY(0)' } },
@@ -156,6 +160,8 @@ const config: Config = {
         'modal-in':    { from: { opacity: '0', transform: 'translateY(8px) scale(0.96)' }, to: { opacity: '1', transform: 'translateY(0) scale(1)' } },
         'backdrop-in': { from: { opacity: '0' }, to: { opacity: '1' } },
         'shimmer':     { from: { transform: 'translateX(-100%)' }, to: { transform: 'translateX(100%)' } },
+        'ken-burns':   { from: { transform: 'scale(1.0)', transformOrigin: '55% 45%' }, to: { transform: 'scale(1.12)', transformOrigin: '50% 50%' } },
+        'scroll-hint': { '0%, 100%': { opacity: '0', transform: 'translateY(0)' }, '50%': { opacity: '1', transform: 'translateY(6px)' } },
       },
 
       // ─── Z-index ───────────────────────────────────────────────

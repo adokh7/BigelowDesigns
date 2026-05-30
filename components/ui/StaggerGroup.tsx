@@ -6,7 +6,7 @@ interface StaggerGroupProps {
   /** Animation applied to each child. */
   variant?: 'fade-rise' | 'fade-zoom' | 'fade-in';
   className?: string;
-  as?: keyof JSX.IntrinsicElements;
+  as?: React.ElementType;
 }
 
 /**
@@ -29,11 +29,10 @@ export function StaggerGroup({
   }[variant];
 
   return (
-    // @ts-expect-error — polymorphic tag
     <Tag className={clsx('stagger', className)}>
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
-          ? React.cloneElement(child as React.ReactElement, {
+          ? React.cloneElement(child as React.ReactElement<{ className?: string }>, {
               className: clsx(animClass, (child.props as { className?: string }).className),
             })
           : child,

@@ -111,13 +111,47 @@ export function buildItemListSchema(products: ProductRef[], listName: string) {
   };
 }
 
+/**
+ * Strict Organisation schema (schema.org/Organization).
+ *
+ * Google's Rich Results guidelines require the logo to be expressed as a
+ * full ImageObject — a bare URL string is accepted but scores lower in
+ * structured-data validation. We include the intrinsic pixel dimensions
+ * so validators (and search engines) can confirm the image proportions
+ * without fetching it.
+ *
+ * sameAs lists every authoritative social profile — the primary signal
+ * Google uses to build a Knowledge Panel for a brand.
+ */
 export function buildOrganizationSchema() {
+  const logoUrl = `${siteConfig.url}/bigelow-interior-design-logo.webp`;
+
   return {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: siteConfig.name,
+    '@type':    'Organization',
+
+    // Full legal / brand name for the entity node.
+    name:          'Bigelow Interior Design',
+    alternateName: siteConfig.name,
+
     url: siteConfig.url,
-    logo: siteConfig.publisher.logo,
+
+    logo: {
+      '@type':  'ImageObject',
+      url:      logoUrl,
+      width:    612,
+      height:   408,
+      caption:  'Bigelow Interior Design logo',
+    },
+
+    // Canonical social profiles — Google uses these to link the entity
+    // to its Knowledge Graph node.
+    sameAs: [
+      'https://instagram.com/bigelowdesigns',
+      'https://pinterest.com/bigelowdesigns',
+      'https://x.com/bigelowdesigns',
+      'https://youtube.com/@bigelowdesigns',
+    ],
   };
 }
 
