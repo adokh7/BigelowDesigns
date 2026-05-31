@@ -3,13 +3,13 @@ export const siteConfig = {
   shortName: 'Bigelow',
   description:
     'Editorial interior design guides, honest furniture reviews, and design trend coverage for modern homes.',
-  url: 'https://bigelowdesigns.com',
-  ogImage: 'https://bigelowdesigns.com/og-default.jpg',
+  url: 'https://www.bigelowdesigns.com',
+  ogImage: 'https://www.bigelowdesigns.com/og-default.jpg',
   locale: 'en_US',
   twitterHandle: '@bigelowdesigns',
   publisher: {
     name: 'Bigelow Designs',
-    logo: 'https://bigelowdesigns.com/bigelow-interior-design-logo.webp',
+    logo: 'https://www.bigelowdesigns.com/bigelow-interior-design-logo.webp',
   },
   nav: [
     {

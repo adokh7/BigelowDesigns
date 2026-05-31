@@ -62,10 +62,10 @@ export function JsonLd({ data }: JsonLdProps) {
  *     "@type": "Organization",
  *     "name": "Bigelow Interior Design",
  *     "alternateName": "Bigelow Designs",
- *     "url": "https://bigelowdesigns.com",
+ *     "url": "https://www.bigelowdesigns.com",
  *     "logo": {
  *       "@type": "ImageObject",
- *       "url": "https://bigelowdesigns.com/bigelow-interior-design-logo.webp",
+ *       "url": "https://www.bigelowdesigns.com/bigelow-interior-design-logo.webp",
  *       "width": 612,
  *       "height": 408,
  *       "caption": "Bigelow Interior Design logo"
