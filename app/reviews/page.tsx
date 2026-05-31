@@ -6,6 +6,7 @@ import { siteConfig } from '@/lib/site';
 import { AdSlot } from '@/components/ui/AdSlot';
 import { Reveal } from '@/components/ui/Reveal';
 import { getArticlesByCategory } from '@/lib/articles';
+import { ReviewsFilterTabs } from '@/components/ReviewsFilterTabs';
 import type { Article } from '@/types/article';
 
 export const revalidate = 3600;
@@ -26,18 +27,6 @@ const VERDICT_STYLES = {
   'Worth considering':  'bg-amber-50 text-amber-700 border-amber-100',
   'Skip it':            'bg-ink-50 text-ink-500 border-ink-100',
 } as const;
-
-// ─── Filter categories — structural UI, no article data
-const FILTER_TABS = [
-  'All',
-  'Sofas',
-  'Beds',
-  'Dining',
-  'Lighting',
-  'Storage',
-  'Outdoor',
-  'Office',
-] as const;
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function FurnitureReviewsPage() {
@@ -64,31 +53,8 @@ export default function FurnitureReviewsPage() {
         </div>
       </div>
 
-      {/* ── Filter tabs (structural UI) ──────────────────────── */}
-      <div className="border-b border-ink-100 bg-surface">
-        <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-          <div
-            className="flex gap-1 overflow-x-auto pb-px pt-1 scrollbar-none"
-            role="tablist"
-            aria-label="Filter reviews by category"
-          >
-            {FILTER_TABS.map((tab, idx) => (
-              <button
-                key={tab}
-                role="tab"
-                aria-selected={idx === 0}
-                className={
-                  idx === 0
-                    ? 'flex-shrink-0 rounded-md px-4 py-2.5 text-body-sm font-semibold text-accent-600 bg-accent-50'
-                    : 'flex-shrink-0 rounded-md px-4 py-2.5 text-body-sm font-medium text-ink-600 transition-colors duration-quick hover:bg-ink-50 hover:text-ink-900'
-                }
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+      {/* ── Filter tabs — client component (useState for active category) */}
+      <ReviewsFilterTabs />
 
       {/* ── Article content ─────────────────────────────────── */}
       {articles.length > 0 ? (
@@ -139,10 +105,12 @@ export default function FurnitureReviewsPage() {
             <Link
               href="/newsletter"
               className={clsx(
-                'mt-8 inline-flex items-center gap-2',
+                'group mt-8 inline-flex items-center gap-2',
                 'rounded-full bg-ink-900 px-7 py-3',
                 'text-body font-semibold text-white',
-                'transition-all duration-quick hover:bg-accent hover:-translate-y-px',
+                'shadow-md',
+                'transition-all duration-quick',
+                'hover:bg-accent hover:-translate-y-0.5 hover:shadow-lg',
               )}
             >
               Get notified
@@ -156,6 +124,7 @@ export default function FurnitureReviewsPage() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
+                className="transition-transform duration-quick group-hover:translate-x-1"
               >
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
