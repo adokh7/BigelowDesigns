@@ -81,6 +81,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'dQtrCW2-Pv7U9oU7DV2FM2vCwvbgDPEicFk8euk-zQc',
   },
+  other: {
+    'ahrefs-site-verification': '027e0774ab2eaec1091149c1a84cb8fedd64a0dee6b972a2114d3820b90f43f6',
+  },
 };
 
 export default function RootLayout({
@@ -90,6 +93,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+      <head>
+        {/* Ahrefs Web Analytics — placed in <head> for site verification */}
+        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+        <script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="YhbFfA3VBAMsYXMqB0wX6g"
+          async
+        />
+      </head>
       <body className="flex min-h-screen flex-col">
         <JsonLd data={[buildOrganizationSchema(), buildWebsiteSchema()]} />
         <a
@@ -98,12 +110,6 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        {/* Ahrefs Web Analytics — loads after page is interactive, no hydration impact */}
-        <Script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="YhbFfA3VBAMsYXMqB0wX6g"
-          strategy="afterInteractive"
-        />
 
         {/* Google Analytics 4 — G-VEYTPK0FKL */}
         <Script
