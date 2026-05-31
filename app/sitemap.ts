@@ -4,7 +4,7 @@ import { siteConfig } from '@/lib/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const articles = getAllArticles().map((a) => ({
-    url: `${siteConfig.url}/${a.category}/${a.slug}`,
+    url: `${siteConfig.url}/blog/${a.slug}`,
     lastModified: new Date(a.updatedAt ?? a.publishedAt),
     changeFrequency: 'monthly' as const,
     priority: 0.8,
