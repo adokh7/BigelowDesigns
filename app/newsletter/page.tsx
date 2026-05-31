@@ -82,28 +82,6 @@ const BENEFITS = [
   },
 ] as const;
 
-// ─── Past issue previews ──────────────────────────────────────
-const PAST_ISSUES = [
-  {
-    number: '#042',
-    date: 'May 18',
-    title: 'A Kitchen in Copenhagen That Does Everything Right',
-    teaser: 'Warm oak, Calacatta marble, and a layout that puts the island exactly where it needs to be.',
-  },
-  {
-    number: '#041',
-    date: 'May 11',
-    title: 'The Bedroom That Took Three Years to Finish',
-    teaser: 'Why one designer waited two years before committing to a headboard — and what happened when she finally did.',
-  },
-  {
-    number: '#040',
-    date: 'May 4',
-    title: 'An Outdoor Room in Brooklyn That Earns Its Keep Year-Round',
-    teaser: 'A 180-square-foot terrace, four seasons, and the pergola decision that made it all possible.',
-  },
-] as const;
-
 // ─── Page ─────────────────────────────────────────────────────
 export default function NewsletterPage() {
   return (
@@ -200,67 +178,6 @@ export default function NewsletterPage() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          PAST ISSUES — social proof through content
-          ══════════════════════════════════════════════════════ */}
-      <section
-        aria-labelledby="past-issues-heading"
-        className="mx-auto max-w-page px-4 py-16 sm:px-6 lg:px-8 lg:py-20"
-      >
-        <div className="flex items-end justify-between border-b border-ink-100 pb-6">
-          <div>
-            <p className="text-eyebrow uppercase tracking-[0.18em] text-accent-600">
-              Recent issues
-            </p>
-            <h2
-              id="past-issues-heading"
-              className="mt-1.5 font-serif text-h2 text-ink-900"
-            >
-              A look inside
-            </h2>
-          </div>
-        </div>
-
-        <div className="mt-8 space-y-0">
-          {PAST_ISSUES.map((issue, idx) => (
-            <div
-              key={issue.number}
-              className={`flex gap-6 py-7 ${
-                idx < PAST_ISSUES.length - 1
-                  ? 'border-b border-ink-100'
-                  : ''
-              }`}
-            >
-              {/* Issue number */}
-              <div className="hidden w-16 flex-shrink-0 sm:block">
-                <span className="font-serif text-[22px] font-semibold text-ink-200">
-                  {issue.number}
-                </span>
-              </div>
-
-              {/* Content */}
-              <div className="flex-1">
-                <div className="flex items-baseline gap-3">
-                  <span className="text-body-sm font-semibold text-ink-400">
-                    {issue.date}
-                  </span>
-                  <span
-                    aria-hidden="true"
-                    className="h-px flex-1 bg-ink-100 sm:hidden"
-                  />
-                </div>
-                <h3 className="mt-1.5 font-serif text-h3 text-ink-900">
-                  {issue.title}
-                </h3>
-                <p className="mt-2 text-body text-ink-500 leading-relaxed">
-                  {issue.teaser}
-                </p>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
 
