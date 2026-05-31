@@ -102,6 +102,20 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
 
+        {/* Google Analytics 4 — G-VEYTPK0FKL */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-VEYTPK0FKL"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-VEYTPK0FKL');
+          `}
+        </Script>
+
         <CompareProvider>
           <AnalyticsListener />
           <Header />
