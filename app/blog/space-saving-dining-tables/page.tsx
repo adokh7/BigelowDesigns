@@ -48,27 +48,27 @@ const ARTICLE = {
   excerpt:
     'Creating a proper dining spot in a small apartment is a puzzle: you need a surface that works for meals, laptop sessions, and the occasional guest night, without hijacking your entire floor plan. Here is what the market offers in 2026.',
   categoryLabel: 'Room Guides',
-  categoryHref:  '/rooms/living-room',
+  categoryHref: '/rooms/living-room',
   author: {
-    name:        'Bigelow Editorial Team',
-    slug:        'team-bigelow',
-    avatar:      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
-    bio:         'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
+    name: 'Bigelow Editorial Team',
+    slug: 'team-bigelow',
+    avatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
+    bio: 'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
     credentials: ['Bigelow Designs Editorial Team'],
   },
-  publishedAt:  '2026-06-01T09:00:00Z',
-  updatedAt:    '2026-06-01T09:00:00Z',
-  readingTime:  8,
-  heroImage:    '/space-saving-tables.webp',
+  publishedAt: '2026-06-01T09:00:00Z',
+  updatedAt: '2026-06-01T09:00:00Z',
+  readingTime: 8,
+  heroImage: '/space-saving-tables.webp',
   heroImageAlt:
     'A compact apartment dining area with a slim extendable dining table, open chairs, and a single pendant light creating an intentional dining zone',
   heroCaption:
     'A compact dining zone that earns its floor plan. The right table does not just fit — it transforms how the entire room functions.',
   headings: [
-    { id: 'how-to-choose',     text: 'How to Choose a Space-Saving Dining Table in 2026', level: 2 },
-    { id: 'the-7-best',        text: 'The 7 Best Space-Saving Dining Tables',              level: 2 },
-    { id: 'styling-tips',      text: 'Styling Tips: Keep Your Dining Area Light and Airy', level: 2 },
-    { id: 'quick-size-cheats', text: 'Quick Size Cheats for Small Apartments',             level: 2 },
+    { id: 'how-to-choose', text: 'How to Choose a Space-Saving Dining Table in 2026', level: 2 },
+    { id: 'the-7-best', text: 'The 7 Best Space-Saving Dining Tables', level: 2 },
+    { id: 'styling-tips', text: 'Styling Tips: Keep Your Dining Area Light and Airy', level: 2 },
+    { id: 'quick-size-cheats', text: 'Quick Size Cheats for Small Apartments', level: 2 },
   ],
 } as const;
 
@@ -81,11 +81,11 @@ function formatDate(iso: string) {
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function SpaceSavingDiningTablesPage() {
-  const canonicalUrl    = `${siteConfig.url}/blog/space-saving-dining-tables`;
+  const canonicalUrl = `${siteConfig.url}/blog/space-saving-dining-tables`;
   const breadcrumbItems = [
-    { name: 'Home',                url: '/'                   },
-    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref  },
-    { name: ARTICLE.title,         url: canonicalUrl          },
+    { name: 'Home', url: '/' },
+    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref },
+    { name: ARTICLE.title, url: canonicalUrl },
   ];
 
   return (
@@ -671,41 +671,41 @@ function ArticleBody() {
 
 // ─── Related articles ──────────────────────────────────────────
 type RelatedCard = {
-  slug:          string;
-  title:         string;
-  excerpt:       string;
+  slug: string;
+  title: string;
+  excerpt: string;
   categoryLabel: string;
-  categoryHref:  string;
-  href:          string;
-  image:         string;
-  imageAlt:      string;
-  readingTime:   number;
+  categoryHref: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  readingTime: number;
 };
 
 const RELATED_ARTICLES: RelatedCard[] = [
   {
-    slug:          'small-home-feel-huge',
-    title:         '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
+    slug: 'small-home-feel-huge',
+    title: '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
     excerpt:
       'Six real design decisions that make even the tightest spaces feel beautifully expansive. No renovation required — just honest tricks from the Bigelow Design Team.',
     categoryLabel: 'Room Guides',
-    categoryHref:  '/rooms/living-room',
-    href:          '/blog/small-home-feel-huge',
-    image:         '/living-room-candid.webp',
-    imageAlt:      'A real living room feeling spacious and airy through deliberate furniture placement',
-    readingTime:   4,
+    categoryHref: '/rooms/living-room',
+    href: '/blog/small-home-feel-huge',
+    image: '/living-room-candid.webp',
+    imageAlt: 'A real living room feeling spacious and airy through deliberate furniture placement',
+    readingTime: 4,
   },
   {
-    slug:          'hidden-armoire-storage-2026',
-    title:         "The Secret Armoire: Why Hidden Storage is 2026’s Ultimate Luxury",
+    slug: 'hidden-armoire-storage-2026',
+    title: "The Secret Armoire: Why Hidden Storage is 2026’s Ultimate Luxury",
     excerpt:
       'Custom millwork and invisible storage are redefining what it means for a room to feel truly calm. Here is the case for hiding everything.',
     categoryLabel: 'Design Trends',
-    categoryHref:  '/design-trends',
-    href:          '/blog/hidden-armoire-storage-2026',
-    image:         'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80',
-    imageAlt:      'Elegant room with seamless custom wooden cabinetry concealing storage',
-    readingTime:   7,
+    categoryHref: '/design-trends',
+    href: '/blog/hidden-armoire-storage-2026',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80',
+    imageAlt: 'Elegant room with seamless custom wooden cabinetry concealing storage',
+    readingTime: 7,
   },
 ];
 
