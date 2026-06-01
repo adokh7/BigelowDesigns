@@ -52,11 +52,11 @@ const ROOMS = [
     imageAlt: 'A focused home office setup with a clean desk and natural light',
   },
   {
-    slug: 'outdoor',
-    label: 'Outdoor',
+    slug: 'outdoor-guides',
+    label: 'Outdoor Guides',
     tagline: 'Furniture, planters, lighting & making outside work as hard as inside',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=85',
-    imageAlt: 'A thoughtfully designed outdoor seating area with warm evening light',
+    image: '/outdoor-balcony-oasis.webp',
+    imageAlt: 'A beautifully designed outdoor balcony oasis with warm ambient lighting and soft seating',
   },
 ] as const;
 

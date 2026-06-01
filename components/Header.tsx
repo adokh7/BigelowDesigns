@@ -14,7 +14,7 @@ const ROOMS = [
   { label: 'Bedroom',     href: '/rooms/bedroom',      tagline: 'Beds, bedding & lamps'        },
   { label: 'Bathroom',    href: '/rooms/bathroom',     tagline: 'Vanities, tiles & fixtures'   },
   { label: 'Home Office', href: '/rooms/home-office',  tagline: 'Desks, chairs & storage'      },
-  { label: 'Outdoor',     href: '/rooms/outdoor',      tagline: 'Furniture, planters & lights' },
+  { label: 'Outdoor Guides', href: '/rooms/outdoor-guides', tagline: 'Furniture, planters & lights' },
 ] as const;
 
 const SIMPLE_NAV = [

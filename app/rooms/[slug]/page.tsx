@@ -15,7 +15,7 @@ import { siteConfig } from '@/lib/site';
 import type { Article } from '@/types/article';
 
 // ─── Room types (formerly in lib/pricing) ────────────────────
-type RoomType = 'kitchen' | 'living-room' | 'bedroom' | 'bathroom' | 'home-office' | 'outdoor';
+type RoomType = 'kitchen' | 'living-room' | 'bedroom' | 'bathroom' | 'home-office' | 'outdoor-guides';
 
 const ROOM_LABELS: Record<RoomType, string> = {
   kitchen:       'Kitchen',
@@ -23,7 +23,7 @@ const ROOM_LABELS: Record<RoomType, string> = {
   bedroom:       'Bedroom',
   bathroom:      'Bathroom',
   'home-office': 'Home Office',
-  outdoor:       'Outdoor',
+  'outdoor-guides': 'Outdoor Guides',
 };
 
 // Only slugs returned by generateStaticParams are valid; everything else → 404
@@ -74,12 +74,12 @@ const ROOM_META: Record<RoomType, RoomMeta> = {
     heroImage: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=1600&q=85',
     heroImageAlt: 'A clean, minimal home office with a wooden desk, a task lamp, and a plant',
   },
-  outdoor: {
+  'outdoor-guides': {
     headline: 'The room without a ceiling.',
     description:
       'Teak furniture that weathers seasons with grace, planters that belong in the ground, lighting that keeps the evening alive. Outdoor design, taken seriously.',
-    heroImage: 'https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?w=1600&q=85',
-    heroImageAlt: 'A beautifully designed outdoor terrace with modern lounge furniture and warm lighting',
+    heroImage: '/outdoor-balcony-oasis.webp',
+    heroImageAlt: 'A beautifully designed outdoor balcony oasis with warm ambient lighting and soft seating',
   },
 };
 

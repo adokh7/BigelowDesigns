@@ -21,7 +21,7 @@ export const siteConfig = {
         { label: 'Bedroom',     href: '/rooms/bedroom'     },
         { label: 'Bathroom',    href: '/rooms/bathroom'    },
         { label: 'Home Office', href: '/rooms/home-office' },
-        { label: 'Outdoor',     href: '/rooms/outdoor'     },
+        { label: 'Outdoor Guides', href: '/rooms/outdoor-guides' },
       ],
     },
     { label: 'Furniture Reviews', href: '/reviews'       },
