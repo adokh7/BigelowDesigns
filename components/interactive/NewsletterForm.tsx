@@ -171,7 +171,7 @@ export function NewsletterForm({
         </label>
       </div>
 
-      <div className={clsx('flex flex-col gap-3 sm:flex-row sm:gap-2', (heading || description) && 'mt-6')}>
+      <div className={clsx('flex flex-col sm:flex-row gap-3', (heading || description) && 'mt-6')}>
         <label htmlFor="newsletter-email" className="sr-only">
           Email address
         </label>
@@ -193,52 +193,21 @@ export function NewsletterForm({
             }
           }}
           className={clsx(
-            // Size & shape
-            'flex-1 h-[52px] px-5 rounded-xl text-base',
-            // Border & transition
-            'border transition-colors duration-quick ease-out',
-            // Focus
-            'focus:outline-none focus:ring-2',
-            // Disabled
-            'disabled:opacity-50 disabled:cursor-not-allowed',
-            // Colour scheme
             isDark
-              ? [
-                  'bg-white/8 text-canvas placeholder:text-canvas/35',
-                  'border-white/15',
-                  status.kind === 'error-validation'
-                    ? 'border-danger focus:border-danger focus:ring-danger/25'
-                    : 'focus:border-white/50 focus:ring-white/15',
-                ]
-              : [
-                  'bg-surface text-ink-900 placeholder:text-ink-400',
-                  'border-ink-200',
-                  status.kind === 'error-validation'
-                    ? 'border-danger focus:border-danger focus:ring-danger/20'
-                    : 'focus:border-accent focus:ring-accent/20',
-                ],
+              ? 'w-full bg-transparent border border-white/20 rounded-md py-2.5 px-4 text-sm text-white placeholder-white/40 focus:border-white focus:ring-1 focus:ring-white outline-none transition-all'
+              : 'w-full bg-transparent border border-gray-300 rounded-md py-2.5 px-4 text-sm text-gray-900 placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all',
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            status.kind === 'error-validation' && (isDark ? 'border-red-400 focus:ring-red-400 focus:border-red-400' : 'border-danger focus:ring-danger focus:border-danger')
           )}
         />
         <button
           type="submit"
           disabled={isSubmitting}
           className={clsx(
-            // Layout
-            'inline-flex items-center justify-center gap-2',
-            // Size & shape — full width on mobile, auto on sm+
-            'h-[52px] w-full rounded-xl px-7 sm:w-auto sm:flex-shrink-0',
-            // Typography
-            'text-base font-semibold',
-            // Transitions
-            'transition-all duration-quick ease-out',
-            'hover:-translate-y-px hover:shadow-lg',
-            'active:translate-y-0 active:scale-[0.98] active:shadow-none',
-            'disabled:opacity-50 disabled:cursor-not-allowed',
-            'disabled:hover:translate-y-0 disabled:hover:shadow-none',
-            // Colour scheme — dark variant: white pill; light variant: ink-900 pill
+            'inline-flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed',
             isDark
-              ? 'bg-white text-ink-900 hover:bg-canvas/90'
-              : 'bg-ink-900 text-white hover:bg-accent',
+              ? 'w-full sm:w-auto whitespace-nowrap bg-white text-black px-6 py-2.5 rounded-md text-sm font-medium hover:bg-gray-100 transition-colors'
+              : 'w-full sm:w-auto whitespace-nowrap bg-black text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors'
           )}
         >
           {isSubmitting ? (

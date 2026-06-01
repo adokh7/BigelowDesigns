@@ -23,7 +23,7 @@ export function Footer() {
             <p className="text-eyebrow text-accent">The Bigelow Edit</p>
             <h2
               id="footer-newsletter"
-              className="mt-3 font-serif text-h1 text-canvas text-balance"
+              className="mt-3 font-serif text-h2 text-canvas text-balance"
             >
               The Bigelow Edit.
             </h2>

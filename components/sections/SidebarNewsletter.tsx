@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import clsx from 'clsx';
 
 /**
  * SidebarNewsletter
@@ -172,17 +173,12 @@ function SubscribeForm({
         disabled={isSubmitting}
         aria-invalid={status === 'error' || undefined}
         aria-describedby={errorMsg ? 'sidebar-newsletter-error' : undefined}
-        className={[
-          'w-full rounded-xl px-4 py-3',
-          'text-sm text-ink-900 placeholder:text-ink-400',
-          'border bg-surface',
-          'focus:outline-none focus:ring-2 focus:ring-accent/20',
-          'transition-colors duration-quick',
-          'disabled:cursor-not-allowed disabled:opacity-50',
+        className={clsx(
+          'w-full bg-transparent border rounded-md py-2.5 px-4 text-sm text-gray-900 placeholder-gray-400 focus:border-black focus:ring-1 focus:ring-black outline-none transition-all disabled:opacity-50 disabled:cursor-not-allowed',
           status === 'error'
-            ? 'border-danger focus:border-danger'
-            : 'border-ink-200 focus:border-accent',
-        ].join(' ')}
+            ? 'border-danger focus:border-danger focus:ring-danger'
+            : 'border-gray-300 focus:border-black'
+        )}
       />
 
       {errorMsg && (
@@ -198,16 +194,7 @@ function SubscribeForm({
       <button
         type="submit"
         disabled={isSubmitting}
-        className={[
-          'flex w-full items-center justify-center',
-          'rounded-full bg-ink-900 py-3',
-          'text-sm font-semibold text-white',
-          'transition-all duration-quick',
-          'hover:bg-accent hover:-translate-y-px hover:shadow-md',
-          'active:translate-y-0',
-          'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-ink-900',
-          'disabled:hover:translate-y-0 disabled:hover:shadow-none',
-        ].join(' ')}
+        className="flex w-full items-center justify-center whitespace-nowrap bg-black text-white px-6 py-2.5 rounded-md text-sm font-medium hover:bg-gray-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {isSubmitting ? 'Subscribing…' : 'Subscribe free'}
       </button>
