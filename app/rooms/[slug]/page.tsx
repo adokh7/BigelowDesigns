@@ -27,8 +27,8 @@ const ROOM_LABELS: Record<RoomType, string> = {
   outdoor:       'Outdoor',
 };
 
-export const revalidate = 3600;
 // Only slugs returned by generateStaticParams are valid; everything else → 404
+export const dynamic = 'force-static';
 export const dynamicParams = false;
 
 // ─── Room editorial data ──────────────────────────────────────

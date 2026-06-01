@@ -20,13 +20,13 @@ import { buildArticleSchema, buildBreadcrumbSchema } from '@/lib/schema';
 import { siteConfig } from '@/lib/site';
 import type { Article } from '@/types/article';
 
-// ─── ISR ──────────────────────────────────────────────────────
-export const revalidate = 3600;
+// ─── SSG — all slugs pre-rendered at build; unknown → 404 ────
+export const dynamic = 'force-static';
+export const dynamicParams = false;
 
 type PageProps = { params: Promise<{ slug: string }> };
 
 // Pre-render all real article slugs at build time.
-// Unknown slugs still render on-demand (dynamicParams defaults to true).
 export async function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
 }

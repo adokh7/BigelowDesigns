@@ -9,7 +9,7 @@ import { getArticlesByCategory } from '@/lib/articles';
 import { ReviewsFilterTabs } from '@/components/ReviewsFilterTabs';
 import type { Article } from '@/types/article';
 
-export const revalidate = 3600;
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'Furniture Reviews',

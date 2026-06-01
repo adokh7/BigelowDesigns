@@ -31,8 +31,8 @@ import {
 } from '@/lib/schema';
 import { siteConfig } from '@/lib/site';
 
+export const dynamic = 'force-static';
 export const dynamicParams = false;
-export const revalidate = 3600;
 
 type PageProps = {
   params: Promise<{ category: string; slug: string }>;

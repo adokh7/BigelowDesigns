@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
 import { Reveal } from '@/components/ui/Reveal';
 
-export const revalidate = 3600;
+export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
   title: 'Room Guides',

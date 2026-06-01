@@ -7,8 +7,8 @@ import { getAllArticles } from '@/lib/articles';
 import { siteConfig } from '@/lib/site';
 import type { Article } from '@/types/article';
 
-// ─── ISR ─────────────────────────────────────────────────────
-export const revalidate = 3600;
+// ─── SSG — built once at deploy, served from CDN edge ────────
+export const dynamic = 'force-static';
 
 // ─── Category href helper ─────────────────────────────────────
 function categoryHref(category: string): string {
