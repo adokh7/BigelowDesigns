@@ -1,6 +1,3 @@
-import { Fragment } from 'react';
-import clsx from 'clsx';
-
 interface TrustStat {
   /** The headline number/figure, e.g. "50,000+" */
   value: string;
