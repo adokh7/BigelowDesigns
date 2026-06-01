@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import type { Article } from '@/types/article';
+import { Breadcrumbs, BreadcrumbItem } from '@/components/Breadcrumbs';
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -13,37 +14,38 @@ function formatDate(iso: string): string {
 
 /**
  * Article header with motion-choreographed entrance.
- *
- * Stagger sequence (60ms beat):
- *   0ms  – category eyebrow
- *   60ms – H1 headline
- *   120ms – excerpt
- *   180ms – byline row
- *   240ms – hero figure (uses fade-zoom — 1.02 → 1)
- *
- * Each child opts into the timing via its own animate-* class.
- * Server-rendered: no JS, animations fire on first paint.
  */
-export function ArticleHeader({ article }: { article: Article }) {
+export function ArticleHeader({ 
+  article,
+  breadcrumbItems
+}: { 
+  article: Article;
+  breadcrumbItems: BreadcrumbItem[];
+}) {
   return (
-    <header id="article-hero" className="mx-auto max-w-3xl">
+    <header id="article-hero" className="mx-auto max-w-3xl flex flex-col gap-4 mb-10 mt-6">
+      <div className="pt-6">
+        <Breadcrumbs items={breadcrumbItems} />
+      </div>
+
       <Link
         href={`/rooms/${article.category}`}
-        className="inline-block text-eyebrow text-accent-600 hover:text-accent-500 animate-fade-rise"
+        className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 hover:text-accent-500 animate-fade-rise w-fit"
         style={{ animationDelay: '0ms' }}
       >
+        <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
         {article.categoryLabel}
       </Link>
 
       <h1
-        className="mt-3 font-serif text-h1 text-ink-900 leading-tight md:text-display-lg animate-fade-rise text-balance"
+        className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900 animate-fade-rise"
         style={{ animationDelay: '60ms' }}
       >
         {article.title}
       </h1>
 
       <p
-        className="mt-4 text-body-lg text-ink-600 animate-fade-rise text-pretty"
+        className="text-pretty text-body-lg leading-relaxed text-ink-600 animate-fade-rise"
         style={{ animationDelay: '120ms' }}
       >
         {article.excerpt}

@@ -115,12 +115,8 @@ export default async function ArticlePage({ params }: PageProps) {
     <>
       <JsonLd data={schemas} />
 
-      <div className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8">
-        <Breadcrumbs items={breadcrumbItems} />
-      </div>
-
-      <article className="mx-auto max-w-7xl px-4 pt-8 sm:px-6 lg:px-8">
-        <ArticleHeader article={article} />
+      <article className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <ArticleHeader article={article} breadcrumbItems={breadcrumbItems} />
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[1fr_minmax(0,640px)_1fr]">
           {/* TOC sidebar (desktop only) */}

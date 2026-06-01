@@ -89,23 +89,22 @@ export default function HiddenArmoireStoragePage() {
       <div className="bg-surface border-b border-ink-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="pt-6">
-          <Breadcrumbs items={breadcrumbItems} />
+            <Breadcrumbs items={breadcrumbItems} />
           </div>
 
         <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
 
-          {/* Category tag with flanking hairlines */}
+          {/* Category tag */}
           <Link
             href={ARTICLE.categoryHref}
-            className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
+            className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
           >
             <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
             {ARTICLE.categoryLabel}
-            <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
           </Link>
 
           {/* Title */}
-          <h1 className="mt-5 text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
+          <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
             {ARTICLE.title}
           </h1>
 

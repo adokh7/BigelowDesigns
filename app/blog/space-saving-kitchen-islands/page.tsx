@@ -116,36 +116,35 @@ export default function SpaceSavingKitchenIslandsPage() {
               {ARTICLE.title}
             </h1>
 
-          {/* Deck */}
-          <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
-            {ARTICLE.excerpt}
-          </p>
+            {/* Deck */}
+            <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
+              {ARTICLE.excerpt}
+            </p>
 
-          {/* Hairline */}
-          <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
+            {/* Hairline */}
+            <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
 
-          {/* Byline */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
-            <Image
-              src={ARTICLE.author.avatar}
-              alt=""
-              width={32}
-              height={32}
-              className="rounded-full ring-2 ring-ink-100"
-            />
-            <Link
-              href={`/authors/${ARTICLE.author.slug}`}
-              className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
-            >
-              {ARTICLE.author.name}
-            </Link>
-            <span aria-hidden="true" className="text-ink-300">&middot;</span>
-            <time dateTime={ARTICLE.publishedAt}>{formatDate(ARTICLE.publishedAt)}</time>
-            <span aria-hidden="true" className="text-ink-300">&middot;</span>
-            <span>{ARTICLE.readingTime} min read</span>
-          </div>
-
-        </header>
+            {/* Byline */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
+              <Image
+                src={ARTICLE.author.avatar}
+                alt=""
+                width={32}
+                height={32}
+                className="rounded-full ring-2 ring-ink-100"
+              />
+              <Link
+                href={`/authors/${ARTICLE.author.slug}`}
+                className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
+              >
+                {ARTICLE.author.name}
+              </Link>
+              <span aria-hidden="true" className="text-ink-300">&middot;</span>
+              <time dateTime={ARTICLE.publishedAt}>{formatDate(ARTICLE.publishedAt)}</time>
+              <span aria-hidden="true" className="text-ink-300">&middot;</span>
+              <span>{ARTICLE.readingTime} min read</span>
+            </div>
+          </header>
         </div>
       </div>
 

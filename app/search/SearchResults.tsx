@@ -175,7 +175,7 @@ function SearchForm({ initialQuery }: { initialQuery: string }) {
       role="search"
     >
       <div className="relative flex-1">
-        <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-ink-400">
+        <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-stone-400">
           <svg
             width="16"
             height="16"
@@ -200,10 +200,10 @@ function SearchForm({ initialQuery }: { initialQuery: string }) {
           placeholder="Search guides, reviews, trends…"
           aria-label="Search articles"
           className={clsx(
-            'block w-full rounded-full border border-ink-200 bg-surface',
-            'py-3 pl-11 pr-5 text-body text-ink-900 placeholder-ink-300',
+            'block w-full rounded-full border border-stone-300 bg-surface',
+            'py-3 pl-12 pr-5 text-body text-ink-900 placeholder-ink-300',
             'transition-colors duration-quick',
-            'focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20',
+            'focus:border-black focus:ring-1 focus:ring-black outline-none',
           )}
         />
       </div>

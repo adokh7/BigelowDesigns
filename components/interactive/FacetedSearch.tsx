@@ -124,7 +124,7 @@ export function FacetedSearch({
             onKeyDown={(e) => e.key === 'Escape' && update('query', '')}
             maxLength={100}
             autoComplete="off"
-            className="w-full h-11 px-4 bg-surface text-body text-ink-900 placeholder:text-ink-400 border border-ink-200 rounded-md focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20"
+            className="w-full h-11 px-4 bg-surface text-body text-ink-900 placeholder:text-ink-400 border border-stone-300 rounded-md focus:outline-none focus:border-black focus:ring-1 focus:ring-black"
           />
         </div>
 
