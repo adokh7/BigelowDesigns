@@ -92,51 +92,49 @@ export default function RoomsPage() {
               /* Outer div holds lift + shadow; inner Link holds overflow-hidden clip */
               <div
                 key={room.slug}
-                className="rounded-2xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl"
+                className="rounded-xl transition-all duration-300 ease-out hover:-translate-y-1.5 hover:shadow-xl"
               >
                 <Link
                   href={`/rooms/${room.slug}`}
-                  className="group relative block overflow-hidden rounded-2xl"
+                  className="group relative block overflow-hidden rounded-xl h-48 sm:h-64 bg-elevated"
                   aria-label={`Browse ${room.label} guides`}
                 >
-                  <div className="relative aspect-[4/3] bg-elevated">
-                    <Image
-                      src={room.image}
-                      alt={room.imageAlt}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-elegant ease-out group-hover:scale-[1.04]"
-                    />
-                    {/* Gradient overlay */}
-                    <div
-                      aria-hidden="true"
-                      className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/25 to-transparent"
-                    />
-                    {/* Text overlay */}
-                    <div className="absolute inset-x-0 bottom-0 p-5">
-                      <p className="font-serif text-[22px] font-semibold leading-tight text-white">
-                        {room.label}
-                      </p>
-                      <p className="mt-1.5 line-clamp-2 text-[13px] leading-snug text-white/65">
-                        {room.tagline}
-                      </p>
-                      <p className="mt-3 flex items-center gap-1.5 text-[12px] font-semibold text-white/55 transition-colors duration-quick group-hover:text-accent">
-                        Explore guides
-                        <svg
-                          width="12"
-                          height="12"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          aria-hidden="true"
-                        >
-                          <path d="M5 12h14M13 5l7 7-7 7" />
-                        </svg>
-                      </p>
-                    </div>
+                  <Image
+                    src={room.image}
+                    alt={room.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-elegant ease-out group-hover:scale-[1.04]"
+                  />
+                  {/* Gradient overlay */}
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                  />
+                  {/* Text overlay */}
+                  <div className="absolute bottom-0 left-0 w-full p-4 sm:p-6 text-left">
+                    <p className="text-white font-bold text-lg sm:text-xl leading-tight">
+                      {room.label}
+                    </p>
+                    <p className="text-gray-200 text-sm line-clamp-1 sm:line-clamp-2 mt-1 leading-snug">
+                      {room.tagline}
+                    </p>
+                    <p className="mt-3 flex items-center gap-1.5 text-[12px] font-semibold text-white/55 transition-colors duration-quick group-hover:text-accent">
+                      Explore guides
+                      <svg
+                        width="12"
+                        height="12"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                      >
+                        <path d="M5 12h14M13 5l7 7-7 7" />
+                      </svg>
+                    </p>
                   </div>
                 </Link>
               </div>
