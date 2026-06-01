@@ -145,86 +145,53 @@ export default async function RoomCategoryPage({ params }: PageProps) {
       <JsonLd data={[buildBreadcrumbSchema(breadcrumbItems)]} />
 
       {/* ═══════════════════════════════════════════════════════
-          HERO — cinematic full-bleed image, text at bottom
+          PAGE HEADER — clean flow layout to prevent mobile overlap
           ═══════════════════════════════════════════════════════ */}
-      <div className="relative min-h-[58vh] overflow-hidden md:min-h-[72vh]">
-        {/* Background image */}
-        <Image
-          src={meta.heroImage}
-          alt={meta.heroImageAlt}
-          fill
-          priority
-          fetchPriority="high"
-          sizes="100vw"
-          className="object-cover"
-        />
+      <div className="bg-surface">
+        <div className="mx-auto max-w-page px-4 pt-6 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8 mb-6">
+            {/* Breadcrumbs */}
+            <Breadcrumbs items={breadcrumbItems} />
 
-        {/* Gradient overlays — top (for breadcrumbs) + bottom (for text) */}
-        <div
-          aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-ink-900/85 via-ink-900/20 to-ink-900/30"
-        />
+            {/* H1 Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight">
+              {label}: {meta.headline}
+            </h1>
+            
+            <p className="max-w-2xl text-pretty text-body-lg text-ink-600">
+              {meta.description}
+            </p>
 
-        {/* Breadcrumbs — top-left */}
-        <div className="absolute left-0 right-0 top-0 px-4 pt-5 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-page">
-            <nav aria-label="Breadcrumb">
-              <ol className="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
-                {breadcrumbItems.map((item, idx) => {
-                  const isLast = idx === breadcrumbItems.length - 1;
-                  return (
-                    <li key={item.url} className="flex items-center gap-1.5">
-                      {idx > 0 && <span aria-hidden="true">/</span>}
-                      {isLast ? (
-                        <span aria-current="page" className="text-white/90">
-                          {item.name}
-                        </span>
-                      ) : (
-                        <Link
-                          href={item.url}
-                          className="transition-colors duration-quick hover:text-white"
-                        >
-                          {item.name}
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
-              </ol>
-            </nav>
-          </div>
-        </div>
-
-        {/* Hero text — bottom-left */}
-        <div className="absolute inset-x-0 bottom-0 px-4 pb-10 sm:px-6 lg:px-8 lg:pb-16">
-          <div className="mx-auto max-w-page">
-            <div className="max-w-3xl">
-              <p className="text-eyebrow uppercase tracking-[0.18em] text-white/60">
-                Rooms · {label}
-              </p>
-              <h1 className="mt-3 text-balance font-serif text-display-lg leading-tight text-white">
-                {meta.headline}
-              </h1>
-              <p className="mt-4 max-w-2xl text-pretty text-body-lg text-white/70">
-                {meta.description}
-              </p>
-
-              {/* Trust stats */}
-              <div className="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 text-body-sm text-white/50">
-                {articles.length > 0 && (
-                  <>
-                    <span>
-                      {articles.length} {articles.length === 1 ? 'guide' : 'guides'}
-                    </span>
-                    <span aria-hidden="true">·</span>
-                  </>
-                )}
-                <span>Independently tested</span>
-                <span aria-hidden="true">·</span>
-                <span>0 sponsored reviews</span>
-              </div>
+            {/* Trust stats */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-body-sm text-ink-400">
+              {articles.length > 0 && (
+                <>
+                  <span>
+                    {articles.length} {articles.length === 1 ? 'guide' : 'guides'}
+                  </span>
+                  <span aria-hidden="true">·</span>
+                </>
+              )}
+              <span>Independently tested</span>
+              <span aria-hidden="true">·</span>
+              <span>0 sponsored reviews</span>
             </div>
           </div>
+        </div>
+      </div>
+
+      {/* Hero Image — full bleed, cinematic on xl */}
+      <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-none bg-elevated sm:rounded-xl xl:aspect-[21/9] xl:rounded-2xl">
+          <Image
+            src={meta.heroImage}
+            alt={meta.heroImageAlt}
+            fill
+            priority
+            fetchPriority="high"
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            className="object-cover"
+          />
         </div>
       </div>
 

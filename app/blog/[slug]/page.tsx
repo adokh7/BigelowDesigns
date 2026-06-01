@@ -120,25 +120,26 @@ export default async function BlogArticlePage({ params }: PageProps) {
               No hero image yet; that follows below.
           ══════════════════════════════════════════════════════ */}
       <div className="bg-surface">
-        <div className="mx-auto max-w-page px-4 pt-6 sm:px-6 lg:px-8">
-          <Breadcrumbs items={breadcrumbItems} />
-        </div>
-
         <header className="mx-auto max-w-[760px] px-4 pb-12 pt-10 text-center sm:px-6 lg:px-0 lg:pt-14 lg:pb-16">
-          {/* Category tag */}
-          <Link
-            href={categoryHref}
-            className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
-          >
-            <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
-            {article.categoryLabel}
-            <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
-          </Link>
+          <div className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8 mb-6 text-center items-center">
+            {/* Breadcrumbs */}
+            <Breadcrumbs items={breadcrumbItems} />
 
-          {/* Title */}
-          <h1 className="mt-5 text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
-            {article.title}
-          </h1>
+            {/* Category tag */}
+            <Link
+              href={categoryHref}
+              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
+            >
+              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
+              {article.categoryLabel}
+              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
+            </Link>
+
+            {/* Title */}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
+              {article.title}
+            </h1>
+          </div>
 
           {/* Deck */}
           <p className="mx-auto mt-5 max-w-[600px] text-pretty text-body-lg leading-relaxed text-ink-600">
