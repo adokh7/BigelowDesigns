@@ -49,7 +49,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: siteConfig.locale,
     url: siteConfig.url,
-    siteName: siteConfig.name,
+    siteName: 'Bigelow Designs',
     title: siteConfig.name,
     description: siteConfig.description,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
@@ -101,9 +101,20 @@ export default function RootLayout({
           data-key="YhbFfA3VBAMsYXMqB0wX6g"
           async
         />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              "name": "Bigelow Designs",
+              "url": "https://bigelowdesigns.com/"
+            })
+          }}
+        />
       </head>
       <body className="flex min-h-screen flex-col">
-        <JsonLd data={[buildOrganizationSchema(), buildWebsiteSchema()]} />
+        <JsonLd data={[buildOrganizationSchema()]} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-white"
