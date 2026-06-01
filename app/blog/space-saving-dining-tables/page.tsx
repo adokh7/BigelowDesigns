@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { AdSlot } from '@/components/ui/AdSlot';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SidebarNewsletter } from '@/components/sections/SidebarNewsletter';
 import { siteConfig } from '@/lib/site';
@@ -234,11 +233,6 @@ export default function SpaceSavingDiningTablesPage() {
 
               <div aria-hidden="true" className="h-px bg-ink-100" />
 
-              {/* Sidebar ad */}
-              <AdSlot variant="rectangle" align="start" />
-
-              <div aria-hidden="true" className="h-px bg-ink-100" />
-
               {/* Newsletter mini-CTA */}
               <SidebarNewsletter />
 
@@ -285,7 +279,6 @@ export default function SpaceSavingDiningTablesPage() {
 }
 
 // ─── Article body ──────────────────────────────────────────────
-// Intro + AdSlot break + full 7-section buyer's guide body.
 // Each <h2> id matches the sidebar TOC exactly.
 function ArticleBody() {
   return (
@@ -307,11 +300,6 @@ function ArticleBody() {
           The trick is choosing a piece that suits your spatial flow, not
           just the catalog photo.
         </p>
-      </div>
-
-      {/* ── Mid-intro AdSense ── */}
-      <div className="not-prose my-10 lg:my-12">
-        <AdSlot variant="responsive" />
       </div>
 
       {/* ── Main body prose ── */}
@@ -519,11 +507,6 @@ function ArticleBody() {
           </li>
         </ul>
 
-      </div>
-
-      {/* ── Mid-article AdSense (between tables 4 and 5) ── */}
-      <div className="not-prose my-10 lg:my-12">
-        <AdSlot variant="responsive" />
       </div>
 
       <div className="prose max-w-none text-ink-800">

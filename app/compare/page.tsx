@@ -48,12 +48,6 @@ export default function KitchenTrendsArticle() {
             After years of painted cabinets dominating the market, we are seeing a major return to the natural grain of wood. Walnut, white oak, and lightly stained ash are becoming the foundation of luxury kitchen trends. This approach works beautifully in open-concept homes where the kitchen cabinetry needs to converse with the furniture in the adjacent living areas.
           </p>
 
-          {/* AdSense Placeholder 1 */}
-          <div className="my-10 bg-slate-100 border border-slate-200 rounded-lg p-6 text-center flex flex-col items-center justify-center h-32 shadow-inner">
-            <span className="text-xs text-slate-400 uppercase tracking-widest mb-1">Advertisement</span>
-            <span className="text-slate-500 font-medium">[ AdSense Responsive Unit ]</span>
-          </div>
-
           <h3 className="font-serif text-2xl mt-8 mb-4 text-slate-900">Seamless Integration and Hidden Storage</h3>
           <p>
             The desire for a calm environment has led to a major rethinking of how we store our everyday items. We are moving beyond standard upper cabinets toward expansive, floor-to-ceiling pantry walls and hidden appliance garages. The goal is visual quiet.

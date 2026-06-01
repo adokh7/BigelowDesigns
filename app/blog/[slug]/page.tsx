@@ -8,7 +8,6 @@ import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
-import { AdSlot } from '@/components/ui/AdSlot';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
 import {
@@ -220,19 +219,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
           {/* ── Main prose column ── */}
           <main>
-            {/* Render article MDX content.
-             *  To insert an inline ad, add <AdBreak /> in the MDX file.
-             *  Example: place <AdBreak /> after the intro paragraph.  */}
             <div className="prose max-w-none text-ink-800">
               <MDXRemote
                 source={article.content}
-                components={{
-                  AdBreak: () => (
-                    <div className="not-prose my-10 lg:my-12">
-                      <AdSlot variant="responsive" />
-                    </div>
-                  ),
-                }}
                 options={{
                   mdxOptions: {
                     remarkPlugins: [remarkGfm],
@@ -310,17 +299,6 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   </ol>
                 </nav>
               )}
-
-              {/* Divider */}
-              <div aria-hidden="true" className="h-px bg-ink-100" />
-
-              {/* ── ADSENSE SIDEBAR ─────────────────────────────────
-               *  Rectangle (336 × 280) — highest-value desktop placement.
-               *  To activate: replace the inner placeholder <div> inside
-               *  AdSlot with your AdSense <ins> snippet.
-               *  Keep the outer wrapper and "Advertisement" label.
-               *  ───────────────────────────────────────────────────── */}
-              <AdSlot variant="rectangle" align="start" />
 
               {/* Divider */}
               <div aria-hidden="true" className="h-px bg-ink-100" />

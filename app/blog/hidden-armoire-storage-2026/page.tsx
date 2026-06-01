@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { AdSlot } from '@/components/ui/AdSlot';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { SidebarNewsletter } from '@/components/sections/SidebarNewsletter';
 import { siteConfig } from '@/lib/site';
@@ -229,12 +228,6 @@ export default function HiddenArmoireStoragePage() {
               {/* Divider */}
               <div aria-hidden="true" className="h-px bg-ink-100" />
 
-              {/* AdSense sidebar rectangle */}
-              <AdSlot variant="rectangle" align="start" />
-
-              {/* Divider */}
-              <div aria-hidden="true" className="h-px bg-ink-100" />
-
               {/* Newsletter mini-CTA */}
               <SidebarNewsletter />
 
@@ -281,8 +274,7 @@ export default function HiddenArmoireStoragePage() {
 }
 
 // ─── Article body ─────────────────────────────────────────────
-// Two prose blocks separated by a single mid-content AdSense
-// placement. Each <h2> has an id matching the sidebar TOC exactly.
+// Each <h2> has an id matching the sidebar TOC exactly.
 // Sub-sections inside "What to Hide" use <h3> (not <dl>) so the
 // Tailwind Typography plugin styles them correctly as serif
 // sub-headings — no browser-default definition-list rendering.
@@ -306,11 +298,6 @@ function ArticleBody() {
           The solution is deceptively simple, architecturally satisfying, and
           deeply, quietly luxurious. It is the secret armoire.
         </p>
-      </div>
-
-      {/* ── Mid-intro AdSense — highest-value in-content position ── */}
-      <div className="not-prose my-10 lg:my-12">
-        <AdSlot variant="responsive" />
       </div>
 
       {/* ── Main body prose — all four h2 sections in one block ── */}

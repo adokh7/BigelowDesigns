@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { AdSlot } from '@/components/ui/AdSlot';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { EditorialProduct } from '@/components/EditorialProduct';
@@ -236,12 +235,6 @@ export default function JapandiBedroomDesignPage() {
               {/* Divider */}
               <div aria-hidden="true" className="h-px bg-ink-100" />
 
-              {/* AdSense sidebar rectangle */}
-              <AdSlot variant="rectangle" align="start" />
-
-              {/* Divider */}
-              <div aria-hidden="true" className="h-px bg-ink-100" />
-
               {/* Newsletter mini-CTA */}
               <SidebarNewsletter />
 
@@ -291,7 +284,6 @@ export default function JapandiBedroomDesignPage() {
 // Structure:
 //   • Key Takeaways box (not-prose, above the prose block)
 //   • Intro paragraph
-//   • Mid-intro AdSlot
 //   • Sections 1–3 in a single prose block
 //   • AffiliateDisclosure + EditorialProduct (not-prose, after section 3)
 //   • Section 4 in a continuation prose block
@@ -334,11 +326,6 @@ function ArticleBody() {
           warmth of Scandinavian hygge. At Bigelow, we design bedrooms that actively
           lower your heart rate the second you walk through the door.
         </p>
-      </div>
-
-      {/* ── Mid-intro AdSense ── */}
-      <div className="not-prose my-10 lg:my-12">
-        <AdSlot variant="responsive" />
       </div>
 
       {/* ── Sections 1–3 ── */}

@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import { siteConfig } from '@/lib/site';
-import { AdSlot } from '@/components/ui/AdSlot';
 import { Reveal } from '@/components/ui/Reveal';
 import { getArticlesByCategory } from '@/lib/articles';
 import { ReviewsFilterTabs } from '@/components/ReviewsFilterTabs';
@@ -133,12 +132,6 @@ export default function FurnitureReviewsPage() {
         </div>
       )}
 
-      {/* ── Mid-page AdSense ─────────────────────────────────── */}
-      <div className="border-y border-ink-100 bg-elevated/30 py-6">
-        <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-          <AdSlot variant="leaderboard" />
-        </div>
-      </div>
 
     </div>
   );

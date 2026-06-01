@@ -7,7 +7,6 @@ import clsx from 'clsx';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { ArticleCard } from '@/components/ArticleCard';
 import { Reveal } from '@/components/ui/Reveal';
-import { AdSlot } from '@/components/ui/AdSlot';
 import { JsonLd } from '@/components/JsonLd';
 
 import { getArticlesByCategory } from '@/lib/articles';
@@ -226,15 +225,6 @@ export default async function RoomCategoryPage({ params }: PageProps) {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-
-      {/* ═══════════════════════════════════════════════════════
-          AD STRIP — leaderboard between hero and content
-          ═══════════════════════════════════════════════════════ */}
-      <div className="border-b border-ink-100 bg-elevated/30 py-5">
-        <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-          <AdSlot variant="leaderboard" />
         </div>
       </div>
 

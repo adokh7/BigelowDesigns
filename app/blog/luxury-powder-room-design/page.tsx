@@ -3,7 +3,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 
-import { AdSlot } from '@/components/ui/AdSlot';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { EditorialProduct } from '@/components/EditorialProduct';
@@ -237,12 +236,6 @@ export default function LuxuryPowderRoomDesignPage() {
               {/* Divider */}
               <div aria-hidden="true" className="h-px bg-ink-100" />
 
-              {/* AdSense sidebar rectangle */}
-              <AdSlot variant="rectangle" align="start" />
-
-              {/* Divider */}
-              <div aria-hidden="true" className="h-px bg-ink-100" />
-
               {/* Newsletter mini-CTA */}
               <SidebarNewsletter />
 
@@ -292,7 +285,6 @@ export default function LuxuryPowderRoomDesignPage() {
 // Structure:
 //   • Key Takeaways box (not-prose)
 //   • Intro paragraph
-//   • Mid-intro AdSlot
 //   • Sections 1–2 in first prose block
 //   • AffiliateDisclosure + EditorialProduct (not-prose, after section 2)
 //   • Sections 3–4 in continuation prose block
@@ -336,11 +328,6 @@ function ArticleBody() {
           a small room look white and bright&rsquo; and instead lean heavily into
           pure, understated luxury.
         </p>
-      </div>
-
-      {/* ── Mid-intro AdSense ── */}
-      <div className="not-prose my-10 lg:my-12">
-        <AdSlot variant="responsive" />
       </div>
 
       {/* ── Sections 1–2 ── */}
