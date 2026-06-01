@@ -154,7 +154,7 @@ function SubscribeForm({
   const isSubmitting = status === 'submitting';
 
   return (
-    <form onSubmit={onSubmit} noValidate className="mt-4 space-y-2">
+    <form onSubmit={onSubmit} noValidate className="mt-4 space-y-3">
       <label htmlFor="sidebar-newsletter-email" className="sr-only">
         Email address
       </label>
@@ -173,12 +173,12 @@ function SubscribeForm({
         aria-invalid={status === 'error' || undefined}
         aria-describedby={errorMsg ? 'sidebar-newsletter-error' : undefined}
         className={[
-          'w-full h-10 rounded-lg px-3',
-          'text-[13px] text-ink-900 placeholder:text-ink-400',
+          'w-full rounded-xl px-4 py-3',
+          'text-sm text-ink-900 placeholder:text-ink-400',
           'border bg-surface',
           'focus:outline-none focus:ring-2 focus:ring-accent/20',
           'transition-colors duration-quick',
-          'disabled:cursor-not-allowed disabled:opacity-60',
+          'disabled:cursor-not-allowed disabled:opacity-50',
           status === 'error'
             ? 'border-danger focus:border-danger'
             : 'border-ink-200 focus:border-accent',
@@ -200,17 +200,19 @@ function SubscribeForm({
         disabled={isSubmitting}
         className={[
           'flex w-full items-center justify-center',
-          'rounded-full bg-ink-900 py-2.5',
-          'text-[13px] font-semibold text-white',
-          'transition-colors duration-quick',
-          'hover:bg-accent',
-          'disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:bg-ink-900',
+          'rounded-full bg-ink-900 py-3',
+          'text-sm font-semibold text-white',
+          'transition-all duration-quick',
+          'hover:bg-accent hover:-translate-y-px hover:shadow-md',
+          'active:translate-y-0',
+          'disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:bg-ink-900',
+          'disabled:hover:translate-y-0 disabled:hover:shadow-none',
         ].join(' ')}
       >
-        {isSubmitting ? 'Subscribing…' : 'Subscribe'}
+        {isSubmitting ? 'Subscribing…' : 'Subscribe free'}
       </button>
 
-      <p className="text-center text-[11px] text-ink-400">
+      <p className="text-center text-[11px] leading-4 text-ink-400">
         No spam. Unsubscribe anytime.
       </p>
     </form>

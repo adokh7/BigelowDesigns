@@ -133,24 +133,29 @@ export function NewsletterForm({
       noValidate
       aria-labelledby="newsletter-heading"
       className={clsx(
-        'mx-auto max-w-[560px] rounded-xl p-8 text-center',
+        'mx-auto max-w-[560px] rounded-2xl px-4 py-6 text-center sm:p-8',
         isDark ? 'bg-transparent' : 'bg-sunken',
       )}
     >
-      <h2
-        id="newsletter-heading"
-        className={clsx('font-serif text-h3', isDark ? 'text-canvas' : 'text-ink-900')}
-      >
-        {heading}
-      </h2>
-      <p
-        className={clsx(
-          'mt-2 text-body-sm',
-          isDark ? 'text-canvas/70' : 'text-ink-600',
-        )}
-      >
-        {description}
-      </p>
+      {heading && (
+        <h2
+          id="newsletter-heading"
+          className={clsx('font-serif text-h3', isDark ? 'text-canvas' : 'text-ink-900')}
+        >
+          {heading}
+        </h2>
+      )}
+      {description && (
+        <p
+          className={clsx(
+            'mt-2 text-body-sm',
+            heading ? 'mt-2' : 'mt-0',
+            isDark ? 'text-canvas/70' : 'text-ink-600',
+          )}
+        >
+          {description}
+        </p>
+      )}
 
       {/* Honeypot — invisible to humans, attractive to bots */}
       <div aria-hidden="true" className="absolute -left-[9999px] h-0 w-0 overflow-hidden">
@@ -166,7 +171,7 @@ export function NewsletterForm({
         </label>
       </div>
 
-      <div className="mt-6 flex flex-col gap-2 sm:flex-row">
+      <div className={clsx('flex flex-col gap-3 sm:flex-row sm:gap-2', (heading || description) && 'mt-6')}>
         <label htmlFor="newsletter-email" className="sr-only">
           Email address
         </label>
@@ -183,36 +188,57 @@ export function NewsletterForm({
           aria-describedby={errorMessage ? 'newsletter-error' : undefined}
           disabled={isSubmitting}
           onChange={() => {
-            // Reset error state when user starts editing again
             if (status.kind === 'error-validation' || status.kind === 'error-network') {
               setStatus({ kind: 'idle' });
             }
           }}
           className={clsx(
-            'flex-1 h-12 px-4 rounded-md text-body',
+            // Size & shape
+            'flex-1 h-[52px] px-5 rounded-xl text-base',
+            // Border & transition
             'border transition-colors duration-quick ease-out',
+            // Focus
             'focus:outline-none focus:ring-2',
-            'disabled:opacity-60 disabled:cursor-not-allowed',
+            // Disabled
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            // Colour scheme
             isDark
-              ? 'bg-white/5 text-canvas placeholder:text-canvas/40 border-white/10'
-              : 'bg-surface text-ink-900 placeholder:text-ink-400 border-ink-200',
-            status.kind === 'error-validation'
-              ? 'border-danger focus:border-danger focus:ring-danger/20'
-              : isDark
-                ? 'focus:border-accent focus:ring-accent/30'
-                : 'focus:border-accent focus:ring-accent/20',
+              ? [
+                  'bg-white/8 text-canvas placeholder:text-canvas/35',
+                  'border-white/15',
+                  status.kind === 'error-validation'
+                    ? 'border-danger focus:border-danger focus:ring-danger/25'
+                    : 'focus:border-white/50 focus:ring-white/15',
+                ]
+              : [
+                  'bg-surface text-ink-900 placeholder:text-ink-400',
+                  'border-ink-200',
+                  status.kind === 'error-validation'
+                    ? 'border-danger focus:border-danger focus:ring-danger/20'
+                    : 'focus:border-accent focus:ring-accent/20',
+                ],
           )}
         />
         <button
           type="submit"
           disabled={isSubmitting}
           className={clsx(
-            'inline-flex items-center justify-center gap-2 h-12 px-6 rounded-md',
-            'bg-accent text-white font-semibold',
+            // Layout
+            'inline-flex items-center justify-center gap-2',
+            // Size & shape — full width on mobile, auto on sm+
+            'h-[52px] w-full rounded-xl px-7 sm:w-auto sm:flex-shrink-0',
+            // Typography
+            'text-base font-semibold',
+            // Transitions
             'transition-all duration-quick ease-out',
-            'hover:bg-accent-600 hover:-translate-y-px hover:shadow-md',
-            'active:translate-y-0 active:scale-[0.98]',
-            'disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none',
+            'hover:-translate-y-px hover:shadow-lg',
+            'active:translate-y-0 active:scale-[0.98] active:shadow-none',
+            'disabled:opacity-50 disabled:cursor-not-allowed',
+            'disabled:hover:translate-y-0 disabled:hover:shadow-none',
+            // Colour scheme — dark variant: white pill; light variant: ink-900 pill
+            isDark
+              ? 'bg-white text-ink-900 hover:bg-canvas/90'
+              : 'bg-ink-900 text-white hover:bg-accent',
           )}
         >
           {isSubmitting ? (
@@ -229,7 +255,10 @@ export function NewsletterForm({
         <p
           id="newsletter-error"
           role="alert"
-          className="mt-3 flex items-center justify-center gap-1.5 text-body-sm text-danger"
+          className={clsx(
+            'mt-3 flex items-center justify-center gap-1.5 text-body-sm',
+            isDark ? 'text-red-300' : 'text-danger',
+          )}
         >
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" aria-hidden="true">
             <circle cx="12" cy="12" r="10" />
@@ -250,8 +279,8 @@ export function NewsletterForm({
 
       <p
         className={clsx(
-          'mt-4 text-body-sm',
-          isDark ? 'text-canvas/50' : 'text-ink-400',
+          'mt-4 text-[13px] tracking-wide',
+          isDark ? 'text-canvas/45' : 'text-ink-400',
         )}
       >
         No spam. Unsubscribe anytime.
