@@ -17,6 +17,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
+  const staticPages = [
+    { url: `${siteConfig.url}/about`,         priority: 0.6 },
+    { url: `${siteConfig.url}/contact`,        priority: 0.5 },
+    { url: `${siteConfig.url}/reviews`,        priority: 0.7 },
+    { url: `${siteConfig.url}/design-trends`,  priority: 0.7 },
+    { url: `${siteConfig.url}/newsletter`,     priority: 0.5 },
+  ].map((p) => ({
+    ...p,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+  }));
+
   return [
     {
       url: siteConfig.url,
@@ -24,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'daily',
       priority: 1.0,
     },
+    ...staticPages,
     ...categories,
     ...articles,
   ];
