@@ -96,38 +96,36 @@ export default function SpaceSavingKitchenIslandsPage() {
       {/* ══════════════════════════════════════════════════════
           1. ARTICLE HEADER — narrow centred column
           ══════════════════════════════════════════════════════ */}
-      <div className="bg-surface">
-        <header className="mx-auto max-w-[760px] px-4 pb-12 pt-10 text-center sm:px-6 lg:px-0 lg:pb-16 lg:pt-14">
-          <div className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8 mb-6 text-center items-center">
-             {/* Breadcrumbs */}
-             <Breadcrumbs items={breadcrumbItems} />
-
-             {/* Category tag */}
-             <Link
-               href={ARTICLE.categoryHref}
-               className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
-             >
-               <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
-               {ARTICLE.categoryLabel}
-               <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
-             </Link>
-
-             {/* Title */}
-             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
-               {ARTICLE.title}
-             </h1>
+      <div className="bg-surface border-b border-ink-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="pt-6">
+            <Breadcrumbs items={breadcrumbItems} />
           </div>
+          <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
+            {/* Category tag */}
+            <Link
+              href={ARTICLE.categoryHref}
+              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
+            >
+              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
+              {ARTICLE.categoryLabel}
+            </Link>
+
+            {/* Title */}
+            <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
+              {ARTICLE.title}
+            </h1>
 
           {/* Deck */}
-          <p className="mx-auto mt-5 max-w-[600px] text-pretty text-body-lg leading-relaxed text-ink-600">
+          <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
             {ARTICLE.excerpt}
           </p>
 
           {/* Hairline */}
-          <div aria-hidden="true" className="mx-auto mt-8 h-px w-16 bg-ink-200" />
+          <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
 
           {/* Byline */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
             <Image
               src={ARTICLE.author.avatar}
               alt=""
@@ -148,13 +146,14 @@ export default function SpaceSavingKitchenIslandsPage() {
           </div>
 
         </header>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════
           2. HERO IMAGE — full bleed, cinematic on xl
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-none bg-elevated sm:rounded-xl xl:aspect-[21/9] xl:rounded-2xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
           <Image
             src={ARTICLE.heroImage}
             alt={ARTICLE.heroImageAlt}
@@ -173,11 +172,11 @@ export default function SpaceSavingKitchenIslandsPage() {
       {/* ══════════════════════════════════════════════════════
           3. READING LAYOUT — prose left, sticky sidebar right
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-[1120px] px-4 pb-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
-        <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-16 xl:gap-20">
+      <div className="mx-auto max-w-7xl px-4 pb-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
+        <div className="grid lg:grid-cols-12 gap-12">
 
           {/* ── Main prose column ── */}
-          <main>
+          <main className="lg:col-span-8">
             <ArticleBody />
 
             {/* Author card */}
@@ -210,7 +209,7 @@ export default function SpaceSavingKitchenIslandsPage() {
           </main>
 
           {/* ── Sticky sidebar ── */}
-          <aside className="hidden lg:block" aria-label="Sidebar">
+          <aside className="hidden lg:block lg:col-span-4" aria-label="Sidebar">
             <div className="sticky top-24 space-y-8">
 
               {/* Table of contents */}
@@ -251,7 +250,7 @@ export default function SpaceSavingKitchenIslandsPage() {
           ══════════════════════════════════════════════════════ */}
       <section
         aria-labelledby="related-heading"
-        className="mx-auto max-w-[1120px] px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-28"
+        className="mx-auto max-w-7xl px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-28"
       >
         <div className="border-t border-ink-100 pt-12 lg:pt-16">
           <div className="flex items-end justify-between">
@@ -286,7 +285,7 @@ export default function SpaceSavingKitchenIslandsPage() {
 function ArticleBody() {
   return (
     <>
-      <div className="prose max-w-none text-ink-800">
+      <div className="prose prose-lg max-w-none">
         <p>
           If you&apos;ve ever stood in your tiny apartment kitchen, coffee in hand, staring at a countertop barely large enough to open a laptop &mdash; you already know the frustration. Urban apartments in 2026 are smarter, sleeker, and more expensive than ever, but they haven&apos;t magically gotten bigger. And while that gorgeous marble kitchen island you pinned looks stunning in a 400-square-foot Pinterest kitchen, real life says otherwise.
         </p>
@@ -295,7 +294,7 @@ function ArticleBody() {
         </p>
       </div>
 
-      <div className="prose max-w-none text-ink-800">
+      <div className="prose prose-lg max-w-none">
         <h2 id="rolling-carts">1. Rolling Kitchen Carts &mdash; The MVP of Small Kitchens</h2>
         <p>
           When it comes to <strong>rolling kitchen carts and narrow islands</strong>, the rolling cart is the undisputed champion of flexibility. These mobile units give you extra counter space exactly when and where you need it &mdash; and tuck away the moment you don&apos;t.

@@ -145,20 +145,25 @@ export default async function RoomCategoryPage({ params }: PageProps) {
       <JsonLd data={[buildBreadcrumbSchema(breadcrumbItems)]} />
 
       {/* ═══════════════════════════════════════════════════════
-          PAGE HEADER — clean flow layout to prevent mobile overlap
+          PAGE HEADER — constrained container, premium editorial
           ═══════════════════════════════════════════════════════ */}
-      <div className="bg-surface">
-        <div className="mx-auto max-w-page px-4 pt-6 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8 mb-6">
-            {/* Breadcrumbs */}
+      <div className="bg-surface border-b border-ink-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="pt-6">
             <Breadcrumbs items={breadcrumbItems} />
+          </div>
+          <div className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
+            {/* Category eyebrow */}
+            <p className="text-eyebrow uppercase tracking-[0.2em] text-accent-600">
+              Room Guide
+            </p>
 
             {/* H1 Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight">
-              {label}: {meta.headline}
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
+              {meta.headline}
             </h1>
-            
-            <p className="max-w-2xl text-pretty text-body-lg text-ink-600">
+
+            <p className="text-pretty text-body-lg text-ink-600">
               {meta.description}
             </p>
 
@@ -180,16 +185,16 @@ export default async function RoomCategoryPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Hero Image — full bleed, cinematic on xl */}
-      <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-none bg-elevated sm:rounded-xl xl:aspect-[21/9] xl:rounded-2xl">
+      {/* Hero Image — premium fixed height with rounded-2xl */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
           <Image
             src={meta.heroImage}
             alt={meta.heroImageAlt}
             fill
             priority
             fetchPriority="high"
-            sizes="(max-width: 1200px) 100vw, 1200px"
+            sizes="(max-width: 1280px) 100vw, 1280px"
             className="object-cover"
           />
         </div>
@@ -201,7 +206,7 @@ export default async function RoomCategoryPage({ params }: PageProps) {
       <Reveal>
         <section
           aria-labelledby="guides-heading"
-          className="mx-auto max-w-page px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
+          className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24"
         >
           <header className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>

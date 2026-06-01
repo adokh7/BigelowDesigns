@@ -92,38 +92,36 @@ export default function SpaceSavingDiningTablesPage() {
       {/* ══════════════════════════════════════════════════════
           1. ARTICLE HEADER — narrow centred column
           ══════════════════════════════════════════════════════ */}
-      <div className="bg-surface">
-        <header className="mx-auto max-w-[760px] px-4 pb-12 pt-10 text-center sm:px-6 lg:px-0 lg:pb-16 lg:pt-14">
-          <div className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8 mb-6 text-center items-center">
-            {/* Breadcrumbs */}
+      <div className="bg-surface border-b border-ink-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="pt-6">
             <Breadcrumbs items={breadcrumbItems} />
-
+          </div>
+          <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
             {/* Category tag */}
             <Link
               href={ARTICLE.categoryHref}
-              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
+              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
             >
               <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
               {ARTICLE.categoryLabel}
-              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
             </Link>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
+            <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
               {ARTICLE.title}
             </h1>
-          </div>
 
           {/* Deck */}
-          <p className="mx-auto mt-5 max-w-[600px] text-pretty text-body-lg leading-relaxed text-ink-600">
+          <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
             {ARTICLE.excerpt}
           </p>
 
           {/* Hairline */}
-          <div aria-hidden="true" className="mx-auto mt-8 h-px w-16 bg-ink-200" />
+          <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
 
           {/* Byline */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
             <Image
               src={ARTICLE.author.avatar}
               alt=""
@@ -144,13 +142,14 @@ export default function SpaceSavingDiningTablesPage() {
           </div>
 
         </header>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════
           2. HERO IMAGE — full bleed, cinematic on xl
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-none bg-elevated sm:rounded-xl xl:aspect-[21/9] xl:rounded-2xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
           <Image
             src={ARTICLE.heroImage}
             alt={ARTICLE.heroImageAlt}
@@ -169,11 +168,11 @@ export default function SpaceSavingDiningTablesPage() {
       {/* ══════════════════════════════════════════════════════
           3. READING LAYOUT — prose left, sticky sidebar right
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-[1120px] px-4 pb-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
-        <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-16 xl:gap-20">
+      <div className="mx-auto max-w-7xl px-4 pb-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
+        <div className="grid lg:grid-cols-12 gap-12">
 
           {/* ── Main prose column ── */}
-          <main>
+          <main className="lg:col-span-8">
             <ArticleBody />
 
             {/* Author card */}
@@ -206,7 +205,7 @@ export default function SpaceSavingDiningTablesPage() {
           </main>
 
           {/* ── Sticky sidebar ── */}
-          <aside className="hidden lg:block" aria-label="Sidebar">
+          <aside className="hidden lg:block lg:col-span-4" aria-label="Sidebar">
             <div className="sticky top-24 space-y-8">
 
               {/* Table of contents */}
@@ -247,7 +246,7 @@ export default function SpaceSavingDiningTablesPage() {
           ══════════════════════════════════════════════════════ */}
       <section
         aria-labelledby="related-heading"
-        className="mx-auto max-w-[1120px] px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-28"
+        className="mx-auto max-w-7xl px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-28"
       >
         <div className="border-t border-ink-100 pt-12 lg:pt-16">
           <div className="flex items-end justify-between">
@@ -284,7 +283,7 @@ function ArticleBody() {
   return (
     <>
       {/* ── Intro prose ── */}
-      <div className="prose max-w-none text-ink-800">
+      <div className="prose prose-lg max-w-none">
         <p>
           Creating a proper dining spot in a small apartment is a bit of a
           puzzle: you need a surface that works for meals, laptop sessions,
@@ -303,7 +302,7 @@ function ArticleBody() {
       </div>
 
       {/* ── Main body prose ── */}
-      <div className="prose max-w-none text-ink-800">
+      <div className="prose prose-lg max-w-none">
 
         {/* ─ How to Choose ─ */}
         <h2 id="how-to-choose">
@@ -509,7 +508,7 @@ function ArticleBody() {
 
       </div>
 
-      <div className="prose max-w-none text-ink-800">
+      <div className="prose prose-lg max-w-none">
 
         {/* 5. Compact Set with Nesting Stools */}
         <h3>5. Compact Dining Set with Nesting Stools or Benches</h3>

@@ -116,94 +116,91 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
       {/* ══════════════════════════════════════════════════════
           1.  ARTICLE HEADER
-              Narrow, centred column — purely typographic.
-              No hero image yet; that follows below.
+              Full-width container, left-aligned editorial header.
           ══════════════════════════════════════════════════════ */}
-      <div className="bg-surface">
-        <header className="mx-auto max-w-[760px] px-4 pb-12 pt-10 text-center sm:px-6 lg:px-0 lg:pt-14 lg:pb-16">
-          <div className="flex flex-col gap-3 sm:gap-4 mt-4 sm:mt-8 mb-6 text-center items-center">
-            {/* Breadcrumbs */}
+      <div className="bg-surface border-b border-ink-100">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="pt-6">
             <Breadcrumbs items={breadcrumbItems} />
-
+          </div>
+          <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
             {/* Category tag */}
             <Link
               href={categoryHref}
-              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
+              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
             >
               <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
               {article.categoryLabel}
-              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
             </Link>
 
             {/* Title */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
               {article.title}
             </h1>
-          </div>
 
-          {/* Deck */}
-          <p className="mx-auto mt-5 max-w-[600px] text-pretty text-body-lg leading-relaxed text-ink-600">
-            {article.excerpt}
-          </p>
+            {/* Deck */}
+            <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
+              {article.excerpt}
+            </p>
 
-          {/* Hairline rule */}
-          <div aria-hidden="true" className="mx-auto mt-8 h-px w-16 bg-ink-200" />
+            {/* Hairline rule */}
+            <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
 
-          {/* Byline */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
-            {article.author.avatar && (
-              <Image
-                src={article.author.avatar}
-                alt=""
-                width={32}
-                height={32}
-                className="rounded-full ring-2 ring-ink-100"
-              />
-            )}
-            <Link
-              href={`/authors/${article.author.slug}`}
-              className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
-            >
-              {article.author.name}
-            </Link>
+            {/* Byline */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
+              {article.author.avatar && (
+                <Image
+                  src={article.author.avatar}
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="rounded-full ring-2 ring-ink-100"
+                />
+              )}
+              <Link
+                href={`/authors/${article.author.slug}`}
+                className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
+              >
+                {article.author.name}
+              </Link>
 
-            <span aria-hidden="true" className="text-ink-300">·</span>
+              <span aria-hidden="true" className="text-ink-300">·</span>
 
-            <time dateTime={article.publishedAt}>
-              {formatDate(article.publishedAt)}
-            </time>
+              <time dateTime={article.publishedAt}>
+                {formatDate(article.publishedAt)}
+              </time>
 
-            {article.updatedAt && article.updatedAt !== article.publishedAt && (
-              <>
-                <span aria-hidden="true" className="text-ink-300">·</span>
-                <span className="text-ink-400">
-                  Updated{' '}
-                  <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time>
-                </span>
-              </>
-            )}
+              {article.updatedAt && article.updatedAt !== article.publishedAt && (
+                <>
+                  <span aria-hidden="true" className="text-ink-300">·</span>
+                  <span className="text-ink-400">
+                    Updated{' '}
+                    <time dateTime={article.updatedAt}>{formatDate(article.updatedAt)}</time>
+                  </span>
+                </>
+              )}
 
-            <span aria-hidden="true" className="text-ink-300">·</span>
+              <span aria-hidden="true" className="text-ink-300">·</span>
 
-            <span>{article.readingTime} min read</span>
-          </div>
-        </header>
+              <span>{article.readingTime} min read</span>
+            </div>
+          </header>
+        </div>
       </div>
 
       {/* ══════════════════════════════════════════════════════
           2.  HERO IMAGE
-              Full bleed within page container. Ultra-wide on xl.
-              Rounded corners on md+ for a card-like editorial feel.
+              Fixed height with rounded-2xl for a premium editorial feel.
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-8">
-        <div className="relative aspect-[16/9] overflow-hidden rounded-none bg-elevated sm:rounded-xl xl:aspect-[21/9] xl:rounded-2xl">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
           <Image
             src={article.heroImage}
             alt={article.heroImageAlt}
             fill
             priority
             fetchPriority="high"
-            sizes="(max-width: 1200px) 100vw, 1200px"
+            sizes="(max-width: 1280px) 100vw, 1280px"
             className="object-cover"
           />
         </div>
@@ -211,16 +208,16 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
       {/* ══════════════════════════════════════════════════════
           3.  READING LAYOUT
-              Two columns on lg:
-              • Main  — prose column, max ~700 px of text
-              • Right — sticky sidebar with ad + newsletter
+              12-column grid on lg:
+              • Main (col-span-8)  — prose content
+              • Sidebar (col-span-4) — sticky TOC + newsletter
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-[1120px] px-4 pb-4 pt-12 sm:px-6 lg:px-8 lg:pt-16">
-        <div className="lg:grid lg:grid-cols-[1fr_280px] lg:gap-16 xl:gap-20">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 pb-4 lg:pt-16">
+        <div className="grid lg:grid-cols-12 gap-12">
 
           {/* ── Main prose column ── */}
-          <main>
-            <div className="prose max-w-none text-ink-800">
+          <main className="lg:col-span-8">
+            <div className="prose prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
                 options={{
@@ -271,7 +268,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
           </main>
 
           {/* ── Sticky sidebar ── */}
-          <aside className="hidden lg:block" aria-label="Sidebar">
+          <aside className="hidden lg:block lg:col-span-4" aria-label="Sidebar">
             <div className="sticky top-24 space-y-8">
 
               {/* Table of contents */}
@@ -368,7 +365,7 @@ function RelatedSection({ realArticles }: { realArticles: Article[] }) {
   return (
     <section
       aria-labelledby="related-heading"
-      className="mx-auto max-w-[1120px] px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-28"
+      className="mx-auto max-w-7xl px-4 pb-20 pt-0 sm:px-6 lg:px-8 lg:pb-28"
     >
       {/* Border + header */}
       <div className="border-t border-ink-100 pt-12 lg:pt-16">
