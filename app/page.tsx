@@ -1,419 +1,223 @@
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import clsx from 'clsx';
-
-import { Reveal } from '@/components/ui/Reveal';
-import { getAllArticles } from '@/lib/articles';
 import { siteConfig } from '@/lib/site';
-import type { Article } from '@/types/article';
 
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
 
-// ─── Category href helper ─────────────────────────────────────
-function categoryHref(category: string): string {
-  if (category === 'design-trends') return '/design-trends';
-  if (category === 'reviews')       return '/reviews';
-  return `/rooms/${category}`;
-}
+export const metadata: Metadata = {
+  title: `${siteConfig.name} — Premium Interior Design`,
+  description:
+    'Interior design that lives in the real world. Room guides, honest furniture reviews, and the trends worth knowing — curated with conviction.',
+  alternates: { canonical: siteConfig.url },
+  openGraph: {
+    type: 'website',
+    url: siteConfig.url,
+    title: `${siteConfig.name} — Premium Interior Design`,
+    description:
+      'Interior design that lives in the real world. Room guides, honest furniture reviews, and the trends worth knowing.',
+    images: [{ url: `${siteConfig.url}/luxury-powder-room.webp`, width: 1600, height: 800, alt: 'Bigelow Designs' }],
+  },
+};
+
+// ─── Editorial content — curated homepage selections ─────────
+const HERO = {
+  href:         '/blog/luxury-powder-room-edit',
+  categoryHref: '/rooms/bathroom',
+  category:     'Room Guides',
+  title:        "The Powder Room Edit: Abandoning 'Light and Bright' for Dark, Moody Luxury",
+  excerpt:
+    'The powder room is the one room in your home where restraint becomes a liability. Here is how to design a space that feels genuinely opulent — without a full renovation.',
+  image:        '/luxury-powder-room.webp',
+  imageAlt:     'A dark, moody powder room with brushed brass fixtures, deep olive walls, and a statement mirror',
+  readingTime:  9,
+} as const;
+
+const GRID = [
+  {
+    href:         '/blog/testing-internet-favorite-modular-sofa',
+    categoryHref: '/reviews',
+    category:     'Furniture Reviews',
+    title:        "We Tested the Internet's Favourite Modular Sofa in a 400 Sq Ft Apartment",
+    excerpt:
+      'Six weeks, 40 rearrangements, and one very honest verdict on whether the modular sofa hype is actually earned.',
+    image:        '/modular-sofa-tiny-apartment.webp',
+    imageAlt:     'A compact modular sofa arranged in a small apartment living room with natural light',
+    readingTime:  7,
+  },
+  {
+    href:         '/blog/meaningful-vintage-decor-bitossi',
+    categoryHref: '/design-trends',
+    category:     'Design Trends',
+    title:        'The Emotional Power of Vintage Decor: A Mid-Century Ceramic Find',
+    excerpt:
+      'A 1960s Bitossi rooster that cost €12 at a Milan street market — and what it taught us about the psychology of objects.',
+    image:        '/vintage-ceramic-chicken.webp',
+    imageAlt:     'A vintage mid-century Bitossi ceramic chicken sculpture displayed on a warm wooden shelf',
+    readingTime:  5,
+  },
+] as const;
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function HomePage() {
-  const articles = getAllArticles();
-  const featured = articles.slice(0, 3);
-
   return (
-    <>
+    <div className="bg-canvas">
+
       {/* ══════════════════════════════════════════════════════
-          1. CINEMATIC HERO
-             Full-bleed viewport, Ken Burns on image, staggered
-             serif headline, glass-morphism CTAs.
+          MASTHEAD BAR — thin editorial header, magazine feel
+          ══════════════════════════════════════════════════════ */}
+      <div className="border-b border-ink-100 bg-surface">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between py-2.5">
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-ink-300">
+              Vol. 2026
+            </p>
+            <p className="hidden text-[10px] font-semibold uppercase tracking-[0.3em] text-ink-300 sm:block">
+              Premium Interior Design
+            </p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-ink-300">
+              June 2026
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ══════════════════════════════════════════════════════
+          FEATURED HERO — large featured article, full-width
           ══════════════════════════════════════════════════════ */}
       <section
         aria-labelledby="hero-heading"
-        className="relative flex min-h-[96svh] flex-col overflow-hidden bg-ink-900"
+        className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8 lg:pt-16"
       >
-        {/* ── Ken Burns image ── */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src="/living-room-candid.webp"
-            alt="A considered living space — the opening chapter of the 2026 Bigelow Design Edit"
-            fill
-            priority
-            fetchPriority="high"
-            sizes="100vw"
-            className="object-cover animate-ken-burns"
-          />
-          {/* Gradient stack: subtle top vignette + heavy bottom ramp */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-b from-ink-900/40 via-transparent via-[35%] to-ink-900/88"
-          />
-          {/* Left-side fade for text legibility */}
-          <div
-            aria-hidden="true"
-            className="absolute inset-0 bg-gradient-to-r from-ink-900/55 via-ink-900/10 to-transparent"
-          />
-        </div>
+        <Link href={HERO.href} className="group block">
 
-        {/* ── Top strip: issue label ── */}
-        <div className="relative z-10 mx-auto w-full max-w-page px-4 pt-8 sm:px-6 lg:px-8">
-          <p className="animate-fade-in-slow text-eyebrow uppercase tracking-[0.28em] text-white/40">
-            {siteConfig.name} &nbsp;·&nbsp; Volume 2026
-          </p>
-        </div>
+          {/* Hero image — aspect-[2/1] for a wide cinematic spread */}
+          <div className="overflow-hidden rounded-2xl bg-elevated">
+            <div className="relative aspect-[16/9] w-full lg:aspect-[2/1]">
+              <Image
+                src={HERO.image}
+                alt={HERO.imageAlt}
+                fill
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 1280px) 100vw, 1280px"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
+              />
+            </div>
+          </div>
 
-        {/* ── Main hero copy — anchored bottom-left ── */}
-        <div className="relative z-10 mt-auto mx-auto w-full max-w-page px-4 pb-20 sm:px-6 lg:px-8 lg:pb-28">
-          <div className="max-w-[720px]">
+          {/* Hero copy */}
+          <div className="mt-7 max-w-3xl">
 
-            {/* Oversized serif headline — three staggered lines */}
-            <h1
-              id="hero-heading"
-              className="font-serif font-semibold leading-[0.94] tracking-[-0.04em] text-canvas"
-              style={{ fontSize: 'clamp(46px, 8.5vw, 104px)' }}
-            >
-              <span className="block animate-fade-rise-hero [animation-delay:180ms]">
-                The 2026
-              </span>
-              <span className="block animate-fade-rise-hero [animation-delay:360ms] text-accent/95 italic">
-                Design Edit
-              </span>
-              <span className="block animate-fade-rise-hero [animation-delay:540ms]">
-                is here.
-              </span>
-            </h1>
-
-            {/* Deck */}
-            <p className="mt-7 max-w-[500px] text-pretty text-body-lg leading-relaxed text-white/65 animate-fade-rise-hero [animation-delay:720ms]">
-              Interior design that lives in the real world. Room guides, honest
-              furniture reviews, and the trends worth knowing — curated with
-              conviction.
+            {/* Category eyebrow */}
+            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-stone-500">
+              {HERO.category}
             </p>
 
-            {/* CTAs */}
-            <div className="mt-10 flex flex-wrap items-center gap-4 animate-fade-rise-hero [animation-delay:900ms]">
-              <Link
-                href="/rooms"
-                className={clsx(
-                  'inline-flex items-center gap-2.5 rounded-full px-8 py-3.5',
-                  'bg-accent font-semibold text-white',
-                  'transition-all duration-smooth ease-out',
-                  'hover:bg-accent-600 hover:-translate-y-0.5 hover:shadow-xl',
-                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
-                )}
-              >
-                Explore Guides
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-                  strokeLinejoin="round" aria-hidden="true">
-                  <path d="M5 12h14M13 5l7 7-7 7" />
-                </svg>
-              </Link>
-              <Link
-                href="/newsletter"
-                className={clsx(
-                  'inline-flex items-center gap-2.5 rounded-full px-8 py-3.5',
-                  'border border-white/30 bg-white/10 font-semibold text-white backdrop-blur-sm',
-                  'transition-all duration-smooth ease-out',
-                  'hover:bg-white/20 hover:-translate-y-0.5',
-                  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2',
-                )}
-              >
-                Get the Edit
-              </Link>
-            </div>
+            {/* H1 headline — clamp for responsive luxury scaling */}
+            <h1
+              id="hero-heading"
+              className="font-serif font-semibold tracking-tight text-ink-900 text-balance leading-[1.07] mb-4"
+              style={{ fontSize: 'clamp(30px, 4.5vw, 60px)' }}
+            >
+              {HERO.title}
+            </h1>
+
+            {/* Excerpt */}
+            <p className="text-body-lg leading-relaxed text-ink-500 max-w-2xl">
+              {HERO.excerpt}
+            </p>
+
+            {/* Meta */}
+            <p className="mt-4 inline-flex items-center gap-2 text-body-sm text-ink-400">
+              <span>{HERO.readingTime} min read</span>
+              <span aria-hidden="true" className="text-ink-200">·</span>
+              <span className="font-medium text-accent-600 transition-colors duration-quick group-hover:text-accent-500">
+                Read the article →
+              </span>
+            </p>
 
           </div>
-        </div>
-
-        {/* ── Scroll hint (vertical text + animated drop line) ── */}
-        <div
-          aria-hidden="true"
-          className="absolute bottom-10 right-8 z-10 hidden flex-col items-center gap-3 animate-fade-in-slow [animation-delay:1400ms] lg:right-14 lg:flex"
-        >
-          <span
-            className="text-[10px] font-semibold uppercase tracking-[0.28em] text-white/35"
-            style={{ writingMode: 'vertical-lr' }}
-          >
-            Scroll
-          </span>
-          <svg width="2" height="48" viewBox="0 0 2 48" className="overflow-visible">
-            <line x1="1" y1="0" x2="1" y2="48"
-              stroke="rgba(255,255,255,0.15)" strokeWidth="1" />
-            <line x1="1" y1="0" x2="1" y2="16"
-              stroke="rgba(255,255,255,0.55)" strokeWidth="1.5"
-              className="animate-scroll-hint" />
-          </svg>
-        </div>
-
+        </Link>
       </section>
 
       {/* ══════════════════════════════════════════════════════
-          2. MAGAZINE SPREAD — real articles only, asymmetric layout
+          SECTION DIVIDER — editorial "The Latest" separator
           ══════════════════════════════════════════════════════ */}
-      {featured.length > 0 && (
-        <Reveal>
-          <section
-            aria-labelledby="articles-heading"
-            className="mx-auto max-w-page px-4 py-20 sm:px-6 lg:px-8 lg:py-28"
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mt-20 flex items-center gap-5 md:mt-24">
+          <span aria-hidden="true" className="h-px w-10 flex-shrink-0 bg-accent" />
+          <p className="text-eyebrow uppercase tracking-[0.28em] text-ink-400">
+            The latest
+          </p>
+          <span aria-hidden="true" className="h-px flex-1 bg-ink-100" />
+          <Link
+            href="/rooms"
+            className="hidden flex-shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-400 transition-colors duration-quick hover:text-accent-600 sm:block"
           >
-
-            {/* Editorial section header */}
-            <div className="mb-14 flex items-center gap-5">
-              <span aria-hidden="true" className="h-px w-10 flex-shrink-0 bg-accent" />
-              <h2
-                id="articles-heading"
-                className="text-eyebrow uppercase tracking-[0.24em] text-ink-500"
-              >
-                From the editors
-              </h2>
-              <span aria-hidden="true" className="hidden h-px flex-1 bg-ink-100 sm:block" />
-              <span className="hidden font-serif text-[13px] italic text-ink-400 sm:block">
-                May 2026
-              </span>
-            </div>
-
-            {featured.length === 1 ? (
-              <SingleFeature article={featured[0]!} />
-            ) : (
-              <MagazineGrid articles={featured} />
-            )}
-
-          </section>
-        </Reveal>
-      )}
-    </>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-//  MAGAZINE GRID LAYOUTS
-// ─────────────────────────────────────────────────────────────────
-
-/**
- * 2–3 articles: asymmetric magazine spread.
- *
- *  ┌──────────────────────────────────┬────────────────┐
- *  │ COVER CARD  (60 %)               │ SECONDARY (40%)│
- *  │ Large image + serif title        │ Smaller card   │
- *  │                                  ├────────────────┤
- *  │ (spans 2 rows when 3 articles)   │ SECONDARY      │
- *  └──────────────────────────────────┴────────────────┘
- */
-function MagazineGrid({ articles }: { articles: Article[] }) {
-  const [cover, ...secondaries] = articles;
-  const isThree = secondaries.length >= 2;
-
-  return (
-    <div className="grid grid-cols-1 gap-8 lg:grid-cols-[3fr_2fr] lg:items-start lg:gap-10">
-      <CoverCard article={cover!} rowSpan={isThree} />
-      <div className={clsx('flex flex-col gap-8', isThree && 'lg:gap-10')}>
-        {secondaries.map((article) => (
-          <SecondaryCard key={article.slug} article={article} />
-        ))}
+            Browse all guides →
+          </Link>
+        </div>
       </div>
-    </div>
-  );
-}
 
-/**
- * Single article: full-width editorial feature.
- * Image left (60 %), oversized copy right (40 %).
- */
-function SingleFeature({ article }: { article: Article }) {
-  const href    = `/blog/${article.slug}`;
-  const catHref = categoryHref(article.category);
-
-  return (
-    <article className="group lg:flex lg:items-start lg:gap-14 xl:gap-20">
-
-      {/* Image */}
-      <Link
-        href={href}
-        tabIndex={-1}
-        aria-hidden="true"
-        className="block overflow-hidden rounded-2xl lg:flex-[6] xl:flex-[7]"
+      {/* ══════════════════════════════════════════════════════
+          ARTICLE GRID — 2-column with image zoom on hover
+          ══════════════════════════════════════════════════════ */}
+      <section
+        aria-label="Recent articles"
+        className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pb-28"
       >
-        <div className="relative aspect-[4/3] overflow-hidden bg-elevated lg:aspect-[3/2]">
-          <Image
-            src={article.heroImage}
-            alt={article.heroImageAlt}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 60vw"
-            className="object-cover transition-[transform,filter] duration-[700ms] ease-out saturate-[88%] scale-[1.01] group-hover:saturate-100 group-hover:scale-[1.06]"
-          />
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
+          {GRID.map((article) => (
+            <article key={article.href} className="group">
+              <Link href={article.href} className="block">
+
+                {/* Card image */}
+                <div className="overflow-hidden rounded-xl bg-elevated">
+                  <div className="relative aspect-[4/3] w-full">
+                    <Image
+                      src={article.image}
+                      alt={article.imageAlt}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
+                    />
+                  </div>
+                </div>
+
+                {/* Card copy */}
+                <div className="mt-5">
+                  <p className="mb-2.5 text-xs font-bold uppercase tracking-widest text-stone-500">
+                    {article.category}
+                  </p>
+                  <h2 className="font-serif text-[clamp(19px,2.2vw,24px)] font-semibold leading-snug tracking-tight text-ink-900 text-balance transition-colors duration-quick group-hover:text-accent-600">
+                    {article.title}
+                  </h2>
+                  <p className="mt-3 text-body-sm leading-relaxed text-ink-500 line-clamp-2">
+                    {article.excerpt}
+                  </p>
+                  <p className="mt-3 text-body-sm text-ink-400">
+                    {article.readingTime} min read
+                  </p>
+                </div>
+
+              </Link>
+            </article>
+          ))}
         </div>
-      </Link>
 
-      {/* Copy */}
-      <div className="mt-8 flex flex-col lg:mt-0 lg:flex-[4] xl:flex-[3]">
-        <Link
-          href={catHref}
-          className="text-eyebrow uppercase tracking-[0.18em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
-        >
-          {article.categoryLabel}
-        </Link>
-
-        <h2 className="mt-4 font-serif text-[clamp(26px,3.2vw,44px)] font-semibold leading-[1.08] tracking-[-0.028em] text-ink-900">
-          <Link href={href} className="transition-colors duration-quick hover:text-accent-600">
-            {article.title}
+        {/* Mobile "browse all" link */}
+        <div className="mt-12 text-center sm:hidden">
+          <Link
+            href="/rooms"
+            className="inline-flex items-center gap-2 rounded-full border border-ink-200 px-6 py-2.5 text-body-sm font-semibold text-ink-600 transition-all duration-quick hover:border-accent hover:text-accent-600"
+          >
+            Browse all guides →
           </Link>
-        </h2>
-
-        <div aria-hidden="true" className="mt-5 h-px w-10 bg-accent/40" />
-
-        <p className="mt-5 text-body-lg leading-relaxed text-ink-500 line-clamp-4">
-          {article.excerpt}
-        </p>
-
-        <p className="mt-4 text-body-sm text-ink-400">{article.readingTime} min read</p>
-
-        <Link
-          href={href}
-          className="mt-8 inline-flex items-center gap-2 text-body-sm font-semibold text-ink-900 border-b border-ink-300 pb-0.5 transition-colors duration-quick hover:text-accent-600 hover:border-accent-600/40"
-        >
-          Read the article
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-            strokeLinejoin="round" aria-hidden="true">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
-
-    </article>
-  );
-}
-
-// ─────────────────────────────────────────────────────────────────
-//  ARTICLE CARDS
-// ─────────────────────────────────────────────────────────────────
-
-/**
- * CoverCard — large featured card (left column, 60 %).
- * Plain block element so children stack naturally without flex interference.
- */
-function CoverCard({
-  article,
-  rowSpan = false,
-}: {
-  article: Article;
-  rowSpan?: boolean;
-}) {
-  const href    = `/blog/${article.slug}`;
-  const catHref = categoryHref(article.category);
-
-  return (
-    <article className="group">
-
-      {/* Image */}
-      <Link href={href} tabIndex={-1} aria-hidden="true" className="block overflow-hidden rounded-2xl">
-        <div className={clsx(
-          'relative overflow-hidden bg-elevated',
-          rowSpan ? 'aspect-[5/4]' : 'aspect-[3/2]',
-        )}>
-          <Image
-            src={article.heroImage}
-            alt={article.heroImageAlt}
-            fill
-            priority
-            sizes="(max-width: 1024px) 100vw, 60vw"
-            className="object-cover transition-[transform,filter] duration-[700ms] ease-out saturate-[85%] scale-[1.01] group-hover:saturate-100 group-hover:scale-[1.06]"
-          />
         </div>
-      </Link>
+      </section>
 
-      {/* Category + reading time */}
-      <div className="mt-6 flex items-center gap-3">
-        <Link
-          href={catHref}
-          className="flex-shrink-0 text-eyebrow uppercase tracking-[0.18em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
-        >
-          {article.categoryLabel}
-        </Link>
-        <span aria-hidden="true" className="h-px flex-1 bg-ink-100" />
-        <span className="flex-shrink-0 text-body-sm text-ink-400">
-          {article.readingTime} min read
-        </span>
-      </div>
-
-      {/* Title */}
-      <h2 className="mt-4 font-serif text-[clamp(24px,2.8vw,38px)] font-semibold leading-[1.1] tracking-[-0.025em] text-ink-900">
-        <Link href={href} className="transition-colors duration-quick hover:text-accent-600">
-          {article.title}
-        </Link>
-      </h2>
-
-      {/* Excerpt */}
-      <p className="mt-3 text-body-lg leading-relaxed text-ink-500 line-clamp-3">
-        {article.excerpt}
-      </p>
-
-      {/* Read link */}
-      <div className="mt-5">
-        <Link
-          href={href}
-          className="inline-flex items-center gap-2 text-body-sm font-semibold text-ink-900 border-b border-ink-300 pb-0.5 transition-colors duration-quick hover:text-accent-600 hover:border-accent-600/40"
-        >
-          Read the article
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"
-            strokeLinejoin="round" aria-hidden="true">
-            <path d="M5 12h14M13 5l7 7-7 7" />
-          </svg>
-        </Link>
-      </div>
-
-    </article>
-  );
-}
-
-/**
- * SecondaryCard — compact supporting card (right column, 40 %).
- * Thumbnail-left + copy-right on mobile; stacked block on desktop.
- */
-function SecondaryCard({ article }: { article: Article }) {
-  const href    = `/blog/${article.slug}`;
-  const catHref = categoryHref(article.category);
-
-  return (
-    <article className="group flex gap-5 lg:block">
-
-      {/* Image */}
-      <Link href={href} tabIndex={-1} aria-hidden="true"
-        className="block flex-shrink-0 overflow-hidden rounded-xl lg:rounded-2xl">
-        <div className="relative aspect-square w-28 overflow-hidden bg-elevated sm:w-32 lg:aspect-[3/2] lg:w-auto">
-          <Image
-            src={article.heroImage}
-            alt={article.heroImageAlt}
-            fill
-            sizes="(max-width: 1024px) 140px, 40vw"
-            className="object-cover transition-[transform,filter] duration-[700ms] ease-out saturate-[85%] scale-[1.01] group-hover:saturate-100 group-hover:scale-[1.06]"
-          />
-        </div>
-      </Link>
-
-      {/* Copy */}
-      <div className="min-w-0 flex-1 lg:mt-5">
-        <Link
-          href={catHref}
-          className="text-eyebrow uppercase tracking-[0.15em] text-accent-600 transition-colors duration-quick hover:text-accent-500"
-        >
-          {article.categoryLabel}
-        </Link>
-        <h3 className="mt-1.5 font-serif text-h3 font-semibold leading-snug text-ink-900">
-          <Link href={href} className="transition-colors duration-quick hover:text-accent-600">
-            {article.title}
-          </Link>
-        </h3>
-        <p className="mt-2 text-body-sm leading-relaxed text-ink-500 line-clamp-2">
-          {article.excerpt}
-        </p>
-        <p className="mt-3 text-body-sm text-ink-400">{article.readingTime} min read</p>
-      </div>
-
-    </article>
+    </div>
   );
 }
