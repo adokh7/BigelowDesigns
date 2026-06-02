@@ -10,6 +10,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
+import { useMDXComponents } from '@/mdx-components';
 import {
   getAllArticles,
   getArticleBySlugOnly,
@@ -220,6 +221,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
             <div className="prose prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
+                components={useMDXComponents({})}
                 options={{
                   mdxOptions: {
                     remarkPlugins: [remarkGfm],
