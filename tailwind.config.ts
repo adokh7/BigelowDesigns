@@ -76,6 +76,15 @@ const config: Config = {
           600: 'rgb(var(--accent-600) / <alpha-value>)',
         },
 
+        // ─── Brand — sophisticated muted terracotta, matched to the logo
+        // Used for primary CTAs, eyebrows, and highlight runs across
+        // the homepage. Replaces the raw Tailwind orange-* scale.
+        brand: {
+          DEFAULT: '#C06E49', // muted terracotta/copper
+          hover:   '#A35B3B', // darker — used on :hover
+          light:   '#E8C5B5', // soft tint — backgrounds, highlight bars
+        },
+
         forest: {
           700: 'rgb(var(--forest-700) / <alpha-value>)',
         },

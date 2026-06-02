@@ -89,12 +89,12 @@ export default function HomePage() {
           ══════════════════════════════════════════════════════ */}
       <section
         aria-labelledby="hero-heading"
-        className="relative overflow-hidden bg-gradient-to-br from-orange-50/40 via-[#FAFAFA] to-white"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-light/20 via-[#FAFAFA] to-white"
       >
         {/* Decorative soft blobs — adds vibrancy without overwhelming */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-orange-200/30 blur-3xl animate-hero-blob"
+          className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-brand-light/40 blur-3xl animate-hero-blob"
         />
         <div
           aria-hidden="true"
@@ -110,10 +110,10 @@ export default function HomePage() {
 
               {/* Eyebrow */}
               <p
-                className="animate-fade-rise inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-600"
+                className="animate-fade-rise inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand"
                 style={{ animationDelay: '0ms' }}
               >
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
                 Volume 2026 · The Edit
               </p>
 
@@ -125,10 +125,10 @@ export default function HomePage() {
               >
                 Interior design that{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 italic text-orange-600">feels like home</span>
+                  <span className="relative z-10 italic text-brand">feels like home</span>
                   <span
                     aria-hidden="true"
-                    className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-orange-200/60 md:bottom-2 md:h-4"
+                    className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-brand-light/70 md:bottom-2 md:h-4"
                   />
                 </span>
                 .
@@ -152,10 +152,10 @@ export default function HomePage() {
                   href="/rooms"
                   className="
                     group inline-flex items-center gap-2 rounded-full
-                    bg-orange-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/30
+                    bg-brand px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand/30
                     transition-all duration-300 ease-out
-                    hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/40
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2
+                    hover:bg-brand-hover hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand/40
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
                   "
                 >
                   Explore Guides
@@ -224,7 +224,7 @@ export default function HomePage() {
 
                 {/* Floating "Editor's Pick" badge */}
                 <div className="absolute -left-4 -top-4 hidden rounded-full bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:flex md:items-center md:gap-2">
-                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-100 text-orange-600">
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-light/40 text-brand">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                       <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                     </svg>
@@ -258,7 +258,7 @@ export default function HomePage() {
             <a
               href="#latest"
               aria-label="Scroll to the latest articles"
-              className="group inline-flex flex-col items-center gap-2 text-stone-400 transition-colors hover:text-orange-600"
+              className="group inline-flex flex-col items-center gap-2 text-stone-400 transition-colors hover:text-brand"
             >
               <span className="text-[10px] font-bold uppercase tracking-[0.28em]">
                 Explore
@@ -286,8 +286,8 @@ export default function HomePage() {
           {/* Section header */}
           <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
                 The Latest
               </p>
               <h2
@@ -337,10 +337,10 @@ export default function HomePage() {
 
                   {/* Card copy */}
                   <div className="mt-5">
-                    <p className="text-xs font-bold uppercase tracking-widest text-orange-600">
+                    <p className="text-xs font-bold uppercase tracking-widest text-brand">
                       {article.category}
                     </p>
-                    <h3 className="mt-2.5 font-serif text-xl font-bold leading-snug tracking-tight text-stone-900 transition-colors duration-300 group-hover:text-orange-600 lg:text-2xl">
+                    <h3 className="mt-2.5 font-serif text-xl font-bold leading-snug tracking-tight text-stone-900 transition-colors duration-300 group-hover:text-brand lg:text-2xl">
                       {article.title}
                     </h3>
                     <p className="mt-3 text-sm leading-relaxed text-stone-600 line-clamp-2">
@@ -362,16 +362,16 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           3. NEWSLETTER BAND — closing CTA, vibrant footer
           ══════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-br from-orange-50 via-white to-emerald-50/40">
+      <section className="bg-gradient-to-br from-brand-light/30 via-white to-emerald-50/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="mx-auto max-w-2xl text-center">
-            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
               The Newsletter
             </p>
             <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl">
               One thoughtful email,{' '}
-              <span className="italic text-orange-600">every Sunday.</span>
+              <span className="italic text-brand">every Sunday.</span>
             </h2>
             <p className="mt-5 text-lg leading-relaxed text-stone-600">
               Room guides, honest reviews, and the trends worth knowing — delivered to your inbox. No spam, just considered design.
@@ -381,10 +381,10 @@ export default function HomePage() {
                 href="/newsletter"
                 className="
                   inline-flex items-center gap-2 rounded-full
-                  bg-orange-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/30
+                  bg-brand px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand/30
                   transition-all duration-300 ease-out
-                  hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/40
-                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2
+                  hover:bg-brand-hover hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand/40
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
                 "
               >
                 Subscribe free
