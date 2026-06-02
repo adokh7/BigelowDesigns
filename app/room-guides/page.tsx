@@ -9,20 +9,23 @@ import {
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: 'Design Trends',
+  title: 'Room Guides',
   description:
-    'The interior design trends shaping homes in 2026. In-depth coverage of the aesthetics, materials, and movements worth paying attention to.',
-  alternates: { canonical: `${siteConfig.url}/design-trends` },
+    'Considered, room-by-room design guides for every space in your home. From the powder room to the home office, tested and written by working interior designers.',
+  alternates: { canonical: `${siteConfig.url}/room-guides` },
   robots: { index: true, follow: true },
 };
 
-// ─── Design Trends filter tabs ────────────────────────────────
-const TREND_TABS = [
+// ─── Room Guides filter tabs ──────────────────────────────────
+const ROOM_TABS = [
   'All',
-  'Decor',
-  'Storage',
-  'Beds',
-  'Sustainability',
+  'Living Room',
+  'Bedroom',
+  'Bathroom',
+  'Kitchen',
+  'Office',
+  'Outdoor',
+  'Dining',
 ] as const;
 
 function toFilterable(
@@ -34,7 +37,8 @@ function toFilterable(
     title:         a.title,
     excerpt:       a.excerpt,
     categoryLabel: a.categoryLabel,
-    categoryHref:  '/design-trends',
+    // Each card's category badge links back to its specific room page
+    categoryHref:  `/rooms/${a.category}`,
     heroImage:     a.heroImage,
     heroImageAlt:  a.heroImageAlt,
     readingTime:   a.readingTime,
@@ -43,8 +47,11 @@ function toFilterable(
 }
 
 // ─── Page ─────────────────────────────────────────────────────
-export default function DesignTrendsPage() {
-  const articles = getArticlesByCategory('design-trends').map(toFilterable);
+export default function RoomGuidesPage() {
+  // Articles with category === 'room-guides' OR a matching secondaryCategory.
+  // The MDX frontmatter on every room-specific article includes
+  // `secondaryCategories: ["room-guides"]` so they all surface here.
+  const articles = getArticlesByCategory('room-guides').map(toFilterable);
 
   return (
     <div className="bg-canvas">
@@ -56,20 +63,21 @@ export default function DesignTrendsPage() {
             Category
           </p>
           <h1 className="mt-3 max-w-xl text-balance font-serif text-h1 text-ink-900">
-            Design Trends
+            Room Guides
           </h1>
           <p className="mt-4 max-w-2xl text-pretty text-body-lg text-ink-500">
-            The movements, aesthetics, and materials shaping how we design our
-            homes right now. Analysed honestly, without trend-chasing hype.
+            Considered, room-by-room design guidance — written by working
+            interior designers and tested across real homes. Filter by space to
+            find the right guide for the room you are working on.
           </p>
         </div>
       </div>
 
       {/* ── Filter + grid ───────────────────────────────────── */}
       <FilterableArticleGrid
-        tabs={TREND_TABS}
+        tabs={ROOM_TABS}
         articles={articles}
-        emptyLabel="Trend coverage is on its way."
+        emptyLabel="Room guides are in progress."
       />
 
     </div>

@@ -22,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/contact`,              priority: 0.5 },
     { url: `${siteConfig.url}/reviews`,              priority: 0.7 },
     { url: `${siteConfig.url}/design-trends`,        priority: 0.7 },
+    { url: `${siteConfig.url}/room-guides`,          priority: 0.7 },
     { url: `${siteConfig.url}/newsletter`,           priority: 0.5 },
     { url: `${siteConfig.url}/affiliate-disclosure`, priority: 0.3 },
   ].map((p) => ({
