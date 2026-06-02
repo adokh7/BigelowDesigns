@@ -5,6 +5,12 @@ import Link from 'next/link';
 import { useState, useMemo } from 'react';
 import clsx from 'clsx';
 
+// ─── Strict logic ─────────────────────────────────────────────
+// Single, hard-coded "show everything" sentinel. Every page passes
+// 'All' as the first tab; this constant exists so the filter
+// invariant is impossible to misread.
+const ALL_TAB = 'All';
+
 // ─── Shape passed from the server page ────────────────────────
 // Articles are serialized to plain objects (no `content`, no fs paths)
 // so they cross the server/client boundary cleanly.
@@ -22,43 +28,46 @@ export type FilterableArticle = {
 };
 
 interface FilterableArticleGridProps {
-  /** Pre-defined filter tab labels. First tab is treated as "show all". */
+  /** Tab labels. Must include 'All' (the unfiltered default). */
   tabs:         readonly string[];
-  /** Serialized articles to filter and render. */
+  /** Serialized articles, all categories merged. */
   articles:     FilterableArticle[];
-  /** Optional priming label for the empty state. */
+  /** Optional headline for the genuinely-empty state (no articles at all). */
   emptyLabel?:  string;
 }
 
 /**
  * FilterableArticleGrid
  *
- * Single client component that owns:
- *   • Active-tab state (the first tab is the default — usually "All")
- *   • Filtering (matches activeTab against article.tags)
- *   • The article card grid OR an empty state
+ * Single source of truth for the filter UI used on /reviews,
+ * /design-trends, and /room-guides. Strictly implements:
  *
- * Used on /reviews, /design-trends, and /room-guides. Each page passes
- * its own tabs and pre-serialized article list — the component handles
- * the rest.
- *
- * Active   → bg-stone-200 text-stone-900 font-medium
- * Inactive → text-stone-500 hover:bg-stone-100 transition-colors
+ *   1. const [activeTab, setActiveTab] = useState('All');
+ *   2. If activeTab === 'All'    → show every article in the list.
+ *   3. Else                       → articles.filter(a => a.tags.includes(activeTab))
+ *      (case-insensitive so a tag of "Sofas" matches a tab labelled "Sofas").
+ *   4. Empty state is rendered ONLY when displayedArticles.length === 0.
+ *      Otherwise the article grid is rendered.
+ *   5. The active tab gets a distinct visual treatment via dynamic
+ *      Tailwind classes (bg-stone-200 / text-stone-900 / font-medium).
  */
 export function FilterableArticleGrid({
   tabs,
   articles,
   emptyLabel,
 }: FilterableArticleGridProps) {
-  const defaultTab = tabs[0] ?? 'All';
-  const [activeTab, setActiveTab] = useState<string>(defaultTab);
+  // 1. State — defaults to 'All' so every article is visible on first render.
+  const [activeTab, setActiveTab] = useState<string>(ALL_TAB);
 
-  const filtered = useMemo(() => {
-    if (activeTab === defaultTab) return articles;
-    return articles.filter((a) =>
-      a.tags.some((t) => t.toLowerCase() === activeTab.toLowerCase()),
+  // 2-3. The single filter rule.
+  const displayedArticles = useMemo<FilterableArticle[]>(() => {
+    if (activeTab === ALL_TAB) return articles;
+    return articles.filter((article) =>
+      article.tags.some(
+        (tag) => tag.toLowerCase() === activeTab.toLowerCase(),
+      ),
     );
-  }, [articles, activeTab, defaultTab]);
+  }, [articles, activeTab]);
 
   return (
     <>
@@ -72,6 +81,8 @@ export function FilterableArticleGrid({
           >
             {tabs.map((tab) => {
               const isActive = activeTab === tab;
+
+              // 5. Dynamic styling — active tab is visually distinct.
               return (
                 <button
                   key={tab}
@@ -93,17 +104,18 @@ export function FilterableArticleGrid({
             })}
           </div>
 
-          {/* Active-filter confirmation strip — shows when a non-default
-              tab is selected AND results exist. Lets the user see at a
-              glance which filter is active. */}
-          {activeTab !== defaultTab && filtered.length > 0 && (
+          {/* Active-filter confirmation strip — shown when a specific
+              tab is active AND there are results. Helps the user see at
+              a glance what's being filtered and offers a one-click reset. */}
+          {activeTab !== ALL_TAB && displayedArticles.length > 0 && (
             <p className="pb-2 text-[11px] tracking-wide text-stone-400">
               Showing:{' '}
               <span className="font-medium text-stone-600">{activeTab}</span>
-              {' '}({filtered.length} {filtered.length === 1 ? 'article' : 'articles'})
+              {' '}({displayedArticles.length}{' '}
+              {displayedArticles.length === 1 ? 'article' : 'articles'})
               <button
                 type="button"
-                onClick={() => setActiveTab(defaultTab)}
+                onClick={() => setActiveTab(ALL_TAB)}
                 className="ml-2 text-brand transition-colors hover:text-brand-hover"
               >
                 Clear filter
@@ -113,14 +125,20 @@ export function FilterableArticleGrid({
         </div>
       </div>
 
-      {/* ── Article grid or empty state ────────────────────────── */}
+      {/* ── 4. Grid OR empty state — strictly mutually exclusive ── */}
       <section
         aria-label={`${activeTab} articles`}
         className="mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-20"
       >
-        {filtered.length > 0 ? (
+        {displayedArticles.length === 0 ? (
+          <EmptyState
+            activeTab={activeTab}
+            onReset={() => setActiveTab(ALL_TAB)}
+            label={emptyLabel}
+          />
+        ) : (
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3 lg:gap-10">
-            {filtered.map((article, idx) => (
+            {displayedArticles.map((article, idx) => (
               <ArticleCard
                 key={article.slug}
                 article={article}
@@ -128,13 +146,6 @@ export function FilterableArticleGrid({
               />
             ))}
           </div>
-        ) : (
-          <EmptyState
-            activeTab={activeTab}
-            defaultTab={defaultTab}
-            onReset={() => setActiveTab(defaultTab)}
-            label={emptyLabel}
-          />
         )}
       </section>
     </>
@@ -191,19 +202,20 @@ function ArticleCard({
 }
 
 // ─── Empty state ──────────────────────────────────────────────
-// Only rendered when the filtered result is genuinely empty.
+// Only rendered when displayedArticles.length === 0. Has two modes:
+//   • isFiltering=true  → the active filter has zero matches
+//   • isFiltering=false → 'All' is active but the category has no
+//                          articles yet (a genuine "Coming soon")
 function EmptyState({
   activeTab,
-  defaultTab,
   onReset,
   label,
 }: {
-  activeTab:   string;
-  defaultTab:  string;
-  onReset:     () => void;
-  label?:      string;
+  activeTab: string;
+  onReset:   () => void;
+  label?:    string;
 }) {
-  const isFiltering = activeTab !== defaultTab;
+  const isFiltering = activeTab !== ALL_TAB;
 
   return (
     <div className="mx-auto max-w-xl py-16 text-center lg:py-24">
