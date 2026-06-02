@@ -20,6 +20,7 @@ export const metadata: Metadata = {
 const TREND_TABS = [
   'All',
   'Decor',
+  'Lighting',
   'Storage',
   'Beds',
   'Sustainability',

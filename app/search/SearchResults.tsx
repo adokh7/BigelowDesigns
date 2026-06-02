@@ -35,6 +35,7 @@ function matchesQuery(article: SearchArticle, query: string): boolean {
     article.title.toLowerCase().includes(q) ||
     article.excerpt.toLowerCase().includes(q) ||
     article.categoryLabel.toLowerCase().includes(q) ||
+    article.category.toLowerCase().includes(q) ||  // also match the raw slug, e.g. "home-office"
     article.tags.some((t) => t.toLowerCase().includes(q))
   );
 }
