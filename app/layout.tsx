@@ -101,6 +101,12 @@ export default function RootLayout({
           data-key="YhbFfA3VBAMsYXMqB0wX6g"
           async
         />
+        {/* Google AdSense Auto-Ads — placed in head for raw HTML crawler detection */}
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8933725159594062"
+          crossOrigin="anonymous"
+        ></script>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -135,14 +141,6 @@ export default function RootLayout({
             gtag('config', 'G-VEYTPK0FKL');
           `}
         </Script>
-
-        {/* Google AdSense Auto-Ads */}
-        <Script 
-          async 
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8933725159594062" 
-          crossOrigin="anonymous"
-          strategy="afterInteractive"
-        />
 
         <CompareProvider>
           <AnalyticsListener />
