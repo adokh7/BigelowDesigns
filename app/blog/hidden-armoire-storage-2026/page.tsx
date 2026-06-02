@@ -12,56 +12,62 @@ export const dynamic = 'force-static';
 
 // ─── Metadata ────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "The Secret Armoire: Why Hidden Storage is 2026's Ultimate Luxury",
+  title: "The Return of the Armoire: Why Concealed Storage is 2026's Best Trend",
   description:
-    "We are moving away from open shelving. Discover how custom millwork and 'secret' armoires are transforming cluttered rooms into serene, minimalist sanctuaries.",
+    "Open shelving is officially out. Discover why heavy, beautiful, closed-door armoires are the ultimate solution for hiding WFH clutter and tech in modern apartments.",
   alternates: { canonical: `${siteConfig.url}/blog/hidden-armoire-storage-2026` },
   openGraph: {
     type: 'article',
     url: `${siteConfig.url}/blog/hidden-armoire-storage-2026`,
-    title: "The Secret Armoire: Why Hidden Storage is 2026's Ultimate Luxury",
+    title: "The Return of the Armoire: Why Concealed Storage is 2026's Best Trend",
     description:
-      "We are moving away from open shelving. Discover how custom millwork and 'secret' armoires are transforming cluttered rooms into serene, minimalist sanctuaries.",
-    images: [{
-      url: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80',
-      width: 1200,
-      height: 800,
-      alt: 'Elegant room with seamless custom wooden cabinetry',
-    }],
+      "Open shelving is officially out. Discover why heavy, beautiful, closed-door armoires are the ultimate solution for hiding WFH clutter and tech in modern apartments.",
+    images: [
+      {
+        url: `${siteConfig.url}/hidden-armoire-storage.webp`,
+        width: 1200,
+        height: 675,
+        alt: 'A beautiful freestanding design armoire with tactile fluted wood panels in a minimalist home setup',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "The Secret Armoire: Why Hidden Storage is 2026's Ultimate Luxury",
+    title: "The Return of the Armoire: Why Concealed Storage is 2026's Best Trend",
     description:
-      "Discover how custom millwork and 'secret' armoires are transforming cluttered rooms into serene, minimalist sanctuaries.",
-    images: ['https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1200&q=80'],
+      "Open shelving is officially out. Discover why heavy, beautiful, closed-door armoires are the ultimate solution for hiding WFH clutter and tech in modern apartments.",
+    images: [`${siteConfig.url}/hidden-armoire-storage.webp`],
   },
 };
 
-// ─── Article data ────────────────────────────────────────────
+// ─── Article data ─────────────────────────────────────────────
 const ARTICLE = {
-  title:         "The Secret Armoire: Why Hidden Storage is 2026's Ultimate Luxury",
-  excerpt:       "We are moving away from open shelving. Discover how custom millwork and 'secret' armoires are transforming cluttered rooms into serene, minimalist sanctuaries.",
+  title:
+    "The Return of the Armoire: Why Concealed Storage is 2026’s Best Design Trend",
+  excerpt:
+    "Open shelving is officially out. Discover why heavy, beautiful, closed-door armoires are the ultimate solution for hiding WFH clutter and tech in modern apartments.",
   categoryLabel: 'Design Trends',
-  categoryHref:  '/design-trends',
+  categoryHref: '/design-trends',
   author: {
-    name:        'Team Bigelow',
-    slug:        'team-bigelow',
-    avatar:      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
-    bio:         'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
+    name: 'Bigelow Editorial Team',
+    slug: 'team-bigelow',
+    avatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
+    bio: 'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
     credentials: ['Bigelow Designs Editorial Team'],
   },
-  publishedAt:  '2026-05-28T09:00:00Z',
-  updatedAt:    '2026-05-28T09:00:00Z',
-  readingTime:  7,
-  heroImage:    'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1600&q=90',
-  heroImageAlt: 'Elegant room with seamless floor-to-ceiling custom wooden cabinetry concealing storage',
-  heroCaption:  'Floor-to-ceiling millwork that hides an entire home office. The illusion is perfect — until you press a panel.',
+  publishedAt: '2026-06-02T18:05:15Z',
+  updatedAt: '2026-06-02T18:05:15Z',
+  readingTime: 3,
+  heroImage: '/hidden-armoire-storage.webp',
+  heroImageAlt:
+    'A beautiful freestanding design armoire with tactile fluted wood panels in a minimalist home setup',
+  heroCaption:
+    'Tactile finishes and architectural weight. The armoire is the correction to visual fatigue.',
   headings: [
-    { id: 'end-of-curated-shelf',       text: "The End of the 'Curated' Shelf", level: 2 },
-    { id: 'architecture-of-concealment', text: 'The Architecture of Concealment', level: 2 },
-    { id: 'what-to-hide',               text: 'What to Hide (And How to Do It)', level: 2 },
-    { id: 'investing-in-millwork',       text: 'Investing in Millwork',           level: 2 },
+    { id: 'the-5-pm-wfh-disappearing-act', text: '1. The 5 PM WFH Disappearing Act', level: 2 },
+    { id: 'hiding-the-black-hole-of-tech', text: '2. Hiding the "Black Hole" of Tech', level: 2 },
+    { id: 'adding-architectural-weight-without-renovation', text: '3. Adding Architectural Weight Without Renovation', level: 2 },
+    { id: 'the-material-palette-burl-fluting-and-woven-cane', text: '4. The Material Palette: Burl, Fluting, and Woven Cane', level: 2 },
   ],
 } as const;
 
@@ -74,11 +80,11 @@ function formatDate(iso: string) {
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function HiddenArmoireStoragePage() {
-  const canonicalUrl    = `${siteConfig.url}/blog/hidden-armoire-storage-2026`;
+  const canonicalUrl = `${siteConfig.url}/blog/hidden-armoire-storage-2026`;
   const breadcrumbItems = [
-    { name: 'Home',                url: '/'                    },
-    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref   },
-    { name: ARTICLE.title,         url: canonicalUrl           },
+    { name: 'Home', url: '/' },
+    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref },
+    { name: ARTICLE.title, url: canonicalUrl },
   ];
 
   return (
@@ -92,52 +98,51 @@ export default function HiddenArmoireStoragePage() {
             <Breadcrumbs items={breadcrumbItems} />
           </div>
 
-        <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
-
-          {/* Category tag */}
-          <Link
-            href={ARTICLE.categoryHref}
-            className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
-          >
-            <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
-            {ARTICLE.categoryLabel}
-          </Link>
-
-          {/* Title */}
-          <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
-            {ARTICLE.title}
-          </h1>
-
-          {/* Deck */}
-          <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
-            {ARTICLE.excerpt}
-          </p>
-
-          {/* Hairline divider */}
-          <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
-
-          {/* Byline */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
-            <Image
-              src={ARTICLE.author.avatar}
-              alt=""
-              width={32}
-              height={32}
-              className="rounded-full ring-2 ring-ink-100"
-            />
+          <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
+            {/* Category tag */}
             <Link
-              href={`/authors/${ARTICLE.author.slug}`}
-              className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
+              href={ARTICLE.categoryHref}
+              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
             >
-              {ARTICLE.author.name}
+              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
+              {ARTICLE.categoryLabel}
             </Link>
-            <span aria-hidden="true" className="text-ink-300">·</span>
-            <time dateTime={ARTICLE.publishedAt}>{formatDate(ARTICLE.publishedAt)}</time>
-            <span aria-hidden="true" className="text-ink-300">·</span>
-            <span>{ARTICLE.readingTime} min read</span>
-          </div>
 
-        </header>
+            {/* Title */}
+            <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
+              {ARTICLE.title}
+            </h1>
+
+            {/* Deck */}
+            <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
+              {ARTICLE.excerpt}
+            </p>
+
+            {/* Hairline */}
+            <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
+
+            {/* Byline */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
+              <Image
+                src={ARTICLE.author.avatar}
+                alt=""
+                width={32}
+                height={32}
+                className="rounded-full ring-2 ring-ink-100"
+              />
+              <Link
+                href={`/authors/${ARTICLE.author.slug}`}
+                className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
+              >
+                {ARTICLE.author.name}
+              </Link>
+              <span aria-hidden="true" className="text-ink-300">&middot;</span>
+              <time dateTime={ARTICLE.publishedAt}>{formatDate(ARTICLE.publishedAt)}</time>
+              <span aria-hidden="true" className="text-ink-300">&middot;</span>
+              <span>{ARTICLE.readingTime} min read</span>
+            </div>
+
+          </header>
         </div>
       </div>
 
@@ -226,7 +231,6 @@ export default function HiddenArmoireStoragePage() {
                 </ol>
               </nav>
 
-              {/* Divider */}
               <div aria-hidden="true" className="h-px bg-ink-100" />
 
               {/* Newsletter mini-CTA */}
@@ -256,14 +260,14 @@ export default function HiddenArmoireStoragePage() {
               </h2>
             </div>
             <Link
-              href="/design-trends"
+              href="/rooms"
               className="hidden flex-shrink-0 text-body-sm font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500 sm:block"
             >
-              All articles →
+              All room guides &rarr;
             </Link>
           </div>
 
-          <div className={`mt-10 grid gap-8 lg:gap-8 ${RELATED_ARTICLES.length === 1 ? 'sm:grid-cols-1 lg:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:gap-8">
             {RELATED_ARTICLES.map((card) => (
               <RelatedArticleCard key={card.slug} card={card} />
             ))}
@@ -274,224 +278,114 @@ export default function HiddenArmoireStoragePage() {
   );
 }
 
-// ─── Article body ─────────────────────────────────────────────
-// Each <h2> has an id matching the sidebar TOC exactly.
-// Sub-sections inside "What to Hide" use <h3> (not <dl>) so the
-// Tailwind Typography plugin styles them correctly as serif
-// sub-headings — no browser-default definition-list rendering.
+// ─── Article body ──────────────────────────────────────────────
 function ArticleBody() {
   return (
     <>
       {/* ── Intro prose ── */}
       <div className="prose prose-lg max-w-none">
         <p>
-          For the last decade, we have been obsessed with displaying our lives.
-          Open shelving in the kitchen, glass-front cabinets in the living room,
-          and exposed clothing racks in the bedroom were all badges of a curated
-          existence — an outward signal that our possessions were considered
-          enough to be seen. But as our homes have worked harder — serving as
-          offices, gyms, schools, and sanctuaries simultaneously — the visual
-          noise has reached a breaking point.
+          For the better part of a decade, interior design was dominated by the &ldquo;open shelving&rdquo; movement. We were told to display our curated ceramics, our color-coordinated books, and our perfectly styled pantry jars for all the world to see.
         </p>
         <p>
-          The counter-movement is already well under way in the studios of
-          the designers whose work appears in the magazines we actually trust.
-          The solution is deceptively simple, architecturally satisfying, and
-          deeply, quietly luxurious. It is the secret armoire.
+          But as our homes increasingly became our offices, our gyms, and our entire worlds, the aesthetic of &ldquo;displaying everything&rdquo; quickly morphed into overwhelming visual fatigue. We don&apos;t want to look at our curated clutter anymore. We just want it to disappear.
+        </p>
+        <p>
+          Enter the undisputed hero of 2026 interior design: the freestanding armoire. The heavy, closed-door cabinet has returned with a vengeance, trading its dated, chunky &rsquo;90s reputation for sleek, architectural profiles. Here is why investing in concealed storage is the smartest design decision you can make this year.
         </p>
       </div>
 
-      {/* ── Main body prose — all four h2 sections in one block ── */}
+      {/* ── Main body prose ── */}
       <div className="prose prose-lg max-w-none">
-
         {/* ─ Section 1 ─ */}
-        <h2 id="end-of-curated-shelf">The End of the &lsquo;Curated&rsquo; Shelf</h2>
+        <h2 id="the-5-pm-wfh-disappearing-act">1. The 5 PM WFH Disappearing Act</h2>
         <p>
-          The shift toward hidden storage is not purely aesthetic — it is
-          psychological. Interior designers in 2026 are increasingly framing
-          their work in terms of cognitive load: the unconscious effort our
-          brains expend registering, categorising, and suppressing the objects
-          in our peripheral vision. An open shelf filled with books, trinkets,
-          and miscellany might be photographically charming; over time, it is
-          cognitively exhausting.
+          The biggest challenge of the modern apartment is the permanent integration of the home office. When your desk is in your living room or bedroom, the psychological boundary between &ldquo;work&rdquo; and &ldquo;rest&rdquo; is completely destroyed. You are constantly staring at your monitors.
         </p>
         <p>
-          The response is a return to something older than modernism: the
-          armoire, the cabinet, the chest. The difference today is that these
-          containers are not freestanding pieces of furniture slid against a
-          wall. They <em>are</em> the wall. A surface that appears to be
-          rich, textured timber panelling, painted plaster, or fluted stone
-          suddenly opens — through touch, or the press of a finger — to
-          reveal a television, a home bar, a home office, or six months of
-          clothing. The room does not change its appearance; it simply reveals
-          another of its characters.
+          The modern armoire solves this beautifully. &ldquo;Clóffices&rdquo; (closet offices) built into large freestanding wardrobes allow you to set up a highly functional workstation&mdash;complete with ergonomic monitors and corkboards&mdash;that can be instantly erased. At 5:00 PM, you simply shut the heavy wooden doors. The glowing screens vanish, and your living room reverts back into a sanctuary of relaxation.
         </p>
 
         {/* ─ Section 2 ─ */}
-        <h2 id="architecture-of-concealment">The Architecture of Concealment</h2>
+        <h2 id="hiding-the-black-hole-of-tech">2. Hiding the &ldquo;Black Hole&rdquo; of Tech</h2>
         <p>
-          The magic of a secret armoire lies in its integration with the
-          architecture of the room rather than its addition to it. Unlike a
-          standalone wardrobe or a bookcase placed against a wall, these
-          storage solutions are built from the skirting board to the ceiling
-          cornice, with joints that align with the rhythm of the room&apos;s
-          existing detailing. The cabinetmaker and the architect work together
-          from the first drawings — the storage is not retrofitted, it is
-          designed in.
+          Interior designers have long hated the television. When turned off, a large TV is essentially a massive, glossy black hole that absorbs light and ruins the aesthetic composition of a room. While frame TVs have attempted to solve this, nothing beats physical concealment.
         </p>
         <p>
-          The primary technique is colour-drenching: the cabinet doors are
-          painted the exact same shade as the surrounding walls, ceiling, and
-          architrave. Push-to-open magnetic hardware eliminates handles
-          entirely, leaving the surface completely uninterrupted. From three
-          metres away — or in the compressed perspective of a photograph — the
-          storage is simply not visible. It reads as a wall.
+          A beautifully crafted media armoire completely hides your television, soundbars, and gaming consoles. By hiding the tech behind fluted oak or reeded glass doors, the technology serves you when you need it, but refuses to dominate the room&apos;s design narrative when you don&apos;t.
         </p>
-        <p>
-          A secondary technique is material matching. Oak panelling that covers
-          the walls continues unbroken across the cabinet doors, with vertical
-          grain aligned at every join. Stone-effect plaster applied to both wall
-          and door face with the same trowel produces an effect that is not so
-          much concealment as total integration — the storage is not hidden
-          behind the wall; it <em>is</em> the wall.
-        </p>
-
-        {/* Inline image — real Unsplash photography */}
-        <figure>
-          <Image
-            src="https://images.unsplash.com/photo-1595515106969-1ce29566ff1c?auto=format&fit=crop&w=1200&q=85"
-            alt="Minimalist built-in wardrobe with seamless wooden doors perfectly flush with the surrounding wall"
-            width={1200}
-            height={800}
-            className="w-full rounded-xl object-cover"
-          />
-          <figcaption>
-            Push-to-open hardware and grain-matched timber: when the doors are
-            closed, the cabinet disappears entirely into the wall.
-          </figcaption>
-        </figure>
 
         {/* ─ Section 3 ─ */}
-        <h2 id="what-to-hide">What to Hide (And How to Do It)</h2>
+        <h2 id="adding-architectural-weight-without-renovation">3. Adding Architectural Weight Without Renovation</h2>
         <p>
-          The most resolved applications of the secret armoire concept target a
-          specific, identifiable pain point in a home&apos;s daily life. The
-          following three have become reliable staples in contemporary interior
-          design practice.
+          If you live in a newer, &ldquo;builder-grade&rdquo; apartment, your space likely lacks architectural character. There are no built-in bookcases, no crown molding, and no interesting alcoves.
         </p>
-
-        {/* Sub-sections use h3 so prose plugin applies correct serif styling */}
-        <h3>The Drop Zone</h3>
         <p>
-          The console table at the front door — piled with keys, mail, bags,
-          and charging cables — is one of the most reliably chaotic surfaces in
-          any home. The armoire solution is a shallow, floor-to-ceiling cabinet,
-          perhaps 200 mm deep, that lines the entrance-hall wall entirely.
-          Inside: hooks, a small key shelf, a mail slot, and a concealed charging
-          point. Outside: a seamless, unbroken wall. Arriving home becomes the
-          act of pressing a panel, placing everything precisely in its designated
-          place, and pressing the panel closed again. The ritual imposes order;
-          the concealment maintains calm.
-        </p>
-
-        <h3>The Appliance Garage</h3>
-        <p>
-          In the kitchen, the secret armoire takes the form of a pantry cabinet
-          tall enough and deep enough to house the toaster, coffee machine, stand
-          mixer, and microwave — all on appliance lifts or pull-out shelves, with
-          power sockets concealed inside. The kitchen is fully operational behind
-          closed doors; with them shut, the counter is completely bare. This
-          single intervention transforms the visual experience of a kitchen more
-          dramatically than any new splashback or lighting scheme could.
-        </p>
-
-        <h3>The Media Wall</h3>
-        <p>
-          The television remains the most persistent design dilemma in a living
-          room. Bi-fold or pocket doors — sliding back cleanly into the surrounding
-          cabinetry on concealed tracks — allow the screen to be revealed only
-          when in active use. When closed, the wall is simply a wall: a
-          composition of timber, plaster, or art. The room changes character
-          depending on whether the doors are open or shut — a genuinely rare
-          quality in domestic architecture.
+          A massive, high-quality armoire instantly injects historical weight and gravity into a blank, drywall box. Because of its sheer size, it acts as a piece of standalone architecture. It draws the eye upward, highlighting the height of the ceilings, and grounds the room in a way that a series of flimsy, floating shelves never could.
         </p>
 
         {/* ─ Section 4 ─ */}
-        <h2 id="investing-in-millwork">Investing in Millwork</h2>
+        <h2 id="the-material-palette-burl-fluting-and-woven-cane">4. The Material Palette: Burl, Fluting, and Woven Cane</h2>
         <p>
-          Custom cabinetry carries a significant upfront cost, but it should be
-          understood differently from furniture expenditure. A bespoke armoire
-          installation does not merely store things — it maximises every
-          centimetre of vertical space (the most under-used dimension in most
-          homes), it is fixed to the fabric of the building (which increases
-          property value in a way that a sofa never can), and it is designed
-          never to be replaced. A well-made millwork installation outlasts
-          several generations of everything placed in front of it.
+          The armoires of 2026 are not your grandmother&apos;s heavy, ornate mahogany wardrobes. Today&apos;s concealed storage pieces are tactile and heavily textured.
         </p>
         <p>
-          If the budget for custom work is not available right now, the modular
-          route is more viable than it has ever been. IKEA&apos;s Pax wardrobe and
-          Bestå storage systems, fitted with elevated slab door fronts in painted
-          MDF or real wood veneer, and framed floor-to-ceiling with a custom
-          plywood surround that fills the wall edge to edge, can achieve eighty
-          per cent of the integrated look at a fraction of the custom cost. The
-          joins are hidden by the frame; the handles are replaced with
-          push-to-open hardware; the baseboard detail is matched. From across
-          the room, the provenance is invisible.
+          We are seeing a massive resurgence in Burl wood, which adds a stunning, organic swirl pattern that functions as a piece of art in its own right. Fluted and ribbed woods are incredibly popular for their ability to play with light and shadow, while woven cane or rattan doors offer a slightly lighter, more coastal approach to concealment. Whichever material you choose, the mandate remains the same: close the doors, hide the mess, and reclaim your visual peace.
         </p>
-
-        <blockquote>
-          <p>
-            &ldquo;The ultimate luxury in a modern home is not what you put on
-            display. It is what you have the discipline — and the craftsmanship
-            — to hide.&rdquo;
-          </p>
-        </blockquote>
-
       </div>
     </>
   );
 }
 
-// ─── Related articles ─────────────────────────────────────────
+// ─── Related articles ──────────────────────────────────────────
 type RelatedCard = {
-  slug: string; title: string; excerpt: string;
-  categoryLabel: string; categoryHref: string;
-  href: string; image: string; imageAlt: string; readingTime: number;
+  slug: string;
+  title: string;
+  excerpt: string;
+  categoryLabel: string;
+  categoryHref: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  readingTime: number;
 };
 
-// Only real, published articles. No links to non-existent pages.
 const RELATED_ARTICLES: RelatedCard[] = [
   {
-    slug:          'japandi-bedroom-design',
-    title:         "The Japandi Bedroom: Why We're Leaving Heavy Furniture Behind in 2026",
+    slug: 'small-home-feel-huge',
+    title: '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
     excerpt:
-      "The design hybrid that marries wabi-sabi Japanese elegance with Scandinavian hygge — and the bedroom philosophy that actively lowers your heart rate.",
-    categoryLabel: 'Bedroom Guides',
-    categoryHref:  '/rooms/bedroom',
-    href:          '/blog/japandi-bedroom-design',
-    image:         '/japandi-hero.webp',
-    imageAlt:      'A serene Japandi bedroom with a low platform bed and warm washi paper lamp',
-    readingTime:   5,
+      'Six real design decisions that make even the tightest spaces feel beautifully expansive. No renovation required — just honest tricks from the Bigelow Design Team.',
+    categoryLabel: 'Room Guides',
+    categoryHref: '/rooms/living-room',
+    href: '/blog/small-home-feel-huge',
+    image: '/living-room-candid.webp',
+    imageAlt: 'A real living room feeling spacious and airy through deliberate furniture placement',
+    readingTime: 4,
   },
   {
-    slug:          'small-home-feel-huge',
-    title:         '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
+    slug: 'space-saving-dining-tables',
+    title: '7 Best Space-Saving Dining Tables for Small Apartments (2026)',
     excerpt:
-      "You can't magically create more square footage. But we've learned a few genuine tricks that make even the tightest spaces feel beautifully expansive.",
+      'Small dining room? These 7 space-saving dining tables keep your apartment stylish, functional, and guest-ready in 2026.',
     categoryLabel: 'Room Guides',
-    categoryHref:  '/rooms',
-    href:          '/blog/small-home-feel-huge',
-    image:         '/living-room-candid.webp',
-    imageAlt:      'A real living room feeling open and airy through considered furniture placement and natural light',
-    readingTime:   4,
+    categoryHref: '/rooms/living-room',
+    href: '/blog/space-saving-dining-tables',
+    image: '/space-saving-tables.webp',
+    imageAlt: 'A compact apartment dining area with a slim extendable dining table and open chairs',
+    readingTime: 8,
   },
 ];
 
 function RelatedArticleCard({ card }: { card: RelatedCard }) {
   return (
     <article className="group flex flex-col gap-4">
-      <Link href={card.href} className="block overflow-hidden rounded-xl" tabIndex={-1} aria-hidden="true">
+      <Link
+        href={card.href}
+        className="block overflow-hidden rounded-xl"
+        tabIndex={-1}
+        aria-hidden="true"
+      >
         <div className="relative aspect-[4/3] overflow-hidden bg-elevated">
           <Image
             src={card.image}
@@ -510,11 +404,16 @@ function RelatedArticleCard({ card }: { card: RelatedCard }) {
           {card.categoryLabel}
         </Link>
         <h3 className="mt-1.5 flex-1 font-serif text-body-lg font-semibold leading-snug text-ink-900">
-          <Link href={card.href} className="transition-colors duration-quick hover:text-accent-600">
+          <Link
+            href={card.href}
+            className="transition-colors duration-quick hover:text-accent-600"
+          >
             {card.title}
           </Link>
         </h3>
-        <p className="mt-2 text-body-sm leading-relaxed text-ink-500 line-clamp-2">{card.excerpt}</p>
+        <p className="mt-2 text-body-sm leading-relaxed text-ink-500 line-clamp-2">
+          {card.excerpt}
+        </p>
         <p className="mt-3 text-body-sm text-ink-400">{card.readingTime} min read</p>
       </div>
     </article>
