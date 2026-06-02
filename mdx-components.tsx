@@ -1,11 +1,35 @@
 import type { MDXComponents } from 'mdx/types';
 import Image from 'next/image';
 import Link from 'next/link';
-import { AffiliateButton } from '@/components/AffiliateButton';
-import { ComparisonTable } from '@/components/ComparisonTable';
-import { ShopTheLook } from '@/components/ShopTheLook';
-import { FAQAccordion } from '@/components/FAQAccordion';
 
+// ─── Affiliate / monetization components ──────────────────────
+import { AffiliateButton }       from '@/components/AffiliateButton';
+import { AffiliateDisclosure }   from '@/components/AffiliateDisclosure';
+import { AffiliateProductGrid }  from '@/components/AffiliateProductGrid';
+import { ProductCard }           from '@/components/ProductCard';
+
+// ─── Other rich MDX components ────────────────────────────────
+import { ComparisonTable } from '@/components/ComparisonTable';
+import { ShopTheLook }     from '@/components/ShopTheLook';
+import { FAQAccordion }    from '@/components/FAQAccordion';
+
+/**
+ * Custom MDX component map.
+ *
+ * The blog [slug] route passes these through to <MDXRemote> so any
+ * .mdx file under content/articles/ can embed:
+ *
+ *   <AffiliateDisclosure />
+ *   <AffiliateProductGrid heading="..." products={[...]} />
+ *   <ProductCard {...} />
+ *   <AffiliateButton href="..." network="amazon" />
+ *   <ShopTheLook image="..." hotspots={[...]} />
+ *   <FAQAccordion items={[...]} />
+ *   <ComparisonTable products={[...]} />
+ *
+ * The `a` and `img` overrides apply to every MDX-rendered link / image,
+ * upgrading them to next/link and next/image respectively.
+ */
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     a: ({ href = '#', children, ...rest }) => {
@@ -34,10 +58,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         {...rest}
       />
     ),
+
+    // Affiliate / monetization
     AffiliateButton,
+    AffiliateDisclosure,
+    AffiliateProductGrid,
+    ProductCard,
+
+    // Other rich MDX components
     ComparisonTable,
     ShopTheLook,
     FAQAccordion,
+
     ...components,
   };
 }
