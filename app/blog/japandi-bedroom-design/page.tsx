@@ -4,8 +4,6 @@ import Link from 'next/link';
 import clsx from 'clsx';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
-import { EditorialProduct } from '@/components/EditorialProduct';
 import { SidebarNewsletter } from '@/components/sections/SidebarNewsletter';
 import { siteConfig } from '@/lib/site';
 
@@ -14,61 +12,62 @@ export const dynamic = 'force-static';
 
 // ─── Metadata ────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: "The Japandi Bedroom: Why We're Leaving Heavy Furniture Behind in 2026",
+  title: "Japandi Bedroom Design: The 2026 Guide to a Calming Sleep Space",
   description:
-    'Japandi design is more than a trend — it is a methodology for the bedroom. Discover how low-profile furniture, raw natural textures, and layered paper lighting create a room that actively lowers your heart rate.',
+    "Master the Japandi bedroom trend. Discover how blending Japanese minimalism with Scandinavian warmth creates the ultimate resting sanctuary for modern homes.",
   alternates: { canonical: `${siteConfig.url}/blog/japandi-bedroom-design` },
   openGraph: {
     type: 'article',
     url: `${siteConfig.url}/blog/japandi-bedroom-design`,
-    title: "The Japandi Bedroom: Why We're Leaving Heavy Furniture Behind in 2026",
+    title: "Japandi Bedroom Design: The 2026 Guide to a Calming Sleep Space",
     description:
-      'How low-profile furniture, raw natural textures, and washi paper lighting are replacing heavy, imposing bedroom furniture in the most considered homes of 2026.',
+      "Master the Japandi bedroom trend. Discover how blending Japanese minimalism with Scandinavian warmth creates the ultimate resting sanctuary for modern homes.",
     images: [
       {
-        url: `${siteConfig.url}/japandi-hero.webp`,
+        url: `${siteConfig.url}/japandi-bedroom.webp`,
         width: 1200,
         height: 675,
-        alt: 'A serene Japandi bedroom with a low platform bed, raw oak nightstand, and warm washi paper lamp',
+        alt: 'A serene Japandi bedroom with a low platform bed, linen sheets, and raw natural textures',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "The Japandi Bedroom: Why We're Leaving Heavy Furniture Behind in 2026",
+    title: "Japandi Bedroom Design: The 2026 Guide to a Calming Sleep Space",
     description:
-      'Low-profile beds, slubby linen, washi paper lanterns. The Bigelow guide to the bedroom philosophy that actually lowers your heart rate.',
-    images: [`${siteConfig.url}/japandi-hero.webp`],
+      "Master the Japandi bedroom trend. Discover how blending Japanese minimalism with Scandinavian warmth creates the ultimate resting sanctuary for modern homes.",
+    images: [`${siteConfig.url}/japandi-bedroom.webp`],
   },
 };
 
-// ─── Article data ────────────────────────────────────────────
+// ─── Article data ─────────────────────────────────────────────
 const ARTICLE = {
-  title:         "The Japandi Bedroom: Why We're Leaving Heavy Furniture Behind in 2026",
+  title:
+    "Japandi Bedroom Design: How to Build the Ultimate Rest Sanctuary",
   excerpt:
-    "When our clients ask us how to turn a chaotic bedroom into a true sanctuary, we immediately point them toward Japandi — the design hybrid that marries wabi-sabi Japanese elegance with Scandinavian hygge. Here is how we do it.",
-  categoryLabel: 'Bedroom Guides',
-  categoryHref:  '/rooms/bedroom',
+    "Master the Japandi bedroom trend. Discover how blending Japanese minimalism with Scandinavian warmth creates the ultimate resting sanctuary for modern homes.",
+  categoryLabel: 'Design Trends',
+  categoryHref: '/design-trends',
   author: {
-    name:        'Bigelow Editorial Team',
-    slug:        'team-bigelow',
-    avatar:      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
-    bio:         'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
+    name: 'Bigelow Editorial Team',
+    slug: 'team-bigelow',
+    avatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
+    bio: 'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
     credentials: ['Bigelow Designs Editorial Team'],
   },
-  publishedAt:  '2026-05-31T08:00:00Z',
-  updatedAt:    '2026-05-31T08:00:00Z',
-  readingTime:  5,
-  heroImage:    '/japandi-hero.webp',
+  publishedAt: '2026-06-02T17:58:13Z',
+  updatedAt: '2026-06-02T17:58:13Z',
+  readingTime: 3,
+  heroImage: '/japandi-bedroom.webp',
   heroImageAlt:
-    'A serene Japandi-influenced bedroom with a low platform bed, raw oak nightstand, slubby linen bedding, and a warm washi paper table lamp casting a diffused amber glow',
+    'A serene Japandi bedroom with a low platform bed, linen sheets, and raw natural textures',
   heroCaption:
-    'Low to the ground, rich in texture, bare of distraction. The Japandi bedroom is designed to do one thing above all else: slow you down.',
+    'Blending Japanese minimalism with Scandinavian functionality for a quiet rest sanctuary.',
   headings: [
-    { id: 'grounding-through-low-profile-furniture', text: 'Grounding Through Low-Profile Furniture',  level: 2 },
-    { id: 'sensory-textures-over-glossy-synthetics',  text: 'Sensory Textures Over Glossy Synthetics',  level: 2 },
-    { id: 'the-lighting-rule-we-never-break',         text: 'The Lighting Rule We Never Break',          level: 2 },
-    { id: 'negative-space-is-a-feature',              text: 'Negative Space is a Feature',               level: 2 },
+    { id: 'ground-the-room-with-low-profile-furniture', text: '1. Ground the Room with Low-Profile Furniture', level: 2 },
+    { id: 'layer-imperfect-natural-textures', text: '2. Layer Imperfect, Natural Textures', level: 2 },
+    { id: 'embrace-the-philosophy-of-wabi-sabi', text: '3. Embrace the Philosophy of Wabi-Sabi', level: 2 },
+    { id: 'master-the-art-of-concealed-storage', text: '4. Master the Art of Concealed Storage', level: 2 },
   ],
 } as const;
 
@@ -81,11 +80,11 @@ function formatDate(iso: string) {
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function JapandiBedroomDesignPage() {
-  const canonicalUrl    = `${siteConfig.url}/blog/japandi-bedroom-design`;
+  const canonicalUrl = `${siteConfig.url}/blog/japandi-bedroom-design`;
   const breadcrumbItems = [
-    { name: 'Home',                url: '/'                    },
-    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref   },
-    { name: ARTICLE.title,         url: canonicalUrl           },
+    { name: 'Home', url: '/' },
+    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref },
+    { name: ARTICLE.title, url: canonicalUrl },
   ];
 
   return (
@@ -99,52 +98,51 @@ export default function JapandiBedroomDesignPage() {
             <Breadcrumbs items={breadcrumbItems} />
           </div>
 
-        <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
-
-          {/* Category tag */}
-          <Link
-            href={ARTICLE.categoryHref}
-            className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
-          >
-            <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
-            {ARTICLE.categoryLabel}
-          </Link>
-
-          {/* Title */}
-          <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
-            {ARTICLE.title}
-          </h1>
-
-          {/* Deck */}
-          <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
-            {ARTICLE.excerpt}
-          </p>
-
-          {/* Hairline divider */}
-          <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
-
-          {/* Byline */}
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
-            <Image
-              src={ARTICLE.author.avatar}
-              alt=""
-              width={32}
-              height={32}
-              className="rounded-full ring-2 ring-ink-100"
-            />
+          <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
+            {/* Category tag */}
             <Link
-              href={`/authors/${ARTICLE.author.slug}`}
-              className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
+              href={ARTICLE.categoryHref}
+              className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 transition-colors duration-quick hover:text-accent-500 w-fit"
             >
-              {ARTICLE.author.name}
+              <span aria-hidden="true" className="h-px w-5 bg-accent-600/40" />
+              {ARTICLE.categoryLabel}
             </Link>
-            <span aria-hidden="true" className="text-ink-300">·</span>
-            <time dateTime={ARTICLE.publishedAt}>{formatDate(ARTICLE.publishedAt)}</time>
-            <span aria-hidden="true" className="text-ink-300">·</span>
-            <span>{ARTICLE.readingTime} min read</span>
-          </div>
 
-        </header>
+            {/* Title */}
+            <h1 className="text-balance font-serif text-[clamp(28px,5vw,52px)] font-semibold leading-[1.08] tracking-[-0.03em] text-ink-900">
+              {ARTICLE.title}
+            </h1>
+
+            {/* Deck */}
+            <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
+              {ARTICLE.excerpt}
+            </p>
+
+            {/* Hairline */}
+            <div aria-hidden="true" className="h-px w-16 bg-ink-200" />
+
+            {/* Byline */}
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
+              <Image
+                src={ARTICLE.author.avatar}
+                alt=""
+                width={32}
+                height={32}
+                className="rounded-full ring-2 ring-ink-100"
+              />
+              <Link
+                href={`/authors/${ARTICLE.author.slug}`}
+                className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
+              >
+                {ARTICLE.author.name}
+              </Link>
+              <span aria-hidden="true" className="text-ink-300">&middot;</span>
+              <time dateTime={ARTICLE.publishedAt}>{formatDate(ARTICLE.publishedAt)}</time>
+              <span aria-hidden="true" className="text-ink-300">&middot;</span>
+              <span>{ARTICLE.readingTime} min read</span>
+            </div>
+
+          </header>
         </div>
       </div>
 
@@ -154,7 +152,7 @@ export default function JapandiBedroomDesignPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
         <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
           <Image
-            src="/japandi-hero.webp"
+            src={ARTICLE.heroImage}
             alt={ARTICLE.heroImageAlt}
             fill
             priority
@@ -233,7 +231,6 @@ export default function JapandiBedroomDesignPage() {
                 </ol>
               </nav>
 
-              {/* Divider */}
               <div aria-hidden="true" className="h-px bg-ink-100" />
 
               {/* Newsletter mini-CTA */}
@@ -266,11 +263,11 @@ export default function JapandiBedroomDesignPage() {
               href="/rooms"
               className="hidden flex-shrink-0 text-body-sm font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500 sm:block"
             >
-              All room guides →
+              All room guides &rarr;
             </Link>
           </div>
 
-          <div className={`mt-10 grid gap-8 ${RELATED_ARTICLES.length === 1 ? 'sm:grid-cols-1 lg:grid-cols-2' : 'sm:grid-cols-2 lg:grid-cols-3'}`}>
+          <div className="mt-10 grid gap-8 sm:grid-cols-2 lg:gap-8">
             {RELATED_ARTICLES.map((card) => (
               <RelatedArticleCard key={card.slug} card={card} />
             ))}
@@ -281,162 +278,102 @@ export default function JapandiBedroomDesignPage() {
   );
 }
 
-// ─── Article body ─────────────────────────────────────────────
-// Structure:
-//   • Key Takeaways box (not-prose, above the prose block)
-//   • Intro paragraph
-//   • Sections 1–3 in a single prose block
-//   • AffiliateDisclosure + EditorialProduct (not-prose, after section 3)
-//   • Section 4 in a continuation prose block
-// Each <h2> id matches the sidebar TOC exactly.
+// ─── Article body ──────────────────────────────────────────────
 function ArticleBody() {
   return (
     <>
-      {/* ── Key Takeaways ── */}
-      <div className="not-prose mb-8 rounded-xl border border-accent/20 bg-elevated/50 px-5 py-5">
-        <p className="mb-3 text-eyebrow uppercase tracking-[0.16em] text-accent-600">
-          Key Takeaways
-        </p>
-        <ul className="space-y-2.5">
-          {[
-            'Grounding the room with low-profile furniture instantly lowers visual stress.',
-            'We strictly specify natural, imperfect textures like raw oak and slubby linen over glossy finishes.',
-            'Harsh overhead lighting is a mistake; layered, diffused paper lanterns are mandatory for proper sleep hygiene.',
-          ].map((item) => (
-            <li
-              key={item}
-              className="flex items-start gap-3 text-[14px] leading-relaxed text-ink-700"
-            >
-              <span
-                aria-hidden="true"
-                className="mt-[7px] h-1.5 w-1.5 flex-shrink-0 rounded-full bg-accent/60"
-              />
-              {item}
-            </li>
-          ))}
-        </ul>
-      </div>
-
       {/* ── Intro prose ── */}
       <div className="prose prose-lg max-w-none">
         <p>
-          When our clients ask us how to turn a chaotic bedroom into a true sanctuary,
-          we immediately point them toward Japandi. This isn&apos;t just a fleeting
-          social media trend; it&apos;s a necessary design hybrid that marries the
-          intentional, wabi-sabi elegance of Japanese interiors with the functional
-          warmth of Scandinavian hygge. At Bigelow, we design bedrooms that actively
-          lower your heart rate the second you walk through the door.
+          If the outside world feels increasingly chaotic, interior design trends will naturally swing toward extreme comfort and quiet isolation. This explains exactly why &ldquo;Japandi&rdquo;&mdash;the brilliant hybrid of Japanese minimalism and Scandinavian functionality&mdash;has completely taken over the bedroom design landscape in 2026.
+        </p>
+        <p>
+          For years, minimalist bedrooms felt a bit too stark, often resembling clinical modern art galleries rather than places to actually sleep. On the other end of the spectrum, traditional cozy bedrooms could easily veer into cluttered, suffocating territory.
+        </p>
+        <p>
+          Japandi is the perfect architectural middle ground. It strips away the visual noise but layers in profound, tactile warmth. As interior editors, this is our absolute favorite design directive for a primary suite. Here is exactly how we execute a flawless Japandi bedroom that instantly lowers your heart rate the moment you walk through the door.
         </p>
       </div>
 
-      {/* ── Sections 1–3 ── */}
+      {/* ── Main body prose ── */}
       <div className="prose prose-lg max-w-none">
-
         {/* ─ Section 1 ─ */}
-        <h2 id="grounding-through-low-profile-furniture">
-          Grounding Through Low-Profile Furniture
-        </h2>
+        <h2 id="ground-the-room-with-low-profile-furniture">1. Ground the Room with Low-Profile Furniture</h2>
         <p>
-          We always advise abandoning massive, imposing bed frames. A core principle
-          of Japandi is maintaining a low center of gravity. By specifying a sleek,
-          low-profile wooden platform bed, we anchor the room to the earth and create
-          the optical illusion of significantly higher ceilings. It is a simple
-          structural change that completely shifts the room&apos;s energy.
+          The foundation of Japanese interior architecture is proximity to the earth. Standard western beds are often positioned high off the floor, dominating the visual plane of the room.
+        </p>
+        <p>
+          To achieve the Japandi aesthetic, we immediately lower the horizon line. Swap out the bulky box spring and massive headboard for a low-profile wooden platform bed. By keeping the heaviest piece of furniture close to the ground, you expose more empty wall space. This visual trick instantly makes standard eight-foot ceilings feel vault-like and gives the room a deep sense of grounding and stability.
         </p>
 
         {/* ─ Section 2 ─ */}
-        <h2 id="sensory-textures-over-glossy-synthetics">
-          Sensory Textures Over Glossy Synthetics
-        </h2>
+        <h2 id="layer-imperfect-natural-textures">2. Layer Imperfect, Natural Textures</h2>
         <p>
-          Perfection is sterile. Japandi relies heavily on natural materials that
-          show their age and grain. In our projects, we source raw, unvarnished oak
-          for nightstands, layer the bed with heavy, slubby organic linen, and
-          introduce handmade ceramics. We actively avoid mirrored surfaces or glossy
-          synthetics here — the environment must be tactile and intimately connected
-          to nature.
+          Because a Japandi room restricts the use of loud colors and chaotic patterns, the design relies entirely on texture to prevent the space from feeling flat.
+        </p>
+        <p>
+          This is where the Scandinavian influence shines. We layer the bed with organic, stonewashed linen sheets in shades of oatmeal, bone, or soft sage. Do not iron them; the natural, slightly rumpled texture of high-quality linen is essential. Underfoot, we introduce warmth with a thick, nubby wool rug. The contrast between the smooth wood of the bedframe and the heavy, tactile textiles creates a space that feels curated but incredibly lived-in.
         </p>
 
         {/* ─ Section 3 ─ */}
-        <h2 id="the-lighting-rule-we-never-break">
-          The Lighting Rule We Never Break
-        </h2>
+        <h2 id="embrace-the-philosophy-of-wabi-sabi">3. Embrace the Philosophy of Wabi-Sabi</h2>
         <p>
-          We consider harsh, blue-toned overhead lighting a fundamental design flaw
-          in a bedroom. Instead, we rely entirely on layered, diffused light sources
-          that cast a soft, shadowless glow. Traditional washi paper lanterns are our
-          go-to solution. They provide the exact warm temperature needed to signal to
-          the brain that it is time to wind down.
+          &ldquo;Wabi-Sabi&rdquo; is the Japanese philosophy of finding profound beauty in imperfection and nature. In a bedroom context, this means stepping away from highly polished, factory-perfect decor.
+        </p>
+        <p>
+          Instead of mass-produced metal lamps or symmetrical gallery walls, we source asymmetrical, hand-thrown ceramic table lamps with raw, unglazed finishes. We decorate with branches foraging from the yard rather than tight, perfectly spherical floral arrangements. Introducing items that show the hand of the maker&mdash;complete with slight variations and organic flaws&mdash;infuses the room with a quiet, organic soul.
         </p>
 
-      </div>
-
-      {/* ── Affiliate placement — immediately after section 3 ── */}
-      <AffiliateDisclosure />
-      <EditorialProduct
-        title="Washi Paper Table Lamp"
-        brand="Noguchi Inspired"
-        price="$120"
-        imageUrl="/japandi-lamp.webp"
-        affiliateUrl="#"
-      />
-
-      {/* ── Section 4 ── */}
-      <div className="prose prose-lg max-w-none">
-
-        <h2 id="negative-space-is-a-feature">
-          Negative Space is a Feature
-        </h2>
+        {/* ─ Section 4 ─ */}
+        <h2 id="master-the-art-of-concealed-storage">4. Master the Art of Concealed Storage</h2>
         <p>
-          Finally, practice aggressive restraint. We don&apos;t strip a room down
-          simply to make it empty; we edit the space so the pieces that remain can
-          actually breathe. A single, sculptural branch in a heavy clay vase is
-          infinitely more sophisticated than a busy floral arrangement. Let the empty
-          space do the talking.
+          You cannot relax in a room if you are staring at a pile of laundry or a cluttered vanity. True Japandi design demands strict visual silence, which means your storage game must be flawless.
         </p>
-
+        <p>
+          We avoid open shelving in the bedroom entirely. Instead, we invest in beautiful, closed-door armoires featuring slatted wood or reeded glass. Everything&mdash;from the charging cables to the half-read novels&mdash;must have a designated, hidden home. When the visual clutter is entirely removed, the mind is finally given permission to turn off.
+        </p>
       </div>
     </>
   );
 }
 
-// ─── Related articles ─────────────────────────────────────────
+// ─── Related articles ──────────────────────────────────────────
 type RelatedCard = {
-  slug:          string;
-  title:         string;
-  excerpt:       string;
+  slug: string;
+  title: string;
+  excerpt: string;
   categoryLabel: string;
-  categoryHref:  string;
-  href:          string;
-  image:         string;
-  imageAlt:      string;
-  readingTime:   number;
+  categoryHref: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  readingTime: number;
 };
 
 const RELATED_ARTICLES: RelatedCard[] = [
   {
-    slug:          'luxury-powder-room-design',
-    title:         'The Powder Room Edit: How We Design High-Impact, Luxury Small Bathrooms',
+    slug: 'small-home-feel-huge',
+    title: '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
     excerpt:
-      "We view the compact powder room not as a design challenge, but as our absolute favorite playground. Here is how we do it.",
-    categoryLabel: 'Bathroom Design',
-    categoryHref:  '/rooms/bathroom',
-    href:          '/blog/luxury-powder-room-design',
-    image:         '/bathroom-luxury-hero.webp',
-    imageAlt:      'A moody luxury powder room with dark wallpaper, a floating marble vanity, and unlacquered brass faucet',
-    readingTime:   5,
+      'Six real design decisions that make even the tightest spaces feel beautifully expansive. No renovation required — just honest tricks from the Bigelow Design Team.',
+    categoryLabel: 'Room Guides',
+    categoryHref: '/rooms/living-room',
+    href: '/blog/small-home-feel-huge',
+    image: '/living-room-candid.webp',
+    imageAlt: 'A real living room feeling spacious and airy through deliberate furniture placement',
+    readingTime: 4,
   },
   {
-    slug:          'hidden-armoire-storage-2026',
-    title:         "The Secret Armoire: Why Hidden Storage is 2026's Ultimate Luxury",
+    slug: 'hidden-armoire-storage-2026',
+    title: "The Secret Armoire: Why Hidden Storage is 2026’s Ultimate Luxury",
     excerpt:
       'Custom millwork and invisible storage are redefining what it means for a room to feel truly calm. Here is the case for hiding everything.',
     categoryLabel: 'Design Trends',
-    categoryHref:  '/design-trends',
-    href:          '/blog/hidden-armoire-storage-2026',
-    image:         'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80',
-    imageAlt:      'Elegant room with seamless custom wooden cabinetry concealing storage',
-    readingTime:   7,
+    categoryHref: '/design-trends',
+    href: '/blog/hidden-armoire-storage-2026',
+    image: 'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80',
+    imageAlt: 'Elegant room with seamless custom wooden cabinetry concealing storage',
+    readingTime: 7,
   },
 ];
 
