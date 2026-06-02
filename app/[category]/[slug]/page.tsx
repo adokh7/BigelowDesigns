@@ -14,6 +14,9 @@ import { JsonLd } from '@/components/JsonLd';
 import { RelatedArticles } from '@/components/RelatedArticles';
 import { TableOfContents } from '@/components/TableOfContents';
 import { AffiliateButton } from '@/components/AffiliateButton';
+import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
+import { AffiliateProductGrid } from '@/components/AffiliateProductGrid';
+import { ProductCard } from '@/components/ProductCard';
 import { ShopTheLook } from '@/components/ShopTheLook';
 import { StickyMiniCompare } from '@/components/ui/StickyMiniCompare';
 import { RelatedProductsRail } from '@/components/RelatedProductsRail';
@@ -152,10 +155,17 @@ export default async function ArticlePage({ params }: PageProps) {
               </details>
             )}
 
+            {/* Auto-rendered affiliate disclosure — appears at the
+                top of every article rendered through this route. */}
+            <AffiliateDisclosure />
+
             <MDXRemote
               source={article.content}
               components={{
                 AffiliateButton,
+                AffiliateDisclosure,
+                AffiliateProductGrid,
+                ProductCard,
                 ComparisonTable,
                 ShopTheLook,
                 FAQAccordion,

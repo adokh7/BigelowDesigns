@@ -59,8 +59,13 @@ const CURRENCY_SYMBOL: Record<Currency, string> = { USD: '$', GBP: '£' };
 export function AffiliateProductGrid({
   heading = 'Get The Look',
   caption = 'A few hand-picked pieces to bring this aesthetic into your own home.',
-  products,
+  products = [],
 }: AffiliateProductGridProps) {
+  // Render nothing if no products were supplied — keeps MDX safe even if
+  // an author forgets the prop, and avoids server-side crashes when the
+  // RSC serializer is comparing props.
+  if (!Array.isArray(products) || products.length === 0) return null;
+
   // Choose column count based on how many products were provided.
   const gridCols =
     products.length === 2

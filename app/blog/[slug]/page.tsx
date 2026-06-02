@@ -10,8 +10,13 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
+import { AffiliateButton } from '@/components/AffiliateButton';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
-import { useMDXComponents } from '@/mdx-components';
+import { AffiliateProductGrid } from '@/components/AffiliateProductGrid';
+import { ComparisonTable } from '@/components/ComparisonTable';
+import { FAQAccordion } from '@/components/FAQAccordion';
+import { ProductCard } from '@/components/ProductCard';
+import { ShopTheLook } from '@/components/ShopTheLook';
 import {
   getAllArticles,
   getArticleBySlugOnly,
@@ -226,7 +231,15 @@ export default async function BlogArticlePage({ params }: PageProps) {
             <div className="prose prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
-                components={useMDXComponents({})}
+                components={{
+                  AffiliateButton,
+                  AffiliateDisclosure,
+                  AffiliateProductGrid,
+                  ProductCard,
+                  ComparisonTable,
+                  ShopTheLook,
+                  FAQAccordion,
+                }}
                 options={{
                   mdxOptions: {
                     remarkPlugins: [remarkGfm],
