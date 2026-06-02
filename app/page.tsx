@@ -17,44 +17,40 @@ export const metadata: Metadata = {
     title: `${siteConfig.name} — Premium Interior Design`,
     description:
       'Interior design that lives in the real world. Room guides, honest furniture reviews, and the trends worth knowing.',
-    images: [{ url: `${siteConfig.url}/luxury-powder-room.webp`, width: 1600, height: 800, alt: 'Bigelow Designs' }],
+    images: [{ url: `${siteConfig.url}/modular-sofa-tiny-apartment.webp`, width: 1600, height: 1000, alt: 'Bigelow Designs' }],
   },
 };
 
-// ─── Editorial content — curated homepage selections ─────────
-const HERO = {
-  href:         '/blog/luxury-powder-room-edit',
-  categoryHref: '/rooms/bathroom',
-  category:     'Room Guides',
-  title:        "The Powder Room Edit: Abandoning 'Light and Bright' for Dark, Moody Luxury",
-  excerpt:
-    'The powder room is the one room in your home where restraint becomes a liability. Here is how to design a space that feels genuinely opulent — without a full renovation.',
-  image:        '/luxury-powder-room.webp',
-  imageAlt:     'A dark, moody powder room with brushed brass fixtures, deep olive walls, and a statement mirror',
-  readingTime:  9,
-} as const;
-
-const GRID = [
+// ─── Editorial grid — recent articles below the hero ─────────
+const FEATURED = [
+  {
+    href:         '/blog/luxury-powder-room-edit',
+    category:     'Room Guides',
+    title:        "The Powder Room Edit: Abandoning 'Light and Bright' for Dark, Moody Luxury",
+    excerpt:
+      'The powder room is the one room in your home where restraint becomes a liability. Here is how to design a space that feels genuinely opulent — without a full renovation.',
+    image:        '/luxury-powder-room.webp',
+    imageAlt:     'A dark, moody powder room with brushed brass fixtures and a statement mirror',
+    readingTime:  9,
+  },
   {
     href:         '/blog/testing-internet-favorite-modular-sofa',
-    categoryHref: '/reviews',
     category:     'Furniture Reviews',
     title:        "We Tested the Internet's Favourite Modular Sofa in a 400 Sq Ft Apartment",
     excerpt:
       'Six weeks, 40 rearrangements, and one very honest verdict on whether the modular sofa hype is actually earned.',
     image:        '/modular-sofa-tiny-apartment.webp',
-    imageAlt:     'A compact modular sofa arranged in a small apartment living room with natural light',
+    imageAlt:     'A modular sofa in a bright, compact apartment living room',
     readingTime:  7,
   },
   {
     href:         '/blog/meaningful-vintage-decor-bitossi',
-    categoryHref: '/design-trends',
     category:     'Design Trends',
     title:        'The Emotional Power of Vintage Decor: A Mid-Century Ceramic Find',
     excerpt:
       'A 1960s Bitossi rooster that cost €12 at a Milan street market — and what it taught us about the psychology of objects.',
     image:        '/vintage-ceramic-chicken.webp',
-    imageAlt:     'A vintage mid-century Bitossi ceramic chicken sculpture displayed on a warm wooden shelf',
+    imageAlt:     'A vintage Bitossi ceramic chicken sculpture displayed on a warm wooden shelf',
     readingTime:  5,
   },
 ] as const;
@@ -62,159 +58,342 @@ const GRID = [
 // ─── Page ─────────────────────────────────────────────────────
 export default function HomePage() {
   return (
-    <div className="bg-canvas">
+    <div className="bg-[#FAFAFA]">
+
+      {/* ──────────────────────────────────────────────────────
+          INLINE KEYFRAMES — image zoom-in + decorative float.
+          Rendered into the HTML so animations fire on first paint
+          without JS. `animate-fade-rise` + `animate-bounce` come
+          from the existing Tailwind theme.
+          ────────────────────────────────────────────────────── */}
+      <style>{`
+        @keyframes heroImageIn {
+          from { opacity: 0; transform: scale(0.95); }
+          to   { opacity: 1; transform: scale(1); }
+        }
+        @keyframes heroFloat {
+          0%, 100% { transform: translateY(0px); }
+          50%      { transform: translateY(-12px); }
+        }
+        @keyframes heroBlob {
+          0%, 100% { transform: translate(0, 0) scale(1); }
+          50%      { transform: translate(20px, -10px) scale(1.05); }
+        }
+        .animate-hero-image-in { animation: heroImageIn 1100ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .animate-hero-float    { animation: heroFloat 4s ease-in-out infinite; }
+        .animate-hero-blob     { animation: heroBlob 12s ease-in-out infinite; }
+      `}</style>
 
       {/* ══════════════════════════════════════════════════════
-          MASTHEAD BAR — thin editorial header, magazine feel
-          ══════════════════════════════════════════════════════ */}
-      <div className="border-b border-ink-100 bg-surface">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between py-2.5">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-ink-300">
-              Vol. 2026
-            </p>
-            <p className="hidden text-[10px] font-semibold uppercase tracking-[0.3em] text-ink-300 sm:block">
-              Premium Interior Design
-            </p>
-            <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-ink-300">
-              June 2026
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════
-          FEATURED HERO — large featured article, full-width
+          1. HERO — bright, airy, split-column
           ══════════════════════════════════════════════════════ */}
       <section
         aria-labelledby="hero-heading"
-        className="mx-auto max-w-7xl px-4 pt-12 sm:px-6 lg:px-8 lg:pt-16"
+        className="relative overflow-hidden bg-gradient-to-br from-orange-50/40 via-[#FAFAFA] to-white"
       >
-        <Link href={HERO.href} className="group block">
+        {/* Decorative soft blobs — adds vibrancy without overwhelming */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-orange-200/30 blur-3xl animate-hero-blob"
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -bottom-32 right-0 h-[380px] w-[380px] rounded-full bg-emerald-200/25 blur-3xl animate-hero-blob"
+          style={{ animationDelay: '3s' }}
+        />
 
-          {/* Hero image — aspect-[2/1] for a wide cinematic spread */}
-          <div className="overflow-hidden rounded-2xl bg-elevated">
-            <div className="relative aspect-[16/9] w-full lg:aspect-[2/1]">
-              <Image
-                src={HERO.image}
-                alt={HERO.imageAlt}
-                fill
-                priority
-                fetchPriority="high"
-                sizes="(max-width: 1280px) 100vw, 1280px"
-                className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-              />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 py-16 lg:grid-cols-2 lg:gap-16 lg:py-24 xl:gap-20">
+
+            {/* ── LEFT COLUMN ── */}
+            <div className="flex flex-col">
+
+              {/* Eyebrow */}
+              <p
+                className="animate-fade-rise inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-600"
+                style={{ animationDelay: '0ms' }}
+              >
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+                Volume 2026 · The Edit
+              </p>
+
+              {/* H1 */}
+              <h1
+                id="hero-heading"
+                className="animate-fade-rise mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl xl:text-7xl"
+                style={{ animationDelay: '120ms' }}
+              >
+                Interior design that{' '}
+                <span className="relative inline-block">
+                  <span className="relative z-10 italic text-orange-600">feels like home</span>
+                  <span
+                    aria-hidden="true"
+                    className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-orange-200/60 md:bottom-2 md:h-4"
+                  />
+                </span>
+                .
+              </h1>
+
+              {/* Sub */}
+              <p
+                className="animate-fade-rise mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl"
+                style={{ animationDelay: '240ms' }}
+              >
+                Honest furniture reviews, considered room guides, and the trends
+                worth knowing — curated for the way you actually live.
+              </p>
+
+              {/* CTAs */}
+              <div
+                className="animate-fade-rise mt-9 flex flex-wrap items-center gap-4"
+                style={{ animationDelay: '360ms' }}
+              >
+                <Link
+                  href="/rooms"
+                  className="
+                    group inline-flex items-center gap-2 rounded-full
+                    bg-orange-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/30
+                    transition-all duration-300 ease-out
+                    hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/40
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2
+                  "
+                >
+                  Explore Guides
+                  <svg
+                    width="16" height="16" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" strokeWidth="2.5"
+                    strokeLinecap="round" strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </Link>
+
+                <Link
+                  href="/newsletter"
+                  className="
+                    inline-flex items-center gap-2 rounded-full
+                    border-2 border-stone-900 bg-transparent px-7 py-3 text-base font-semibold text-stone-900
+                    transition-all duration-300 ease-out
+                    hover:bg-stone-900 hover:text-white hover:-translate-y-0.5
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2
+                  "
+                >
+                  Get the Newsletter
+                </Link>
+              </div>
+
+              {/* Stats row */}
+              <div
+                className="animate-fade-rise mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-stone-500"
+                style={{ animationDelay: '480ms' }}
+              >
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <span className="font-medium">100% independent</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <span className="font-medium">0 sponsored posts</span>
+                </div>
+              </div>
             </div>
-          </div>
 
-          {/* Hero copy */}
-          <div className="mt-7 max-w-3xl">
+            {/* ── RIGHT COLUMN — Hero image ── */}
+            <div className="relative">
+              <div className="animate-hero-image-in animate-hero-float relative">
+                <Image
+                  src="/modular-sofa-tiny-apartment.webp"
+                  alt="A bright, airy small-apartment living room with a modular sofa, natural light, and considered styling"
+                  width={800}
+                  height={1000}
+                  priority
+                  fetchPriority="high"
+                  sizes="(max-width: 1024px) 100vw, 640px"
+                  className="h-[420px] w-full rounded-3xl object-cover shadow-2xl shadow-stone-900/15 md:h-[500px] lg:h-[560px]"
+                />
 
-            {/* Category eyebrow */}
-            <p className="mb-3 text-xs font-bold uppercase tracking-widest text-stone-500">
-              {HERO.category}
-            </p>
-
-            {/* H1 headline — clamp for responsive luxury scaling */}
-            <h1
-              id="hero-heading"
-              className="font-serif font-semibold tracking-tight text-ink-900 text-balance leading-[1.07] mb-4"
-              style={{ fontSize: 'clamp(30px, 4.5vw, 60px)' }}
-            >
-              {HERO.title}
-            </h1>
-
-            {/* Excerpt */}
-            <p className="text-body-lg leading-relaxed text-ink-500 max-w-2xl">
-              {HERO.excerpt}
-            </p>
-
-            {/* Meta */}
-            <p className="mt-4 inline-flex items-center gap-2 text-body-sm text-ink-400">
-              <span>{HERO.readingTime} min read</span>
-              <span aria-hidden="true" className="text-ink-200">·</span>
-              <span className="font-medium text-accent-600 transition-colors duration-quick group-hover:text-accent-500">
-                Read the article →
-              </span>
-            </p>
-
-          </div>
-        </Link>
-      </section>
-
-      {/* ══════════════════════════════════════════════════════
-          SECTION DIVIDER — editorial "The Latest" separator
-          ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="mt-20 flex items-center gap-5 md:mt-24">
-          <span aria-hidden="true" className="h-px w-10 flex-shrink-0 bg-accent" />
-          <p className="text-eyebrow uppercase tracking-[0.28em] text-ink-400">
-            The latest
-          </p>
-          <span aria-hidden="true" className="h-px flex-1 bg-ink-100" />
-          <Link
-            href="/rooms"
-            className="hidden flex-shrink-0 text-[11px] font-semibold uppercase tracking-[0.18em] text-ink-400 transition-colors duration-quick hover:text-accent-600 sm:block"
-          >
-            Browse all guides →
-          </Link>
-        </div>
-      </div>
-
-      {/* ══════════════════════════════════════════════════════
-          ARTICLE GRID — 2-column with image zoom on hover
-          ══════════════════════════════════════════════════════ */}
-      <section
-        aria-label="Recent articles"
-        className="mx-auto max-w-7xl px-4 pb-20 pt-10 sm:px-6 lg:px-8 lg:pb-28"
-      >
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-10">
-          {GRID.map((article) => (
-            <article key={article.href} className="group">
-              <Link href={article.href} className="block">
-
-                {/* Card image */}
-                <div className="overflow-hidden rounded-xl bg-elevated">
-                  <div className="relative aspect-[4/3] w-full">
-                    <Image
-                      src={article.image}
-                      alt={article.imageAlt}
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 640px"
-                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.05]"
-                    />
+                {/* Floating "Editor's Pick" badge */}
+                <div className="absolute -left-4 -top-4 hidden rounded-full bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:flex md:items-center md:gap-2">
+                  <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-orange-100 text-orange-600">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                    </svg>
+                  </span>
+                  <div>
+                    <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
+                      Editor&rsquo;s Pick
+                    </p>
+                    <p className="text-sm font-semibold text-stone-900">
+                      Small-space wins
+                    </p>
                   </div>
                 </div>
 
-                {/* Card copy */}
-                <div className="mt-5">
-                  <p className="mb-2.5 text-xs font-bold uppercase tracking-widest text-stone-500">
-                    {article.category}
+                {/* Floating bottom-right rating chip */}
+                <div className="absolute -bottom-5 -right-3 hidden rounded-2xl bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:block">
+                  <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
+                    This week
                   </p>
-                  <h2 className="font-serif text-[clamp(19px,2.2vw,24px)] font-semibold leading-snug tracking-tight text-ink-900 text-balance transition-colors duration-quick group-hover:text-accent-600">
-                    {article.title}
-                  </h2>
-                  <p className="mt-3 text-body-sm leading-relaxed text-ink-500 line-clamp-2">
-                    {article.excerpt}
-                  </p>
-                  <p className="mt-3 text-body-sm text-ink-400">
-                    {article.readingTime} min read
+                  <p className="mt-0.5 font-serif text-lg font-semibold text-stone-900">
+                    24 new guides
                   </p>
                 </div>
+              </div>
+            </div>
 
-              </Link>
-            </article>
-          ))}
+          </div>
+
+          {/* ── Scroll indicator ── */}
+          <div className="flex justify-center pb-10 lg:pb-14">
+            <a
+              href="#latest"
+              aria-label="Scroll to the latest articles"
+              className="group inline-flex flex-col items-center gap-2 text-stone-400 transition-colors hover:text-orange-600"
+            >
+              <span className="text-[10px] font-bold uppercase tracking-[0.28em]">
+                Explore
+              </span>
+              <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md transition-transform group-hover:shadow-lg animate-bounce">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 5v14M19 12l-7 7-7-7" />
+                </svg>
+              </span>
+            </a>
+          </div>
         </div>
+      </section>
 
-        {/* Mobile "browse all" link */}
-        <div className="mt-12 text-center sm:hidden">
-          <Link
-            href="/rooms"
-            className="inline-flex items-center gap-2 rounded-full border border-ink-200 px-6 py-2.5 text-body-sm font-semibold text-ink-600 transition-all duration-quick hover:border-accent hover:text-accent-600"
-          >
-            Browse all guides →
-          </Link>
+      {/* ══════════════════════════════════════════════════════
+          2. LATEST ARTICLES — bright cards on white
+          ══════════════════════════════════════════════════════ */}
+      <section
+        id="latest"
+        aria-labelledby="latest-heading"
+        className="bg-white"
+      >
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+
+          {/* Section header */}
+          <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+                The Latest
+              </p>
+              <h2
+                id="latest-heading"
+                className="mt-3 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
+              >
+                Fresh from the studio.
+              </h2>
+              <p className="mt-3 max-w-xl text-base text-stone-600">
+                Three new reads this week — tested, considered, and written for the way you actually live at home.
+              </p>
+            </div>
+            <Link
+              href="/rooms"
+              className="
+                inline-flex flex-shrink-0 items-center gap-2 rounded-full
+                border-2 border-stone-900 bg-transparent px-6 py-2.5 text-sm font-semibold text-stone-900
+                transition-all duration-300 ease-out
+                hover:bg-stone-900 hover:text-white hover:-translate-y-0.5
+              "
+            >
+              View all
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M5 12h14M13 5l7 7-7 7" />
+              </svg>
+            </Link>
+          </div>
+
+          {/* Card grid — 1/2/3 columns */}
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
+            {FEATURED.map((article) => (
+              <article key={article.href} className="group">
+                <Link href={article.href} className="block">
+
+                  {/* Card image */}
+                  <div className="overflow-hidden rounded-2xl bg-stone-100 shadow-md shadow-stone-900/5 transition-shadow duration-300 group-hover:shadow-xl group-hover:shadow-stone-900/10">
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={article.image}
+                        alt={article.imageAlt}
+                        fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 420px"
+                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Card copy */}
+                  <div className="mt-5">
+                    <p className="text-xs font-bold uppercase tracking-widest text-orange-600">
+                      {article.category}
+                    </p>
+                    <h3 className="mt-2.5 font-serif text-xl font-bold leading-snug tracking-tight text-stone-900 transition-colors duration-300 group-hover:text-orange-600 lg:text-2xl">
+                      {article.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-relaxed text-stone-600 line-clamp-2">
+                      {article.excerpt}
+                    </p>
+                    <p className="mt-4 text-sm text-stone-400">
+                      {article.readingTime} min read
+                    </p>
+                  </div>
+
+                </Link>
+              </article>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          3. NEWSLETTER BAND — closing CTA, vibrant footer
+          ══════════════════════════════════════════════════════ */}
+      <section className="bg-gradient-to-br from-orange-50 via-white to-emerald-50/40">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="mx-auto max-w-2xl text-center">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-orange-600">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-orange-500" />
+              The Newsletter
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl">
+              One thoughtful email,{' '}
+              <span className="italic text-orange-600">every Sunday.</span>
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-stone-600">
+              Room guides, honest reviews, and the trends worth knowing — delivered to your inbox. No spam, just considered design.
+            </p>
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/newsletter"
+                className="
+                  inline-flex items-center gap-2 rounded-full
+                  bg-orange-500 px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-orange-500/30
+                  transition-all duration-300 ease-out
+                  hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-orange-500/40
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2
+                "
+              >
+                Subscribe free
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
