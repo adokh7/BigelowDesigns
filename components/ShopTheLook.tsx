@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import type { ProductRef } from '@/types/article';
@@ -15,14 +15,26 @@ interface Hotspot {
 
 export function ShopTheLook({
   image,
-  imageAlt,
+  imageAlt = '',
   hotspots,
+  children,
 }: {
-  image: string;
-  imageAlt: string;
-  hotspots: Hotspot[];
+  image?: string;
+  imageAlt?: string;
+  hotspots?: Hotspot[];
+  children?: ReactNode;
 }) {
   const [active, setActive] = useState<number | null>(null);
+
+  if (!image || !hotspots) {
+    return (
+      <section className="my-10" aria-label="Shop the look">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {children}
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="my-10" aria-label="Shop the look">
