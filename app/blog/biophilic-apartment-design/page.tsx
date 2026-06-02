@@ -12,64 +12,62 @@ export const dynamic = 'force-static';
 
 // ─── Metadata ────────────────────────────────────────────────
 export const metadata: Metadata = {
-  title: 'Best Biophilic Living Room Ideas for Small Spaces',
+  title: "Biophilic Apartment Design: Beyond the Houseplant Jungle",
   description:
-    'Discover the best biophilic living room ideas for small spaces and how to bring natural elements into apartment decor with sustainable tips.',
+    "True biophilic design is about more than just buying houseplants. Learn how to architecturally integrate nature into your urban apartment for ultimate mental well-being.",
   alternates: { canonical: `${siteConfig.url}/blog/biophilic-apartment-design` },
   openGraph: {
     type: 'article',
     url: `${siteConfig.url}/blog/biophilic-apartment-design`,
-    title: 'Best Biophilic Living Room Ideas for Small Spaces',
+    title: "Biophilic Apartment Design: Beyond the Houseplant Jungle",
     description:
-      'How to bring natural light, plants, and organic textures into even a 30-square-metre apartment — a complete biophilic design guide for 2026.',
+      "True biophilic design is about more than just buying houseplants. Learn how to architecturally integrate nature into your urban apartment for ultimate mental well-being.",
     images: [
       {
-        url: `${siteConfig.url}/biophilic-design.webp`,
+        url: `${siteConfig.url}/biophilic-apartment.webp`,
         width: 1200,
         height: 675,
-        alt: 'A sunlit small apartment living room with trailing plants, jute rug, and raw oak shelving',
+        alt: 'A beautiful light-filled urban apartment styled with sophisticated biophilic design elements',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best Biophilic Living Room Ideas for Small Spaces',
+    title: "Biophilic Apartment Design: Beyond the Houseplant Jungle",
     description:
-      'Natural light, low-maintenance plants, raw wood, and earthy palettes — the complete guide to biophilic apartment design in 2026.',
-    images: [`${siteConfig.url}/biophilic-design.webp`],
+      "True biophilic design is about more than just buying houseplants. Learn how to architecturally integrate nature into your urban apartment for ultimate mental well-being.",
+    images: [`${siteConfig.url}/biophilic-apartment.webp`],
   },
 };
 
 // ─── Article data ─────────────────────────────────────────────
 const ARTICLE = {
   title:
-    'The Ultimate Guide to Biophilic Interior Design: Bringing Nature Into Small Apartments',
+    "Biophilic Apartment Design: Moving Beyond the Houseplant Jungle",
   excerpt:
-    'In 2026, biophilic interior design has become an evidence-based approach to creating homes that actively support mental health and calm focus — even in a 30-square-metre apartment. Here is how to bring natural light, plants, and organic textures into small spaces.',
+    "True biophilic design is about more than just buying houseplants. Learn how to architecturally integrate nature into your urban apartment for ultimate mental well-being.",
   categoryLabel: 'Design Trends',
-  categoryHref:  '/design-trends',
+  categoryHref: '/design-trends',
   author: {
-    name:        'Bigelow Editorial Team',
-    slug:        'team-bigelow',
-    avatar:      'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
-    bio:         'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
+    name: 'Bigelow Editorial Team',
+    slug: 'team-bigelow',
+    avatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
+    bio: 'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
     credentials: ['Bigelow Designs Editorial Team'],
   },
-  publishedAt:  '2026-06-01T10:00:00Z',
-  updatedAt:    '2026-06-01T10:00:00Z',
-  readingTime:  10,
-  heroImage:    '/biophilic-design.webp',
+  publishedAt: '2026-06-02T18:46:32Z',
+  updatedAt: '2026-06-02T18:46:32Z',
+  readingTime: 3,
+  heroImage: '/biophilic-apartment.webp',
   heroImageAlt:
-    'A sunlit small apartment living room with trailing pothos, a jute rug, raw oak shelving, and linen curtains creating a calm biophilic sanctuary',
+    'A beautiful light-filled urban apartment styled with sophisticated biophilic design elements',
   heroCaption:
-    'A real apartment, transformed. Natural materials, strategic plants, and cleared sightlines to the window — the three moves that define biophilic living.',
+    'Architectural greenery and organic shapes. Connecting humans with nature on a subconscious level.',
   headings: [
-    { id: 'natural-light-and-airflow',      text: 'Natural Light and Airflow in Small Layouts',     level: 2 },
-    { id: 'sustainable-materials',          text: 'Raw, Sustainable Materials',                     level: 2 },
-    { id: 'low-maintenance-plants',         text: 'Low-Maintenance Plants',                         level: 2 },
-    { id: 'earthy-color-palettes',          text: 'Earthy Color Palettes that Mimic Nature',        level: 2 },
-    { id: 'how-to-bring-natural-elements',  text: 'How to Bring Natural Elements Into Your Decor',  level: 2 },
-    { id: 'conclusion',                     text: 'Conclusion',                                     level: 2 },
+    { id: 'architectural-greenery-over-potted-clutter', text: '1. Architectural Greenery over Potted Clutter', level: 2 },
+    { id: 'maximize-dynamic-natural-light', text: '2. Maximize Dynamic Natural Light', level: 2 },
+    { id: 'embrace-organic-biomorphic-shapes', text: '3. Embrace Organic, Biomorphic Shapes', level: 2 },
+    { id: 'the-power-of-tactile-natural-materials', text: '4. The Power of Tactile, Natural Materials', level: 2 },
   ],
 } as const;
 
@@ -82,17 +80,17 @@ function formatDate(iso: string) {
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function BiophilicApartmentDesignPage() {
-  const canonicalUrl    = `${siteConfig.url}/blog/biophilic-apartment-design`;
+  const canonicalUrl = `${siteConfig.url}/blog/biophilic-apartment-design`;
   const breadcrumbItems = [
-    { name: 'Home',                url: '/'                   },
-    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref  },
-    { name: ARTICLE.title,         url: canonicalUrl          },
+    { name: 'Home', url: '/' },
+    { name: ARTICLE.categoryLabel, url: ARTICLE.categoryHref },
+    { name: ARTICLE.title, url: canonicalUrl },
   ];
 
   return (
     <>
       {/* ══════════════════════════════════════════════════════
-          1. ARTICLE HEADER — full container, left-aligned
+          1. ARTICLE HEADER — narrow centred column
           ══════════════════════════════════════════════════════ */}
       <div className="bg-surface border-b border-ink-100">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -101,7 +99,6 @@ export default function BiophilicApartmentDesignPage() {
           </div>
 
           <header className="flex flex-col gap-4 mb-10 mt-6 max-w-3xl">
-
             {/* Category tag */}
             <Link
               href={ARTICLE.categoryHref}
@@ -263,10 +260,10 @@ export default function BiophilicApartmentDesignPage() {
               </h2>
             </div>
             <Link
-              href="/design-trends"
+              href="/rooms"
               className="hidden flex-shrink-0 text-body-sm font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500 sm:block"
             >
-              All design trends &rarr;
+              All room guides &rarr;
             </Link>
           </div>
 
@@ -282,449 +279,59 @@ export default function BiophilicApartmentDesignPage() {
 }
 
 // ─── Article body ──────────────────────────────────────────────
-// Each <h2> id matches the sidebar TOC exactly.
 function ArticleBody() {
   return (
     <>
       {/* ── Intro prose ── */}
       <div className="prose prose-lg max-w-none">
         <p>
-          In 2026, biophilic interior design has become more than a
-          trend&mdash;it is an evidence-based approach to creating homes that
-          actively support mental health, better sleep, and calm focus,
-          especially in dense urban environments. By weaving in natural light,
-          plants, organic textures, and earthy colors, even a 30-square-meter
-          apartment can feel like a restorative micro-sanctuary instead of a
-          cramped box.
+          Over the last few years, the desire to connect with nature inside our homes reached a fever pitch. In response, apartment dwellers began filling every available windowsill, shelf, and floor space with potted plants. While the intention was good, the execution often resulted in spaces that felt chaotic, cluttered, and incredibly stressful to maintain.
         </p>
         <p>
-          Designers are increasingly focused on wellness, seeing homes as
-          ecosystems that should &ldquo;breathe, rest, and adapt&rdquo;
-          alongside us, which aligns perfectly with biophilic principles. For
-          renters and small-space dwellers, this means there are more
-          affordable sustainable interior design tips 2026 can offer than ever
-          before&mdash;from low-maintenance plants to durable natural materials
-          that age beautifully.
+          In 2026, the approach to bringing the outdoors inside has matured. We are moving away from the &ldquo;houseplant hoarding&rdquo; aesthetic and embracing true <strong>biophilic design</strong>.
         </p>
         <p>
-          In this guide, you will learn the best biophilic living room ideas
-          for small spaces, how to bring natural elements into apartment decor,
-          and which low light indoor plants for apartment wellbeing work in
-          real-world microclimates.
+          Biophilic design is an architectural framework that seeks to connect humans with nature on a subconscious level. It is not just about placing a fern on a desk; it is about mimicking the textures, lighting, and shapes found in the natural world. Here is how we apply sophisticated biophilic principles to modern urban apartments.
         </p>
       </div>
 
-      {/* ── Main body prose — sections 1–3 ── */}
+      {/* ── Main body prose ── */}
       <div className="prose prose-lg max-w-none">
-
-        {/* ─ Section 1: Natural Light ─ */}
-        <h2 id="natural-light-and-airflow">
-          Maximizing Natural Light and Airflow in Small Layouts
-        </h2>
+        {/* ─ Section 1 ─ */}
+        <h2 id="architectural-greenery-over-potted-clutter">1. Architectural Greenery over Potted Clutter</h2>
         <p>
-          Natural light and fresh air are the backbone of biophilic design,
-          yet they are exactly what most city apartments lack. With a few
-          smart layout tweaks, you can dramatically improve how daylight and
-          airflow move through even a narrow studio.
+          Instead of scattering twenty small pots across your living room, treat greenery as a single, high-impact architectural element.
+        </p>
+        <p>
+          If your budget and lighting permit, installing a vertical living green wall is the ultimate biophilic statement. It acts as a piece of living artwork and naturally purifies the air without eating up valuable floor space. If a living wall is too complex, opt for a single, massive statement tree&mdash;like an established Ficus Audrey or a Black Olive tree&mdash;housed in a heavy, textured stone planter. One large tree provides a stronger psychological connection to a forest canopy than a dozen small succulents ever could.
         </p>
 
-        <h3>
-          Best biophilic living room ideas for small spaces: start with light
-        </h3>
+        {/* ─ Section 2 ─ */}
+        <h2 id="maximize-dynamic-natural-light">2. Maximize Dynamic Natural Light</h2>
         <p>
-          Think of your windows as your apartment&apos;s &ldquo;oxygen
-          portals.&rdquo; The clearer their path, the more expansive and
-          relaxing your space will feel.
+          In the natural world, light is never static. It shifts, filters through leaves, and changes color temperature throughout the day. Our circadian rhythms are deeply tied to these subtle changes.
         </p>
-        <p>Try these ideas:</p>
-        <ul>
-          <li>
-            <strong>Keep window zones visually light.</strong> Use sheer
-            curtains instead of heavy drapes, and avoid placing tall, bulky
-            furniture directly in front of windows so light can travel deeper
-            into the room.
-          </li>
-          <li>
-            <strong>Use reflective surfaces strategically.</strong> A mirror
-            opposite or adjacent to a window can bounce light into darker
-            corners, especially helpful in narrow living rooms.
-          </li>
-          <li>
-            <strong>Choose low, streamlined furniture.</strong> Low-profile
-            sofas and coffee tables help maintain &ldquo;prospect&rdquo; (clear
-            views across the room), a key biophilic principle that makes spaces
-            feel open and safe.
-          </li>
-        </ul>
         <p>
-          These simple shifts make your living room feel brighter and larger
-          without any structural changes&mdash;exactly what you want in
-          small-space biophilic design.
+          To mimic this in an apartment, you must optimize your window treatments. Heavy, blackout drapes should be restricted to the bedroom. In the living spaces, utilize sheer linen or loose-weave cotton curtains. These materials act like a tree canopy, diffusing the harsh afternoon sun and allowing dappled, dynamic shadows to dance across your walls. If your apartment lacks natural light, investing in smart LED bulbs that automatically adjust their color temperature from cool morning white to warm evening amber is a crucial biophilic upgrade.
         </p>
 
-        <h3>Micro-ventilation and natural airflow</h3>
+        {/* ─ Section 3 ─ */}
+        <h2 id="embrace-organic-biomorphic-shapes">3. Embrace Organic, Biomorphic Shapes</h2>
         <p>
-          Good air quality is now a core part of sustainable and
-          wellness-focused interior design, not a luxury add-on. Even if you
-          cannot install sophisticated systems, you can still improve airflow
-          and comfort.
+          Nature does not build in perfect right angles. The human brain interprets sharp, rigid corners as man-made and inherently less relaxing.
         </p>
-        <ul>
-          <li>
-            <strong>Create cross-breezes where possible.</strong> When two
-            windows or a window and a door align, crack both slightly to
-            encourage gentle air movement.
-          </li>
-          <li>
-            <strong>Use plants and textiles to support &ldquo;breathing&rdquo; spaces.</strong>{' '}
-            Natural fibers like cotton and linen breathe better than synthetics,
-            helping regulate humidity and temperature while feeling more
-            pleasant on the skin.
-          </li>
-          <li>
-            <strong>Supplement with smart fans and air purifiers.</strong> Many
-            2026 eco-friendly devices are designed to be energy-efficient and
-            visually minimal, supporting both wellness and sustainability.
-          </li>
-        </ul>
         <p>
-          In a biophilic apartment, air should feel as considered as
-          light&mdash;soft, fresh, and easy to breathe.
+          To soften a concrete apartment box, introduce biomorphic shapes&mdash;furniture and decor that mimic the organic curves found in nature. Swap a rectangular glass coffee table for a kidney-shaped table crafted from a solid slab of burl wood. Look for sofas with curved, sloping backs rather than rigid mid-century boxes. Even small additions, like an asymmetrical, pebble-shaped mirror or hand-thrown, imperfect ceramics, help break up the rigid geometry of the room.
         </p>
 
-        {/* ─ Section 2: Sustainable Materials ─ */}
-        <h2 id="sustainable-materials">
-          Choosing Raw, Sustainable Materials (Wood, Stone, Rattan)
-        </h2>
+        {/* ─ Section 4 ─ */}
+        <h2 id="the-power-of-tactile-natural-materials">4. The Power of Tactile, Natural Materials</h2>
         <p>
-          One of the strongest interior design trends for 2026 is the shift
-          toward natural, tactile materials&mdash;solid wood, stone, linen,
-          ceramics, and natural fibers are replacing glossy synthetic finishes.
-          These materials are central to biophilic design because they bring
-          organic texture, warmth, and authenticity into small apartments.
+          Finally, biophilic design relies heavily on touch. When everything in an apartment is made of smooth plastic, synthetic polyester, or cold laminate, we feel entirely disconnected from the earth.
         </p>
         <p>
-          This is where affordable sustainable interior design tips for 2026
-          really shine: you do not need a full renovation to benefit from these
-          materials.
+          Focus on sourcing raw, tactile materials. A heavy jute or sisal rug underfoot provides the same sensory feedback as walking on dry grass. Opt for unvarnished, matte-finish woods where you can actually feel the grain. Choose bedding made of organic, stonewashed linen. By surrounding yourself with materials that look and feel as though they were plucked directly from the outdoors, your apartment transforms from a sterile box into a deeply grounding sanctuary.
         </p>
-
-        <h3>Wood: warmth and longevity in small apartments</h3>
-        <p>
-          Light woods such as pine, oak, or ash are becoming the chromatic
-          foundation of many 2026 interiors because they brighten rooms while
-          keeping them feeling cozy.
-        </p>
-        <p>Consider:</p>
-        <ul>
-          <li>
-            <strong>Compact wooden furniture.</strong> A small oak coffee
-            table, a birch sideboard, or wall-mounted pine shelves all
-            introduce warmth without visually crowding the space.
-          </li>
-          <li>
-            <strong>Wood slats and panels.</strong> Even a single slatted
-            headboard or wall panel behind a sofa adds subtle depth and a
-            forest-like rhythm to the room.
-          </li>
-          <li>
-            <strong>Invest in quality, not quantity.</strong> Designers in
-            2026 emphasize durable, repairable pieces you buy once and keep
-            for decades, which is both sustainable and budget-savvy over time.
-          </li>
-        </ul>
-
-        <h3>Stone and ceramics: grounding surfaces</h3>
-        <p>
-          Natural stone and matte ceramics are trending because they add a
-          quiet, grounded feeling to interiors. In small apartments, they are
-          particularly effective in high-touch surfaces.
-        </p>
-        <ul>
-          <li>
-            Stone-topped side tables or window ledges echo outdoor rock
-            textures and provide cool contrast to soft textiles.
-          </li>
-          <li>
-            Ceramic lamps, vases, and planters bring artisan character and
-            tactile richness without taking up much space.
-          </li>
-        </ul>
-        <p>
-          These materials support the biophilic goal of creating interiors that
-          feel honest, long-lasting, and closely connected to natural
-          landscapes.
-        </p>
-
-        <h3>Rattan and natural fibers: lightweight and airy</h3>
-        <p>
-          Rattan, jute, and woven grasses are ideal for bringing natural
-          elements into apartment decor when your floorplan is tight.
-        </p>
-        <p>Try:</p>
-        <ul>
-          <li>
-            <strong>Rattan accent chairs or headboards.</strong> Their woven
-            structure filters light and air, visually lightening the room
-            compared to solid upholstered pieces.
-          </li>
-          <li>
-            <strong>Jute or sisal rugs.</strong> These add a sandy, beach-like
-            texture underfoot and pair well with wood and stone.
-          </li>
-          <li>
-            <strong>Storage baskets.</strong> Woven baskets keep clutter under
-            control while reinforcing the natural material palette.
-          </li>
-        </ul>
-        <p>
-          By layering wood, stone, rattan, and natural textiles, your apartment
-          starts to feel like an urban cabin or retreat rather than a purely
-          manufactured space.
-        </p>
-
-        {/* ─ Section 3: Plants ─ */}
-        <h2 id="low-maintenance-plants">
-          The Best Low-Maintenance Plants for Apartment Microclimates
-        </h2>
-        <p>
-          Plants are the most recognizable expression of biophilic design and
-          a direct route to low light indoor plants for apartment wellbeing.
-          The key in small apartments is selecting species that match your
-          actual light levels and lifestyle.
-        </p>
-        <p>
-          Experts emphasize that &ldquo;low-light&rdquo; often means
-          &ldquo;tolerates low light&rdquo; rather than truly thrives there,
-          so choosing the right varieties prevents disappointment and plant
-          loss.
-        </p>
-
-        <h3>Reading your apartment&apos;s microclimate</h3>
-        <p>Before buying plants, observe:</p>
-        <ul>
-          <li>
-            <strong>Light direction and duration.</strong> North-facing windows
-            or shaded courtyards usually mean consistent low light; south-facing
-            windows often provide bright, indirect light ideal for many species.
-          </li>
-          <li>
-            <strong>Temperature swings.</strong> Drafty windowsills or
-            radiators nearby may stress sensitive plants.
-          </li>
-          <li>
-            <strong>Your care style.</strong> If you travel often or forget
-            watering, choose species known for resilience.
-          </li>
-        </ul>
-        <p>
-          If there is enough natural light to comfortably read a book during
-          the day, you can usually grow at least some houseplants.
-        </p>
-
-        <h3>Hero plants for low-light corners</h3>
-        <p>
-          For dim corners of living rooms, entryways, or bedrooms, these
-          species consistently rank among the most reliable:
-        </p>
-        <ul>
-          <li>
-            <strong>Snake Plant (Sansevieria / Dracaena).</strong> Known as
-            nearly indestructible, snake plants tolerate low light and irregular
-            watering, making them ideal for beginners.
-          </li>
-          <li>
-            <strong>ZZ Plant (Zamioculcas zamiifolia).</strong> Thrives in low
-            light and dry soil, with glossy leaves that add a sculptural look
-            to minimalist apartments.
-          </li>
-          <li>
-            <strong>Cast Iron Plant (Aspidistra).</strong> A Victorian-era
-            favorite for dark rooms, remarkably tolerant of shade and neglect.
-          </li>
-          <li>
-            <strong>Pothos (especially Jade Pothos).</strong> Many plant pros
-            consider jade pothos a true MVP for low-light conditions; its
-            trailing vines are perfect for shelves and high cabinets.
-          </li>
-          <li>
-            <strong>Boston Fern and other ferns.</strong> Great for shady
-            corners where you want lush, feathery texture, as long as humidity
-            is reasonably stable.
-          </li>
-        </ul>
-        <p>
-          These low light indoor plants for apartment wellbeing help lower
-          perceived stress, improve visual comfort, and create a
-          &ldquo;living&rdquo; feeling even in window-challenged spaces.
-        </p>
-
-        <h3>Plant styling ideas for tiny apartments</h3>
-        <p>
-          To integrate plants into the best biophilic living room ideas for
-          small spaces, focus on verticality and layering.
-        </p>
-        <ul>
-          <li>
-            <strong>Hanging planters and wall-mounted pots.</strong> Use them
-            above sofas or in corners to draw the eye upward without stealing
-            floor space.
-          </li>
-          <li>
-            <strong>Plant shelves.</strong> A narrow wall shelf with mixed
-            plant heights creates a miniature urban jungle while doubling as
-            decor.
-          </li>
-          <li>
-            <strong>Micro herb gardens in the kitchen.</strong> Even a small
-            rail or windowsill planter can host herbs, bringing fragrance and
-            edible greenery into daily routines.
-          </li>
-        </ul>
-        <p>
-          If your apartment is very dark, consider discreet grow lights
-          designed for interiors; in 2026, many are attractive enough to double
-          as design lighting.
-        </p>
-
-      </div>
-
-      {/* ── Main body prose — sections 4–6 ── */}
-      <div className="prose prose-lg max-w-none">
-
-        {/* ─ Section 4: Color Palettes ─ */}
-        <h2 id="earthy-color-palettes">
-          Earthy Color Palettes that Mimic Nature
-        </h2>
-        <p>
-          Color has a deep impact on mood, and current interior trends are
-          shifting away from cold grays toward warmer, earth-rooted palettes
-          that feel comforting and human. This aligns perfectly with biophilic
-          design, which aims to recreate the visual richness of natural
-          environments indoors.
-        </p>
-
-        <h3>From &ldquo;millennial gray&rdquo; to sunbaked hues</h3>
-        <p>
-          Designers note that all-gray interiors can feel like a &ldquo;sensory
-          vacuum,&rdquo; subtly keeping our nervous system on alert rather than
-          relaxed. To counter this, 2026 color trends embrace:
-        </p>
-        <ul>
-          <li>
-            <strong>Soft neutrals:</strong> warm whites, cream, sand, and beige
-            as calming base tones.
-          </li>
-          <li>
-            <strong>Earth tones:</strong> terracotta, ochre, clay, and warm
-            browns inspired by soil and sunbaked landscapes.
-          </li>
-          <li>
-            <strong>Nature greens:</strong> moss, olive, and deep forest greens
-            that echo foliage and forest canopies.
-          </li>
-        </ul>
-        <p>
-          These earthy color palettes that mimic nature create a backdrop that
-          instantly makes plants, wood, and stone feel at home.
-        </p>
-
-        <h3>Easy color strategies for renters</h3>
-        <p>
-          You do not need a full repaint to harness color in a small apartment.
-        </p>
-        <ul>
-          <li>
-            <strong>Textiles as color anchors.</strong> Start with a
-            nature-inspired rug, then echo one or two colors in cushions,
-            throws, or art.
-          </li>
-          <li>
-            <strong>Color capping and accent walls.</strong> Where painting is
-            allowed, using a deeper earthy tone on the ceiling or one wall can
-            create a cocooning effect without overwhelming the space.
-          </li>
-          <li>
-            <strong>Monochrome with texture.</strong> If you prefer a minimal
-            palette, layer different textures of the same color
-            family&mdash;linen, wool, clay, wood&mdash;to mimic the depth of
-            a natural landscape.
-          </li>
-        </ul>
-        <p>
-          Combining color, material, and plant life turns even the smallest
-          living room into a holistic, nature-inspired environment.
-        </p>
-
-        {/* ─ Section 5: Step-by-Step ─ */}
-        <h2 id="how-to-bring-natural-elements">
-          How to Bring Natural Elements Into Apartment Decor (Step-by-Step)
-        </h2>
-        <p>
-          To make implementation simple, here is a mini roadmap for bringing
-          natural elements into apartment decor without overwhelming yourself
-          or your budget.
-        </p>
-        <ol>
-          <li>
-            <strong>Audit your space.</strong> Note where light enters, which
-            corners feel &ldquo;dead,&rdquo; and which surfaces are dominated
-            by plastic, metal, or gray tones.
-          </li>
-          <li>
-            <strong>Pick a nature palette.</strong> Choose 2&ndash;3 core
-            colors: one light neutral, one earthy tone, and one accent inspired
-            by plants, sky, or stone.
-          </li>
-          <li>
-            <strong>Change one big surface.</strong> Swap a synthetic rug for
-            jute, a laminate coffee table for wood, or plasticky curtains for
-            linen or cotton.
-          </li>
-          <li>
-            <strong>Add 3&ndash;5 strategic plants.</strong> Start with hardy
-            species like snake plant, pothos, or ZZ plant that fit your light
-            level and routine.
-          </li>
-          <li>
-            <strong>Layer in biophilic details.</strong> Use nature photography,
-            botanical prints, ceramic vases, stone trays, and woven baskets to
-            echo organic forms.
-          </li>
-          <li>
-            <strong>Fine-tune light and airflow.</strong> Declutter window
-            areas, adjust curtains, and consider a fan or air purifier to keep
-            the space feeling fresh and alive.
-          </li>
-        </ol>
-        <p>
-          By taking it step by step, you create a cohesive, sustainable
-          transformation rather than a random assortment of
-          &ldquo;green&rdquo; objects.
-        </p>
-
-        {/* ─ Conclusion ─ */}
-        <h2 id="conclusion">Conclusion</h2>
-        <p>
-          Biophilic interior design offers a powerful framework for turning
-          compact urban apartments into calming, nature-connected sanctuaries
-          that genuinely support your wellbeing in 2026. By prioritizing
-          natural light and airflow, choosing raw sustainable materials,
-          introducing low light indoor plants for apartment wellbeing, and
-          embracing earthy color palettes, you can unlock the best biophilic
-          living room ideas for small spaces without sacrificing function or
-          style.
-        </p>
-        <p>
-          Your next step: choose one room&mdash;most likely your living
-          room&mdash;and apply just three moves this week: clear your windows,
-          add one natural-material piece, and bring home one resilient plant
-          suited to your light level. From there, keep layering nature in;
-          your apartment will gradually evolve into a sustainable, biophilic
-          retreat that feels like a breath of fresh air every time you walk
-          through the door.
-        </p>
-
       </div>
     </>
   );
@@ -732,41 +339,41 @@ function ArticleBody() {
 
 // ─── Related articles ──────────────────────────────────────────
 type RelatedCard = {
-  slug:          string;
-  title:         string;
-  excerpt:       string;
+  slug: string;
+  title: string;
+  excerpt: string;
   categoryLabel: string;
-  categoryHref:  string;
-  href:          string;
-  image:         string;
-  imageAlt:      string;
-  readingTime:   number;
+  categoryHref: string;
+  href: string;
+  image: string;
+  imageAlt: string;
+  readingTime: number;
 };
 
 const RELATED_ARTICLES: RelatedCard[] = [
   {
-    slug:          'hidden-armoire-storage-2026',
-    title:         "The Secret Armoire: Why Hidden Storage is 2026's Ultimate Luxury",
-    excerpt:
-      'Custom millwork and invisible storage are redefining what it means for a room to feel truly calm. Here is the case for hiding everything.',
-    categoryLabel: 'Design Trends',
-    categoryHref:  '/design-trends',
-    href:          '/blog/hidden-armoire-storage-2026',
-    image:         'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=600&q=80',
-    imageAlt:      'Elegant room with seamless custom wooden cabinetry concealing storage',
-    readingTime:   7,
-  },
-  {
-    slug:          'small-home-feel-huge',
-    title:         '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
+    slug: 'small-home-feel-huge',
+    title: '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
     excerpt:
       'Six real design decisions that make even the tightest spaces feel beautifully expansive. No renovation required — just honest tricks from the Bigelow Design Team.',
     categoryLabel: 'Room Guides',
-    categoryHref:  '/rooms/living-room',
-    href:          '/blog/small-home-feel-huge',
-    image:         '/living-room-candid.webp',
-    imageAlt:      'A real living room feeling spacious and airy through deliberate furniture placement',
-    readingTime:   4,
+    categoryHref: '/rooms/living-room',
+    href: '/blog/small-home-feel-huge',
+    image: '/living-room-candid.webp',
+    imageAlt: 'A real living room feeling spacious and airy through deliberate furniture placement',
+    readingTime: 4,
+  },
+  {
+    slug: 'space-saving-dining-tables',
+    title: '7 Best Space-Saving Dining Tables for Small Apartments (2026)',
+    excerpt:
+      'Small dining room? These 7 space-saving dining tables keep your apartment stylish, functional, and guest-ready in 2026.',
+    categoryLabel: 'Room Guides',
+    categoryHref: '/rooms/living-room',
+    href: '/blog/space-saving-dining-tables',
+    image: '/space-saving-tables.webp',
+    imageAlt: 'A compact apartment dining area with a slim extendable dining table and open chairs',
+    readingTime: 8,
   },
 ];
 
