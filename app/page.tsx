@@ -66,12 +66,12 @@ const FAVORITES = [
     href:     'https://amzn.to/4ueDlkA',
   },
   {
-    brand:    'MBOOYOME',
-    title:    'MBOOYOME Mid-Century Modern Accent Chair',
-    price:    '$180.49',
-    image:    '/vintage-ceramic-chicken.webp',
-    imageAlt: 'A sleek mid-century modern accent chair styled in a warm interior',
-    href:     'https://amazon.com/dp/placeholder?tag=bigelow-20',
+    brand:    'SOERGO',
+    title:    'Modern Lambs Wool Accent Chair',
+    price:    '$142.49',
+    image:    '/layered-lighting-living-room.webp',
+    imageAlt: 'A modern lambs wool accent chair styled in a warmly-lit living room',
+    href:     'https://amzn.to/3Q4JRMS',
   },
   {
     brand:    'MERRYBOX',
