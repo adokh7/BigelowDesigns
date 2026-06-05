@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import clsx from 'clsx';
+import { resolveImage } from '@/lib/image-utils';
 
 /**
  * AffiliateProductGrid
@@ -145,7 +146,7 @@ function ProductGridCard({ product }: { product: AffiliateProduct }) {
       >
         <div className="relative aspect-[4/3] w-full">
           <Image
-            src={product.image}
+            src={resolveImage(product.image)}
             alt={product.imageAlt ?? product.name}
             fill
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 360px"

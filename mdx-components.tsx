@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 import Link from 'next/link';
+import { resolveImage } from '@/lib/image-utils';
 
 // ─── Affiliate / monetization components ──────────────────────
 import { AffiliateButton }       from '@/components/AffiliateButton';
@@ -49,12 +50,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     // Standard markdown image syntax ![alt](src) renders as a plain <img>.
     // Using a native <img> instead of next/image avoids the image-optimizer
     // pipeline (which can silently fail when widths are unknown or when src
-    // is served from /public without explicit dimensions). Tailwind classes
-    // give it a consistent, responsive look across all articles.
-    img: (props) => (
+    // is served from /public without explicit dimensions). The src is run
+    // through resolveImage() so a missing file falls back to the global
+    // default instead of rendering a broken icon.
+    img: ({ src, ...props }) => (
       // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
       <img
         {...props}
+        src={resolveImage(src as string)}
         loading="lazy"
         decoding="async"
         className="w-full h-auto rounded-xl my-4"

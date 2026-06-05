@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import clsx from 'clsx';
+import { resolveImage } from '@/lib/image-utils';
 
 interface ProductCardProps {
   image: { src: string; alt: string } | string;
@@ -81,24 +82,24 @@ export function ProductCard({
         </span>
       )}
 
-      {imgSrc && (
-        <div
-          className={clsx(
-            'relative overflow-hidden bg-elevated',
-            isHorizontal
-              ? 'aspect-[4/3] md:aspect-auto md:w-2/5 md:shrink-0'
-              : 'aspect-[4/3]',
-          )}
-        >
-          <Image
-            src={imgSrc}
-            alt={imgAlt}
-            fill
-            sizes={isHorizontal ? '(max-width: 768px) 100vw, 320px' : '(max-width: 768px) 100vw, 400px'}
-            className="object-cover transition-transform duration-smooth ease-out group-hover:scale-[1.04]"
-          />
-        </div>
-      )}
+      {/* Always render the image slot — resolveImage guarantees we either
+          show the requested file or the global fallback, never nothing. */}
+      <div
+        className={clsx(
+          'relative overflow-hidden bg-elevated',
+          isHorizontal
+            ? 'aspect-[4/3] md:aspect-auto md:w-2/5 md:shrink-0'
+            : 'aspect-[4/3]',
+        )}
+      >
+        <Image
+          src={resolveImage(imgSrc)}
+          alt={imgAlt}
+          fill
+          sizes={isHorizontal ? '(max-width: 768px) 100vw, 320px' : '(max-width: 768px) 100vw, 400px'}
+          className="object-cover transition-transform duration-smooth ease-out group-hover:scale-[1.04]"
+        />
+      </div>
 
       <div
         className={clsx(
