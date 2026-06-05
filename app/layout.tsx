@@ -3,11 +3,9 @@ import { Inter, Fraunces } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
-import { JsonLd } from '@/components/JsonLd';
 import { CompareProvider } from '@/contexts/CompareContext';
 import { CompareDrawer } from '@/components/CompareDrawer';
 import { AnalyticsListener } from '@/components/AnalyticsListener';
-import { buildOrganizationSchema, buildWebsiteSchema } from '@/lib/schema';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
@@ -30,13 +28,21 @@ export const viewport: Viewport = {
   themeColor: '#ffffff',
 };
 
+// Homepage SEO copy — tightened to target the "reviews" + "guides" intent
+// Ahrefs surfaced for the brand SERP. Centralised so the metadata block,
+// OpenGraph card, and Twitter card all stay in sync.
+const HOME_TITLE =
+  'Bigelow Designs | Expert Interior Design Guides & Furniture Reviews';
+const HOME_DESCRIPTION =
+  'Read honest furniture reviews, discover modern interior design ideas, and get expert styling guides for your home at Bigelow Designs.';
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Interior Design Ideas, Reviews & Inspiration`,
+    default: HOME_TITLE,
     template: `%s | ${siteConfig.name}`,
   },
-  description: siteConfig.description,
+  description: HOME_DESCRIPTION,
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
@@ -50,14 +56,14 @@ export const metadata: Metadata = {
     locale: siteConfig.locale,
     url: siteConfig.url,
     siteName: 'Bigelow Designs',
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: siteConfig.name,
-    description: siteConfig.description,
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     site: siteConfig.twitterHandle,
     creator: siteConfig.twitterHandle,
     images: [siteConfig.ogImage],
@@ -107,20 +113,44 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8933725159594062"
           crossOrigin="anonymous"
         ></script>
+        {/* Entity-disambiguation JSON-LD: combined Organization + WebSite
+            in a single @graph so Google can resolve "Bigelow Designs" as
+            an interior-design publisher entity, distinct from same-name
+            web-design agencies. Emitted in <head> so it's available in
+            the raw HTML for the first crawl pass. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebSite",
-              "name": "Bigelow Designs",
-              "url": "https://bigelowdesigns.com/"
-            })
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.bigelowdesigns.com/#organization",
+                  "name": "Bigelow Designs",
+                  "url": "https://www.bigelowdesigns.com/",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.bigelowdesigns.com/logo.png",
+                  },
+                  "description":
+                    "Expert interior design guides, honest furniture reviews, and modern home styling inspiration.",
+                },
+                {
+                  "@type": "WebSite",
+                  "@id": "https://www.bigelowdesigns.com/#website",
+                  "url": "https://www.bigelowdesigns.com/",
+                  "name": "Bigelow Designs",
+                  "publisher": {
+                    "@id": "https://www.bigelowdesigns.com/#organization",
+                  },
+                },
+              ],
+            }),
           }}
         />
       </head>
       <body className="flex min-h-screen flex-col">
-        <JsonLd data={[buildOrganizationSchema()]} />
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-white"
