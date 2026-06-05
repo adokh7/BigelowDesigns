@@ -1,5 +1,4 @@
 import type { MDXComponents } from 'mdx/types';
-import Image from 'next/image';
 import Link from 'next/link';
 
 // ─── Affiliate / monetization components ──────────────────────
@@ -47,15 +46,18 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         </Link>
       );
     },
-    img: ({ src = '', alt = '', width, height, ...rest }) => (
-      <Image
-        src={src as string}
-        alt={alt}
-        width={Number(width) || 1200}
-        height={Number(height) || 800}
-        sizes="(max-width: 768px) 100vw, 768px"
-        className="my-6 h-auto w-full rounded-lg"
-        {...rest}
+    // Standard markdown image syntax ![alt](src) renders as a plain <img>.
+    // Using a native <img> instead of next/image avoids the image-optimizer
+    // pipeline (which can silently fail when widths are unknown or when src
+    // is served from /public without explicit dimensions). Tailwind classes
+    // give it a consistent, responsive look across all articles.
+    img: (props) => (
+      // eslint-disable-next-line @next/next/no-img-element, jsx-a11y/alt-text
+      <img
+        {...props}
+        loading="lazy"
+        decoding="async"
+        className="w-full h-auto rounded-xl my-4"
       />
     ),
 
