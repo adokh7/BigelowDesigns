@@ -151,15 +151,14 @@ export default function HomePage() {
                 className="animate-fade-rise mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl xl:text-7xl"
                 style={{ animationDelay: '120ms' }}
               >
-                Interior design that{' '}
+                Modern Interior Design Ideas &{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 italic text-brand">feels like home</span>
+                  <span className="relative z-10 italic text-brand">Curated Furniture Reviews</span>
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-brand-light/70 md:bottom-2 md:h-4"
                   />
                 </span>
-                .
               </h1>
 
               {/* Sub */}
@@ -322,7 +321,7 @@ export default function HomePage() {
                 id="latest-heading"
                 className="mt-3 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
               >
-                Fresh from the studio.
+                Trending Room Design Guides
               </h2>
               <p className="mt-3 max-w-xl text-base text-stone-600">
                 Three new reads this week — tested, considered, and written for the way you actually live at home.
@@ -405,7 +404,7 @@ export default function HomePage() {
               id="favorites-heading"
               className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
             >
-              Shop Our Favorites
+              Shop Our Curated Favorites
             </h2>
             <p className="mx-auto mt-4 max-w-xl text-base text-stone-600">
               A small, deliberate edit of the pieces we keep recommending to clients — across kitchens, living rooms, and small-space layouts.
