@@ -62,7 +62,7 @@ const FAVORITES = [
     title:    'Loyalfire Over Sink Dish Drying Rack',
     price:    '$109.77',
     image:    '/renter-friendly-kitchen.webp',
-    imageAlt: 'A clean, bright kitchen with the sink area kept tidy and organized',
+    imageAlt: 'Loyalfire Over Sink Dish Drying Rack in a modern kitchen',
     href:     'https://amzn.to/4ueDlkA',
   },
   {
@@ -70,7 +70,7 @@ const FAVORITES = [
     title:    'Modern Lambs Wool Accent Chair',
     price:    '$142.49',
     image:    '/warm-minimalism-nordic.webp',
-    imageAlt: 'A bright, Nordic minimalist interior styled around a soft modern accent chair',
+    imageAlt: 'SOERGO Modern Lambs Wool Accent Chair white cozy lounge seating',
     href:     'https://amzn.to/3Q4JRMS',
   },
   {
@@ -78,7 +78,7 @@ const FAVORITES = [
     title:    'MERRYBOX Triangle Roll Up Dish Drying Rack',
     price:    '$13.99',
     image:    '/micro-kitchen-island.webp',
-    imageAlt: 'A compact kitchen accessory scene showing a tidy sink-side workstation',
+    imageAlt: 'MERRYBOX Triangle Roll Up Dish Drying Rack space saving kitchen organizer',
     href:     'https://amzn.to/4ax1jR1',
   },
 ] as const;
