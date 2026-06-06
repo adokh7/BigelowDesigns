@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next';
 import { Inter, Fraunces } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
-import { Footer } from '@/components/Footer';
+import { LazyFooter } from '@/components/LazyFooter';
 import { CompareProvider } from '@/contexts/CompareContext';
 import { LazyCompareDrawer } from '@/components/LazyCompareDrawer';
 import { AnalyticsListener } from '@/components/AnalyticsListener';
@@ -33,9 +33,9 @@ export const viewport: Viewport = {
 // OpenGraph card, and Twitter card all stay in sync.
 const HOME_TITLE =
   'Bigelow Designs | Expert Interior Design Guides & Furniture Reviews';
-// 198 chars — sits inside the 150–220 sweet spot Google tends to render in full.
+// 155 chars — within the strict 150–160 SEO Site Checkup window.
 const HOME_DESCRIPTION =
-  'Read expert interior design guides, honest furniture reviews, and modern room styling ideas at Bigelow Designs — your trusted source for considered, real-world home design inspiration for every room.';
+  'Expert interior design guides, honest furniture reviews, and modern room styling ideas at Bigelow Designs — considered, real-world home design inspiration.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -186,7 +186,10 @@ export default function RootLayout({
           <main id="main" className="flex-1">
             {children}
           </main>
-          <Footer />
+          {/* Code-split — Footer + its NewsletterForm island ship in a
+              separate chunk so they don't compete with LCP work. SSR is
+              preserved so crawlers still see the footer link graph. */}
+          <LazyFooter />
           {/* Code-split + client-only — keeps compare state out of the
               initial bundle for the 95% of sessions that never use it. */}
           <LazyCompareDrawer />

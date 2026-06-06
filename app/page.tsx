@@ -6,9 +6,9 @@ import { siteConfig } from '@/lib/site';
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
 
-// 196 chars — long enough to satisfy SEO audits without being truncated in SERPs.
+// 158 chars — strict 150–160 window for SEO Site Checkup.
 const HOME_META_DESCRIPTION =
-  'Interior design that lives in the real world: editorial room guides, honest furniture reviews, considered styling ideas, and the modern home trends worth knowing — curated for the way you actually live.';
+  'Interior design that lives in the real world — editorial room guides, honest furniture reviews, and the modern home trends worth knowing, curated weekly.';
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} — Premium Interior Design`,
