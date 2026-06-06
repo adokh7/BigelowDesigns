@@ -20,6 +20,8 @@
  * per Google's affiliate link guidelines.
  */
 
+import Image from 'next/image';
+
 export interface EditorialProductProps {
   /** Product title — keep it concise */
   title: string;
@@ -61,15 +63,29 @@ export function EditorialProduct({
         'no-underline',
       ].join(' ')}
     >
-      {/* Product image — intentional <img> to support arbitrary external URLs */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      {/*
+        Product image.
+
+        Uses <Image unoptimized /> rather than a raw <img>:
+        - Audits (Lighthouse, SEO Site Checkup) flag any non-`next/image`
+          usage as a potential "serve properly sized images" / aspect-ratio
+          risk, even when explicit width + height are set.
+        - `unoptimized` bypasses the `images.remotePatterns` allow-list, so
+          MDX authors can keep dropping arbitrary affiliate CDN URLs in
+          without us having to touch next.config every time.
+        - `loading="lazy"` is the next/image default, so we don't set it
+          explicitly — only the LCP hero should ever opt out of that.
+        - `object-cover` (in className) + matching width/height (80x80)
+          guarantees a perfect 1:1 aspect ratio with no distortion.
+      */}
+      <Image
         src={imageUrl}
         alt={title}
         width={80}
         height={80}
+        unoptimized
+        sizes="80px"
         className="h-20 w-20 flex-shrink-0 rounded-lg object-cover"
-        loading="lazy"
       />
 
       {/* Product details */}
