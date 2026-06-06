@@ -80,10 +80,12 @@ export const metadata: Metadata = {
       'max-video-preview': -1,
     },
   },
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-touch-icon.png',
-  },
+  // Favicon / touch icon tags are emitted automatically by Next.js from the
+  // App Router file convention — see `app/favicon.ico`, `app/icon.png`, and
+  // `app/apple-icon.png`. Each file is served with the correct MIME type and
+  // a content hash, which is what Google requires before it will display the
+  // logo next to a search result. A manual `icons` block here would override
+  // the file-convention tags, so it is intentionally omitted.
   formatDetection: { telephone: false, address: false, email: false },
   verification: {
     google: 'dQtrCW2-Pv7U9oU7DV2FM2vCwvbgDPEicFk8euk-zQc',
