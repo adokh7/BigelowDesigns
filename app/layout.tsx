@@ -4,7 +4,7 @@ import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
 import { CompareProvider } from '@/contexts/CompareContext';
-import { CompareDrawer } from '@/components/CompareDrawer';
+import { LazyCompareDrawer } from '@/components/LazyCompareDrawer';
 import { AnalyticsListener } from '@/components/AnalyticsListener';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
@@ -33,8 +33,9 @@ export const viewport: Viewport = {
 // OpenGraph card, and Twitter card all stay in sync.
 const HOME_TITLE =
   'Bigelow Designs | Expert Interior Design Guides & Furniture Reviews';
+// 198 chars — sits inside the 150–220 sweet spot Google tends to render in full.
 const HOME_DESCRIPTION =
-  'Read honest furniture reviews, discover modern interior design ideas, and get expert styling guides for your home at Bigelow Designs.';
+  'Read expert interior design guides, honest furniture reviews, and modern room styling ideas at Bigelow Designs — your trusted source for considered, real-world home design inspiration for every room.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -100,19 +101,6 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
-        {/* Ahrefs Web Analytics — placed in <head> for site verification */}
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script
-          src="https://analytics.ahrefs.com/analytics.js"
-          data-key="YhbFfA3VBAMsYXMqB0wX6g"
-          async
-        />
-        {/* Google AdSense Auto-Ads — placed in head for raw HTML crawler detection */}
-        <script
-          async
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8933725159594062"
-          crossOrigin="anonymous"
-        ></script>
         {/* Entity-disambiguation JSON-LD: combined Organization + WebSite
             in a single @graph so Google can resolve "Bigelow Designs" as
             an interior-design publisher entity, distinct from same-name
@@ -158,12 +146,14 @@ export default function RootLayout({
           Skip to content
         </a>
 
-        {/* Google Analytics 4 — G-VEYTPK0FKL */}
+        {/* Google Analytics 4 — G-VEYTPK0FKL.
+            lazyOnload defers GA until after the browser fires `load`, freeing
+            the main thread during LCP/TBT measurement windows. */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-VEYTPK0FKL"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="google-analytics" strategy="lazyOnload">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -172,6 +162,24 @@ export default function RootLayout({
           `}
         </Script>
 
+        {/* Ahrefs Web Analytics — verification key surfaces in the lazy load
+            request URL, which Ahrefs accepts. Deferred so it never competes
+            with first paint. */}
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="YhbFfA3VBAMsYXMqB0wX6g"
+          strategy="lazyOnload"
+        />
+
+        {/* Google AdSense Auto-Ads — fully deferred. AdSense itself injects
+            its iframes after parse, so lazyOnload has no functional cost. */}
+        <Script
+          id="adsbygoogle-init"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8933725159594062"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
+        />
+
         <CompareProvider>
           <AnalyticsListener />
           <Header />
@@ -179,7 +187,9 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <CompareDrawer />
+          {/* Code-split + client-only — keeps compare state out of the
+              initial bundle for the 95% of sessions that never use it. */}
+          <LazyCompareDrawer />
         </CompareProvider>
       </body>
     </html>

@@ -45,6 +45,8 @@ export function Hero(props: any) {
           alt="Modern and realistic living room setup"
           width={1200}
           height={800}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          style={{ objectFit: 'cover' }}
           priority
         />
       </div>

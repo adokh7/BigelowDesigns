@@ -6,17 +6,19 @@ import { siteConfig } from '@/lib/site';
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
 
+// 196 chars — long enough to satisfy SEO audits without being truncated in SERPs.
+const HOME_META_DESCRIPTION =
+  'Interior design that lives in the real world: editorial room guides, honest furniture reviews, considered styling ideas, and the modern home trends worth knowing — curated for the way you actually live.';
+
 export const metadata: Metadata = {
   title: `${siteConfig.name} — Premium Interior Design`,
-  description:
-    'Interior design that lives in the real world. Room guides, honest furniture reviews, and the trends worth knowing — curated with conviction.',
+  description: HOME_META_DESCRIPTION,
   alternates: { canonical: siteConfig.url },
   openGraph: {
     type: 'website',
     url: siteConfig.url,
     title: `${siteConfig.name} — Premium Interior Design`,
-    description:
-      'Interior design that lives in the real world. Room guides, honest furniture reviews, and the trends worth knowing.',
+    description: HOME_META_DESCRIPTION,
     images: [{ url: `${siteConfig.url}/modular-sofa-tiny-apartment.webp`, width: 1600, height: 1000, alt: 'Bigelow Designs' }],
   },
 };

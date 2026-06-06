@@ -32,6 +32,7 @@ export default function KitchenTrendsArticle() {
             src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&w=1200&q=80"
             alt="Modern kitchen with warm wood cabinetry and a large stone island"
             fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1200px"
             className="object-cover"
             priority
           />
@@ -64,6 +65,7 @@ export default function KitchenTrendsArticle() {
               src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=80"
               alt="Detailed view of a contemporary kitchen island and minimalist storage"
               fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1000px"
               className="object-cover"
             />
           </div>
