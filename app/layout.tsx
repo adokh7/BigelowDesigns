@@ -173,12 +173,21 @@ export default function RootLayout({
           strategy="lazyOnload"
         />
 
-        {/* Google AdSense Auto-Ads — fully deferred. AdSense itself injects
-            its iframes after parse, so lazyOnload has no functional cost. */}
+        {/* Google AdSense Auto-Ads — publisher ID ca-pub-8933725159594062.
+            ┌─────────────────────────────────────────────────────────────┐
+            │ DO NOT MODIFY src, client ID, or crossOrigin while the site │
+            │ is under AdSense review — these exact values are what the   │
+            │ AdSense crawler matches against the publisher account.      │
+            └─────────────────────────────────────────────────────────────┘
+            strategy="afterInteractive" (rather than lazyOnload) ensures
+            the <script> tag is injected into the DOM as soon as hydration
+            starts, so the AdSense verification crawler reliably finds it
+            on the first render pass. The tag is still `async` once
+            injected, so it remains fully non-render-blocking. */}
         <Script
           id="adsbygoogle-init"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8933725159594062"
-          strategy="lazyOnload"
+          strategy="afterInteractive"
           crossOrigin="anonymous"
         />
 
