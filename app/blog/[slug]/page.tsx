@@ -48,13 +48,33 @@ export async function generateMetadata({
   const title       = article.seo?.metaTitle       ?? article.title;
   const description = article.seo?.metaDescription  ?? article.excerpt;
   const heroImage   = article.seo?.ogImage          ?? article.heroImage;
+  // The /blog/[slug] route is the **canonical primary** URL for every
+  // article. The duplicate /[category]/[slug] route points its canonical
+  // here too, so Google consolidates indexing signals on this URL.
   const url         = `${siteConfig.url}/blog/${slug}`;
+
+  // Explicit robots block (rather than relying on the root layout merge)
+  // so per-page SEO auditors see "index,follow" emitted on every article
+  // response, with the same googleBot directives the homepage uses.
+  const robots = article.seo?.noindex
+    ? { index: false, follow: true }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-image-preview': 'large' as const,
+          'max-snippet': -1,
+          'max-video-preview': -1,
+        },
+      };
 
   return {
     title,
     description,
     alternates: { canonical: article.seo?.canonical ?? url },
-    robots: article.seo?.noindex ? { index: false, follow: true } : undefined,
+    robots,
     openGraph: {
       type: 'article',
       url,
@@ -63,6 +83,7 @@ export async function generateMetadata({
       publishedTime: article.publishedAt,
       modifiedTime:  article.updatedAt ?? article.publishedAt,
       authors: [article.author.name],
+      tags:    article.tags,
       images: [{
         url:    heroImage,
         width:  article.heroImageWidth  ?? 1600,

@@ -54,18 +54,40 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const article = getArticleBySlug(category, slug);
   if (!article) return {};
 
+  // Self-URL of *this* route — used only for og:url so social cards link
+  // back to the page the user is actually on.
   const url = `${siteConfig.url}/${article.category}/${article.slug}`;
+  // The **canonical primary** URL for every article is /blog/[slug]. We
+  // point this duplicate route's canonical there so Google consolidates
+  // signals on a single indexable URL instead of treating the two
+  // routes as competing duplicates.
+  const canonicalUrl = article.seo?.canonical ?? `${siteConfig.url}/blog/${article.slug}`;
   const title = article.seo?.metaTitle ?? article.title;
   const description = article.seo?.metaDescription ?? article.excerpt;
   const ogImage = article.seo?.ogImage ?? article.heroImage;
 
+  // Explicit robots block (rather than relying on the root layout merge)
+  // so per-page SEO auditors see "index,follow" emitted on every article
+  // response, with the same googleBot directives the homepage uses.
+  const robots = article.seo?.noindex
+    ? { index: false, follow: true }
+    : {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-image-preview': 'large' as const,
+          'max-snippet': -1,
+          'max-video-preview': -1,
+        },
+      };
+
   return {
     title,
     description,
-    alternates: { canonical: article.seo?.canonical ?? url },
-    robots: article.seo?.noindex
-      ? { index: false, follow: true }
-      : undefined,
+    alternates: { canonical: canonicalUrl },
+    robots,
     openGraph: {
       type: 'article',
       url,
