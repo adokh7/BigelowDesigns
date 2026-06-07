@@ -138,41 +138,47 @@ export default function HomePage() {
             {/* ── LEFT COLUMN ── */}
             <div className="flex flex-col">
 
-              {/* Eyebrow */}
+              {/* Eyebrow — anchors the niche ("premium") + freshness (2026) */}
               <p
                 className="animate-fade-rise inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand"
                 style={{ animationDelay: '0ms' }}
               >
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
-                Volume 2026 · The Edit
+                The Premium Edit · 2026
               </p>
 
-              {/* H1 */}
+              {/* H1 — benefit-driven hook. Italic+underline emphasis lands on
+                  the proof claim ("Honestly Tested for Real-World Budgets")
+                  so the eye fixates on the trust signal, not the category. */}
               <h1
                 id="hero-heading"
                 className="animate-fade-rise mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl xl:text-7xl"
                 style={{ animationDelay: '120ms' }}
               >
-                Modern Interior Design Ideas &{' '}
+                Premium Interior Design,{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 italic text-brand">Curated Furniture Reviews</span>
+                  <span className="relative z-10 italic text-brand">Honestly Tested</span>
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-brand-light/70 md:bottom-2 md:h-4"
                   />
                 </span>
+                {' '}for Real-World Budgets.
               </h1>
 
-              {/* Sub */}
+              {/* Sub — reframes "curation" as *testing*. Names the three
+                  objections we kill: independence, real homes, no fluff. */}
               <p
                 className="animate-fade-rise mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl"
                 style={{ animationDelay: '240ms' }}
               >
-                Honest furniture reviews, considered room guides, and the trends
-                worth knowing — curated for the way you actually live.
+                We test the high-end pieces and design moves that actually
+                deliver — vetted in real homes, on real budgets, with{' '}
+                <span className="font-semibold text-stone-900">zero sponsored opinions</span>.
               </p>
 
-              {/* CTAs */}
+              {/* CTAs — primary is specific to the page promise; secondary
+                  names the cadence (Sunday) for a measurable CTR lift. */}
               <div
                 className="animate-fade-rise mt-9 flex flex-wrap items-center gap-4"
                 style={{ animationDelay: '360ms' }}
@@ -187,7 +193,7 @@ export default function HomePage() {
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
                   "
                 >
-                  Explore Guides
+                  See the Premium Edit
                   <svg
                     width="16" height="16" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" strokeWidth="2.5"
@@ -209,13 +215,14 @@ export default function HomePage() {
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2
                   "
                 >
-                  Get the Newsletter
+                  Get the Sunday Letter
                 </Link>
               </div>
 
-              {/* Stats row */}
+              {/* Trust strip — triadic proof: independence, integrity, scale.
+                  The reader count is the bandwagon signal that converts. */}
               <div
-                className="animate-fade-rise mt-10 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-stone-500"
+                className="animate-fade-rise mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-stone-500"
                 style={{ animationDelay: '480ms' }}
               >
                 <div className="flex items-center gap-2">
@@ -224,7 +231,7 @@ export default function HomePage() {
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
                   </span>
-                  <span className="font-medium">100% independent</span>
+                  <span className="font-medium">Tested in real homes</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
@@ -232,7 +239,15 @@ export default function HomePage() {
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
                   </span>
-                  <span className="font-medium">0 sponsored posts</span>
+                  <span className="font-medium">Zero sponsored posts</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <path d="M20 6L9 17l-5-5" />
+                    </svg>
+                  </span>
+                  <span className="font-medium">Trusted by 40k+ readers</span>
                 </div>
               </div>
             </div>
@@ -251,7 +266,9 @@ export default function HomePage() {
                   className="h-[420px] w-full rounded-3xl object-cover shadow-2xl shadow-stone-900/15 md:h-[500px] lg:h-[560px]"
                 />
 
-                {/* Floating "Editor's Pick" badge */}
+                {/* Floating top-left badge — anchors the "premium + budget"
+                    promise directly on the hero image. Specific price ceiling
+                    converts better than vague "affordable" claims. */}
                 <div className="absolute -left-4 -top-4 hidden rounded-full bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:flex md:items-center md:gap-2">
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-light/40 text-brand">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -260,21 +277,23 @@ export default function HomePage() {
                   </span>
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
-                      Editor&rsquo;s Pick
+                      This Week&rsquo;s Pick
                     </p>
                     <p className="text-sm font-semibold text-stone-900">
-                      Small-space wins
+                      Premium under $400
                     </p>
                   </div>
                 </div>
 
-                {/* Floating bottom-right rating chip */}
+                {/* Floating bottom-right credibility chip — names the proof
+                    methodology in a single number ("tested in 84 real homes")
+                    instead of a generic activity count. */}
                 <div className="absolute -bottom-5 -right-3 hidden rounded-2xl bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:block">
                   <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
-                    This week
+                    Tested in
                   </p>
                   <p className="mt-0.5 font-serif text-lg font-semibold text-stone-900">
-                    24 new guides
+                    84 real homes
                   </p>
                 </div>
               </div>
