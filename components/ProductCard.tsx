@@ -2,6 +2,26 @@ import Image from 'next/image';
 import clsx from 'clsx';
 import { resolveImage } from '@/lib/image-utils';
 
+/**
+ * ProductCard
+ *
+ * Premium affiliate card used by MDX articles and section components.
+ *
+ * Visual upgrade (June 2026):
+ *   - White surface with hairline gray-100 border and rounded-xl corners.
+ *   - Soft shadow that bloom-grows on hover, paired with a 2px lift.
+ *   - Image floats on a bg-gray-50 plate (object-contain) so product
+ *     shots photographed on white backgrounds blend into the card.
+ *   - Serif title (matches the site's editorial typography) and a
+ *     large, weighted price that anchors the conversion eye-path.
+ *   - Brand-accent (bronze) "Shop Now" pill with a smooth hover lift
+ *     and a soft accent-tinted shadow.
+ *
+ * Prop contract is unchanged — every existing call site (MDX articles
+ * using <ProductCard image="..." title="..." price="..." link="..." />,
+ * the AffiliateProductGrid passing rich objects, etc.) keeps working
+ * exactly as before.
+ */
 interface ProductCardProps {
   image: { src: string; alt: string } | string;
   brand?: string;
@@ -16,6 +36,12 @@ interface ProductCardProps {
   /** "stacked" forces vertical even on desktop. Default is responsive. */
   variant?: 'responsive' | 'stacked';
   badge?: string;
+  /**
+   * Accepted but not used directly — the affiliate CTA anchor already
+   * hardcodes `rel="sponsored nofollow noopener"`. Declared here so MDX
+   * authors can pass `rel="sponsored"` without TypeScript warnings.
+   */
+  rel?: string;
 }
 
 const CURRENCY_SYMBOL = { USD: '$', GBP: '£' } as const;
@@ -69,64 +95,77 @@ export function ProductCard({
   return (
     <article
       className={clsx(
-        'group relative overflow-hidden rounded-xl border border-ink-100 bg-surface',
-        'transition-all duration-smooth ease-out',
-        'hover:-translate-y-0.5 hover:border-ink-200 hover:shadow-md',
+        // Core card surface — premium feel, conversion-focused
+        'group relative my-6 overflow-hidden rounded-xl',
+        'border border-gray-100 bg-white',
+        'shadow-sm transition-all duration-300 ease-out',
+        'hover:-translate-y-0.5 hover:shadow-xl hover:border-gray-200',
         'focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2',
-        isHorizontal && 'flex flex-col md:flex-row',
+        // Layout: stacked on mobile, side-by-side on desktop (when responsive)
+        isHorizontal ? 'flex flex-col md:flex-row' : 'flex flex-col',
       )}
     >
       {badge && (
-        <span className="absolute left-4 top-4 z-10 rounded-full bg-canvas/95 px-3 py-1 text-eyebrow text-accent-600 shadow-sm backdrop-blur">
+        <span className="absolute left-4 top-4 z-10 rounded-full bg-white/95 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.18em] text-accent-600 shadow-sm backdrop-blur">
           {badge}
         </span>
       )}
 
-      {/* Always render the image slot — resolveImage guarantees we either
-          show the requested file or the global fallback, never nothing. */}
+      {/* ── Image plate ─────────────────────────────────────────────
+          Subtle gray background so product shots on white backgrounds
+          read as floating objects rather than washed-out cards. The
+          object-contain + inner padding give the catalog-shot feel. */}
       <div
         className={clsx(
-          'relative overflow-hidden bg-elevated',
+          'relative overflow-hidden bg-gray-50',
           isHorizontal
-            ? 'aspect-[4/3] md:aspect-auto md:w-2/5 md:shrink-0'
-            : 'aspect-[4/3]',
+            ? 'aspect-[4/3] w-full md:aspect-auto md:w-2/5 md:shrink-0 md:self-stretch'
+            : 'aspect-[4/3] w-full',
         )}
       >
         <Image
           src={resolveImage(imgSrc)}
           alt={imgAlt}
           fill
-          sizes={isHorizontal ? '(max-width: 768px) 100vw, 320px' : '(max-width: 768px) 100vw, 400px'}
-          className="object-cover transition-transform duration-smooth ease-out group-hover:scale-[1.04]"
+          sizes={
+            isHorizontal
+              ? '(max-width: 768px) 100vw, 360px'
+              : '(max-width: 768px) 100vw, 480px'
+          }
+          className="object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
         />
       </div>
 
+      {/* ── Copy + CTA column ─────────────────────────────────────── */}
       <div
         className={clsx(
           'flex flex-col gap-3 p-6',
-          isHorizontal && 'md:flex-1 md:p-8',
+          isHorizontal && 'md:flex-1 md:gap-4 md:p-8',
         )}
       >
         <div>
           {brand && (
-            <p className="text-eyebrow text-ink-400">{brand}</p>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+              {brand}
+            </p>
           )}
-          <h3 className="mt-1 font-serif text-h3 text-ink-900 leading-snug">
+          <h3 className="mt-1.5 font-serif text-xl font-bold leading-snug tracking-tight text-gray-900 md:text-2xl">
             {displayName}
           </h3>
         </div>
 
         {description && (
-          <p className="text-body text-ink-600 line-clamp-3">{description}</p>
+          <p className="text-sm leading-relaxed text-gray-600 line-clamp-3">
+            {description}
+          </p>
         )}
 
-        {rating && (
-          <Stars rating={rating} count={reviewCount} />
-        )}
+        {rating && <Stars rating={rating} count={reviewCount} />}
 
-        <div className="mt-auto flex flex-wrap items-baseline justify-between gap-3 pt-2">
+        {/* ── Price + CTA row — pinned to bottom of the column ── */}
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-3">
           {displayPrice && (
-            <p className="font-serif text-2xl font-semibold text-ink-900">
+            <p className="font-serif text-3xl font-bold leading-none tracking-tight text-gray-900">
               {displayPrice}
             </p>
           )}
@@ -139,10 +178,11 @@ export function ProductCard({
               data-affiliate-network={ctaNetwork}
               className={clsx(
                 'inline-flex items-center justify-center gap-2',
-                'h-11 rounded-md px-5',
-                'bg-accent font-sans text-body font-semibold text-white',
-                'transition-all duration-quick ease-out',
-                'hover:bg-accent-600 hover:-translate-y-px hover:shadow-md',
+                'rounded-full px-6 py-3',
+                'bg-accent text-sm font-semibold text-white',
+                'shadow-md shadow-accent/30',
+                'transition-all duration-300 ease-out',
+                'hover:bg-accent-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/40',
                 'active:translate-y-0 active:scale-[0.98]',
                 'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
               )}
@@ -158,7 +198,7 @@ export function ProductCard({
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 aria-hidden="true"
-                className="transition-transform duration-quick ease-out group-hover:translate-x-0.5"
+                className="transition-transform duration-300 ease-out group-hover:translate-x-0.5"
               >
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
@@ -175,7 +215,7 @@ function Stars({ rating, count }: { rating: number; count?: number }) {
   return (
     <p
       aria-label={`Rated ${rating} out of 5${count ? ` from ${count} reviews` : ''}`}
-      className="flex items-center gap-2 text-body-sm text-ink-600"
+      className="flex items-center gap-2 text-sm text-gray-600"
     >
       <span className="inline-flex items-center gap-0.5 text-accent">
         {Array.from({ length: 5 }).map((_, i) => (
@@ -184,9 +224,9 @@ function Stars({ rating, count }: { rating: number; count?: number }) {
           </span>
         ))}
       </span>
-      <span className="font-semibold text-ink-800">{rating.toFixed(1)}</span>
+      <span className="font-semibold text-gray-800">{rating.toFixed(1)}</span>
       {count && (
-        <span className="text-ink-400">({count.toLocaleString()})</span>
+        <span className="text-gray-400">({count.toLocaleString()})</span>
       )}
     </p>
   );
