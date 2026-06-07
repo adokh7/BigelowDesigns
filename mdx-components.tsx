@@ -1,5 +1,6 @@
 import type { MDXComponents } from 'mdx/types';
 import Link from 'next/link';
+import Image from 'next/image';
 import { resolveImage } from '@/lib/image-utils';
 
 // ─── Affiliate / monetization components ──────────────────────
@@ -63,6 +64,11 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         className="w-full h-auto rounded-xl my-4"
       />
     ),
+
+    // next/image — exposed to MDX so articles can render optimised product
+    // photography with `<Image src="/foo.png" width={1200} height={675} />`
+    // without needing a per-file ESM import (MDXRemote does not honour those).
+    Image,
 
     // Affiliate / monetization
     AffiliateButton,

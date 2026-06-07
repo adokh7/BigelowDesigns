@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import remarkGfm from 'remark-gfm';
@@ -162,6 +163,9 @@ export default async function ArticlePage({ params }: PageProps) {
             <MDXRemote
               source={article.content}
               components={{
+                // next/image — exposed to MDX so articles can embed
+                // optimised product photography with `<Image .../>` directly.
+                Image,
                 AffiliateButton,
                 AffiliateDisclosure,
                 AffiliateProductGrid,

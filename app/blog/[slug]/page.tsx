@@ -232,6 +232,9 @@ export default async function BlogArticlePage({ params }: PageProps) {
               <MDXRemote
                 source={article.content}
                 components={{
+                  // next/image — exposed to MDX so articles can embed
+                  // optimised product photography with `<Image .../>` directly.
+                  Image,
                   AffiliateButton,
                   AffiliateDisclosure,
                   AffiliateProductGrid,
