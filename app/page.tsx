@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
+import { LazyVideoSection } from '@/components/LazyVideoSection';
 
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
@@ -320,6 +321,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ══════════════════════════════════════════════════════
+          1.5  VIDEO SECTION — code-split, ssr:false, click-to-play
+                Lives behind <LazyVideoSection /> so its JS + <video>
+                element are kept entirely out of the initial render
+                pass. preload="none" inside the component guarantees
+                zero video bytes are fetched until the user clicks.
+          ══════════════════════════════════════════════════════ */}
+      <LazyVideoSection />
 
       {/* ══════════════════════════════════════════════════════
           2. LATEST ARTICLES — bright cards on white
