@@ -1,19 +1,20 @@
+import { ProVideoPlayer } from './ProVideoPlayer';
+
 /**
  * VideoSection
  *
- * Premium homepage video band — autoplay, muted, looping. Sits directly
- * below the hero.
+ * Premium homepage video band — sits directly below the hero. The
+ * video itself is rendered through <ProVideoPlayer />, which handles
+ * the click-to-play overlay, native controls, and preload="metadata"
+ * perf defaults. This component is just the editorial chrome (eyebrow
+ * + serif title + sub + soft brand glow) around it.
  *
  * Notes for future-me:
- *   - autoPlay only fires when the video is `muted`. iOS Safari + most
- *     mobile browsers enforce this; do not drop the `muted` attribute.
- *   - `playsInline` keeps mobile Safari from kicking the video into
- *     fullscreen the moment it starts.
  *   - Asset lives at /public/bigelowdesing.mp4. Filename is intentional;
  *     do not "fix" the spelling without first renaming the file.
- *   - Server component on purpose — there is no interactive state any
- *     more, so we save the client-bundle round-trip the click-to-play
- *     prototype used to cost.
+ *   - Server component on purpose — all interactive state lives inside
+ *     <ProVideoPlayer />, so we save the client-bundle round-trip on
+ *     the rest of the section.
  */
 export default function VideoSection() {
   return (
@@ -26,34 +27,36 @@ export default function VideoSection() {
         <div className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
-            Watch the Edit
+            Visual Tour
           </p>
           <h2
             id="video-section-heading"
             className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
           >
-            See Premium Spaces{' '}
-            <span className="italic text-brand">in Action.</span>
+            A 30-Second{' '}
+            <span className="italic text-brand">Visual Tour.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-stone-600 md:text-lg">
-            A two-minute walk-through of the rooms, materials, and furniture
-            pieces we&rsquo;ve tested this season — shot in real homes, on
-            real budgets.
+          <p className="mx-auto mt-5 max-w-xl text-base italic leading-relaxed text-stone-600 md:text-lg">
+            Get a quick, real-world look at the texture, scale, and styling.
+            Press play for a brief 30-second walk-through to see how the
+            piece naturally anchors the space and catches the daylight.
           </p>
         </div>
 
-        {/* ── Video card ────────────────────────────────────────── */}
-        <div className="relative mx-auto mt-14 w-full max-w-5xl">
-          {/* Soft brand glow — purely decorative */}
+        {/* ── Video player ──────────────────────────────────────
+            Wrapper exists only to host the soft decorative glow;
+            ProVideoPlayer brings its own max-w-4xl + framed chrome,
+            so we keep this container layout-neutral and unstyled. */}
+        <div className="relative mx-auto mt-2 w-full">
           <div
             aria-hidden="true"
-            className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-light/30 via-transparent to-emerald-100/30 blur-2xl"
+            className="pointer-events-none absolute inset-x-0 top-6 -z-10 mx-auto h-72 max-w-3xl rounded-[2rem] bg-gradient-to-br from-brand-light/30 via-transparent to-emerald-100/30 blur-3xl"
           />
 
-          <video width="100%" controls preload="metadata" playsInline className="rounded-xl shadow-lg my-8">
-            <source src="/bigelowdesing.mp4" type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <ProVideoPlayer
+            src="/bigelowdesing.mp4"
+            label="Play the Bigelow Designs walk-through video"
+          />
         </div>
       </div>
     </section>
