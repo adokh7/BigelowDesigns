@@ -14,6 +14,7 @@ import { FAQAccordion } from '@/components/FAQAccordion';
 import { JsonLd } from '@/components/JsonLd';
 import { RelatedArticles } from '@/components/RelatedArticles';
 import { FacebookComments } from '@/components/FacebookComments';
+import { FacebookCommunityCTA } from '@/components/FacebookCommunityCTA';
 import { TableOfContents } from '@/components/TableOfContents';
 import { AffiliateButton } from '@/components/AffiliateButton';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
@@ -239,6 +240,9 @@ export default async function ArticlePage({ params }: PageProps) {
       {article.products && article.products.length > 0 && (
         <StickyMiniCompare products={article.products} />
       )}
+
+      {/* Follow-on-Facebook banner — soft beige CTA above the comments. */}
+      <FacebookCommunityCTA />
 
       {/* ══════════════════════════════════════════════════════
           COMMENTS

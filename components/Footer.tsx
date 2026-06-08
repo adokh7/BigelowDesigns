@@ -4,10 +4,11 @@ import { NewsletterForm } from '@/components/interactive/NewsletterForm';
 import { BrandLogo } from '@/components/BrandLogo';
 
 const SOCIALS = [
-  { label: 'Instagram', href: 'https://instagram.com/bigelowdesigns', icon: InstagramIcon },
-  { label: 'Pinterest', href: 'https://pinterest.com/bigelowdesigns', icon: PinterestIcon },
-  { label: 'X (Twitter)', href: 'https://x.com/bigelowdesigns', icon: TwitterIcon },
-  { label: 'YouTube', href: 'https://youtube.com/@bigelowdesigns', icon: YoutubeIcon },
+  { label: 'Facebook',  href: 'https://www.facebook.com/BigelowDesignsOfficial', icon: FacebookIcon  },
+  { label: 'Instagram', href: 'https://instagram.com/bigelowdesigns',            icon: InstagramIcon },
+  { label: 'Pinterest', href: 'https://pinterest.com/bigelowdesigns',            icon: PinterestIcon },
+  { label: 'X (Twitter)', href: 'https://x.com/bigelowdesigns',                  icon: TwitterIcon   },
+  { label: 'YouTube',   href: 'https://youtube.com/@bigelowdesigns',             icon: YoutubeIcon   },
 ];
 
 export function Footer() {
@@ -182,6 +183,15 @@ function FooterColumn({
 }
 
 // ─── Icons (inline SVG — zero JS, perfect a11y) ───────────────
+function FacebookIcon() {
+  // Filled "f" mark — reads as the official Facebook brand glyph at any size.
+  return (
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+      <path d="M13.5 21v-7.5h2.6l.4-3H13.5V8.6c0-.87.3-1.46 1.55-1.46h1.65V4.46A22 22 0 0 0 14.3 4.3c-2.4 0-4.05 1.47-4.05 4.16V10.5H7.7v3h2.55V21h3.25z" />
+    </svg>
+  );
+}
+
 function InstagramIcon() {
   return (
     <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

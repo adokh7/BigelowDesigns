@@ -11,6 +11,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
 import { FacebookComments } from '@/components/FacebookComments';
+import { FacebookCommunityCTA } from '@/components/FacebookCommunityCTA';
 import { AffiliateButton } from '@/components/AffiliateButton';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { AffiliateProductGrid } from '@/components/AffiliateProductGrid';
@@ -386,6 +387,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
               available, fills the rest with demo placeholders.
           ══════════════════════════════════════════════════════ */}
       <RelatedSection realArticles={relatedReal} />
+
+      {/* Follow-on-Facebook banner — soft beige CTA that sits between
+          the end-of-article reading recs and the comment thread. */}
+      <FacebookCommunityCTA />
 
       {/* ══════════════════════════════════════════════════════
           5.  COMMENTS
