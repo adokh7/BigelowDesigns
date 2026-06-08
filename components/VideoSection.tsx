@@ -50,7 +50,7 @@ export default function VideoSection() {
             className="pointer-events-none absolute -inset-6 -z-10 rounded-[2rem] bg-gradient-to-br from-brand-light/30 via-transparent to-emerald-100/30 blur-2xl"
           />
 
-          <video width="100%" autoPlay loop muted playsInline className="rounded-xl shadow-lg my-8">
+          <video width="100%" controls preload="metadata" playsInline className="rounded-xl shadow-lg my-8">
             <source src="/bigelowdesing.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
