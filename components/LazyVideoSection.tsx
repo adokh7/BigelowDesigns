@@ -11,13 +11,14 @@ import dynamic from 'next/dynamic';
  *   'use client' boundary. This one-line module is that boundary.
  *
  * Why ssr: false:
- *   - VideoSection holds interactive state (isPlaying) and refs to a
- *     <video> element; there is nothing meaningful to render on the
- *     server before hydration.
- *   - Excluding it from SSR removes its bytes from the initial HTML and
- *     defers its JS to a separate chunk fetched only after the homepage
- *     becomes interactive — the exact behaviour required to keep
- *     "Eliminate render-blocking resources" green.
+ *   - VideoSection autoplays an unmuted-on-fallback MP4 the moment it
+ *     enters the DOM. Excluding it from SSR keeps the <video> element
+ *     out of the initial HTML, so the multi-MB media file is not
+ *     discovered by the browser until after hydration — the exact
+ *     behaviour required to keep LCP / "Eliminate render-blocking
+ *     resources" green during AdSense review.
+ *   - The section is below the fold on every viewport we ship, so
+ *     deferring it has zero perceived-perf cost.
  *
  * The placeholder reserves the section's vertical space (matches the
  * py-20/lg:py-28 of the real section + the 16:9 video card) so the layout
