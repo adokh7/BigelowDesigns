@@ -91,14 +91,34 @@ function SearchResultCard({ article }: { article: SearchArticle }) {
   );
 }
 
+/**
+ * The "all" sentinel — a deliberate escape hatch. When a visitor types
+ * exactly "all" (case-insensitive, ignoring surrounding whitespace), we
+ * bypass the keyword filter entirely and return every published article.
+ * Useful as a "show me everything" power-user shortcut and as a fallback
+ * when someone is browsing without a specific term in mind.
+ *
+ * Implemented as a module-level constant so the intent is loud and the
+ * comparison can't accidentally drift to a substring match.
+ */
+const SHOW_ALL_SENTINEL = 'all';
+
 export function SearchResults({ articles }: { articles: SearchArticle[] }) {
   const searchParams = useSearchParams();
   const query = searchParams.get('q') ?? '';
   const trimmed = query.trim();
+  const isShowAll = trimmed.toLowerCase() === SHOW_ALL_SENTINEL;
 
-  const results = trimmed
-    ? articles.filter((a) => matchesQuery(a, trimmed))
-    : [];
+  let results: SearchArticle[];
+  if (isShowAll) {
+    // "all" override — every article, in the order the server provided
+    // them (which is publishedAt DESC from getAllArticles()).
+    results = articles;
+  } else if (trimmed) {
+    results = articles.filter((a) => matchesQuery(a, trimmed));
+  } else {
+    results = [];
+  }
 
   return (
     <div className="bg-canvas">

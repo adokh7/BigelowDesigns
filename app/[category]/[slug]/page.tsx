@@ -13,6 +13,7 @@ import { ComparisonTable } from '@/components/ComparisonTable';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { JsonLd } from '@/components/JsonLd';
 import { RelatedArticles } from '@/components/RelatedArticles';
+import { FacebookComments } from '@/components/FacebookComments';
 import { TableOfContents } from '@/components/TableOfContents';
 import { AffiliateButton } from '@/components/AffiliateButton';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
@@ -238,6 +239,15 @@ export default async function ArticlePage({ params }: PageProps) {
       {article.products && article.products.length > 0 && (
         <StickyMiniCompare products={article.products} />
       )}
+
+      {/* ══════════════════════════════════════════════════════
+          COMMENTS
+          Facebook Comments Plugin keyed to the canonical
+          /blog/[slug] URL so this duplicate route shares the same
+          thread as the canonical one (Facebook keys conversations
+          by data-href).
+          ══════════════════════════════════════════════════════ */}
+      <FacebookComments url={`${siteConfig.url}/blog/${article.slug}`} />
     </>
   );
 }

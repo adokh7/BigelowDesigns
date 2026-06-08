@@ -141,6 +141,11 @@ export default function RootLayout({
         />
       </head>
       <body className="flex min-h-screen flex-col">
+        {/* Facebook SDK mount target. The SDK requires this exact id to
+            inject its hidden plugin infrastructure. Empty div, zero
+            visual / layout impact. */}
+        <div id="fb-root" />
+
         <a
           href="#main"
           className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-ink-900 focus:px-4 focus:py-2 focus:text-white"
@@ -171,6 +176,22 @@ export default function RootLayout({
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="YhbFfA3VBAMsYXMqB0wX6g"
           strategy="lazyOnload"
+        />
+
+        {/* Facebook SDK — powers the <FacebookComments /> plugin on every
+            article page. Loaded with `lazyOnload` so it can never compete
+            with first paint; the SDK auto-scans the DOM for `.fb-comments`
+            elements once it finishes downloading (xfbml=1). The fb-root
+            anchor is rendered below — the SDK requires it to mount.
+
+            Pinned to a specific Graph API version so a Facebook-side
+            breaking change cannot quietly alter the plugin behaviour.
+            Bump deliberately when migrating. */}
+        <Script
+          id="facebook-jssdk"
+          src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0"
+          strategy="lazyOnload"
+          crossOrigin="anonymous"
         />
 
         {/* Google AdSense Auto-Ads — publisher ID ca-pub-8933725159594062.

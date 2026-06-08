@@ -10,6 +10,7 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
+import { FacebookComments } from '@/components/FacebookComments';
 import { AffiliateButton } from '@/components/AffiliateButton';
 import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
 import { AffiliateProductGrid } from '@/components/AffiliateProductGrid';
@@ -385,6 +386,18 @@ export default async function BlogArticlePage({ params }: PageProps) {
               available, fills the rest with demo placeholders.
           ══════════════════════════════════════════════════════ */}
       <RelatedSection realArticles={relatedReal} />
+
+      {/* ══════════════════════════════════════════════════════
+          5.  COMMENTS
+              Facebook Comments Plugin keyed to the canonical
+              /blog/[slug] URL. Renders as SSR'd static markup;
+              the global FB SDK (see app/layout.tsx) hydrates it
+              into an iframe at lazyOnload — zero render-blocking
+              cost, and threads stay unified across the duplicate
+              /[category]/[slug] route because both routes pass
+              the same canonical URL.
+          ══════════════════════════════════════════════════════ */}
+      <FacebookComments url={canonicalUrl} />
     </>
   );
 }
