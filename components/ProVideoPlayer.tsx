@@ -69,13 +69,29 @@ export function ProVideoPlayer({
         'mx-auto my-12 w-full max-w-4xl p-2 bg-white rounded-3xl shadow-2xl border border-neutral-100'
       }
     >
-      {/* Inner frame — overflow-hidden + rounded-2xl gives the video
-          its premium clipped edge that matches the outer chrome. */}
-      <div className="relative overflow-hidden rounded-2xl bg-neutral-900">
+      {/* Inner frame.
+          - `aspect-video` locks the box to a 16:9 ratio *before* the
+            browser knows the video's intrinsic dimensions. Without
+            this the frame collapsed to 0 px tall on slow networks
+            and dragged the glass play overlay (absolute inset-0)
+            with it — the bug that produced the "black screen, no
+            play button" report.
+          - `overflow-hidden + rounded-2xl` clips both the video and
+            the overlay to the premium edge that matches the outer
+            chrome. */}
+      <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-neutral-900">
         <video
           ref={videoRef}
-          className="block h-auto w-full"
+          // `absolute inset-0` + `object-cover` lets the video fill
+          // whatever 16:9 box the aspect-ratio gives us, regardless
+          // of the source file's actual dimensions.
+          className="absolute inset-0 h-full w-full object-cover"
           preload="metadata"
+          // `muted` + `playsInline` keep mobile browsers (and
+          // autoplay policies on desktop) from refusing to even
+          // start loading the file. The native controls UI exposes
+          // an unmute toggle the moment the visitor presses play.
+          muted
           playsInline
           controls={hasStarted}
           poster={poster}
@@ -86,19 +102,20 @@ export function ProVideoPlayer({
         </video>
 
         {/* ── Glassmorphism play overlay ────────────────────────
-            Only mounted while hasStarted === false. Pointer events
-            stay on the button alone; the rest of the surface is
-            decorative. */}
+            Only mounted while hasStarted === false. `z-10` keeps it
+            above the <video> element even when the browser decodes
+            its own native poster. Pointer events stay on the button
+            alone; the rest of the surface is decorative. */}
         {!hasStarted && (
           <button
             type="button"
             onClick={handlePlay}
             aria-label={label}
             className="
-              group absolute inset-0 flex items-center justify-center
-              bg-gradient-to-t from-stone-900/45 via-stone-900/10 to-transparent
+              group absolute inset-0 z-10 flex items-center justify-center
+              bg-gradient-to-t from-stone-900/55 via-stone-900/15 to-transparent
               transition-colors duration-300
-              hover:from-stone-900/55
+              hover:from-stone-900/65
               focus-visible:outline-none focus-visible:ring-2
               focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-stone-900
             "
@@ -106,11 +123,11 @@ export function ProVideoPlayer({
             <span
               className="
                 relative inline-flex h-20 w-20 items-center justify-center rounded-full
-                bg-white/20 backdrop-blur-md
-                ring-1 ring-white/30
-                shadow-2xl shadow-stone-900/30
+                bg-white/25 backdrop-blur-md
+                ring-2 ring-white/40
+                shadow-2xl shadow-stone-900/40
                 transition-all duration-300 ease-out
-                group-hover:scale-110 group-hover:bg-white/30
+                group-hover:scale-110 group-hover:bg-white/35
                 md:h-28 md:w-28
               "
             >
