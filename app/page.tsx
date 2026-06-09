@@ -506,7 +506,7 @@ export default function HomePage() {
                 reel presentation that never crops the footage. */}
             <div className="w-full">
               <ProVideoPlayer
-                src="/marrakech-luxury-salon.mp4?v=2"
+                src="/marrakech-salon-hd.mp4"
                 label="Play the Marrakech luxury salon walk-through"
                 aspectRatio="aspect-[9/16]"
                 className="mx-auto w-full max-w-[360px] p-2 bg-white rounded-3xl shadow-2xl border border-neutral-100"
