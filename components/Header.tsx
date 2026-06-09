@@ -18,9 +18,10 @@ const ROOMS = [
 ] as const;
 
 const SIMPLE_NAV = [
-  { label: 'All Room Guides',   href: '/room-guides'   },
-  { label: 'Furniture Reviews', href: '/reviews'       },
-  { label: 'Design Trends',     href: '/design-trends' },
+  { label: 'All Room Guides',   href: '/room-guides'    },
+  { label: 'Furniture Reviews', href: '/reviews'        },
+  { label: 'Design Trends',     href: '/design-trends'  },
+  { label: 'Global Designs',    href: '/global-designs' },
 ] as const;
 
 type MenuId = 'rooms';

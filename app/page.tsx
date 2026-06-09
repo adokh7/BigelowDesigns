@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
 import { LazyVideoSection } from '@/components/LazyVideoSection';
+import { ProVideoPlayer } from '@/components/ProVideoPlayer';
 
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
@@ -414,6 +415,104 @@ export default function HomePage() {
             ))}
           </div>
 
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          2.5  GLOBAL AESTHETICS — new-category feature
+                Editorial two-column band: copy left, video right.
+                Designed to read like an AD feature page — soft
+                off-white surface, terracotta accent, serif headline.
+          ══════════════════════════════════════════════════════ */}
+      <section
+        aria-labelledby="global-aesthetics-heading"
+        className="relative bg-neutral-50 py-24 lg:py-32"
+      >
+        {/* Decorative warm glow — sits behind the column gutter on desktop */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-1/2 -z-0 hidden h-[420px] w-[420px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#B0552B]/[0.06] blur-3xl lg:block"
+        />
+
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
+
+            {/* ── LEFT COLUMN — copy + CTA ──────────────────── */}
+            <div className="flex flex-col">
+              {/* Terracotta overline — distinct from the brand bronze so
+                  the eye registers this as a *new* editorial direction. */}
+              <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-[#B0552B]">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#B0552B]" />
+                New Category · Global Aesthetics
+              </p>
+
+              <h2
+                id="global-aesthetics-heading"
+                className="mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl"
+              >
+                Modern{' '}
+                <span className="italic text-[#B0552B]">Marrakech</span>{' '}
+                Luxury
+              </h2>
+
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl">
+                Discover the perfect blend of traditional Moroccan
+                craftsmanship and contemporary high-end design — warm earthy
+                tones, intricate textures, and timeless elegance, considered
+                for the way you actually live.
+              </p>
+
+              {/* Stylistic divider — quiet line that anchors the CTA below */}
+              <div
+                aria-hidden="true"
+                className="mt-8 h-px w-12 bg-[#B0552B]/40"
+              />
+
+              <div className="mt-8">
+                <Link
+                  href="/global-designs"
+                  className="
+                    group inline-flex items-center gap-2 rounded-full
+                    bg-[#B0552B] px-8 py-3.5 text-base font-semibold text-white
+                    shadow-lg shadow-[#B0552B]/30
+                    transition-all duration-300 ease-out
+                    hover:bg-[#9a4a25] hover:-translate-y-0.5 hover:shadow-xl hover:shadow-[#B0552B]/40
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#B0552B] focus-visible:ring-offset-2
+                  "
+                >
+                  Read the Design Guide
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    aria-hidden="true"
+                    className="transition-transform duration-300 group-hover:translate-x-1"
+                  >
+                    <path d="M5 12h14M13 5l7 7-7 7" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+
+            {/* ── RIGHT COLUMN — video player ──────────────────
+                ProVideoPlayer's default className is overridden so it
+                fills its grid column instead of self-centering at the
+                tighter max-w-4xl. The premium frame, glass overlay,
+                and click-to-play behaviour are preserved. */}
+            <div className="relative">
+              <ProVideoPlayer
+                src="/marrakech-luxury-salon.mp4"
+                label="Play the Marrakech luxury salon walk-through"
+                className="w-full p-2 bg-white rounded-3xl shadow-2xl border border-neutral-100"
+              />
+            </div>
+
+          </div>
         </div>
       </section>
 

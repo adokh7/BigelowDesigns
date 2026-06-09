@@ -24,8 +24,9 @@ export const siteConfig = {
         { label: 'Outdoor Guides', href: '/rooms/outdoor-guides' },
       ],
     },
-    { label: 'Furniture Reviews', href: '/reviews'       },
-    { label: 'Design Trends',    href: '/design-trends' },
+    { label: 'Furniture Reviews', href: '/reviews'         },
+    { label: 'Design Trends',     href: '/design-trends'   },
+    { label: 'Global Designs',    href: '/global-designs'  },
   ],
 } as const;
 
