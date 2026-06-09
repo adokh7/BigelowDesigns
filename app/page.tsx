@@ -500,16 +500,11 @@ export default function HomePage() {
             </div>
 
             {/* ── RIGHT COLUMN — video player ──────────────────
-                ProVideoPlayer's default className is overridden so it
-                fills its grid column instead of self-centering at the
-                tighter max-w-4xl. The premium frame, glass overlay,
-                and click-to-play behaviour are preserved. */}
-            <div className="relative">
-              <ProVideoPlayer
-                src="/marrakech-luxury-salon.mp4"
-                label="Play the Marrakech luxury salon walk-through"
-                className="w-full p-2 bg-white rounded-3xl shadow-2xl border border-neutral-100"
-              />
+                Use the component defaults so the premium chrome,
+                glass overlay, and click-to-play behaviour all apply
+                exactly as designed. */}
+            <div className="w-full">
+              <ProVideoPlayer src="/marrakech-luxury-salon.mp4" />
             </div>
 
           </div>

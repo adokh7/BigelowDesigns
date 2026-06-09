@@ -97,7 +97,13 @@ export function ProVideoPlayer({
           poster={poster}
           onEnded={() => setHasStarted(false)}
         >
-          <source src={src} type={type} />
+          {/*
+            type is hardcoded to "video/mp4" so the browser can short-
+            circuit the codec sniff and start the metadata fetch
+            immediately. The `type` prop (still accepted on the
+            component) is used as a fallback for non-MP4 sources.
+          */}
+          <source src={src} type={type || 'video/mp4'} />
           Your browser does not support the video tag.
         </video>
 
