@@ -500,11 +500,17 @@ export default function HomePage() {
             </div>
 
             {/* ── RIGHT COLUMN — video player ──────────────────
-                Use the component defaults so the premium chrome,
-                glass overlay, and click-to-play behaviour all apply
-                exactly as designed. */}
+                The Marrakech clip is a 576×1024 portrait (9:16) reel,
+                so the card uses a vertical aspect ratio and a capped
+                width — centered in the column for an elegant phone-
+                reel presentation that never crops the footage. */}
             <div className="w-full">
-              <ProVideoPlayer src="/marrakech-luxury-salon.mp4" />
+              <ProVideoPlayer
+                src="/marrakech-luxury-salon.mp4"
+                label="Play the Marrakech luxury salon walk-through"
+                aspectRatio="aspect-[9/16]"
+                className="mx-auto w-full max-w-[360px] p-2 bg-white rounded-3xl shadow-2xl border border-neutral-100"
+              />
             </div>
 
           </div>

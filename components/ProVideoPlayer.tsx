@@ -39,6 +39,13 @@ export interface ProVideoPlayerProps {
   label?: string;
   /** Optional override for the outer container className. */
   className?: string;
+  /**
+   * Tailwind aspect-ratio class for the inner video frame.
+   * Defaults to 'aspect-video' (16:9 landscape). Pass 'aspect-[9/16]'
+   * for vertical / reel-style portrait clips so the frame matches the
+   * source dimensions and `object-cover` never crops.
+   */
+  aspectRatio?: string;
 }
 
 export function ProVideoPlayer({
@@ -47,6 +54,7 @@ export function ProVideoPlayer({
   poster,
   label = 'Play video',
   className,
+  aspectRatio = 'aspect-video',
 }: ProVideoPlayerProps) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
@@ -79,7 +87,7 @@ export function ProVideoPlayer({
           - `overflow-hidden + rounded-2xl` clips both the video and
             the overlay to the premium edge that matches the outer
             chrome. */}
-      <div className="relative aspect-video w-full overflow-hidden rounded-2xl bg-neutral-900">
+      <div className={`relative ${aspectRatio} w-full overflow-hidden rounded-2xl bg-neutral-900`}>
         <video
           ref={videoRef}
           // `absolute inset-0` + `object-cover` lets the video fill
