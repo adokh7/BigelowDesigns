@@ -36,7 +36,7 @@ const ROOMS = [
     slug: 'bedroom',
     label: 'Bedroom',
     tagline: 'Beds, bedding, lighting & the systems that make mornings easier',
-    image: '/cat-bedroom-pro.webp',
+    image: '/cat-bedroom-new.webp',
     imageAlt: 'A serene bedroom with layered linens and considered ambient lighting',
   },
   {
