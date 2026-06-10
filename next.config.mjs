@@ -15,9 +15,20 @@ const nextConfig = {
   },
   images: {
     remotePatterns: [
+      // Author avatars + editorial photography (Hero / SplitHero).
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
+      },
+      // Amazon product imagery for affiliate ProductCards that point at
+      // remote Amazon-hosted images rather than local /public assets.
+      {
+        protocol: 'https',
+        hostname: 'images-na.ssl-images-amazon.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'm.media-amazon.com',
       },
     ],
   },

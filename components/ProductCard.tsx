@@ -3,7 +3,12 @@
 import { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
-import { resolveImage } from '@/lib/image-utils';
+// NOTE: do NOT import `resolveImage` from '@/lib/image-utils' here.
+// This is a client component, and image-utils uses node:fs/node:path
+// (server-only) — pulling it into the client bundle breaks the build
+// (UnhandledSchemeError on Vercel). The `onError` handler below already
+// covers missing/broken images at runtime, which is strictly better
+// than a build-time fs existence check anyway.
 
 /**
  * ProductCard
@@ -147,7 +152,7 @@ export function ProductCard({
           </div>
         ) : (
           <Image
-            src={resolveImage(imgSrc)}
+            src={imgSrc}
             alt={imgAlt}
             fill
             sizes={
