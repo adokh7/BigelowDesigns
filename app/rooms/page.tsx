@@ -15,20 +15,22 @@ export const metadata: Metadata = {
 };
 
 // ─── Room directory ───────────────────────────────────────────
+// Strict shape: `image` is ALWAYS a public file path; the descriptive
+// string lives ONLY in `imageAlt`. Never swap these.
 const ROOMS = [
   {
     slug: 'living-room',
     label: 'Living Room',
     tagline: 'Sofas, layouts, rugs & the art of the considered gathering space',
     image: '/cat-living-room-pro.webp',
-    imageAlt: 'A beautifully composed living room with warm tones and careful furniture arrangement',
+    imageAlt: 'Editorial architectural photography of a luxury organic modern living room',
   },
   {
     slug: 'kitchen',
     label: 'Kitchen',
     tagline: 'Islands, cabinetry, hardware & the details that define a kitchen',
     image: '/cat-kitchen-pro.webp',
-    imageAlt: 'A well-designed kitchen with a large island and warm overhead lighting',
+    imageAlt: 'Luxury modern kitchen with marble waterfall island',
   },
   {
     slug: 'bedroom',
@@ -42,21 +44,21 @@ const ROOMS = [
     label: 'Bathroom',
     tagline: 'Vanities, tiles, fixtures & the small details that matter most',
     image: '/cat-bathroom-pro.webp',
-    imageAlt: 'A minimal bathroom with clean lines and quality chrome fixtures',
+    imageAlt: 'A minimal bathroom with clean lines and quality fixtures',
   },
   {
     slug: 'home-office',
     label: 'Home Office',
     tagline: 'Desks, chairs, storage & the setup that makes deep work possible',
     image: '/cat-home-office-pro.webp',
-    imageAlt: 'A focused home office setup with a clean desk and natural light',
+    imageAlt: 'High-end curated home office with wooden desk',
   },
   {
     slug: 'outdoor-guides',
     label: 'Outdoor Guides',
     tagline: 'Furniture, planters, lighting & making outside work as hard as inside',
     image: '/cat-outdoor-pro.webp',
-    imageAlt: 'A beautifully designed outdoor balcony oasis with warm ambient lighting and soft seating',
+    imageAlt: 'Mediterranean outdoor terrace at golden hour',
   },
 ] as const;
 
