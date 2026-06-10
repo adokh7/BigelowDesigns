@@ -36,14 +36,14 @@ const ROOMS = [
     slug: 'bedroom',
     label: 'Bedroom',
     tagline: 'Beds, bedding, lighting & the systems that make mornings easier',
-    image: '/cat-bedroom-new.webp',
+    image: '/cat-bedroom-pro.webp?v=2',
     imageAlt: 'A serene bedroom with layered linens and considered ambient lighting',
   },
   {
     slug: 'bathroom',
     label: 'Bathroom',
     tagline: 'Vanities, tiles, fixtures & the small details that matter most',
-    image: '/cat-bathroom-pro.webp',
+    image: '/cat-bathroom-pro.webp?v=2',
     imageAlt: 'A minimal bathroom with clean lines and quality fixtures',
   },
   {
