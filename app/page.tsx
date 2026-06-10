@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
 import { LazyVideoSection } from '@/components/LazyVideoSection';
 import { ProVideoPlayer } from '@/components/ProVideoPlayer';
+import { ScrollReveal } from '@/components/ui/Reveal';
 
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
@@ -342,8 +343,8 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
 
-          {/* Section header */}
-          <div className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+          {/* Section header — soft fade-up as it enters the viewport */}
+          <ScrollReveal className="mb-14 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
@@ -373,12 +374,17 @@ export default function HomePage() {
                 <path d="M5 12h14M13 5l7 7-7 7" />
               </svg>
             </Link>
-          </div>
+          </ScrollReveal>
 
-          {/* Card grid — 1/2/3 columns */}
+          {/* Card grid — 1/2/3 columns, cards stagger in 120 ms apart */}
           <div className="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
-            {FEATURED.map((article) => (
-              <article key={article.href} className="group">
+            {FEATURED.map((article, idx) => (
+              <ScrollReveal
+                key={article.href}
+                as="article"
+                delay={idx * 120}
+                className="group"
+              >
                 <Link href={article.href} className="block">
 
                   {/* Card image */}
@@ -411,7 +417,7 @@ export default function HomePage() {
                   </div>
 
                 </Link>
-              </article>
+              </ScrollReveal>
             ))}
           </div>
 
@@ -438,7 +444,7 @@ export default function HomePage() {
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16 xl:gap-20">
 
             {/* ── LEFT COLUMN — copy + CTA ──────────────────── */}
-            <div className="flex flex-col">
+            <ScrollReveal className="flex flex-col">
               {/* Terracotta overline — distinct from the brand bronze so
                   the eye registers this as a *new* editorial direction. */}
               <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.22em] text-[#B0552B]">
@@ -497,21 +503,22 @@ export default function HomePage() {
                   </svg>
                 </Link>
               </div>
-            </div>
+            </ScrollReveal>
 
             {/* ── RIGHT COLUMN — video player ──────────────────
                 The Marrakech clip is a 576×1024 portrait (9:16) reel,
                 so the card uses a vertical aspect ratio and a capped
                 width — centered in the column for an elegant phone-
-                reel presentation that never crops the footage. */}
-            <div className="w-full">
+                reel presentation that never crops the footage.
+                Trails the copy column by 150 ms for editorial pacing. */}
+            <ScrollReveal delay={150} className="w-full">
               <ProVideoPlayer
                 src="/marrakech-salon-hd.mp4"
                 label="Play the Marrakech luxury salon walk-through"
                 aspectRatio="aspect-[9/16]"
                 className="mx-auto w-full max-w-[360px] p-2 bg-white rounded-3xl shadow-2xl border border-neutral-100"
               />
-            </div>
+            </ScrollReveal>
 
           </div>
         </div>
@@ -526,8 +533,8 @@ export default function HomePage() {
       >
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
 
-          {/* Section header */}
-          <div className="text-center">
+          {/* Section header — fades up on scroll */}
+          <ScrollReveal className="text-center">
             <p className="text-xs font-medium uppercase tracking-[0.28em] text-stone-500">
               Curated Essentials
             </p>
@@ -540,13 +547,15 @@ export default function HomePage() {
             <p className="mx-auto mt-4 max-w-xl text-base text-stone-600">
               A small, deliberate edit of the pieces we keep recommending to clients — across kitchens, living rooms, and small-space layouts.
             </p>
-          </div>
+          </ScrollReveal>
 
-          {/* Product grid */}
+          {/* Product grid — cards stagger in 120 ms apart */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-16">
-            {FAVORITES.map((product) => (
-              <article
+            {FAVORITES.map((product, idx) => (
+              <ScrollReveal
                 key={product.href}
+                as="article"
+                delay={idx * 120}
                 className="group flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-lg hover:shadow-stone-900/5"
               >
                 {/* Square image */}
@@ -596,7 +605,7 @@ export default function HomePage() {
                     </svg>
                   </a>
                 </div>
-              </article>
+              </ScrollReveal>
             ))}
           </div>
 
@@ -612,7 +621,7 @@ export default function HomePage() {
           ══════════════════════════════════════════════════════ */}
       <section className="bg-gradient-to-br from-brand-light/30 via-white to-emerald-50/40">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-          <div className="mx-auto max-w-2xl text-center">
+          <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
               The Newsletter
@@ -641,7 +650,7 @@ export default function HomePage() {
                 </svg>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

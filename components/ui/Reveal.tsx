@@ -56,6 +56,11 @@ export function Reveal({
       style={{
         transitionDelay: `${delay}ms`,
         transform: visible ? 'translateY(0)' : `translateY(${distance}px)`,
+        // will-change is a compositor *hint* with a real memory cost per
+        // promoted layer — so we only hold it while the element is still
+        // waiting to animate, and release it ('auto') once revealed so
+        // the browser can reclaim the layer.
+        willChange: visible ? 'auto' : 'opacity, transform',
       }}
       className={clsx(
         'transition-[opacity,transform] duration-editorial ease-in-out',
@@ -67,3 +72,11 @@ export function Reveal({
     </Tag>
   );
 }
+
+/**
+ * ScrollReveal — canonical alias for <Reveal />.
+ * Same native-IntersectionObserver fade-up (opacity + translateY only,
+ * both compositor-accelerated). Exists so call sites can use the
+ * conventional name without a second implementation drifting apart.
+ */
+export { Reveal as ScrollReveal };

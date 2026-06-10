@@ -6,6 +6,7 @@ import { LazyFooter } from '@/components/LazyFooter';
 import { CompareProvider } from '@/contexts/CompareContext';
 import { LazyCompareDrawer } from '@/components/LazyCompareDrawer';
 import { AnalyticsListener } from '@/components/AnalyticsListener';
+import { SmoothScroll } from '@/components/SmoothScroll';
 import { siteConfig } from '@/lib/site';
 import './globals.css';
 
@@ -212,20 +213,25 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
 
-        <CompareProvider>
-          <AnalyticsListener />
-          <Header />
-          <main id="main" className="flex-1">
-            {children}
-          </main>
-          {/* Code-split — Footer + its NewsletterForm island ship in a
-              separate chunk so they don't compete with LCP work. SSR is
-              preserved so crawlers still see the footer link graph. */}
-          <LazyFooter />
-          {/* Code-split + client-only — keeps compare state out of the
-              initial bundle for the 95% of sessions that never use it. */}
-          <LazyCompareDrawer />
-        </CompareProvider>
+        {/* Lenis smooth scroll — root mode hooks the window scroller (no
+            wrapper div, no nested scroll container, no CLS). Falls back
+            to native scrolling for prefers-reduced-motion users. */}
+        <SmoothScroll>
+          <CompareProvider>
+            <AnalyticsListener />
+            <Header />
+            <main id="main" className="flex-1">
+              {children}
+            </main>
+            {/* Code-split — Footer + its NewsletterForm island ship in a
+                separate chunk so they don't compete with LCP work. SSR is
+                preserved so crawlers still see the footer link graph. */}
+            <LazyFooter />
+            {/* Code-split + client-only — keeps compare state out of the
+                initial bundle for the 95% of sessions that never use it. */}
+            <LazyCompareDrawer />
+          </CompareProvider>
+        </SmoothScroll>
       </body>
     </html>
   );
