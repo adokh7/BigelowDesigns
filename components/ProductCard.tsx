@@ -1,3 +1,6 @@
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 import { resolveImage } from '@/lib/image-utils';
@@ -60,6 +63,7 @@ export function ProductCard({
   variant = 'responsive',
   badge,
 }: ProductCardProps) {
+  const [imgError, setImgError] = useState(false);
   const isHorizontal = variant === 'responsive';
 
   const displayName = name || title || '';
@@ -117,23 +121,44 @@ export function ProductCard({
           object-contain + inner padding give the catalog-shot feel. */}
       <div
         className={clsx(
-          'relative overflow-hidden bg-gray-50',
+          'relative overflow-hidden bg-gray-50 flex items-center justify-center',
           isHorizontal
             ? 'aspect-[4/3] w-full md:aspect-auto md:w-2/5 md:shrink-0 md:self-stretch'
             : 'aspect-[4/3] w-full',
         )}
       >
-        <Image
-          src={resolveImage(imgSrc)}
-          alt={imgAlt}
-          fill
-          sizes={
-            isHorizontal
-              ? '(max-width: 768px) 100vw, 360px'
-              : '(max-width: 768px) 100vw, 480px'
-          }
-          className="object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
+        {imgError || !imgSrc ? (
+          <div className="flex flex-col items-center justify-center text-gray-400">
+            <svg
+              className="h-10 w-10 mb-2 opacity-50"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={1.5}
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+              />
+            </svg>
+            <span className="text-xs font-medium uppercase tracking-wider text-gray-400">No Image</span>
+          </div>
+        ) : (
+          <Image
+            src={resolveImage(imgSrc)}
+            alt={imgAlt}
+            fill
+            sizes={
+              isHorizontal
+                ? '(max-width: 768px) 100vw, 360px'
+                : '(max-width: 768px) 100vw, 480px'
+            }
+            className="object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            onError={() => setImgError(true)}
+          />
+        )}
       </div>
 
       {/* ── Copy + CTA column ─────────────────────────────────────── */}
