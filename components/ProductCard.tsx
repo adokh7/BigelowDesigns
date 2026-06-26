@@ -101,17 +101,26 @@ export function ProductCard({
     displayPrice = `${CURRENCY_SYMBOL[price.currency] || '$'}${price.amount.toLocaleString('en-US')}`;
   }
 
+  const Component = ctaHref ? 'a' : 'article';
+  const wrapperProps = ctaHref
+    ? {
+        href: ctaHref,
+        target: '_blank',
+        rel: 'sponsored nofollow noopener',
+        'data-affiliate-network': ctaNetwork,
+      }
+    : {};
+
   return (
-    <article
+    <Component
+      {...wrapperProps}
       className={clsx(
         // Core card surface — premium feel, conversion-focused
-        'group relative my-6 overflow-hidden rounded-xl',
-        'border border-gray-100 bg-white',
-        'shadow-sm transition-all duration-300 ease-out',
-        'hover:-translate-y-0.5 hover:shadow-xl hover:border-gray-200',
-        'focus-within:ring-2 focus-within:ring-accent focus-within:ring-offset-2',
+        'group relative my-6 overflow-hidden rounded-xl bg-white border border-neutral-100',
+        'shadow-sm hover:shadow-md transition-all duration-300 ease-out',
+        'focus-within:ring-2 focus-within:ring-neutral-900 focus-within:ring-offset-2',
         // Layout: stacked on mobile, side-by-side on desktop (when responsive)
-        isHorizontal ? 'flex flex-col md:flex-row' : 'flex flex-col',
+        isHorizontal ? 'flex flex-col md:flex-row' : 'flex flex-col h-full',
       )}
     >
       {badge && (
@@ -121,15 +130,13 @@ export function ProductCard({
       )}
 
       {/* ── Image plate ─────────────────────────────────────────────
-          Subtle gray background so product shots on white backgrounds
-          read as floating objects rather than washed-out cards. The
-          object-contain + inner padding give the catalog-shot feel. */}
+          Subtle off-white background (bg-neutral-50) so product shots
+          on white backgrounds read as floating objects. aspect-square
+          w-full keeps images contained within a clean square container. */}
       <div
         className={clsx(
-          'relative overflow-hidden bg-gray-50 flex items-center justify-center',
-          isHorizontal
-            ? 'aspect-[4/3] w-full md:aspect-auto md:w-2/5 md:shrink-0 md:self-stretch'
-            : 'aspect-[4/3] w-full',
+          'relative overflow-hidden bg-neutral-50 flex items-center justify-center aspect-square w-full',
+          isHorizontal && 'md:w-2/5 md:shrink-0 md:self-stretch md:aspect-auto',
         )}
       >
         {imgError || !imgSrc ? (
@@ -160,7 +167,7 @@ export function ProductCard({
                 ? '(max-width: 768px) 100vw, 360px'
                 : '(max-width: 768px) 100vw, 480px'
             }
-            className="object-contain p-6 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+            className="object-contain p-4 transition-transform duration-500 ease-out group-hover:scale-[1.04]"
             onError={() => setImgError(true)}
           />
         )}
@@ -169,23 +176,23 @@ export function ProductCard({
       {/* ── Copy + CTA column ─────────────────────────────────────── */}
       <div
         className={clsx(
-          'flex flex-col gap-3 p-6',
+          'flex flex-col flex-grow gap-3 p-6',
           isHorizontal && 'md:flex-1 md:gap-4 md:p-8',
         )}
       >
         <div>
           {brand && (
-            <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+            <p className="text-xs tracking-widest text-neutral-400 font-medium uppercase">
               {brand}
             </p>
           )}
-          <h3 className="mt-1.5 font-serif text-xl font-bold leading-snug tracking-tight text-gray-900 md:text-2xl">
+          <h3 className="mt-2 font-serif text-lg font-bold leading-snug text-neutral-900 transition-colors group-hover:text-neutral-800">
             {displayName}
           </h3>
         </div>
 
         {description && (
-          <p className="text-sm leading-relaxed text-gray-600 line-clamp-3">
+          <p className="text-sm leading-relaxed text-neutral-600 line-clamp-3">
             {description}
           </p>
         )}
@@ -195,48 +202,24 @@ export function ProductCard({
         {/* ── Price + CTA row — pinned to bottom of the column ── */}
         <div className="mt-auto flex flex-wrap items-center justify-between gap-4 pt-3">
           {displayPrice && (
-            <p className="font-serif text-3xl font-bold leading-none tracking-tight text-gray-900">
+            <p className="font-serif text-2xl font-bold leading-none tracking-tight text-neutral-900">
               {displayPrice}
             </p>
           )}
 
           {ctaHref && (
-            <a
-              href={ctaHref}
-              target="_blank"
-              rel="sponsored nofollow noopener"
-              data-affiliate-network={ctaNetwork}
+            <span
               className={clsx(
-                'inline-flex items-center justify-center gap-2',
-                'rounded-full px-6 py-3',
-                'bg-accent text-sm font-semibold text-white',
-                'shadow-md shadow-accent/30',
-                'transition-all duration-300 ease-out',
-                'hover:bg-accent-600 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-accent/40',
-                'active:translate-y-0 active:scale-[0.98]',
-                'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2',
+                'inline-block text-center text-white bg-neutral-900 group-hover:bg-neutral-800 text-sm font-medium py-2.5 px-4 rounded-lg transition-colors',
+                !displayPrice && 'w-full',
               )}
             >
               {ctaLabel}
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
-                className="transition-transform duration-300 ease-out group-hover:translate-x-0.5"
-              >
-                <path d="M5 12h14M13 5l7 7-7 7" />
-              </svg>
-            </a>
+            </span>
           )}
         </div>
       </div>
-    </article>
+    </Component>
   );
 }
 
