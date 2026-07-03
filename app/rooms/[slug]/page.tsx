@@ -185,9 +185,9 @@ export default async function RoomCategoryPage({ params }: PageProps) {
         </div>
       </div>
 
-      {/* Hero Image — premium fixed height with rounded-2xl */}
+      {/* Hero Image — premium responsive aspect ratio with max-height */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
+        <div className="relative w-full aspect-video max-h-[60vh] overflow-hidden rounded-2xl bg-stone-50">
           <Image
             src={meta.heroImage}
             alt={meta.heroImageAlt}
@@ -195,7 +195,7 @@ export default async function RoomCategoryPage({ params }: PageProps) {
             priority
             fetchPriority="high"
             sizes="(max-width: 1280px) 100vw, 1280px"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
       </div>

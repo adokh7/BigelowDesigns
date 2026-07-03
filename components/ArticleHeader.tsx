@@ -82,11 +82,10 @@ export function ArticleHeader({
 
       <figure
         className={clsx(
-          'relative mt-8 overflow-hidden animate-fade-zoom',
-          // Mobile: full-bleed (-mx-4 escapes article px-4), 4:3 portrait crop
-          //         No rounded corners — image touches viewport edges
+          'relative mt-8 overflow-hidden animate-fade-zoom bg-stone-50 w-full max-h-[60vh]',
+          // Mobile: full-bleed (-mx-4 escapes article px-4)
           // Tablet+: contained with px-6 gutter, 16:9 natural ratio, rounded
-          'aspect-[4/3] -mx-4 md:mx-0 md:aspect-video md:rounded-2xl',
+          'aspect-video -mx-4 md:mx-0 md:rounded-2xl',
         )}
         style={{ animationDelay: '240ms' }}
       >
@@ -97,7 +96,7 @@ export function ArticleHeader({
           priority
           fetchPriority="high"
           sizes="(max-width: 768px) 100vw, (max-width: 1280px) 80vw, 1024px"
-          className="object-cover"
+          className="object-contain"
         />
       </figure>
     </header>

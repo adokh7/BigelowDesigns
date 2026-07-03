@@ -146,10 +146,10 @@ export default function SpaceSavingDiningTablesPage() {
       </div>
 
       {/* ══════════════════════════════════════════════════════
-          2. HERO IMAGE — full bleed, cinematic on xl
+          2. HERO IMAGE — Responsive aspect ratio with max-height
           ══════════════════════════════════════════════════════ */}
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="relative w-full h-[280px] sm:h-[400px] md:h-[500px] lg:h-[600px] overflow-hidden rounded-2xl bg-elevated">
+        <div className="relative w-full aspect-video max-h-[60vh] overflow-hidden rounded-2xl bg-stone-50">
           <Image
             src={ARTICLE.heroImage}
             alt={ARTICLE.heroImageAlt}
@@ -157,7 +157,7 @@ export default function SpaceSavingDiningTablesPage() {
             priority
             fetchPriority="high"
             sizes="(max-width: 1200px) 100vw, 1200px"
-            className="object-cover"
+            className="object-contain"
           />
         </div>
         <p className="mt-3 text-center text-[12px] italic leading-5 text-ink-400">
