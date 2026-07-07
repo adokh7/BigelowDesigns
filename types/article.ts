@@ -16,6 +16,7 @@ export interface ArticleFrontmatter {
   publishedAt: string;
   updatedAt?: string;
   heroImage: string;
+  image?: string;
   heroImageAlt: string;
   heroImageWidth?: number;
   heroImageHeight?: number;
