@@ -3,6 +3,7 @@ import path from 'node:path';
 import matter from 'gray-matter';
 import readingTime from 'reading-time';
 import type { Article, ArticleFrontmatter, Heading } from '@/types/article';
+import { resolveImage } from './image-utils';
 
 const CONTENT_DIR = path.join(process.cwd(), 'content', 'articles');
 
@@ -15,8 +16,8 @@ function slugify(text: string): string {
 }
 
 function extractHeadings(markdown: string): Heading[] {
-  const lines = markdown.split('\n');
   const headings: Heading[] = [];
+  const lines = markdown.split('\n');
   let inFence = false;
   for (const line of lines) {
     if (line.startsWith('```')) {
@@ -40,8 +41,18 @@ function readArticleFile(filename: string): Article {
   const { data, content } = matter(raw);
   const fm = data as ArticleFrontmatter;
   const stats = readingTime(content);
+  
+  // Resolve image paths to browser-facing paths if they exist
+  const heroImage = resolveImage(fm.heroImage);
+  
+  // Cast data to any to resolve image safely if present
+  const rawData = data as any;
+  const image = rawData.image ? resolveImage(rawData.image) : heroImage;
+
   return {
     ...fm,
+    heroImage,
+    image,
     slug: fm.slug ?? filename.replace(/\.mdx?$/, ''),
     content,
     readingTime: Math.ceil(stats.minutes),

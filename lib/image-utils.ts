@@ -52,11 +52,20 @@ export function resolveImage(
   const normalized = src.startsWith('/') ? src : `/${src}`;
 
   // Strip any query string or hash before hitting the filesystem.
-  const fsRelative = normalized.split('?')[0].split('#')[0];
+  const fsRelativeClean = normalized.split('?')[0].split('#')[0];
+  
+  let fsRelative = fsRelativeClean;
+  let returnPath = normalized;
+  
+  // If the path starts with /public/, strip it for physical fs check and return path
+  if (fsRelativeClean.startsWith('/public/')) {
+    fsRelative = fsRelativeClean.replace(/^\/public/, '');
+    returnPath = normalized.replace(/^\/public/, '');
+  }
 
   try {
     const fullPath = path.join(PUBLIC_DIR, fsRelative);
-    if (existsSync(fullPath)) return normalized;
+    if (existsSync(fullPath)) return returnPath;
   } catch {
     // Any unexpected fs error — fall through to fallback.
   }
