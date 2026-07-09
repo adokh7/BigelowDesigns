@@ -60,33 +60,7 @@ const FEATURED = [
   },
 ] as const;
 
-// ─── Curated affiliate picks — sits between articles & newsletter ─
-const FAVORITES = [
-  {
-    brand:    'Loyalfire',
-    title:    'Loyalfire Over Sink Dish Drying Rack',
-    price:    '$109.77',
-    image:    '/renter-friendly-kitchen.webp',
-    imageAlt: 'Loyalfire Over Sink Dish Drying Rack in a modern kitchen',
-    href:     'https://amzn.to/4ueDlkA',
-  },
-  {
-    brand:    'SOERGO',
-    title:    'Modern Lambs Wool Accent Chair',
-    price:    '$142.49',
-    image:    '/warm-minimalism-nordic.webp',
-    imageAlt: 'SOERGO Modern Lambs Wool Accent Chair white cozy lounge seating',
-    href:     'https://amzn.to/3Q4JRMS',
-  },
-  {
-    brand:    'MERRYBOX',
-    title:    'MERRYBOX Triangle Roll Up Dish Drying Rack',
-    price:    '$13.99',
-    image:    '/micro-kitchen-island.webp',
-    imageAlt: 'MERRYBOX Triangle Roll Up Dish Drying Rack space saving kitchen organizer',
-    href:     'https://amzn.to/4ax1jR1',
-  },
-] as const;
+
 
 // ─── Page ─────────────────────────────────────────────────────
 export default function HomePage() {
@@ -524,97 +498,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══════════════════════════════════════════════════════
-          3. SHOP OUR FAVORITES — curated affiliate picks
-          ══════════════════════════════════════════════════════ */}
-      <section
-        aria-labelledby="favorites-heading"
-        className="bg-[#FAFAFA]"
-      >
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
 
-          {/* Section header — fades up on scroll */}
-          <ScrollReveal className="text-center">
-            <p className="text-xs font-medium uppercase tracking-[0.28em] text-stone-500">
-              Curated Essentials
-            </p>
-            <h2
-              id="favorites-heading"
-              className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
-            >
-              Shop Our Curated Favorites
-            </h2>
-            <p className="mx-auto mt-4 max-w-xl text-base text-stone-600">
-              A small, deliberate edit of the pieces we keep recommending to clients — across kitchens, living rooms, and small-space layouts.
-            </p>
-          </ScrollReveal>
-
-          {/* Product grid — cards stagger in 120 ms apart */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-16">
-            {FAVORITES.map((product, idx) => (
-              <ScrollReveal
-                key={product.href}
-                as="article"
-                delay={idx * 120}
-                className="group flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition-all duration-300 ease-out hover:-translate-y-0.5 hover:border-stone-300 hover:shadow-lg hover:shadow-stone-900/5"
-              >
-                {/* Square image */}
-                <div className="relative aspect-square w-full overflow-hidden rounded-xl bg-stone-100">
-                  <Image
-                    src={product.image}
-                    alt={product.imageAlt}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 33vw, 400px"
-                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
-                  />
-                </div>
-
-                {/* Copy + CTA */}
-                <div className="flex flex-1 flex-col p-6">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-stone-500">
-                    {product.brand}
-                  </p>
-                  <h3 className="mt-2 font-serif text-lg font-semibold leading-snug text-stone-900">
-                    {product.title}
-                  </h3>
-                  <p className="mt-3 font-serif text-2xl font-semibold text-stone-900">
-                    {product.price}
-                  </p>
-
-                  <a
-                    href={product.href}
-                    target="_blank"
-                    rel="sponsored noopener noreferrer"
-                    className="
-                      mt-6 inline-flex items-center justify-center gap-2
-                      rounded-full bg-brand px-6 py-3 text-sm font-semibold text-white
-                      transition-all duration-300 ease-out
-                      hover:bg-brand-hover hover:-translate-y-0.5 hover:shadow-md hover:shadow-brand/30
-                      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
-                    "
-                  >
-                    Shop Now
-                    <svg
-                      width="14" height="14" viewBox="0 0 24 24"
-                      fill="none" stroke="currentColor" strokeWidth="2.5"
-                      strokeLinecap="round" strokeLinejoin="round"
-                      aria-hidden="true"
-                      className="transition-transform duration-300 group-hover:translate-x-0.5"
-                    >
-                      <path d="M5 12h14M13 5l7 7-7 7" />
-                    </svg>
-                  </a>
-                </div>
-              </ScrollReveal>
-            ))}
-          </div>
-
-          {/* Disclaimer */}
-          <p className="text-center text-sm italic text-stone-500">
-            We independently review everything we recommend. When you buy through our links, we may earn a small affiliate commission at no extra cost to you.
-          </p>
-        </div>
-      </section>
 
       {/* ══════════════════════════════════════════════════════
           4. NEWSLETTER BAND — closing CTA, vibrant footer

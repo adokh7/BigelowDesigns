@@ -12,13 +12,7 @@ import { Breadcrumbs } from '@/components/Breadcrumbs';
 import { JsonLd } from '@/components/JsonLd';
 import { FacebookComments } from '@/components/FacebookComments';
 import { PremiumSocialClub } from '@/components/PremiumSocialClub';
-import { AffiliateButton } from '@/components/AffiliateButton';
-import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
-import { AffiliateProductGrid } from '@/components/AffiliateProductGrid';
-import { ComparisonTable } from '@/components/ComparisonTable';
 import { FAQAccordion } from '@/components/FAQAccordion';
-import { ProductCard } from '@/components/ProductCard';
-import { ShopTheLook } from '@/components/ShopTheLook';
 import {
   getAllArticles,
   getArticleBySlugOnly,
@@ -247,10 +241,6 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
           {/* ── Main prose column ── */}
           <main className="lg:col-span-8">
-            {/* Global affiliate disclosure — auto-rendered for every
-                article so we never have to hardcode it into MDX. */}
-            <AffiliateDisclosure />
-
             <div className="prose prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
@@ -258,12 +248,6 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   // next/image — exposed to MDX so articles can embed
                   // optimised product photography with `<Image .../>` directly.
                   Image,
-                  AffiliateButton,
-                  AffiliateDisclosure,
-                  AffiliateProductGrid,
-                  ProductCard,
-                  ComparisonTable,
-                  ShopTheLook,
                   FAQAccordion,
                 }}
                 options={{

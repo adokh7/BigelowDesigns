@@ -9,20 +9,12 @@ import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 import { ArticleHeader } from '@/components/ArticleHeader';
 import { AuthorByline } from '@/components/AuthorByline';
 import { Breadcrumbs } from '@/components/Breadcrumbs';
-import { ComparisonTable } from '@/components/ComparisonTable';
 import { FAQAccordion } from '@/components/FAQAccordion';
 import { JsonLd } from '@/components/JsonLd';
 import { RelatedArticles } from '@/components/RelatedArticles';
 import { FacebookComments } from '@/components/FacebookComments';
 import { PremiumSocialClub } from '@/components/PremiumSocialClub';
 import { TableOfContents } from '@/components/TableOfContents';
-import { AffiliateButton } from '@/components/AffiliateButton';
-import { AffiliateDisclosure } from '@/components/AffiliateDisclosure';
-import { AffiliateProductGrid } from '@/components/AffiliateProductGrid';
-import { ProductCard } from '@/components/ProductCard';
-import { ShopTheLook } from '@/components/ShopTheLook';
-import { StickyMiniCompare } from '@/components/ui/StickyMiniCompare';
-import { RelatedProductsRail } from '@/components/RelatedProductsRail';
 
 import {
   getAllArticles,
@@ -136,8 +128,6 @@ export default async function ArticlePage({ params }: PageProps) {
     buildBreadcrumbSchema(breadcrumbItems),
   ];
   if (article.faq?.length) schemas.push(buildFaqSchema(article.faq));
-  if (article.products?.length)
-    schemas.push(buildItemListSchema(article.products, article.title));
 
   return (
     <>
@@ -180,22 +170,12 @@ export default async function ArticlePage({ params }: PageProps) {
               </details>
             )}
 
-            {/* Auto-rendered affiliate disclosure — appears at the
-                top of every article rendered through this route. */}
-            <AffiliateDisclosure />
-
             <MDXRemote
               source={article.content}
               components={{
                 // next/image — exposed to MDX so articles can embed
                 // optimised product photography with `<Image .../>` directly.
                 Image,
-                AffiliateButton,
-                AffiliateDisclosure,
-                AffiliateProductGrid,
-                ProductCard,
-                ComparisonTable,
-                ShopTheLook,
                 FAQAccordion,
               }}
               options={{
@@ -208,13 +188,6 @@ export default async function ArticlePage({ params }: PageProps) {
                 },
               }}
             />
-
-            {article.products && article.products.length > 0 && (
-              <ComparisonTable
-                products={article.products}
-                title="At a glance — our top picks"
-              />
-            )}
 
             {article.faq && article.faq.length > 0 && (
               <FAQAccordion items={article.faq} />
@@ -229,17 +202,6 @@ export default async function ArticlePage({ params }: PageProps) {
 
         <RelatedArticles articles={related} />
       </article>
-
-      {/* End-of-article product carousel — horizontal swipe on mobile */}
-      {article.products && article.products.length > 0 && (
-        <div className="mx-auto max-w-page">
-          <RelatedProductsRail products={article.products} />
-        </div>
-      )}
-
-      {article.products && article.products.length > 0 && (
-        <StickyMiniCompare products={article.products} />
-      )}
 
       {/* Editorial social-club CTA (TikTok + Facebook) above the comments. */}
       <PremiumSocialClub />
