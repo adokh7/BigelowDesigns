@@ -132,9 +132,9 @@ export default function HomePage() {
                 className="animate-fade-rise mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl xl:text-7xl"
                 style={{ animationDelay: '120ms' }}
               >
-                Premium Interior Design,{' '}
+                Honest Interior Design,{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 italic text-brand">Honestly Tested</span>
+                  <span className="relative z-10 italic text-brand">Simplified</span>
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-brand-light/70 md:bottom-2 md:h-4"
@@ -149,8 +149,8 @@ export default function HomePage() {
                 className="animate-fade-rise mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl"
                 style={{ animationDelay: '240ms' }}
               >
-                We test the high-end pieces and design moves that actually
-                deliver — vetted in real homes, on real budgets, with{' '}
+                We share practical layout rules, design principles, and simple ideas
+                that actually work in real homes — with{' '}
                 <span className="font-semibold text-stone-900">zero sponsored opinions</span>.
               </p>
 
@@ -254,10 +254,10 @@ export default function HomePage() {
                   </span>
                   <div>
                     <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
-                      This Week&rsquo;s Pick
+                      Featured
                     </p>
                     <p className="text-sm font-semibold text-stone-900">
-                      Premium under $400
+                      DESIGN TIPS
                     </p>
                   </div>
                 </div>
