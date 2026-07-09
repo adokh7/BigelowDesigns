@@ -46,9 +46,7 @@ export const metadata: Metadata = {
   applicationName: siteConfig.name,
   authors: [{ name: siteConfig.name, url: siteConfig.url }],
   creator: siteConfig.name,
-  publisher: siteConfig.name,
   alternates: {
-    canonical: siteConfig.url,
     types: { 'application/rss+xml': `${siteConfig.url}/rss.xml` },
   },
   openGraph: {

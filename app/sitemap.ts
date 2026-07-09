@@ -25,6 +25,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/room-guides`,          priority: 0.7 },
     { url: `${siteConfig.url}/newsletter`,           priority: 0.5 },
     { url: `${siteConfig.url}/affiliate-disclosure`, priority: 0.3 },
+    { url: `${siteConfig.url}/privacy`,              priority: 0.3 },
+    { url: `${siteConfig.url}/terms`,                priority: 0.3 },
+    { url: `${siteConfig.url}/global-designs`,        priority: 0.7 },
+    { url: `${siteConfig.url}/rooms`,                 priority: 0.7 },
+    { url: `${siteConfig.url}/compare`,               priority: 0.7 },
   ].map((p) => ({
     ...p,
     lastModified: new Date(),
