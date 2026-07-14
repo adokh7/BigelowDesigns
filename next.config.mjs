@@ -58,6 +58,21 @@ const nextConfig = {
       // /book-online and everything beneath it (e.g. /book-online/phone-meeting)
       { source: '/book-online',         destination: CANONICAL_HOME, statusCode: 301 },
       { source: '/book-online/:path*',  destination: CANONICAL_HOME, statusCode: 301 },
+
+      /*
+       * Duplicate-content consolidation (GSC).
+       *
+       * Articles resolve at both /{category}/{slug} and the canonical
+       * /blog/{slug}. To stop the category-path duplicates competing in
+       * search, 301 the known duplicates onto their canonical /blog URL.
+       */
+      { source: '/bathroom/modern-beige-bathroom-ideas', destination: '/blog/modern-beige-bathroom-ideas', statusCode: 301 },
+      { source: '/bathroom/smart-bathroom-technology',   destination: '/blog/smart-bathroom-technology',   statusCode: 301 },
+      { source: '/kitchen/small-kitchen-design',         destination: '/blog/small-kitchen-design',         statusCode: 301 },
+      { source: '/bathroom/honest-bathroom-design',      destination: '/blog/honest-bathroom-design',      statusCode: 301 },
+      // Source spec said /kitchen/kitchen-layout, but the real article slug
+      // is kitchen-layout-plan-space-flow — corrected so neither end 404s.
+      { source: '/kitchen/kitchen-layout-plan-space-flow', destination: '/blog/kitchen-layout-plan-space-flow', statusCode: 301 },
     ];
   },
 };
