@@ -60,11 +60,16 @@ const TOOLS: Tool[] = [
   {
     slug: 'lighting-calculator',
     eyebrow: 'Lighting',
-    name: 'Room Lighting & Lumen Calculator',
+    name: 'Lighting Layers & Kelvin Calculator',
     blurb:
-      'How many lumens a room actually needs, how many fixtures to layer, and the right colour temperature for each one — sized to your square footage and ceiling height.',
-    covers: ['Lumens by room type', 'Fixture count & layering', 'Kelvin temperature guide'],
-    status: 'soon',
+      'How many lumens a room actually needs, how to split them across ambient, task, and accent light, and the exact colour temperature to buy — sized to your square footage and ceiling height.',
+    covers: [
+      'Target lumens by room type & mood',
+      'The three-layer blueprint with fixture counts',
+      'Kelvin guidance, and what never to mix',
+    ],
+    href: '/tools/lighting-calculator',
+    status: 'live',
   },
   {
     slug: 'paint-lrv-calculator',
@@ -122,7 +127,7 @@ export default function ToolsPage() {
           <h1 className="mt-4 font-serif text-display-lg text-ink-900">Design Tools</h1>
           <p className="mx-auto mt-6 max-w-2xl text-body-lg text-ink-600">
             Free calculators that replace guesswork with the exact number. Built on the same rules
-            we use on real projects — and more are on the way, including lighting and paint LRV.
+            we use on real projects — with more on the way, including paint LRV.
           </p>
           <div className="mx-auto mt-10 h-px w-16 bg-brand-light" />
         </div>
@@ -190,8 +195,8 @@ export default function ToolsPage() {
           <div className="mx-auto max-w-2xl text-center">
             <h2 className="font-serif text-h2 text-ink-900">In the workshop</h2>
             <p className="mt-4 text-body text-ink-600">
-              The next two calculators we are building. Both answer questions we get asked
-              constantly — and both are surprisingly hard to find an honest answer to.
+              What we are building next. Each one answers a question we get asked constantly — and
+              that is surprisingly hard to find an honest answer to.
             </p>
           </div>
 
