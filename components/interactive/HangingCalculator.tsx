@@ -535,13 +535,13 @@ export default function HangingCalculator() {
 
   return (
     <section
-      aria-label="Curtain and art hanging height calculator"
+      aria-label="The Scale and Placement Guide"
       className="not-prose overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-md"
     >
       {/* Masthead */}
       <header className="border-b border-ink-100 px-6 py-8 sm:px-10">
-        <p className="text-eyebrow uppercase text-brand">Bigelow Tools</p>
-        <h2 className="mt-2 font-serif text-h2 text-ink-900">Hanging Height Calculator</h2>
+        <p className="text-eyebrow uppercase text-brand">The Design Studio</p>
+        <h2 className="mt-2 font-serif text-h2 text-ink-900">The Scale &amp; Placement Guide</h2>
         <p className="mt-2 max-w-xl text-body text-ink-600">
           The two measurements people get wrong most often. Enter your room, get the exact number to
           mark on the wall.
@@ -549,7 +549,7 @@ export default function HangingCalculator() {
       </header>
 
       {/* Tabs */}
-      <div role="tablist" aria-label="Calculator type" className="flex gap-8 border-b border-ink-100 px-6 sm:px-10">
+      <div role="tablist" aria-label="Measurement type" className="flex gap-8 border-b border-ink-100 px-6 sm:px-10">
         {(
           [
             ['curtains', 'Curtains'],

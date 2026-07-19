@@ -10,23 +10,23 @@ const PAGE_URL = `${siteConfig.url}/tools/paint-lrv-predictor`;
 
 /**
  * Root layout applies the `%s | Bigelow Designs` title template, so the bare
- * title renders as "Paint LRV & Light Predictor | Bigelow Designs".
+ * title renders as "The Paint & Light Harmony Studio | Bigelow Designs".
  */
 export const metadata: Metadata = {
-  title: 'Paint LRV & Light Predictor',
+  title: 'The Paint & Light Harmony Studio: Paint LRV by Room Orientation',
   description:
     'Will that paint colour work in your room? Predict how any LRV and undertone behaves in north, south, east, or west light — before you buy the tin.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: 'website',
     url: PAGE_URL,
-    title: 'Paint LRV & Light Predictor | Bigelow Designs',
+    title: 'The Paint & Light Harmony Studio | Bigelow Designs',
     description:
       'Will that paint colour work in your room? Predict how any LRV and undertone behaves in north, south, east, or west light — before you buy the tin.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Paint LRV & Light Predictor | Bigelow Designs',
+    title: 'The Paint & Light Harmony Studio | Bigelow Designs',
     description:
       'Will that paint colour work in your room? Predict how any LRV and undertone behaves in north, south, east, or west light — before you buy the tin.',
   },
@@ -103,7 +103,7 @@ export default function PaintLRVPredictorPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
-            name: 'Paint LRV & Light Predictor',
+            name: 'The Paint & Light Harmony Studio',
             url: PAGE_URL,
             applicationCategory: 'DesignApplication',
             operatingSystem: 'Any',
@@ -130,11 +130,11 @@ export default function PaintLRVPredictorPage() {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
-              { '@type': 'ListItem', position: 2, name: 'Tools', item: `${siteConfig.url}/tools` },
+              { '@type': 'ListItem', position: 2, name: 'The Design Studio', item: `${siteConfig.url}/tools` },
               {
                 '@type': 'ListItem',
                 position: 3,
-                name: 'Paint LRV & Light Predictor',
+                name: 'The Paint & Light Harmony Studio',
                 item: PAGE_URL,
               },
             ],
@@ -145,9 +145,9 @@ export default function PaintLRVPredictorPage() {
       {/* ─── Masthead ─────────────────────────────────────────────────── */}
       <header className="border-b border-ink-100 bg-canvas">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
-          <p className="text-eyebrow uppercase text-brand">Free Tool</p>
+          <p className="text-eyebrow uppercase text-brand">The Design Studio</p>
           <h1 className="mt-4 font-serif text-display-lg text-ink-900">
-            Paint LRV &amp; Light Predictor
+            The Paint &amp; Light Harmony Studio
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-body-lg text-ink-600">
             The same white reads warm in one room and cold grey in the next. Tell us which way your
@@ -199,12 +199,12 @@ export default function PaintLRVPredictorPage() {
           </dl>
 
           <p className="mt-14 text-center text-body-sm text-ink-400">
-            Planning the lighting too? Colour and light are the same decision — try the{' '}
+            Planning the lighting too? Colour and light are the same decision — visit the{' '}
             <Link
               href="/tools/lighting-calculator"
               className="text-brand underline underline-offset-4 transition-colors duration-quick hover:text-brand-hover"
             >
-              lighting layers calculator
+              Room Ambience Planner
             </Link>
             .
           </p>

@@ -356,13 +356,13 @@ export default function PaintLRVPredictor() {
 
   return (
     <section
-      aria-label="Paint LRV and light predictor"
+      aria-label="The Paint and Light Harmony Studio"
       className="not-prose overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-md"
     >
       {/* Masthead */}
       <header className="border-b border-ink-100 px-6 py-8 sm:px-10">
-        <p className="text-eyebrow uppercase text-brand">Bigelow Tools</p>
-        <h2 className="mt-2 font-serif text-h2 text-ink-900">Paint LRV &amp; Light Predictor</h2>
+        <p className="text-eyebrow uppercase text-brand">The Design Studio</p>
+        <h2 className="mt-2 font-serif text-h2 text-ink-900">The Paint &amp; Light Harmony Studio</h2>
         <p className="mt-2 max-w-xl text-body text-ink-600">
           The same white looks warm in one room and grey in the next. Tell us which way your room
           faces and we will tell you how your colour will actually behave on the wall.

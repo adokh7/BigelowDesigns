@@ -10,23 +10,23 @@ const PAGE_URL = `${siteConfig.url}/tools/lighting-calculator`;
 
 /**
  * Root layout applies the `%s | Bigelow Designs` title template, so the bare
- * title renders as "Lighting Layers & Kelvin Calculator | Bigelow Designs".
+ * title renders as "The Room Ambience Planner | Bigelow Designs".
  */
 export const metadata: Metadata = {
-  title: 'Lighting Layers & Kelvin Calculator',
+  title: 'The Room Ambience Planner: Room Lighting & Kelvin Guide',
   description:
     'How many lumens does your room actually need? Calculate ambient, task, and accent lighting plus the exact Kelvin temperature — free, in seconds.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: 'website',
     url: PAGE_URL,
-    title: 'Lighting Layers & Kelvin Calculator | Bigelow Designs',
+    title: 'The Room Ambience Planner | Bigelow Designs',
     description:
       'How many lumens does your room actually need? Calculate ambient, task, and accent lighting plus the exact Kelvin temperature — free, in seconds.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Lighting Layers & Kelvin Calculator | Bigelow Designs',
+    title: 'The Room Ambience Planner | Bigelow Designs',
     description:
       'How many lumens does your room actually need? Calculate ambient, task, and accent lighting plus the exact Kelvin temperature — free, in seconds.',
   },
@@ -99,7 +99,7 @@ export default function LightingCalculatorPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
-            name: 'Lighting Layers & Kelvin Calculator',
+            name: 'The Room Ambience Planner',
             url: PAGE_URL,
             applicationCategory: 'DesignApplication',
             operatingSystem: 'Any',
@@ -126,11 +126,11 @@ export default function LightingCalculatorPage() {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
-              { '@type': 'ListItem', position: 2, name: 'Tools', item: `${siteConfig.url}/tools` },
+              { '@type': 'ListItem', position: 2, name: 'The Design Studio', item: `${siteConfig.url}/tools` },
               {
                 '@type': 'ListItem',
                 position: 3,
-                name: 'Lighting Layers & Kelvin Calculator',
+                name: 'The Room Ambience Planner',
                 item: PAGE_URL,
               },
             ],
@@ -141,9 +141,9 @@ export default function LightingCalculatorPage() {
       {/* ─── Masthead ─────────────────────────────────────────────────── */}
       <header className="border-b border-ink-100 bg-canvas">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
-          <p className="text-eyebrow uppercase text-brand">Free Tool</p>
+          <p className="text-eyebrow uppercase text-brand">The Design Studio</p>
           <h1 className="mt-4 font-serif text-display-lg text-ink-900">
-            Lighting Layers &amp; Kelvin Calculator
+            The Room Ambience Planner
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-body-lg text-ink-600">
             Work out exactly how much light your room needs, how to split it across the three layers
@@ -195,12 +195,12 @@ export default function LightingCalculatorPage() {
           </dl>
 
           <p className="mt-14 text-center text-body-sm text-ink-400">
-            Measuring for curtains or art next? Try the{' '}
+            Measuring for curtains or art next? Visit the{' '}
             <Link
               href="/tools/hanging-calculator"
               className="text-brand underline underline-offset-4 transition-colors duration-quick hover:text-brand-hover"
             >
-              hanging height calculator
+              Scale &amp; Placement Guide
             </Link>
             .
           </p>

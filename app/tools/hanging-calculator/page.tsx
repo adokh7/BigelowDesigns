@@ -11,23 +11,23 @@ const PAGE_URL = `${siteConfig.url}/tools/hanging-calculator`;
 /**
  * Note: the root layout applies the title template `%s | Bigelow Designs`,
  * so the bare title below renders as
- * "Curtain & Art Hanging Height Calculator | Bigelow Designs".
+ * "The Scale & Placement Guide | Bigelow Designs".
  */
 export const metadata: Metadata = {
-  title: 'Curtain & Art Hanging Height Calculator',
+  title: 'The Scale & Placement Guide: Curtain & Art Hanging Heights',
   description:
     'Stop guessing. Calculate the exact, designer-approved height for your curtains, curtain rods, and wall art in seconds.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: 'website',
     url: PAGE_URL,
-    title: 'Curtain & Art Hanging Height Calculator | Bigelow Designs',
+    title: 'The Scale & Placement Guide | Bigelow Designs',
     description:
       'Stop guessing. Calculate the exact, designer-approved height for your curtains, curtain rods, and wall art in seconds.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Curtain & Art Hanging Height Calculator | Bigelow Designs',
+    title: 'The Scale & Placement Guide | Bigelow Designs',
     description:
       'Stop guessing. Calculate the exact, designer-approved height for your curtains, curtain rods, and wall art in seconds.',
   },
@@ -86,7 +86,7 @@ export default function HangingCalculatorPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'WebApplication',
-            name: 'Curtain & Art Hanging Height Calculator',
+            name: 'The Scale & Placement Guide',
             url: PAGE_URL,
             applicationCategory: 'DesignApplication',
             operatingSystem: 'Any',
@@ -113,11 +113,11 @@ export default function HangingCalculatorPage() {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
-              { '@type': 'ListItem', position: 2, name: 'Tools', item: `${siteConfig.url}/tools` },
+              { '@type': 'ListItem', position: 2, name: 'The Design Studio', item: `${siteConfig.url}/tools` },
               {
                 '@type': 'ListItem',
                 position: 3,
-                name: 'Hanging Height Calculator',
+                name: 'The Scale & Placement Guide',
                 item: PAGE_URL,
               },
             ],
@@ -128,9 +128,9 @@ export default function HangingCalculatorPage() {
       {/* ─── Editorial header ─────────────────────────────────────────── */}
       <header className="border-b border-ink-100 bg-canvas">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
-          <p className="text-eyebrow uppercase text-brand">Free Tool</p>
+          <p className="text-eyebrow uppercase text-brand">The Design Studio</p>
           <h1 className="mt-4 font-serif text-display-lg text-ink-900">
-            Curtain &amp; Art Hanging Height Calculator
+            The Scale &amp; Placement Guide
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-body-lg text-ink-600">
             Stop guessing. Enter your ceiling height, window, or artwork and get the exact number to

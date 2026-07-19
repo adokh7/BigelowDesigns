@@ -24,6 +24,13 @@ const SIMPLE_NAV = [
   { label: 'Global Designs',    href: '/global-designs' },
 ] as const;
 
+/**
+ * The Design Studio — our interactive styling tools. Rendered apart from
+ * SIMPLE_NAV so it can carry its own accented treatment and read as a
+ * destination rather than another editorial section.
+ */
+const STUDIO_LINK = { label: 'The Studio', href: '/tools' } as const;
+
 type MenuId = 'rooms';
 
 // ─── Sub-components ───────────────────────────────────────────
@@ -261,6 +268,21 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+
+            {/* The Design Studio — accented so it reads as a destination */}
+            <Link
+              href={STUDIO_LINK.href}
+              className={clsx(
+                'ml-2 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5',
+                'text-sm font-medium transition-all duration-quick',
+                pathname.startsWith(STUDIO_LINK.href)
+                  ? 'border-brand/40 bg-brand/[0.08] text-brand'
+                  : 'border-ink-200 text-ink-800 hover:border-brand/40 hover:bg-brand/[0.06] hover:text-brand',
+              )}
+            >
+              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
+              {STUDIO_LINK.label}
+            </Link>
           </nav>
 
           {/* ── Right actions ────────────────────────────────── */}
@@ -403,6 +425,23 @@ export function Header() {
                 </li>
               );
             })}
+
+            {/* The Design Studio */}
+            <li>
+              <Link
+                href={STUDIO_LINK.href}
+                className={clsx(
+                  'flex items-center gap-2.5 rounded-xl px-4 py-3 text-[15px] font-semibold',
+                  'transition-colors duration-quick',
+                  pathname.startsWith(STUDIO_LINK.href)
+                    ? 'bg-brand/[0.08] text-brand'
+                    : 'text-brand hover:bg-brand/[0.06]',
+                )}
+              >
+                <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
+                {STUDIO_LINK.label}
+              </Link>
+            </li>
           </ul>
 
           {/* Subscribe CTA */}

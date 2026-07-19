@@ -63,6 +63,34 @@ const FEATURED = [
 
 
 // ─── Page ─────────────────────────────────────────────────────
+/** The Design Studio — our interactive styling guides. */
+const STUDIO_GUIDES = [
+  {
+    numeral: 'I',
+    name: 'The Scale & Placement Guide',
+    blurb:
+      'Where curtains and artwork actually belong. The exact height to mark on the wall, including the detail almost every guide leaves out.',
+    cta: 'Find your height',
+    href: '/tools/hanging-calculator',
+  },
+  {
+    numeral: 'II',
+    name: 'The Room Ambience Planner',
+    blurb:
+      'How much light a room needs, layered the way designers build it — and the one thing you should never mix in a single space.',
+    cta: 'Plan your light',
+    href: '/tools/lighting-calculator',
+  },
+  {
+    numeral: 'III',
+    name: 'The Paint & Light Harmony Studio',
+    blurb:
+      'Why the same white reads warm in one room and cold in the next. See how a colour will behave before you commit to it.',
+    cta: 'Test your colour',
+    href: '/tools/paint-lrv-predictor',
+  },
+] as const;
+
 export default function HomePage() {
   return (
     <div className="bg-[#FAFAFA]">
@@ -499,6 +527,78 @@ export default function HomePage() {
       </section>
 
 
+
+      {/* ══════════════════════════════════════════════════════
+          3.5 THE DESIGN STUDIO — interactive styling service
+          ══════════════════════════════════════════════════════ */}
+      <section className="border-y border-stone-200/70 bg-stone-50/60">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <ScrollReveal className="mx-auto max-w-2xl text-center">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+              The Design Studio
+            </p>
+            <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl">
+              Your room,{' '}
+              <span className="italic text-brand">measured properly.</span>
+            </h2>
+            <p className="mt-5 text-lg leading-relaxed text-stone-600">
+              Three interactive guides that answer the questions every project runs into — how high,
+              how bright, and which colour. The same rules we work to, applied to your space in
+              seconds.
+            </p>
+          </ScrollReveal>
+
+          <div className="mx-auto mt-14 grid max-w-5xl gap-6 md:grid-cols-3">
+            {STUDIO_GUIDES.map((guide, i) => (
+              <ScrollReveal key={guide.href} delay={i * 80}>
+                <Link
+                  href={guide.href}
+                  className="
+                    group flex h-full flex-col rounded-2xl border border-stone-200 bg-white p-8
+                    shadow-sm transition-all duration-300 ease-out
+                    hover:-translate-y-1 hover:border-brand/30 hover:shadow-xl hover:shadow-brand/10
+                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
+                  "
+                >
+                  <p className="font-serif text-2xl text-brand">{guide.numeral}</p>
+                  <h3 className="mt-4 font-serif text-xl font-bold tracking-tight text-stone-900">
+                    {guide.name}
+                  </h3>
+                  <p className="mt-3 flex-1 text-[15px] leading-relaxed text-stone-600">
+                    {guide.blurb}
+                  </p>
+                  <span className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand transition-colors duration-300 group-hover:text-brand-hover">
+                    {guide.cta}
+                    <span
+                      aria-hidden
+                      className="transition-transform duration-300 ease-out group-hover:translate-x-1"
+                    >
+                      →
+                    </span>
+                  </span>
+                </Link>
+              </ScrollReveal>
+            ))}
+          </div>
+
+          <ScrollReveal className="mt-12 text-center">
+            <Link
+              href="/tools"
+              className="
+                inline-flex items-center gap-2 rounded-full border border-stone-300 px-7 py-3
+                text-sm font-semibold text-stone-800
+                transition-all duration-300 ease-out
+                hover:-translate-y-0.5 hover:border-brand hover:bg-brand hover:text-white
+                focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
+              "
+            >
+              Enter the Design Studio
+              <span aria-hidden>→</span>
+            </Link>
+          </ScrollReveal>
+        </div>
+      </section>
 
       {/* ══════════════════════════════════════════════════════
           4. NEWSLETTER BAND — closing CTA, vibrant footer

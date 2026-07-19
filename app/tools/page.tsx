@@ -9,25 +9,25 @@ const PAGE_URL = `${siteConfig.url}/tools`;
 
 /**
  * Root layout applies the `%s | Bigelow Designs` title template, so the
- * bare title below renders as "Design Tools & Calculators | Bigelow Designs".
+ * bare title below renders as "The Design Studio | Bigelow Designs".
  */
 export const metadata: Metadata = {
-  title: 'Design Tools & Calculators',
+  title: 'The Design Studio',
   description:
-    'Free, designer-approved calculators for your home. Work out exact curtain and art heights, room lighting layers, and how paint will behave in your light.',
+    'Three interactive design guides. Calculate exact curtain and art heights, plan your room lighting, and see how a paint colour will behave in your light.',
   alternates: { canonical: PAGE_URL },
   openGraph: {
     type: 'website',
     url: PAGE_URL,
-    title: 'Design Tools & Calculators | Bigelow Designs',
+    title: 'The Design Studio | Bigelow Designs',
     description:
-      'Free, designer-approved calculators for your home — hanging heights, lighting layers, and paint LRV.',
+      'Three interactive design guides — hanging heights, room lighting, and paint colour in your light.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Design Tools & Calculators | Bigelow Designs',
+    title: 'The Design Studio | Bigelow Designs',
     description:
-      'Free, designer-approved calculators for your home — hanging heights, lighting layers, and paint LRV.',
+      'Three interactive design guides — hanging heights, room lighting, and paint colour in your light.',
   },
 };
 
@@ -46,7 +46,7 @@ const TOOLS: Tool[] = [
   {
     slug: 'hanging-calculator',
     eyebrow: 'Measuring',
-    name: 'Curtain & Art Hanging Height Calculator',
+    name: 'The Scale & Placement Guide',
     blurb:
       'The two measurements people get wrong most often. Enter your ceiling, window, or artwork and get the exact number to mark on the wall — including the hardware drop almost every guide forgets.',
     covers: [
@@ -60,7 +60,7 @@ const TOOLS: Tool[] = [
   {
     slug: 'lighting-calculator',
     eyebrow: 'Lighting',
-    name: 'Lighting Layers & Kelvin Calculator',
+    name: 'The Room Ambience Planner',
     blurb:
       'How many lumens a room actually needs, how to split them across ambient, task, and accent light, and the exact colour temperature to buy.',
     covers: [
@@ -74,7 +74,7 @@ const TOOLS: Tool[] = [
   {
     slug: 'paint-lrv-predictor',
     eyebrow: 'Colour',
-    name: 'Paint LRV & Light Predictor',
+    name: 'The Paint & Light Harmony Studio',
     blurb:
       'Whether a paint colour will actually work in your room. Predicts how any undertone and LRV behaves in north, south, east, or west light — and suggests safer shades.',
     covers: [
@@ -99,10 +99,10 @@ export default function ToolsPage() {
           {
             '@context': 'https://schema.org',
             '@type': 'CollectionPage',
-            name: 'Design Tools & Calculators',
+            name: 'The Design Studio',
             url: PAGE_URL,
             description:
-              'Free, designer-approved calculators for your home — hanging heights, lighting layers, and paint LRV.',
+              'Three interactive design guides — hanging heights, room lighting, and paint colour in your light.',
             isPartOf: { '@type': 'WebSite', name: siteConfig.name, url: siteConfig.url },
           },
           {
@@ -120,7 +120,7 @@ export default function ToolsPage() {
             '@type': 'BreadcrumbList',
             itemListElement: [
               { '@type': 'ListItem', position: 1, name: 'Home', item: siteConfig.url },
-              { '@type': 'ListItem', position: 2, name: 'Tools', item: PAGE_URL },
+              { '@type': 'ListItem', position: 2, name: 'The Design Studio', item: PAGE_URL },
             ],
           },
         ]}
@@ -129,11 +129,11 @@ export default function ToolsPage() {
       {/* ─── Masthead ─────────────────────────────────────────────────── */}
       <header className="border-b border-ink-100 bg-canvas">
         <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
-          <p className="text-eyebrow uppercase text-brand">The Toolkit</p>
-          <h1 className="mt-4 font-serif text-display-lg text-ink-900">Design Tools</h1>
+          <p className="text-eyebrow uppercase text-brand">Bigelow Designs</p>
+          <h1 className="mt-4 font-serif text-display-lg text-ink-900">The Design Studio</h1>
           <p className="mx-auto mt-6 max-w-2xl text-body-lg text-ink-600">
-            Free calculators that replace guesswork with the exact number. Height, light, and
-            colour — the three decisions that make a room work, built on the same rules we use on
+            Three interactive guides that replace guesswork with the exact number. Height, light,
+            and colour — the decisions that make a room work, drawn from the same rules we apply on
             real projects.
           </p>
           <div className="mx-auto mt-10 h-px w-16 bg-brand-light" />
@@ -166,7 +166,7 @@ export default function ToolsPage() {
                 className="mt-8 inline-flex items-center gap-2 text-body font-medium text-brand
                            transition-colors duration-quick group-hover:text-brand-hover"
               >
-                Open the calculator
+                Explore the guide
                 <span
                   aria-hidden
                   className="transition-transform duration-smooth ease-out group-hover:translate-x-1"
@@ -177,7 +177,7 @@ export default function ToolsPage() {
             </div>
 
             <div className="border-t border-ink-100 bg-sunken p-8 sm:p-10 md:border-l md:border-t-0">
-              <p className="text-eyebrow uppercase text-ink-400">What it works out</p>
+              <p className="text-eyebrow uppercase text-ink-400">What this guide covers</p>
               <ul className="mt-5 space-y-4">
                 {featured.covers.map((c) => (
                   <li key={c} className="flex gap-3 text-body-sm leading-relaxed text-ink-600">
@@ -280,10 +280,10 @@ export default function ToolsPage() {
       {/* ─── Closing note ─────────────────────────────────────────────── */}
       <section className="border-t border-ink-100 bg-sunken">
         <div className="mx-auto max-w-2xl px-6 py-16 text-center sm:py-20">
-          <h2 className="font-serif text-h2 text-ink-900">More tools are coming</h2>
+          <h2 className="font-serif text-h2 text-ink-900">More guides are coming</h2>
           <p className="mt-4 text-body text-ink-600">
-            We build these as the same questions keep arriving. If there is a measurement you keep
-            guessing at, tell us and it may well be next.
+            We add to the studio as the same questions keep arriving. If there is a decision you
+            keep guessing at, tell us — it may well be next.
           </p>
           <p className="mt-8 text-body-sm text-ink-400">
             <Link

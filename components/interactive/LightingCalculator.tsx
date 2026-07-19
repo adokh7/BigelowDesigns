@@ -336,13 +336,13 @@ export default function LightingCalculator() {
 
   return (
     <section
-      aria-label="Room lighting and Kelvin calculator"
+      aria-label="The Room Ambience Planner"
       className="not-prose overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-md"
     >
       {/* Masthead */}
       <header className="border-b border-ink-100 px-6 py-8 sm:px-10">
-        <p className="text-eyebrow uppercase text-brand">Bigelow Tools</p>
-        <h2 className="mt-2 font-serif text-h2 text-ink-900">Lighting Layers &amp; Kelvin Calculator</h2>
+        <p className="text-eyebrow uppercase text-brand">The Design Studio</p>
+        <h2 className="mt-2 font-serif text-h2 text-ink-900">The Room Ambience Planner</h2>
         <p className="mt-2 max-w-xl text-body text-ink-600">
           One overhead light is why a room feels flat. Enter your space and get the full three-layer
           plan — lumens, fixture counts, and the right colour temperature for each.
