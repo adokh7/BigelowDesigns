@@ -33,6 +33,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/tools`,                    priority: 0.7 },
     { url: `${siteConfig.url}/tools/hanging-calculator`,  priority: 0.8 },
     { url: `${siteConfig.url}/tools/lighting-calculator`, priority: 0.8 },
+    { url: `${siteConfig.url}/tools/paint-lrv-predictor`, priority: 0.8 },
   ].map((p) => ({
     ...p,
     lastModified: new Date(),
