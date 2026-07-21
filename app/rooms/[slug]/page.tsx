@@ -158,10 +158,15 @@ export default async function RoomCategoryPage({ params }: PageProps) {
               Room Guide
             </p>
 
-            {/* H1 Title */}
+            {/* H1 — keyword-rich for search; the poetic line moves below */}
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
-              {meta.headline}
+              {label} Design Guides, Ideas &amp; Reviews
             </h1>
+
+            {/* Editorial headline — styled subheading under the H1 */}
+            <p className="font-serif text-h3 italic text-ink-600">
+              {meta.headline}
+            </p>
 
             <p className="text-pretty text-body-lg text-ink-600">
               {meta.description}

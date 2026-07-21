@@ -85,6 +85,12 @@ export default function SarahBigelowPage() {
                 'Lighting design',
                 'Color and paint selection',
               ],
+              /* External corroboration profiles. Placeholder brand URLs —
+                 swap for Sarah's real profiles when they exist. */
+              sameAs: [
+                'https://www.pinterest.com/bigelowdesigns',
+                'https://www.instagram.com/bigelowdesigns',
+              ],
               worksFor: {
                 '@type': 'Organization',
                 name: siteConfig.publisher.name,

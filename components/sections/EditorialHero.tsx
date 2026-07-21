@@ -44,7 +44,10 @@ export function EditorialHero({ article }: { article: Article | null }) {
         fill
         priority
         fetchPriority="high"
-        sizes="100vw"
+        /* Full-bleed hero, but capped: a bare 100vw lets 4K/retina screens
+           request up to 3840px variants for no visible gain. 1920px is the
+           largest variant worth shipping. */
+        sizes="(max-width: 1920px) 100vw, 1920px"
         className="object-cover"
       />
 
