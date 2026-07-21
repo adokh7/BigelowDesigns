@@ -60,27 +60,27 @@ const nextConfig = {
       { source: '/book-online/:path*',  destination: CANONICAL_HOME, statusCode: 301 },
 
       /*
-       * Duplicate-content consolidation (GSC).
+       * Duplicate-content consolidation (GSC) — category catch-all.
        *
-       * Articles resolve at both /{category}/{slug} and the canonical
-       * /blog/{slug}. To stop the category-path duplicates competing in
-       * search, 301 the known duplicates onto their canonical /blog URL.
+       * Articles historically resolved at both /{category}/{slug} and the
+       * canonical /blog/{slug}. This single rule 301s EVERY category-path
+       * duplicate onto its canonical /blog URL, superseding the per-article
+       * rules that used to live here.
+       *
+       * The :category segment is an explicit whitelist of the nine article
+       * categories in content/articles frontmatter — it can never touch
+       * /rooms, /tools (the Design Studio), /blog, or any other route.
+       * design-trends, reviews and room-guides are also static listing
+       * pages, but the rule needs a :slug subpath to fire, so the listings
+       * themselves (/design-trends etc.) are unaffected — and none of them
+       * has any real static subroute (verified: each is a lone page.tsx).
        */
-      { source: '/bathroom/modern-beige-bathroom-ideas', destination: '/blog/modern-beige-bathroom-ideas', statusCode: 301 },
-      { source: '/bathroom/smart-bathroom-technology',   destination: '/blog/smart-bathroom-technology',   statusCode: 301 },
-      { source: '/kitchen/small-kitchen-design',         destination: '/blog/small-kitchen-design',         statusCode: 301 },
-      { source: '/bathroom/honest-bathroom-design',      destination: '/blog/honest-bathroom-design',      statusCode: 301 },
-      // Source spec said /kitchen/kitchen-layout, but the real article slug
-      // is kitchen-layout-plan-space-flow — corrected so neither end 404s.
-      { source: '/kitchen/kitchen-layout-plan-space-flow', destination: '/blog/kitchen-layout-plan-space-flow', statusCode: 301 },
-
-      // Living-room duplicates → canonical /blog (GSC duplicate-content fix).
-      { source: '/living-room/living-room-rug-placement-with-sectional', destination: '/blog/living-room-rug-placement-with-sectional', statusCode: 301 },
-      { source: '/living-room/space-saving-dining-tables',               destination: '/blog/space-saving-dining-tables',               statusCode: 301 },
-      { source: '/living-room/mindful-entryway-design',                  destination: '/blog/mindful-entryway-design',                  statusCode: 301 },
-      { source: '/living-room/modern-reading-nook-design',               destination: '/blog/modern-reading-nook-design',               statusCode: 301 },
-      { source: '/living-room/small-home-feel-huge',                     destination: '/blog/small-home-feel-huge',                     statusCode: 301 },
-      { source: '/living-room/best-mid-century-modern-coffee-tables',    destination: '/blog/best-mid-century-modern-coffee-tables',    statusCode: 301 },
+      {
+        source:
+          '/:category(living-room|kitchen|bathroom|bedroom|home-office|outdoor-guides|design-trends|reviews|room-guides)/:slug',
+        destination: '/blog/:slug',
+        statusCode: 301,
+      },
     ];
   },
 };

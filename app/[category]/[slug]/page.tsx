@@ -120,7 +120,9 @@ export default async function ArticlePage({ params }: PageProps) {
     { name: 'Home', url: '/' },
     { name: 'Rooms', url: '/rooms' },
     { name: article.categoryLabel, url: `/rooms/${article.category}` },
-    { name: article.title, url: `/${article.category}/${article.slug}` },
+    // Canonical /blog path — the category-path variant now 301s there, so
+    // the schema must not reference the redirecting URL.
+    { name: article.title, url: `/blog/${article.slug}` },
   ];
 
   const schemas: Record<string, unknown>[] = [
