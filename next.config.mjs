@@ -73,6 +73,14 @@ const nextConfig = {
       // Source spec said /kitchen/kitchen-layout, but the real article slug
       // is kitchen-layout-plan-space-flow — corrected so neither end 404s.
       { source: '/kitchen/kitchen-layout-plan-space-flow', destination: '/blog/kitchen-layout-plan-space-flow', statusCode: 301 },
+
+      // Living-room duplicates → canonical /blog (GSC duplicate-content fix).
+      { source: '/living-room/living-room-rug-placement-with-sectional', destination: '/blog/living-room-rug-placement-with-sectional', statusCode: 301 },
+      { source: '/living-room/space-saving-dining-tables',               destination: '/blog/space-saving-dining-tables',               statusCode: 301 },
+      { source: '/living-room/mindful-entryway-design',                  destination: '/blog/mindful-entryway-design',                  statusCode: 301 },
+      { source: '/living-room/modern-reading-nook-design',               destination: '/blog/modern-reading-nook-design',               statusCode: 301 },
+      { source: '/living-room/small-home-feel-huge',                     destination: '/blog/small-home-feel-huge',                     statusCode: 301 },
+      { source: '/living-room/best-mid-century-modern-coffee-tables',    destination: '/blog/best-mid-century-modern-coffee-tables',    statusCode: 301 },
     ];
   },
 };

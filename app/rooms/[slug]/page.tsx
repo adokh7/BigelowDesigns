@@ -276,7 +276,8 @@ function RealArticleGrid({
 
 // ─── Featured article card (large format) ────────────────────
 function FeaturedArticleCard({ article }: { article: Article }) {
-  const href = `/${article.category}/${article.slug}`;
+  // Canonical article path — see ArticleCard.tsx; avoids the 301 hop.
+  const href = `/blog/${article.slug}`;
   const fmt = (iso: string) =>
     new Date(iso).toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 

@@ -9,7 +9,10 @@ export function ArticleCard({
   article: Article;
   priority?: boolean;
 }) {
-  const href = `/${article.category}/${article.slug}`;
+  // Canonical article path. Linking to /blog directly (rather than the
+  // /{category}/{slug} duplicate route) avoids a 301 hop and keeps internal
+  // PageRank flowing to the canonical URL.
+  const href = `/blog/${article.slug}`;
   return (
     <article className="group">
       <Link href={href} className="block overflow-hidden rounded-xl">
