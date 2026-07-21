@@ -29,9 +29,9 @@ export const metadata: Metadata = {
 // ─── Editorial grid — recent articles below the hero ─────────
 const FEATURED = [
   {
-    href:         '/blog/luxury-powder-room-edit',
+    href:         '/blog/luxury-powder-room-design',
     category:     'Room Guides',
-    title:        "The Powder Room Edit: Abandoning 'Light and Bright' for Dark, Moody Luxury",
+    title:        'The Powder Room Edit: How We Design High-Impact, Luxury Small Bathrooms',
     excerpt:
       'The powder room is the one room in your home where restraint becomes a liability. Here is how to design a space that feels genuinely opulent — without a full renovation.',
     image:        '/luxury-powder-room.webp',

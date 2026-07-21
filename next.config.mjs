@@ -81,6 +81,20 @@ const nextConfig = {
         destination: '/blog/:slug',
         statusCode: 301,
       },
+
+      /*
+       * Keyword-cannibalization merge: the narrower "Powder Room Edit"
+       * post was folded into the broader design guide. NOTE: this rule
+       * must come AFTER the category catch-all conceptually but works at
+       * any position — /blog/* never matches the catch-all. The old
+       * category path (/bathroom/luxury-powder-room-edit) chains
+       * catch-all → this rule → final destination.
+       */
+      {
+        source: '/blog/luxury-powder-room-edit',
+        destination: '/blog/luxury-powder-room-design',
+        statusCode: 301,
+      },
     ];
   },
 };
