@@ -183,7 +183,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                 />
               )}
               <Link
-                href={`/authors/${article.author.slug}`}
+                href="/about"
                 className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
               >
                 {article.author.name}
@@ -279,7 +279,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   Written by
                 </p>
                 <Link
-                  href={`/authors/${article.author.slug}`}
+                  href="/about"
                   className="mt-0.5 block font-serif text-body-lg font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
                 >
                   {article.author.name}

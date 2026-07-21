@@ -67,7 +67,7 @@ export function ArticleHeader({
             />
           )}
           <Link
-            href={`/authors/${article.author.slug}`}
+            href="/about"
             className="font-medium text-ink-800 hover:text-accent-600"
           >
             {article.author.name}

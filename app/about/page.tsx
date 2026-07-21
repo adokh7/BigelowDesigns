@@ -258,11 +258,13 @@ export default function AboutPage() {
           </div>
           <div className="space-y-5 text-body-lg leading-relaxed text-ink-700">
             <p>
-              Bigelow Designs is produced by a small editorial team of interior designers,
-              design journalists, and long-form writers. Our contributors have worked across
-              residential and commercial interiors in New York, London, and Copenhagen, and
-              have written for or consulted with publications including Dwell, Apartment
-              Therapy, and Wallpaper*.
+              Sarah Bigelow is the lead designer and founder of Bigelow Designs. With over 15
+              years of experience in residential interiors, she tests every layout, material,
+              and fixture in real homes before recommending them.
+            </p>
+            <p>
+              Sarah is supported by a small editorial team of interior designers, design
+              journalists, and long-form writers working across residential interiors.
             </p>
             <p>
               We are proudly independent. We have no investors with design industry ties, no

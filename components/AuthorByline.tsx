@@ -5,7 +5,7 @@ import type { Article } from '@/types/article';
 export function AuthorByline({ author }: { author: Article['author'] }) {
   return (
     <aside className="mt-12 flex gap-4 rounded-xl border border-ink-100 bg-ink-50 p-5">
-      {author.avatar && (
+      {author.avatar ? (
         <Image
           src={author.avatar}
           alt=""
@@ -13,13 +13,25 @@ export function AuthorByline({ author }: { author: Article['author'] }) {
           height={64}
           className="h-16 w-16 shrink-0 rounded-full object-cover"
         />
+      ) : (
+        /* Minimalist initials avatar — no stock photography. */
+        <span
+          aria-hidden="true"
+          className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand/10 font-serif text-xl font-semibold text-brand ring-1 ring-brand/20"
+        >
+          {author.name
+            .split(' ')
+            .map((part) => part[0])
+            .slice(0, 2)
+            .join('')}
+        </span>
       )}
       <div>
         <div className="text-xs font-semibold uppercase tracking-widest text-ink-400">
           Written by
         </div>
         <Link
-          href={`/authors/${author.slug}`}
+          href="/about"
           className="text-lg font-semibold text-ink-900 hover:text-accent-dark"
         >
           {author.name}

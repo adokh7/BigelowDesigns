@@ -49,11 +49,10 @@ const ARTICLE = {
   categoryLabel: 'Room Guides',
   categoryHref: '/rooms/living-room',
   author: {
-    name: 'Bigelow Editorial Team',
-    slug: 'team-bigelow',
-    avatar: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=150&q=80',
-    bio: 'The Bigelow editorial team is made up of passionate interior designers and architects dedicated to bringing you honest, practical, and beautiful home advice.',
-    credentials: ['Bigelow Designs Editorial Team'],
+    name: 'Sarah Bigelow',
+    slug: 'sarah-bigelow',
+    bio: 'Sarah Bigelow is the lead designer and founder of Bigelow Designs. With over 15 years of experience in residential interiors, she tests every layout, material, and fixture in real homes before recommending them.',
+    credentials: ['Lead Designer & Founder, Bigelow Designs'],
   },
   publishedAt: '2026-06-01T09:00:00Z',
   updatedAt: '2026-06-01T09:00:00Z',
@@ -122,15 +121,14 @@ export default function SpaceSavingDiningTablesPage() {
 
             {/* Byline */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
-              <Image
-                src={ARTICLE.author.avatar}
-                alt=""
-                width={32}
-                height={32}
-                className="rounded-full ring-2 ring-ink-100"
-              />
+              <span
+                aria-hidden="true"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 font-serif text-xs font-semibold text-brand ring-1 ring-brand/20"
+              >
+                SB
+              </span>
               <Link
-                href={`/authors/${ARTICLE.author.slug}`}
+                href="/about"
                 className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
               >
                 {ARTICLE.author.name}
@@ -177,19 +175,18 @@ export default function SpaceSavingDiningTablesPage() {
 
             {/* Author card */}
             <div className="mt-12 flex gap-4 rounded-2xl border border-ink-100 bg-elevated/40 p-6 lg:mt-16">
-              <Image
-                src={ARTICLE.author.avatar}
-                alt=""
-                width={56}
-                height={56}
-                className="h-14 w-14 flex-shrink-0 rounded-full ring-2 ring-ink-100"
-              />
+              <span
+                aria-hidden="true"
+                className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-brand/10 font-serif text-lg font-semibold text-brand ring-1 ring-brand/20"
+              >
+                SB
+              </span>
               <div>
                 <p className="text-eyebrow uppercase tracking-[0.14em] text-ink-400">
                   Written by
                 </p>
                 <Link
-                  href={`/authors/${ARTICLE.author.slug}`}
+                  href="/about"
                   className="mt-0.5 block font-serif text-body-lg font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
                 >
                   {ARTICLE.author.name}
@@ -669,7 +666,7 @@ const RELATED_ARTICLES: RelatedCard[] = [
     slug: 'small-home-feel-huge',
     title: '6 Honest Ways to Make a Small Home Feel Huge (Without Tearing Down Walls)',
     excerpt:
-      'Six real design decisions that make even the tightest spaces feel beautifully expansive. No renovation required — just honest tricks from the Bigelow Design Team.',
+      'Six real design decisions that make even the tightest spaces feel beautifully expansive. No renovation required — just honest tricks from designer Sarah Bigelow.',
     categoryLabel: 'Room Guides',
     categoryHref: '/rooms/living-room',
     href: '/blog/small-home-feel-huge',

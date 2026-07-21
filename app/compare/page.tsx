@@ -22,7 +22,7 @@ export default function KitchenTrendsArticle() {
             The Kitchen Shift: Warm Woods, Statement Stone, and the Return to Comfort in 2026
           </h1>
           <div className="flex items-center justify-center text-slate-600 text-sm space-x-4">
-            <span>By Editorial Team</span>
+            <span>By Sarah Bigelow</span>
             <span>•</span>
             <span>May 2026</span>
           </div>
