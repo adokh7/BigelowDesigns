@@ -122,7 +122,8 @@ export default function SpaceSavingDiningTablesPage() {
             {/* Byline */}
             <div className="flex flex-wrap items-center gap-x-3 gap-y-2 text-body-sm text-ink-500">
               <span
-                aria-hidden="true"
+                role="img"
+                aria-label="Sarah Bigelow author avatar"
                 className="flex h-8 w-8 items-center justify-center rounded-full bg-brand/10 font-serif text-xs font-semibold text-brand ring-1 ring-brand/20"
               >
                 SB
@@ -176,7 +177,8 @@ export default function SpaceSavingDiningTablesPage() {
             {/* Author card */}
             <div className="mt-12 flex gap-4 rounded-2xl border border-ink-100 bg-elevated/40 p-6 lg:mt-16">
               <span
-                aria-hidden="true"
+                role="img"
+                aria-label="Sarah Bigelow author avatar"
                 className="flex h-14 w-14 flex-shrink-0 items-center justify-center rounded-full bg-brand/10 font-serif text-lg font-semibold text-brand ring-1 ring-brand/20"
               >
                 SB

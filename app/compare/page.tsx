@@ -8,6 +8,13 @@ export const metadata = {
   title: '2026 Kitchen Design Trends: Warmth, Stone & Smart Storage',
   description: 'Discover the top kitchen design trends for 2026. Explore how warm woods, statement stone, and intuitive storage are shaping modern kitchen renovations.',
   alternates: { canonical: `${siteConfig.url}/compare` },
+  openGraph: {
+    type: 'website',
+    url: `${siteConfig.url}/compare`,
+    title: 'Compare | Bigelow Designs',
+    description:
+      'Discover the top kitchen design trends for 2026. Explore how warm woods, statement stone, and intuitive storage are shaping modern kitchen renovations.',
+  },
 };
 
 export default function KitchenTrendsArticle() {

@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   description:
     'The interior design trends shaping homes in 2026. In-depth coverage of the aesthetics, materials, and movements worth paying attention to.',
   alternates: { canonical: `${siteConfig.url}/design-trends` },
+  openGraph: {
+    type: 'website',
+    url: `${siteConfig.url}/design-trends`,
+    title: 'Design Trends | Bigelow Designs',
+    description:
+      'The interior design trends shaping homes in 2026. In-depth coverage of the aesthetics, materials, and movements worth paying attention to.',
+  },
   robots: { index: true, follow: true },
 };
 

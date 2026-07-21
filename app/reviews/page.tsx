@@ -14,6 +14,13 @@ export const metadata: Metadata = {
   description:
     'Honest furniture reviews tested across real homes. No sponsored posts, no affiliate bias — just the pieces worth buying and the ones to skip.',
   alternates: { canonical: `${siteConfig.url}/reviews` },
+  openGraph: {
+    type: 'website',
+    url: `${siteConfig.url}/reviews`,
+    title: 'Furniture Reviews | Bigelow Designs',
+    description:
+      'Honest furniture reviews tested across real homes. No sponsored posts, no affiliate bias — just the pieces worth buying and the ones to skip.',
+  },
   robots: { index: true, follow: true },
 };
 

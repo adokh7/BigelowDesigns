@@ -100,7 +100,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const room = slug as RoomType;
   const meta = ROOM_META[room];
   const label = ROOM_LABELS[room];
-  const title = `${label} Ideas, Guides & Tested Picks | ${siteConfig.name}`;
+  // Bare title — the root layout template appends `| Bigelow Designs`.
+  // Hardcoding the suffix here produced a doubled brand in the tab title.
+  const title = `${label} Ideas, Guides & Tested Picks`;
+  const fullTitle = `${title} | ${siteConfig.name}`;
   const url = `${siteConfig.url}/rooms/${slug}`;
 
   return {
@@ -110,13 +113,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     openGraph: {
       type: 'website',
       url,
-      title,
+      title: fullTitle,
       description: meta.description,
       images: [{ url: meta.heroImage, width: 1600, height: 900, alt: meta.heroImageAlt }],
     },
     twitter: {
       card: 'summary_large_image',
-      title,
+      title: fullTitle,
       description: meta.description,
       images: [meta.heroImage],
     },

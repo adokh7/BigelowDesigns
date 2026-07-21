@@ -11,6 +11,13 @@ export const metadata: Metadata = {
   description:
     'Deep-dive design guides for every room in your home. Ideas, layouts, furniture picks, and expert tips — curated by editors, tested by homeowners.',
   alternates: { canonical: `${siteConfig.url}/rooms` },
+  openGraph: {
+    type: 'website',
+    url: `${siteConfig.url}/rooms`,
+    title: 'Room Guides | Bigelow Designs',
+    description:
+      'Deep-dive design guides for every room in your home. Ideas, layouts, furniture picks, and expert tips — curated by editors, tested by homeowners.',
+  },
   robots: { index: true, follow: true },
 };
 

@@ -18,6 +18,13 @@ export const metadata: Metadata = {
   description:
     'Search the Bigelow Designs archive of interior design guides, furniture reviews, and design trend articles.',
   alternates: { canonical: `${siteConfig.url}/search` },
+  openGraph: {
+    type: 'website',
+    url: `${siteConfig.url}/search`,
+    title: 'Search | Bigelow Designs',
+    description:
+      'Search the Bigelow Designs archive of interior design guides, furniture reviews, and design trend articles.',
+  },
   robots: { index: false, follow: true }, // Search pages should not be indexed
 };
 

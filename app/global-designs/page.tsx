@@ -13,6 +13,13 @@ export const metadata: Metadata = {
   description:
     'Premium interior design coverage rooted in cultural craft — from modern Marrakech salons to Japandi bedrooms and Mediterranean courtyards. Considered, written for the way you live.',
   alternates: { canonical: `${siteConfig.url}/global-designs` },
+  openGraph: {
+    type: 'website',
+    url: `${siteConfig.url}/global-designs`,
+    title: 'Global Designs | Bigelow Designs',
+    description:
+      'Premium interior design coverage rooted in cultural craft — from modern Marrakech salons to Japandi bedrooms and Mediterranean courtyards. Considered, written for the way you live.',
+  },
   robots: { index: true, follow: true },
 };
 

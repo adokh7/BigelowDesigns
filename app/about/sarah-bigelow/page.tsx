@@ -116,7 +116,8 @@ export default function SarahBigelowPage() {
         <div className="mx-auto max-w-3xl px-6 py-20 text-center sm:py-24">
           {/* SB initials chip — the brand's no-stock-photography avatar */}
           <span
-            aria-hidden="true"
+            role="img"
+            aria-label="Sarah Bigelow author profile"
             className="mx-auto flex h-24 w-24 items-center justify-center rounded-full bg-brand/10 font-serif text-3xl font-semibold text-brand ring-1 ring-brand/20"
           >
             SB

@@ -16,7 +16,8 @@ export function AuthorByline({ author }: { author: Article['author'] }) {
       ) : (
         /* Minimalist initials avatar — no stock photography. */
         <span
-          aria-hidden="true"
+          role="img"
+          aria-label={`${author.name} author avatar`}
           className="flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-brand/10 font-serif text-xl font-semibold text-brand ring-1 ring-brand/20"
         >
           {author.name

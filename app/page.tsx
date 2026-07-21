@@ -14,7 +14,9 @@ const HOME_META_DESCRIPTION =
   'Interior design that lives in the real world — editorial room guides, honest furniture reviews, and the modern home trends worth knowing, curated weekly.';
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — Premium Interior Design`,
+  // `absolute` opts out of the layout's `%s | Bigelow Designs` template —
+  // a plain string here rendered the brand twice in the tab title.
+  title: { absolute: `${siteConfig.name} — Premium Interior Design` },
   description: HOME_META_DESCRIPTION,
   alternates: { canonical: siteConfig.url },
   openGraph: {
