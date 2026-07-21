@@ -95,6 +95,14 @@ const nextConfig = {
         destination: '/blog/luxury-powder-room-design',
         statusCode: 301,
       },
+
+      /*
+       * Archive consolidation: /rooms is the single authoritative hub.
+       * /room-guides was a parallel archive of the same content and
+       * /guides accumulated inbound links without ever being a route.
+       */
+      { source: '/room-guides', destination: '/rooms', statusCode: 301 },
+      { source: '/guides',      destination: '/rooms', statusCode: 301 },
     ];
   },
 };

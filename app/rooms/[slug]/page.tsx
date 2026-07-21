@@ -224,7 +224,7 @@ export default async function RoomCategoryPage({ params }: PageProps) {
             </div>
             {articles.length > 0 && (
               <Link
-                href="/guides"
+                href="/rooms"
                 className="flex-shrink-0 text-body font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500"
               >
                 See all guides →

@@ -16,6 +16,7 @@ import { FAQAccordion } from '@/components/FAQAccordion';
 import {
   getAllArticles,
   getArticleBySlugOnly,
+  getCategoryHref,
   getRelatedArticles,
 } from '@/lib/articles';
 import { buildArticleSchema, buildBreadcrumbSchema } from '@/lib/schema';
@@ -118,7 +119,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
   // No real article → 404. Never show fake/demo content.
   if (!article) notFound();
 
-  const categoryHref  = `/rooms/${article.category}`;
+  const categoryHref  = getCategoryHref(article.category);
   const relatedReal   = getRelatedArticles(article, 3);
 
   // ── JSON-LD ──
@@ -400,7 +401,7 @@ function RelatedSection({ realArticles }: { realArticles: Article[] }) {
     title:         a.title,
     excerpt:       a.excerpt,
     categoryLabel: a.categoryLabel,
-    categoryHref:  `/rooms/${a.category}`,
+    categoryHref:  getCategoryHref(a.category),
     href:          `/blog/${a.slug}`,
     image:         a.heroImage,
     imageAlt:      a.heroImageAlt,
@@ -427,7 +428,7 @@ function RelatedSection({ realArticles }: { realArticles: Article[] }) {
             </h2>
           </div>
           <Link
-            href="/guides"
+            href="/rooms"
             className="hidden flex-shrink-0 text-body-sm font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500 sm:block"
           >
             All articles →

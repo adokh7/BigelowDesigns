@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { siteConfig } from '@/lib/site';
-import { getArticlesByCategory } from '@/lib/articles';
+import { getArticlesByCategory, getCategoryHref } from '@/lib/articles';
 import {
   FilterableArticleGrid,
   type FilterableArticle,
@@ -38,7 +38,7 @@ function toFilterable(category: string) {
     title:         a.title,
     excerpt:       a.excerpt,
     categoryLabel: a.categoryLabel,
-    categoryHref:  category === 'reviews' ? '/reviews' : `/rooms/${a.category}`,
+    categoryHref:  getCategoryHref(a.category),
     heroImage:     a.heroImage,
     heroImageAlt:  a.heroImageAlt,
     readingTime:   a.readingTime,

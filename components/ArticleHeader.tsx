@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import type { Article } from '@/types/article';
+import { getCategoryHref } from '@/lib/articles';
 import { Breadcrumbs, BreadcrumbItem } from '@/components/Breadcrumbs';
 
 function formatDate(iso: string): string {
@@ -29,7 +30,7 @@ export function ArticleHeader({
       </div>
 
       <Link
-        href={`/rooms/${article.category}`}
+        href={getCategoryHref(article.category)}
         className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-accent-600 hover:text-accent-500 animate-fade-rise w-fit"
         style={{ animationDelay: '0ms' }}
       >

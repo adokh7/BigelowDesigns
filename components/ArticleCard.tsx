@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { Article } from '@/types/article';
+import { getCategoryHref } from '@/lib/articles';
 
 export function ArticleCard({
   article,
@@ -29,7 +30,7 @@ export function ArticleCard({
       </Link>
       <div className="mt-4">
         <Link
-          href={`/rooms/${article.category}`}
+          href={getCategoryHref(article.category)}
           className="text-xs font-semibold uppercase tracking-widest text-accent-dark hover:text-accent"
         >
           {article.categoryLabel}

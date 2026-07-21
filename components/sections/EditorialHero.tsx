@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
 import type { Article } from '@/types/article';
+import { getCategoryHref } from '@/lib/articles';
 
 function formatDate(iso: string): string {
   return new Date(iso).toLocaleDateString('en-US', {
@@ -77,7 +78,7 @@ export function EditorialHero({ article }: { article: Article | null }) {
 
             {/* Category pill */}
             <Link
-              href={`/rooms/${article.category}`}
+              href={getCategoryHref(article.category)}
               className="inline-flex items-center gap-2 text-eyebrow uppercase tracking-[0.2em] text-white/60 transition-colors duration-quick hover:text-white"
             >
               <span

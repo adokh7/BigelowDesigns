@@ -109,3 +109,22 @@ export function getAllCategorySlugs(): string[] {
 export function getArticleBySlugOnly(slug: string): Article | null {
   return getAllArticles().find((a) => a.slug === slug) ?? null;
 }
+
+/**
+ * Canonical archive URL for an article category.
+ *
+ * Only the six physical rooms live under /rooms/<slug> (that route has
+ * dynamicParams=false, so anything else 404s). Editorial categories map to
+ * their own top-level hubs, and the retired room-guides archive
+ * consolidates onto /rooms. Every component that links to a category
+ * archive MUST use this helper rather than string-building the path.
+ */
+const CATEGORY_HUBS: Record<string, string> = {
+  reviews: '/reviews',
+  'design-trends': '/design-trends',
+  'room-guides': '/rooms',
+};
+
+export function getCategoryHref(category: string): string {
+  return CATEGORY_HUBS[category] ?? `/rooms/${category}`;
+}
