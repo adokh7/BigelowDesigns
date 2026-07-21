@@ -31,7 +31,7 @@ export function AuthorByline({ author }: { author: Article['author'] }) {
           Written by
         </div>
         <Link
-          href="/about"
+          href="/about/sarah-bigelow"
           className="text-lg font-semibold text-ink-900 hover:text-accent-dark"
         >
           {author.name}

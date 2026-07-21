@@ -67,7 +67,7 @@ export function ArticleHeader({
             />
           )}
           <Link
-            href="/about"
+            href="/about/sarah-bigelow"
             className="font-medium text-ink-800 hover:text-accent-600"
           >
             {article.author.name}

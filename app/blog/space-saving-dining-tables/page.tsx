@@ -128,7 +128,7 @@ export default function SpaceSavingDiningTablesPage() {
                 SB
               </span>
               <Link
-                href="/about"
+                href="/about/sarah-bigelow"
                 className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
               >
                 {ARTICLE.author.name}
@@ -186,7 +186,7 @@ export default function SpaceSavingDiningTablesPage() {
                   Written by
                 </p>
                 <Link
-                  href="/about"
+                  href="/about/sarah-bigelow"
                   className="mt-0.5 block font-serif text-body-lg font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
                 >
                   {ARTICLE.author.name}

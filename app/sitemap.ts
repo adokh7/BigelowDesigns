@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages = [
     { url: `${siteConfig.url}/about`,                priority: 0.6 },
+    { url: `${siteConfig.url}/about/sarah-bigelow`,  priority: 0.6 },
     { url: `${siteConfig.url}/contact`,              priority: 0.5 },
     { url: `${siteConfig.url}/reviews`,              priority: 0.7 },
     { url: `${siteConfig.url}/design-trends`,        priority: 0.7 },

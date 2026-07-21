@@ -25,7 +25,7 @@ export function buildArticleSchema(article: Article) {
     author: {
       '@type': 'Person',
       name: article.author.name,
-      url: abs('/about'),
+      url: abs('/about/sarah-bigelow'),
       ...(article.author.credentials?.length
         ? { jobTitle: article.author.credentials.join(', ') }
         : {}),
