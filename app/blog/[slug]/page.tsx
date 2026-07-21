@@ -45,8 +45,8 @@ export async function generateMetadata({
   const description = article.seo?.metaDescription  ?? article.excerpt;
   const heroImage   = article.seo?.ogImage          ?? article.heroImage;
   // The /blog/[slug] route is the **canonical primary** URL for every
-  // article. The duplicate /[category]/[slug] route points its canonical
-  // here too, so Google consolidates indexing signals on this URL.
+  // article. Legacy /{category}/{slug} paths 301 here via the catch-all
+  // redirect in next.config.mjs, so Google consolidates on this URL.
   const url         = `${siteConfig.url}/blog/${slug}`;
 
   // Explicit robots block (rather than relying on the root layout merge)
@@ -382,9 +382,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
               /blog/[slug] URL. Renders as SSR'd static markup;
               the global FB SDK (see app/layout.tsx) hydrates it
               into an iframe at lazyOnload — zero render-blocking
-              cost, and threads stay unified across the duplicate
-              /[category]/[slug] route because both routes pass
-              the same canonical URL.
+              cost. Keyed to the canonical URL, so threads survive
+              any legacy path 301ing here.
           ══════════════════════════════════════════════════════ */}
       <FacebookComments url={canonicalUrl} />
     </>
