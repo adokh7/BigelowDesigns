@@ -118,7 +118,9 @@ export default function RootLayout({
                   "url": "https://www.bigelowdesigns.com/",
                   "logo": {
                     "@type": "ImageObject",
-                    "url": "https://www.bigelowdesigns.com/logo.png",
+                    // Must reference a real, resolvable asset — the previous
+                    // /logo.png 404ed, which voids the logo signal entirely.
+                    "url": "https://www.bigelowdesigns.com/bigelow-interior-design-logo.webp",
                   },
                   "description":
                     "Expert interior design guides, honest furniture reviews, and modern home styling inspiration.",
@@ -127,7 +129,12 @@ export default function RootLayout({
                   "@type": "WebSite",
                   "@id": "https://www.bigelowdesigns.com/#website",
                   "url": "https://www.bigelowdesigns.com/",
+                  // Explicit site name for Google's SERP "site name" display —
+                  // without it Google falls back to the bare domain
+                  // ("bigelowdesigns.com"). alternateName gives a sanctioned
+                  // secondary form. https://developers.google.com/search/docs/appearance/site-names
                   "name": "Bigelow Designs",
+                  "alternateName": ["Bigelow Designs Studio"],
                   "publisher": {
                     "@id": "https://www.bigelowdesigns.com/#organization",
                   },
