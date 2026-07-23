@@ -5,6 +5,7 @@ import { siteConfig } from '@/lib/site';
 import { LazyVideoSection } from '@/components/LazyVideoSection';
 import { ProVideoPlayer } from '@/components/ProVideoPlayer';
 import { ScrollReveal } from '@/components/ui/Reveal';
+import { BotanicalAccent } from '@/components/decor/BotanicalAccent';
 
 // ─── SSG — built once at deploy, served from CDN edge ────────
 export const dynamic = 'force-static';
@@ -64,6 +65,96 @@ const FEATURED = [
 
 
 
+// ─── Decorating Mood Boards — horizontal inspiration rail ─────
+// All images are existing, git-tracked assets already used elsewhere
+// on the site; nothing new was added to public/.
+const MOOD_BOARDS = [
+  {
+    tag: 'Design Trends',
+    title: 'Warm Modern',
+    href: '/design-trends',
+    image: '/interior-design-trends-2026-warm-modern-heritage.webp',
+    imageAlt: 'A warm modern interior with earthy tones, mixed wood textures, and heritage-inspired styling',
+  },
+  {
+    tag: 'Bedroom',
+    title: 'Japandi Calm',
+    href: '/rooms/bedroom',
+    image: '/japandi-bedroom.webp',
+    imageAlt: 'A serene Japandi bedroom with a low platform bed and natural linen textures',
+  },
+  {
+    tag: 'Design Trends',
+    title: 'Biophilic Green',
+    href: '/design-trends',
+    image: '/biophilic-design.webp',
+    imageAlt: 'A plant-filled biophilic interior with layered greenery and natural light',
+  },
+  {
+    tag: 'Bedroom',
+    title: 'Playful & Bold',
+    href: '/rooms/bedroom',
+    image: '/dopamine-decor-colorful-bedroom.webp',
+    imageAlt: 'A playful, colorful bedroom with bold dopamine-decor styling and layered textures',
+  },
+  {
+    tag: 'Design Trends',
+    title: 'Rustic Charm',
+    href: '/design-trends',
+    image: '/rustic-vintage-home-decor.webp',
+    imageAlt: 'A rustic interior with reclaimed wood, woven textures, and warm vintage decor',
+  },
+  {
+    tag: 'Living Room',
+    title: 'Cozy & Collected',
+    href: '/rooms/living-room',
+    image: '/cozy-eclectic-tv-lounge.webp',
+    imageAlt: 'A cozy, collected living room lounge with layered textiles and warm lighting',
+  },
+] as const;
+
+// ─── Come Inside My Home — room tour grid ─────────────────────
+// Same six categories and hero imagery as /rooms/[slug] (Unsplash host
+// is already allow-listed in next.config.mjs), so nothing new to vet.
+const HOME_TOUR_ROOMS = [
+  {
+    label: 'Living Room',
+    href: '/rooms/living-room',
+    image: 'https://images.unsplash.com/photo-1618220179428-22790b461013?w=900&q=80',
+    imageAlt: 'A sunlit minimalist living room with a cream modular sofa and oak floors',
+  },
+  {
+    label: 'Kitchen',
+    href: '/rooms/kitchen',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80',
+    imageAlt: 'A modern kitchen with marble counters, brass fixtures, and open shelving',
+  },
+  {
+    label: 'Bedroom',
+    href: '/rooms/bedroom',
+    image: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=900&q=80',
+    imageAlt: 'A serene bedroom with linen bedding, warm morning light, and oak floors',
+  },
+  {
+    label: 'Bathroom',
+    href: '/rooms/bathroom',
+    image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80',
+    imageAlt: 'A clean bathroom with white marble tiles and polished brass fixtures',
+  },
+  {
+    label: 'Home Office',
+    href: '/rooms/home-office',
+    image: 'https://images.unsplash.com/photo-1593642632559-0c6d3fc62b89?w=900&q=80',
+    imageAlt: 'A clean, minimal home office with a wooden desk, a task lamp, and a plant',
+  },
+  {
+    label: 'Outdoor',
+    href: '/rooms/outdoor-guides',
+    image: '/outdoor-balcony-oasis.webp',
+    imageAlt: 'A beautifully designed outdoor balcony oasis with warm ambient lighting',
+  },
+] as const;
+
 // ─── Page ─────────────────────────────────────────────────────
 /** The Design Studio — our interactive styling guides. */
 const STUDIO_GUIDES = [
@@ -95,7 +186,7 @@ const STUDIO_GUIDES = [
 
 export default function HomePage() {
   return (
-    <div className="bg-[#FAFAFA]">
+    <div className="bg-[#FAF9F5]">
 
       {/* ──────────────────────────────────────────────────────
           INLINE KEYFRAMES — image zoom-in + decorative float.
@@ -122,21 +213,30 @@ export default function HomePage() {
       `}</style>
 
       {/* ══════════════════════════════════════════════════════
-          1. HERO — bright, airy, split-column
+          1. HERO — warm, welcoming, cozy-coastal editorial intro
           ══════════════════════════════════════════════════════ */}
       <section
         aria-labelledby="hero-heading"
-        className="relative overflow-hidden bg-gradient-to-br from-brand-light/20 via-[#FAFAFA] to-white"
+        className="relative overflow-hidden bg-gradient-to-br from-brand-light/15 via-[#FAF9F5] to-white"
       >
-        {/* Decorative soft blobs — adds vibrancy without overwhelming */}
+        {/* Decorative soft blobs — warm terracotta + soft coastal mist */}
         <div
           aria-hidden="true"
           className="pointer-events-none absolute -top-32 -left-32 h-[420px] w-[420px] rounded-full bg-brand-light/40 blur-3xl animate-hero-blob"
         />
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -bottom-32 right-0 h-[380px] w-[380px] rounded-full bg-emerald-200/25 blur-3xl animate-hero-blob"
+          className="pointer-events-none absolute -bottom-32 right-0 h-[380px] w-[380px] rounded-full bg-accent-50/70 blur-3xl animate-hero-blob"
           style={{ animationDelay: '3s' }}
+        />
+
+        {/* Botanical line-art — muted margin accents, purely decorative */}
+        <BotanicalAccent
+          className="pointer-events-none absolute -left-6 top-8 hidden h-64 w-32 text-ink-200/70 lg:block"
+        />
+        <BotanicalAccent
+          flip
+          className="pointer-events-none absolute -right-6 bottom-8 hidden h-64 w-32 text-ink-200/70 lg:block"
         />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -145,62 +245,60 @@ export default function HomePage() {
             {/* ── LEFT COLUMN ── */}
             <div className="flex flex-col">
 
-              {/* Eyebrow — anchors the niche ("premium") + freshness (2026) */}
+              {/* Handwritten personal greeting — the script-font "someone
+                  actually wrote this" touch, sitting above the real H1. */}
               <p
-                className="animate-fade-rise inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand"
+                className="animate-fade-rise font-script text-3xl leading-none text-accent-600 md:text-4xl"
                 style={{ animationDelay: '0ms' }}
               >
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
-                The Premium Edit · 2026
+                Hello, welcome in
               </p>
 
-              {/* H1 — benefit-driven hook. Italic+underline emphasis lands on
-                  the proof claim ("Honestly Tested for Real-World Budgets")
-                  so the eye fixates on the trust signal, not the category. */}
+              {/* H1 — warm, personal, still carries the "tested/honest"
+                  trust claim that matters for both readers and E-E-A-T. */}
               <h1
                 id="hero-heading"
-                className="animate-fade-rise mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl xl:text-7xl"
+                className="animate-fade-rise mt-3 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.08] md:text-5xl lg:text-6xl xl:text-[64px]"
                 style={{ animationDelay: '120ms' }}
               >
-                Honest Interior Design,{' '}
+                Helping you create{' '}
                 <span className="relative inline-block">
-                  <span className="relative z-10 italic text-brand">Simplified</span>
+                  <span className="relative z-10 italic text-brand">a home you love</span>
                   <span
                     aria-hidden="true"
                     className="absolute inset-x-0 bottom-1 h-3 -z-0 bg-brand-light/70 md:bottom-2 md:h-4"
                   />
                 </span>
-                {' '}for Real-World Budgets.
+                , one honest room at a time.
               </h1>
 
-              {/* Sub — reframes "curation" as *testing*. Names the three
-                  objections we kill: independence, real homes, no fluff. */}
+              {/* Sub — keeps the trust claims (real homes, no sponsored
+                  bias) but in a warmer, first-person editorial voice. */}
               <p
                 className="animate-fade-rise mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl"
                 style={{ animationDelay: '240ms' }}
               >
-                We share practical layout rules, design principles, and simple ideas
-                that actually work in real homes — with{' '}
-                <span className="font-semibold text-stone-900">zero sponsored opinions</span>.
+                Practical layout rules, cozy styling ideas, and honest reviews —
+                all tested in real homes, all written like a friend explaining
+                what actually works. No showroom fantasies, no sponsored praise.
               </p>
 
-              {/* CTAs — primary is specific to the page promise; secondary
-                  names the cadence (Sunday) for a measurable CTR lift. */}
+              {/* CTA — prominent, softly rounded "Start Here" entry point */}
               <div
-                className="animate-fade-rise mt-9 flex flex-wrap items-center gap-4"
+                className="animate-fade-rise mt-9 flex flex-wrap items-center gap-5"
                 style={{ animationDelay: '360ms' }}
               >
                 <Link
                   href="/rooms"
                   className="
-                    group inline-flex items-center gap-2 rounded-full
-                    bg-brand px-8 py-3.5 text-base font-semibold text-white shadow-lg shadow-brand/30
+                    group inline-flex items-center gap-2.5 rounded-full
+                    bg-brand px-9 py-4 text-sm font-bold uppercase tracking-[0.14em] text-white shadow-lg shadow-brand/30
                     transition-all duration-300 ease-out
                     hover:bg-brand-hover hover:-translate-y-0.5 hover:shadow-xl hover:shadow-brand/40
                     focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2
                   "
                 >
-                  See the Premium Edit
+                  Start Here
                   <svg
                     width="16" height="16" viewBox="0 0 24 24"
                     fill="none" stroke="currentColor" strokeWidth="2.5"
@@ -214,26 +312,20 @@ export default function HomePage() {
 
                 <Link
                   href="/newsletter"
-                  className="
-                    inline-flex items-center gap-2 rounded-full
-                    border-2 border-stone-900 bg-transparent px-7 py-3 text-base font-semibold text-stone-900
-                    transition-all duration-300 ease-out
-                    hover:bg-stone-900 hover:text-white hover:-translate-y-0.5
-                    focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-stone-900 focus-visible:ring-offset-2
-                  "
+                  className="text-sm font-semibold text-stone-700 underline decoration-stone-300 underline-offset-4 transition-colors duration-300 hover:text-accent-600 hover:decoration-accent-600"
                 >
-                  Get the Sunday Letter
+                  or get the Sunday letter →
                 </Link>
               </div>
 
-              {/* Trust strip — triadic proof: independence, integrity, scale.
-                  The reader count is the bandwagon signal that converts. */}
+              {/* Trust strip — same three proof points, recast in the
+                  new coastal-navy accent instead of green. */}
               <div
                 className="animate-fade-rise mt-10 flex flex-wrap items-center gap-x-7 gap-y-3 text-sm text-stone-500"
                 style={{ animationDelay: '480ms' }}
               >
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent-50 text-accent-600">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
@@ -241,7 +333,7 @@ export default function HomePage() {
                   <span className="font-medium">Tested in real homes</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent-50 text-accent-600">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
@@ -249,7 +341,7 @@ export default function HomePage() {
                   <span className="font-medium">Zero sponsored posts</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-emerald-100 text-emerald-700">
+                  <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent-50 text-accent-600">
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                       <path d="M20 6L9 17l-5-5" />
                     </svg>
@@ -270,12 +362,10 @@ export default function HomePage() {
                   priority
                   fetchPriority="high"
                   sizes="(max-width: 1024px) 100vw, 640px"
-                  className="h-[420px] w-full rounded-3xl object-cover shadow-2xl shadow-stone-900/15 md:h-[500px] lg:h-[560px]"
+                  className="h-[420px] w-full rounded-[2rem] object-cover shadow-2xl shadow-stone-900/15 md:h-[500px] lg:h-[560px]"
                 />
 
-                {/* Floating top-left badge — anchors the "premium + budget"
-                    promise directly on the hero image. Specific price ceiling
-                    converts better than vague "affordable" claims. */}
+                {/* Floating top-left badge */}
                 <div className="absolute -left-4 -top-4 hidden rounded-full bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:flex md:items-center md:gap-2">
                   <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-light/40 text-brand">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
@@ -292,9 +382,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                {/* Floating bottom-right credibility chip — names the proof
-                    methodology in a single number ("tested in 84 real homes")
-                    instead of a generic activity count. */}
+                {/* Floating bottom-right credibility chip */}
                 <div className="absolute -bottom-5 -right-3 hidden rounded-2xl bg-white px-5 py-3 shadow-xl shadow-stone-900/10 md:block">
                   <p className="text-[10px] font-bold uppercase tracking-wider text-stone-400">
                     Tested in
@@ -324,6 +412,127 @@ export default function HomePage() {
                 </svg>
               </span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          1.2  DECORATING MOOD BOARDS — horizontal scroll-snap rail
+          ══════════════════════════════════════════════════════ */}
+      <section aria-labelledby="moodboards-heading" className="relative overflow-hidden bg-white py-20 lg:py-24">
+        <BotanicalAccent
+          className="pointer-events-none absolute -right-8 -top-6 hidden h-56 w-28 text-ink-200/60 md:block"
+        />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal className="mb-10 max-w-2xl">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+              For Your Inspiration
+            </p>
+            <h2
+              id="moodboards-heading"
+              className="mt-2 font-script text-5xl leading-none text-accent-600 md:text-6xl"
+            >
+              Decorating Mood Boards
+            </h2>
+            <p className="mt-4 text-base text-stone-600 md:text-lg">
+              A little visual inspiration for whatever room is on your mind this week.
+              Scroll through, save what you love.
+            </p>
+          </ScrollReveal>
+
+          {/* Horizontal scroll-snap rail — native scroll, no JS carousel
+              library needed. Cards are fixed-width so peeking the next
+              card is always visible as an affordance to scroll. */}
+          <div className="-mx-4 flex snap-x snap-mandatory gap-5 overflow-x-auto px-4 pb-4 sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 [scrollbar-width:thin]">
+            {MOOD_BOARDS.map((board) => (
+              <Link
+                key={board.title}
+                href={board.href}
+                className="group relative w-[76vw] flex-shrink-0 snap-start overflow-hidden rounded-3xl shadow-md shadow-stone-900/5 transition-shadow duration-300 hover:shadow-xl hover:shadow-stone-900/10 sm:w-[46vw] md:w-[32vw] lg:w-[23vw]"
+              >
+                <div className="relative aspect-[4/5] w-full bg-stone-100">
+                  <Image
+                    src={board.image}
+                    alt={board.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 76vw, (max-width: 768px) 46vw, (max-width: 1024px) 32vw, 23vw"
+                    className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-t from-stone-900/70 via-stone-900/0 to-transparent"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-5">
+                    <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-white/70">
+                      {board.tag}
+                    </p>
+                    <p className="mt-1 font-serif text-xl font-semibold text-white">
+                      {board.title}
+                    </p>
+                  </div>
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════════════
+          1.4  COME INSIDE MY HOME — room-category tour grid
+          ══════════════════════════════════════════════════════ */}
+      <section aria-labelledby="hometour-heading" className="relative overflow-hidden bg-[#FAF9F5] py-20 lg:py-24">
+        <BotanicalAccent
+          flip
+          className="pointer-events-none absolute -left-8 bottom-0 hidden h-56 w-28 text-ink-200/60 md:block"
+        />
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <ScrollReveal className="mb-12 text-center">
+            <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
+              The Grand Tour
+            </p>
+            <h2
+              id="hometour-heading"
+              className="mt-2 font-script text-5xl leading-none text-accent-600 md:text-6xl"
+            >
+              Come inside my home
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-base text-stone-600 md:text-lg">
+              Every room, tested and considered. Pick a space and see what actually works.
+            </p>
+          </ScrollReveal>
+
+          {/* Rendered statically (no per-item ScrollReveal) — six
+              simultaneous IntersectionObserver instances proved unreliable
+              in testing, occasionally sticking at opacity-0. The section
+              header above still reveals on scroll; these tiles are always
+              visible and rely on the hover lift for interactivity instead. */}
+          <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3">
+            {HOME_TOUR_ROOMS.map((room) => (
+              <Link
+                key={room.href}
+                href={room.href}
+                className="group block overflow-hidden rounded-3xl bg-stone-100 shadow-sm shadow-stone-900/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-stone-900/10"
+              >
+                <div className="relative aspect-square w-full">
+                  <Image
+                    src={room.image}
+                    alt={room.imageAlt}
+                    fill
+                    sizes="(max-width: 640px) 50vw, (max-width: 768px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.08]"
+                  />
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-gradient-to-t from-stone-900/55 via-stone-900/0 to-transparent"
+                  />
+                  <p className="absolute inset-x-0 bottom-0 p-4 font-serif text-lg font-semibold text-white sm:text-xl">
+                    {room.label}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -533,7 +742,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           3.5 THE DESIGN STUDIO — interactive styling service
           ══════════════════════════════════════════════════════ */}
-      <section className="border-y border-stone-200/70 bg-stone-50/60">
+      <section className="border-y border-ink-100/70 bg-sunken/60">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">
@@ -605,7 +814,7 @@ export default function HomePage() {
       {/* ══════════════════════════════════════════════════════
           4. NEWSLETTER BAND — closing CTA, vibrant footer
           ══════════════════════════════════════════════════════ */}
-      <section className="bg-gradient-to-br from-brand-light/30 via-white to-emerald-50/40">
+      <section className="bg-gradient-to-br from-brand-light/30 via-white to-accent-50/50">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <ScrollReveal className="mx-auto max-w-2xl text-center">
             <p className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-brand">

@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Inter, Fraunces } from 'next/font/google';
+import { Inter, Fraunces, Caveat } from 'next/font/google';
 import Script from 'next/script';
 import { Header } from '@/components/Header';
 import { LazyFooter } from '@/components/LazyFooter';
@@ -19,6 +19,15 @@ const fraunces = Fraunces({
   variable: '--font-serif',
   display: 'swap',
   axes: ['opsz'],
+});
+
+// Handwritten accent for the cozy-coastal brand pivot — section eyebrows
+// and personal-blog touches only, never body copy or headings.
+const caveat = Caveat({
+  subsets: ['latin'],
+  variable: '--font-script',
+  display: 'swap',
+  weight: ['500', '600', '700'],
 });
 
 export const viewport: Viewport = {
@@ -98,7 +107,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
+    <html lang="en" className={`${inter.variable} ${fraunces.variable} ${caveat.variable}`}>
       <head>
         {/* Entity-disambiguation JSON-LD: combined Organization + WebSite
             in a single @graph so Google can resolve "Bigelow Designs" as

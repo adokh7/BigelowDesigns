@@ -144,6 +144,13 @@ export function Header() {
           className={clsx(
             'mx-auto flex max-w-page items-center justify-between px-4 sm:px-6 lg:px-8',
             'transition-all duration-smooth',
+            // Centered-masthead layout at lg+: nav left / logo center /
+            // actions right, via explicit grid placement below — DOM
+            // order (logo, nav, actions) stays unchanged for a11y/tab
+            // order, only the visual position shifts. Below lg there
+            // isn't room for a true 3-column masthead, so it falls back
+            // to the existing logo-left flex row.
+            'lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-4',
             scrolled ? 'py-2 md:py-2.5' : 'py-3 md:py-4',
           )}
         >
@@ -152,7 +159,7 @@ export function Header() {
           <Link
             href="/"
             aria-label={`${siteConfig.name} — Home`}
-            className="flex-shrink-0 text-ink-900 transition-colors duration-quick hover:text-accent-600"
+            className="flex-shrink-0 text-ink-900 transition-colors duration-quick hover:text-accent-600 lg:col-start-2 lg:justify-self-center"
           >
             {/*
               variant switches on scroll so the sticky bar stays compact.
@@ -163,7 +170,10 @@ export function Header() {
           </Link>
 
           {/* ── Desktop nav ─────────────────────────────────── */}
-          <nav aria-label="Primary" className="hidden items-center gap-0.5 md:flex">
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-0.5 md:flex lg:col-start-1 lg:justify-self-start"
+          >
 
             {/* Rooms */}
             <div
@@ -177,11 +187,11 @@ export function Header() {
                 aria-expanded={activeMenu === 'rooms'}
                 onClick={() => setActiveMenu(activeMenu === 'rooms' ? null : 'rooms')}
                 className={clsx(
-                  'flex items-center gap-1.5 rounded-md px-3 py-2 text-sm font-medium',
+                  'flex items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium tracking-wide',
                   'transition-colors duration-quick',
                   pathname.startsWith('/rooms')
                     ? 'text-accent-600'
-                    : 'text-ink-700 hover:text-ink-900',
+                    : 'text-ink-700 hover:text-accent-600',
                 )}
               >
                 Room Guides
@@ -258,11 +268,11 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={clsx(
-                  'rounded-md px-3 py-2 text-sm font-medium',
+                  'rounded-md px-3 py-2 text-[13px] font-medium tracking-wide',
                   'transition-colors duration-quick',
                   pathname.startsWith(item.href)
                     ? 'text-accent-600'
-                    : 'text-ink-700 hover:text-ink-900',
+                    : 'text-ink-700 hover:text-accent-600',
                 )}
               >
                 {item.label}
@@ -286,7 +296,7 @@ export function Header() {
           </nav>
 
           {/* ── Right actions ────────────────────────────────── */}
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1 lg:col-start-3 lg:justify-self-end">
             {/* Search */}
             <Link
               href="/search"
@@ -365,7 +375,7 @@ export function Header() {
         aria-label="Navigation"
         aria-hidden={!mobileOpen}
         className={clsx(
-          'fixed inset-x-0 top-14 z-[36] overflow-y-auto bg-surface shadow-xl md:hidden',
+          'fixed inset-x-0 top-14 z-[36] overflow-y-auto rounded-b-3xl border-b border-ink-100 bg-surface shadow-xl md:hidden',
           'max-h-[calc(100dvh-3.5rem)]',
           'transition-all duration-smooth ease-out',
           mobileOpen

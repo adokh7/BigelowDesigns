@@ -89,6 +89,17 @@ const config: Config = {
           700: 'rgb(var(--forest-700) / <alpha-value>)',
         },
 
+        // ─── Coastal — soft navy, the cozy-coastal primary accent.
+        // Mirrors the `accent` CSS-variable scale in hex for contexts
+        // (gradients, inline SVGs) where the var indirection is awkward.
+        // The token system itself already carries navy via --accent-*;
+        // this is a convenience alias, not a second source of truth.
+        coastal: {
+          50:  '#E6ECF0',
+          500: '#3B5A73',
+          600: '#2A4257',
+        },
+
         success: 'rgb(var(--success) / <alpha-value>)',
         warning: 'rgb(var(--warning) / <alpha-value>)',
         danger:  'rgb(var(--danger)  / <alpha-value>)',
@@ -97,9 +108,13 @@ const config: Config = {
 
       // ─── Typography ────────────────────────────────────────────
       fontFamily: {
-        serif: ['var(--font-serif)', 'Fraunces', 'Georgia', 'serif'],
-        sans:  ['var(--font-sans)',  'Inter', 'system-ui', 'sans-serif'],
-        mono:  ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        serif:  ['var(--font-serif)',  'Fraunces', 'Georgia', 'serif'],
+        sans:   ['var(--font-sans)',   'Inter', 'system-ui', 'sans-serif'],
+        mono:   ['JetBrains Mono', 'ui-monospace', 'monospace'],
+        // Handwritten accent — section eyebrows and personal-blog touches
+        // only. Never used for body copy or anything load-bearing for
+        // legibility/SEO (headings stay in font-serif).
+        script: ['var(--font-script)', 'cursive'],
       },
 
       fontSize: {

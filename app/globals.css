@@ -8,9 +8,9 @@
    ────────────────────────────────────────────────────────────── */
 @layer base {
   :root {
-    /* Background */
-    --bg-canvas:   250 248 244;
-    --bg-surface:  255 255 255;
+    /* Background — cozy coastal cream (was a cooler off-white) */
+    --bg-canvas:   250 249 245;
+    --bg-surface:  255 253 250;
     --bg-elevated: 242 239 232;
     --bg-sunken:   237 233 224;
 
@@ -23,10 +23,13 @@
     --ink-800:  38  37  31;
     --ink-900:  21  20  15;
 
-    /* Accent — Terracotta */
-    --accent-50:  251 241 234;
-    --accent-500: 184 116  74;
-    --accent-600: 140  86  52;
+    /* Accent — Coastal navy (brand pivot: was terracotta).
+       The `brand` scale below still carries terracotta as the warm
+       secondary — navy + terracotta + cream is the classic cozy-coastal
+       cottage palette, so nothing needed to be removed, only reordered. */
+    --accent-50:  230 236 240;
+    --accent-500:  59  90 115;
+    --accent-600:  42  66  87;
 
     /* Secondary accent — Forest */
     --forest-700: 58 74 63;
@@ -56,9 +59,10 @@
     --ink-800: 230 225 212;
     --ink-900: 245 242 236;
 
-    --accent-50:  58 42 30;
-    --accent-500: 208 140 94;
-    --accent-600: 229 164 122;
+    /* Coastal navy, lightened for dark-background contrast */
+    --accent-50:   30  42  51;
+    --accent-500: 122 160 189;
+    --accent-600: 158 190 214;
 
     --forest-700: 123 155 131;
 
