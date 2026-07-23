@@ -132,225 +132,221 @@ export function Header() {
         )}
       >
         {/*
-          Height is content-driven (not fixed) so the logo can breathe.
-          py shrinks when scrolled — combined with the logo variant swap
-          below, this produces a tall editorial masthead at the top of the
-          page that compacts automatically into a lean sticky bar on scroll.
-
-          Not scrolled : py-3 md:py-4  +  160 px logo  ≈ 130 px bar
-          Scrolled     : py-2 md:py-2.5 +  110 px logo  ≈  89 px bar
+          Two-tier editorial masthead at md+: logo owns its own row with
+          full breathing room, and a hairline-divided nav row sits below
+          it — a true 3-column grid (spacer / centered links / actions)
+          so the link cluster is mathematically centered under the logo,
+          not just visually eyeballed. Below md there isn't room for two
+          rows, so it collapses to the original single logo-left row with
+          search + hamburger, unchanged from before.
         */}
-        <div
-          className={clsx(
-            'mx-auto flex max-w-page items-center justify-between px-4 sm:px-6 lg:px-8',
-            'transition-all duration-smooth',
-            // Centered-masthead layout at lg+: nav left / logo center /
-            // actions right, via explicit grid placement below — DOM
-            // order (logo, nav, actions) stays unchanged for a11y/tab
-            // order, only the visual position shifts. Below lg there
-            // isn't room for a true 3-column masthead, so it falls back
-            // to the existing logo-left flex row.
-            'lg:grid lg:grid-cols-[1fr_auto_1fr] lg:gap-4',
-            scrolled ? 'py-2 md:py-2.5' : 'py-3 md:py-4',
-          )}
-        >
+        <div className="mx-auto max-w-page px-4 transition-all duration-smooth sm:px-6 lg:px-8">
 
-          {/* Logo */}
-          <Link
-            href="/"
-            aria-label={`${siteConfig.name} — Home`}
-            className="flex-shrink-0 text-ink-900 transition-colors duration-quick hover:text-accent-600 lg:col-start-2 lg:justify-self-center"
+          {/* ── Row 1 — logo ─────────────────────────────────── */}
+          <div
+            className={clsx(
+              'flex items-center justify-between transition-all duration-smooth md:justify-center',
+              scrolled ? 'py-2 md:py-3' : 'py-3 md:py-4',
+            )}
           >
-            {/*
-              variant switches on scroll so the sticky bar stays compact.
-              The CSS `transition: width 0.25s ease` in BrandLogo smooths
-              the resize — no layout jank, no React animation library needed.
-            */}
-            <BrandLogo variant={scrolled ? 'sm' : 'default'} priority />
-          </Link>
-
-          {/* ── Desktop nav ─────────────────────────────────── */}
-          <nav
-            aria-label="Primary"
-            className="hidden items-center gap-0.5 md:flex lg:col-start-1 lg:justify-self-start"
-          >
-
-            {/* Rooms */}
-            <div
-              className="relative"
-              onMouseEnter={() => openMenu('rooms')}
-              onMouseLeave={scheduleClose}
+            <Link
+              href="/"
+              aria-label={`${siteConfig.name} — Home`}
+              className="flex-shrink-0 text-ink-900 transition-colors duration-quick hover:text-accent-600"
             >
+              {/*
+                variant switches on scroll so the sticky bar stays compact.
+                The CSS `transition: width 0.25s ease` in BrandLogo smooths
+                the resize — no layout jank, no React animation library needed.
+              */}
+              <BrandLogo variant={scrolled ? 'sm' : 'default'} priority />
+            </Link>
+
+            {/* Mobile-only actions — search + hamburger, unchanged */}
+            <div className="flex items-center gap-1 md:hidden">
+              <Link
+                href="/search"
+                aria-label="Search"
+                className="rounded-md p-2 text-ink-600 transition-colors duration-quick hover:bg-ink-50 hover:text-ink-900"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
+                </svg>
+              </Link>
+
               <button
                 type="button"
-                aria-haspopup="true"
-                aria-expanded={activeMenu === 'rooms'}
-                onClick={() => setActiveMenu(activeMenu === 'rooms' ? null : 'rooms')}
-                className={clsx(
-                  'flex items-center gap-1.5 rounded-md px-3 py-2 text-[13px] font-medium tracking-wide',
-                  'transition-colors duration-quick',
-                  pathname.startsWith('/rooms')
-                    ? 'text-accent-600'
-                    : 'text-ink-700 hover:text-accent-600',
-                )}
+                aria-expanded={mobileOpen}
+                aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
+                onClick={() => setMobileOpen((v) => !v)}
+                className="ml-1 flex h-9 w-9 items-center justify-center rounded-md text-ink-700 transition-colors duration-quick hover:bg-ink-50 hover:text-ink-900"
               >
-                Room Guides
-                <Chevron open={activeMenu === 'rooms'} />
+                {mobileOpen ? (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M18 6 6 18M6 6l12 12" />
+                  </svg>
+                ) : (
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                    <path d="M4 6h16M4 12h10M4 18h16" />
+                  </svg>
+                )}
               </button>
+            </div>
+          </div>
 
-              {/* Rooms panel */}
+          {/* ── Row 2 — nav bar, md+ only ────────────────────── */}
+          <div className="hidden border-t border-ink-100/70 md:grid md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-6 md:py-3">
+            {/* Spacer — keeps the centered nav column mathematically
+                centered against the actions column on the right. */}
+            <div aria-hidden="true" />
+
+            <nav aria-label="Primary" className="flex items-center justify-center gap-8 lg:gap-10">
+
+              {/* Rooms */}
               <div
-                onMouseEnter={cancelClose}
+                className="relative"
+                onMouseEnter={() => openMenu('rooms')}
                 onMouseLeave={scheduleClose}
-                className={clsx(
-                  'absolute left-1/2 top-full -translate-x-1/2 pt-3',
-                  'origin-top transition-all duration-quick ease-out',
-                  activeMenu === 'rooms'
-                    ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
-                    : 'pointer-events-none -translate-y-1.5 scale-[0.97] opacity-0',
-                )}
               >
-                <div className="w-[400px] overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-xl">
-                  <div className="border-b border-ink-100 px-6 py-3.5">
-                    <p className="text-eyebrow uppercase tracking-[0.16em] text-ink-400">
-                      Browse by room
-                    </p>
-                  </div>
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  aria-expanded={activeMenu === 'rooms'}
+                  onClick={() => setActiveMenu(activeMenu === 'rooms' ? null : 'rooms')}
+                  className={clsx(
+                    'flex items-center gap-1.5 whitespace-nowrap text-xs font-medium uppercase tracking-widest',
+                    'transition-colors duration-quick',
+                    pathname.startsWith('/rooms')
+                      ? 'text-accent-600'
+                      : 'text-ink-600 hover:text-accent-600',
+                  )}
+                >
+                  Room Guides
+                  <Chevron open={activeMenu === 'rooms'} />
+                </button>
 
-                  {/* 2 × 3 grid — hairline dividers via 1 px gap on ink-100 bg */}
-                  <div className="grid grid-cols-2 gap-px bg-ink-100">
-                    {ROOMS.map((room) => {
-                      const active = pathname === room.href;
-                      return (
-                        <Link
-                          key={room.href}
-                          href={room.href}
-                          className={clsx(
-                            'group flex flex-col gap-0.5 bg-surface px-5 py-4',
-                            'transition-colors duration-quick hover:bg-accent-50',
-                            active && 'bg-accent-50',
-                          )}
-                        >
-                          <span
+                {/* Rooms panel */}
+                <div
+                  onMouseEnter={cancelClose}
+                  onMouseLeave={scheduleClose}
+                  className={clsx(
+                    'absolute left-1/2 top-full -translate-x-1/2 pt-4',
+                    'origin-top transition-all duration-quick ease-out',
+                    activeMenu === 'rooms'
+                      ? 'pointer-events-auto translate-y-0 scale-100 opacity-100'
+                      : 'pointer-events-none -translate-y-1.5 scale-[0.97] opacity-0',
+                  )}
+                >
+                  <div className="w-[400px] overflow-hidden rounded-2xl border border-ink-100 bg-surface shadow-xl">
+                    <div className="border-b border-ink-100 px-6 py-3.5">
+                      <p className="text-eyebrow uppercase tracking-[0.16em] text-ink-400">
+                        Browse by room
+                      </p>
+                    </div>
+
+                    {/* 2 × 3 grid — hairline dividers via 1 px gap on ink-100 bg */}
+                    <div className="grid grid-cols-2 gap-px bg-ink-100">
+                      {ROOMS.map((room) => {
+                        const active = pathname === room.href;
+                        return (
+                          <Link
+                            key={room.href}
+                            href={room.href}
                             className={clsx(
-                              'text-sm font-semibold transition-colors duration-quick',
-                              active
-                                ? 'text-accent-600'
-                                : 'text-ink-900 group-hover:text-accent-600',
+                              'group flex flex-col gap-0.5 bg-surface px-5 py-4',
+                              'transition-colors duration-quick hover:bg-accent-50',
+                              active && 'bg-accent-50',
                             )}
                           >
-                            {room.label}
-                          </span>
-                          <span className="text-[12px] leading-4 text-ink-400">
-                            {room.tagline}
-                          </span>
-                        </Link>
-                      );
-                    })}
-                  </div>
+                            <span
+                              className={clsx(
+                                'text-sm font-semibold transition-colors duration-quick',
+                                active
+                                  ? 'text-accent-600'
+                                  : 'text-ink-900 group-hover:text-accent-600',
+                              )}
+                            >
+                              {room.label}
+                            </span>
+                            <span className="text-[12px] leading-4 text-ink-400">
+                              {room.tagline}
+                            </span>
+                          </Link>
+                        );
+                      })}
+                    </div>
 
-                  <div className="border-t border-ink-100 px-6 py-3">
-                    <Link
-                      href="/rooms"
-                      className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500"
-                    >
-                      View all rooms
-                      <ArrowIcon />
-                    </Link>
+                    <div className="border-t border-ink-100 px-6 py-3">
+                      <Link
+                        href="/rooms"
+                        className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent-600 transition-colors duration-quick hover:text-accent-500"
+                      >
+                        View all rooms
+                        <ArrowIcon />
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Flat links */}
-            {SIMPLE_NAV.map((item) => (
+              {/* Flat links */}
+              {SIMPLE_NAV.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={clsx(
+                    'whitespace-nowrap text-xs font-medium uppercase tracking-widest',
+                    'transition-colors duration-quick',
+                    pathname.startsWith(item.href)
+                      ? 'text-accent-600'
+                      : 'text-ink-600 hover:text-accent-600',
+                  )}
+                >
+                  {item.label}
+                </Link>
+              ))}
+
+              {/* The Design Studio — crisp pill badge, never wraps */}
               <Link
-                key={item.href}
-                href={item.href}
+                href={STUDIO_LINK.href}
                 className={clsx(
-                  'rounded-md px-3 py-2 text-[13px] font-medium tracking-wide',
-                  'transition-colors duration-quick',
-                  pathname.startsWith(item.href)
-                    ? 'text-accent-600'
-                    : 'text-ink-700 hover:text-accent-600',
+                  'inline-flex items-center whitespace-nowrap rounded-full border px-3.5 py-1.5',
+                  'text-xs font-semibold tracking-wide shadow-sm transition-all duration-quick',
+                  pathname.startsWith(STUDIO_LINK.href)
+                    ? 'border-accent-500/20 bg-accent-500 text-white'
+                    : 'border-accent-500/20 bg-accent-50 text-accent-600 hover:bg-accent-500 hover:text-white',
                 )}
               >
-                {item.label}
+                {STUDIO_LINK.label}
               </Link>
-            ))}
+            </nav>
 
-            {/* The Design Studio — accented so it reads as a destination */}
-            <Link
-              href={STUDIO_LINK.href}
-              className={clsx(
-                'ml-2 inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5',
-                'text-sm font-medium transition-all duration-quick',
-                pathname.startsWith(STUDIO_LINK.href)
-                  ? 'border-brand/40 bg-brand/[0.08] text-brand'
-                  : 'border-ink-200 text-ink-800 hover:border-brand/40 hover:bg-brand/[0.06] hover:text-brand',
-              )}
-            >
-              <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-brand" />
-              {STUDIO_LINK.label}
-            </Link>
-          </nav>
-
-          {/* ── Right actions ────────────────────────────────── */}
-          <div className="flex items-center gap-1 lg:col-start-3 lg:justify-self-end">
-            {/* Search */}
-            <Link
-              href="/search"
-              aria-label="Search"
-              className="rounded-md p-2 text-ink-600 transition-colors duration-quick hover:bg-ink-50 hover:text-ink-900"
-            >
-              <svg
-                width="18"
-                height="18"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                aria-hidden="true"
+            {/* Actions — search + subscribe, far right of the nav row */}
+            <div className="flex items-center justify-end gap-4">
+              <Link
+                href="/search"
+                aria-label="Search"
+                className="rounded-md p-2 text-ink-600 transition-colors duration-quick hover:bg-ink-50 hover:text-ink-900"
               >
-                <circle cx="11" cy="11" r="8" />
-                <path d="m21 21-4.3-4.3" />
-              </svg>
-            </Link>
-
-            {/* Subscribe pill — desktop only */}
-            <Link
-              href="/newsletter"
-              className={clsx(
-                'hidden md:inline-flex items-center',
-                'h-8 rounded-full border border-ink-200 px-4',
-                'text-xs font-semibold text-ink-800',
-                'transition-all duration-quick',
-                'hover:border-accent hover:bg-accent-50 hover:text-accent-600',
-              )}
-            >
-              Subscribe
-            </Link>
-
-            {/* Hamburger — mobile only */}
-            <button
-              type="button"
-              aria-expanded={mobileOpen}
-              aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
-              onClick={() => setMobileOpen((v) => !v)}
-              className="ml-1 flex h-9 w-9 items-center justify-center rounded-md text-ink-700 transition-colors duration-quick hover:bg-ink-50 hover:text-ink-900 md:hidden"
-            >
-              {mobileOpen ? (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M18 6 6 18M6 6l12 12" />
+                  <circle cx="11" cy="11" r="8" />
+                  <path d="m21 21-4.3-4.3" />
                 </svg>
-              ) : (
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M4 6h16M4 12h10M4 18h16" />
-                </svg>
-              )}
-            </button>
+              </Link>
+
+              <Link
+                href="/newsletter"
+                className={clsx(
+                  'inline-flex h-8 items-center whitespace-nowrap rounded-full border border-ink-200 px-4',
+                  'text-xs font-semibold text-ink-800',
+                  'transition-all duration-quick',
+                  'hover:border-accent hover:bg-accent-50 hover:text-accent-600',
+                )}
+              >
+                Subscribe
+              </Link>
+            </div>
           </div>
         </div>
       </header>
