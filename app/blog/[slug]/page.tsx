@@ -13,13 +13,14 @@ import { JsonLd } from '@/components/JsonLd';
 import { FacebookComments } from '@/components/FacebookComments';
 import { PremiumSocialClub } from '@/components/PremiumSocialClub';
 import { FAQAccordion } from '@/components/FAQAccordion';
+import { AdSlot, AdSense } from '@/components/AdSlot';
 import {
   getAllArticles,
   getArticleBySlugOnly,
   getCategoryHref,
   getRelatedArticles,
 } from '@/lib/articles';
-import { buildArticleSchema, buildBreadcrumbSchema } from '@/lib/schema';
+import { buildArticleSchema, buildBreadcrumbSchema, buildFaqSchema } from '@/lib/schema';
 import { siteConfig } from '@/lib/site';
 import type { Article } from '@/types/article';
 
@@ -133,6 +134,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
   const schemas: Record<string, unknown>[] = [
     buildBreadcrumbSchema(breadcrumbItems),
     buildArticleSchema(article),
+    ...(article.faq?.length ? [buildFaqSchema(article.faq)] : []),
   ];
 
   return (
@@ -183,7 +185,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                 />
               )}
               <Link
-                href="/about/sarah-bigelow"
+                href={article.author.slug === 'sarah-bigelow' ? '/about/sarah-bigelow' : '/about'}
                 className="font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
               >
                 {article.author.name}
@@ -241,7 +243,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
         <div className="grid lg:grid-cols-12 gap-12">
 
           {/* ── Main prose column ── */}
-          <main className="lg:col-span-8">
+          <main className="lg:col-span-8 max-w-3xl">
             <div className="prose prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
@@ -250,6 +252,8 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   // optimised product photography with `<Image .../>` directly.
                   Image,
                   FAQAccordion,
+                  AdSlot,
+                  AdSense,
                 }}
                 options={{
                   mdxOptions: {
@@ -279,7 +283,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   Written by
                 </p>
                 <Link
-                  href="/about/sarah-bigelow"
+                  href={article.author.slug === 'sarah-bigelow' ? '/about/sarah-bigelow' : '/about'}
                   className="mt-0.5 block font-serif text-body-lg font-semibold text-ink-900 transition-colors duration-quick hover:text-accent-600"
                 >
                   {article.author.name}

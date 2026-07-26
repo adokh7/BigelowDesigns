@@ -10,12 +10,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const categories = getAllCategorySlugs().map((slug) => ({
-    url: `${siteConfig.url}/rooms/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.7,
-  }));
+  const topLevelHubs = ['reviews', 'design-trends', 'room-guides', 'global-designs'];
+  const categories = getAllCategorySlugs()
+    .filter((slug) => !topLevelHubs.includes(slug))
+    .map((slug) => ({
+      url: `${siteConfig.url}/rooms/${slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly' as const,
+      priority: 0.7,
+    }));
 
   const staticPages = [
     { url: `${siteConfig.url}/about`,                priority: 0.6 },

@@ -20,7 +20,7 @@ export interface ArticleFrontmatter {
   heroImageAlt: string;
   heroImageWidth?: number;
   heroImageHeight?: number;
-  schemaType?: 'Article' | 'Review' | 'HowTo' | 'ItemList';
+  schemaType?: 'Article' | 'BlogPosting' | 'Review' | 'HowTo' | 'ItemList';
   faq?: { question: string; answer: string }[];
   products?: ProductRef[];
   seo?: {

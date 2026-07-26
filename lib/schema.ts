@@ -23,9 +23,9 @@ export function buildArticleSchema(article: Article) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': url },
     url,
     author: {
-      '@type': 'Person',
+      '@type': article.author.name.toLowerCase().includes('editorial') ? 'Organization' : 'Person',
       name: article.author.name,
-      url: abs('/about/sarah-bigelow'),
+      url: article.author.slug === 'sarah-bigelow' ? abs('/about/sarah-bigelow') : abs('/about'),
       ...(article.author.credentials?.length
         ? { jobTitle: article.author.credentials.join(', ') }
         : {}),
