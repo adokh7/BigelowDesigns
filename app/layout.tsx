@@ -95,6 +95,9 @@ export const metadata: Metadata = {
   formatDetection: { telephone: false, address: false, email: false },
   verification: {
     google: 'dQtrCW2-Pv7U9oU7DV2FM2vCwvbgDPEicFk8euk-zQc',
+    other: {
+      'p:domain_verify': '641b007182ac4bbf8ba1f7db8b83099f',
+    },
   },
   other: {
     'ahrefs-site-verification': '027e0774ab2eaec1091149c1a84cb8fedd64a0dee6b972a2114d3820b90f43f6',
