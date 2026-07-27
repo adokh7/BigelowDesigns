@@ -7,7 +7,7 @@ const abs = (pathOrUrl: string): string =>
     : `${siteConfig.url}${pathOrUrl.startsWith('/') ? '' : '/'}${pathOrUrl}`;
 
 export function buildArticleSchema(article: Article) {
-  const url = abs(`/${article.category}/${article.slug}`);
+  const url = abs(`/blog/${article.slug}`);
   const isReview = article.schemaType === 'Review';
   const type = article.schemaType ?? 'Article';
 
@@ -15,7 +15,7 @@ export function buildArticleSchema(article: Article) {
     '@context': 'https://schema.org',
     '@type': type,
     headline: article.title,
-    description: article.excerpt,
+    description: article.seo?.metaDescription ?? article.excerpt,
     image: [abs(article.heroImage)],
     datePublished: article.publishedAt,
     dateModified: article.updatedAt ?? article.publishedAt,
