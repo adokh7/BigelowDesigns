@@ -103,6 +103,7 @@ const nextConfig = {
        */
       { source: '/room-guides', destination: '/rooms', statusCode: 301 },
       { source: '/guides',      destination: '/rooms', statusCode: 301 },
+      { source: '/interior-design-trends-dated-by-2030', destination: '/blog/interior-design-trends-dated-by-2030', statusCode: 301 },
     ];
   },
 };

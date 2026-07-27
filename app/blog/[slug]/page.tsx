@@ -72,6 +72,7 @@ export async function generateMetadata({
   return {
     title,
     description,
+    keywords: article.tags,
     alternates: { canonical: article.seo?.canonical ?? url },
     robots,
     openGraph: {
