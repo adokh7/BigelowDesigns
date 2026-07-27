@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import type { ComponentPropsWithoutRef } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import clsx from 'clsx';
@@ -112,6 +113,49 @@ function formatDate(iso: string) {
   });
 }
 
+function ResponsiveTable({
+  children,
+  ...props
+}: ComponentPropsWithoutRef<'table'>) {
+  return (
+    <div className="not-prose my-8 w-full max-w-full overflow-x-auto rounded-xl border border-ink-100 bg-surface shadow-xs">
+      <table
+        className="w-full min-w-[680px] border-collapse text-left text-body-sm text-ink-700"
+        {...props}
+      >
+        {children}
+      </table>
+    </div>
+  );
+}
+
+function EditorialTableHead(props: ComponentPropsWithoutRef<'thead'>) {
+  return (
+    <thead
+      className="border-b border-ink-200 bg-elevated/60 font-serif text-xs uppercase tracking-wider text-ink-900"
+      {...props}
+    />
+  );
+}
+
+function EditorialTableHeader(props: ComponentPropsWithoutRef<'th'>) {
+  return (
+    <th
+      className="border-b border-ink-200/80 px-4 py-3.5 font-semibold text-ink-900"
+      {...props}
+    />
+  );
+}
+
+function EditorialTableCell(props: ComponentPropsWithoutRef<'td'>) {
+  return (
+    <td
+      className="border-b border-ink-100/60 px-4 py-3 leading-relaxed text-ink-700"
+      {...props}
+    />
+  );
+}
+
 // ─── Page ─────────────────────────────────────────────────────
 export default async function BlogArticlePage({ params }: PageProps) {
   const { slug }  = await params;
@@ -219,19 +263,21 @@ export default async function BlogArticlePage({ params }: PageProps) {
           2.  HERO IMAGE
               Responsive aspect ratio with max-height to prevent aggressive crop.
           ══════════════════════════════════════════════════════ */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
-        <div className="relative w-full aspect-video max-h-[60vh] overflow-hidden rounded-2xl bg-stone-50">
-          <Image
-            src={article.heroImage}
-            alt={article.heroImageAlt}
-            fill
-            priority
-            fetchPriority="high"
-            sizes="(max-width: 1280px) 100vw, 1280px"
-            className="object-contain"
-          />
+      {article.heroImagePlacement !== 'inline' && (
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mt-8">
+          <div className="relative w-full aspect-video max-h-[60vh] overflow-hidden rounded-2xl bg-stone-50">
+            <Image
+              src={article.heroImage}
+              alt={article.heroImageAlt}
+              fill
+              priority
+              fetchPriority="high"
+              sizes="(max-width: 1280px) 100vw, 1280px"
+              className="object-contain"
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       {/* ══════════════════════════════════════════════════════
           3.  READING LAYOUT
@@ -243,7 +289,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
         <div className="grid lg:grid-cols-12 gap-12">
 
           {/* ── Main prose column ── */}
-          <main className="lg:col-span-8 max-w-3xl">
+          <main className="min-w-0 max-w-3xl lg:col-span-8">
             <div className="prose prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
@@ -254,6 +300,10 @@ export default async function BlogArticlePage({ params }: PageProps) {
                   FAQAccordion,
                   AdSlot,
                   AdSense,
+                  table: ResponsiveTable,
+                  thead: EditorialTableHead,
+                  th: EditorialTableHeader,
+                  td: EditorialTableCell,
                 }}
                 options={{
                   mdxOptions: {
