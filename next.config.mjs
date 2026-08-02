@@ -104,6 +104,18 @@ const nextConfig = {
       { source: '/room-guides', destination: '/rooms', statusCode: 301 },
       { source: '/guides',      destination: '/rooms', statusCode: 301 },
       { source: '/interior-design-trends-dated-by-2030', destination: '/blog/interior-design-trends-dated-by-2030', statusCode: 301 },
+
+      /*
+       * GSC "Discovered - currently not indexed" cleanup: /rooms/[slug]
+       * only whitelists the six physical rooms (dynamicParams: false), so
+       * these three editorial hubs 404 under /rooms/. Google discovered
+       * them from a stale link (predating the getCategoryHref fix) and
+       * they were left dangling ever since. 301 them to the real hub so
+       * the next crawl resolves cleanly instead of lingering as an error.
+       */
+      { source: '/rooms/design-trends', destination: '/design-trends', statusCode: 301 },
+      { source: '/rooms/reviews',       destination: '/reviews',       statusCode: 301 },
+      { source: '/rooms/room-guides',   destination: '/rooms',         statusCode: 301 },
     ];
   },
 };

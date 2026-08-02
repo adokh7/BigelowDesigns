@@ -37,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteConfig.url}/tools/hanging-calculator`,  priority: 0.8 },
     { url: `${siteConfig.url}/tools/lighting-calculator`, priority: 0.8 },
     { url: `${siteConfig.url}/tools/paint-lrv-predictor`, priority: 0.8 },
+    // Hand-built product-guide page — not sourced from content/articles,
+    // so getAllArticles() can't see it. A duplicate MDX file at this slug
+    // was removed (it was permanently shadowed by this static route and
+    // never actually rendered), which would otherwise have dropped this
+    // real, live page out of the sitemap entirely.
+    { url: `${siteConfig.url}/blog/space-saving-dining-tables`, priority: 0.8 },
   ].map((p) => ({
     ...p,
     lastModified: new Date(),
