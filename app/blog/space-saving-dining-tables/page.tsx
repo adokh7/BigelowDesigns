@@ -4,7 +4,9 @@ import Link from 'next/link';
 import clsx from 'clsx';
 
 import { Breadcrumbs } from '@/components/Breadcrumbs';
+import { JsonLd } from '@/components/JsonLd';
 import { SidebarNewsletter } from '@/components/sections/SidebarNewsletter';
+import { buildBreadcrumbSchema } from '@/lib/schema';
 import { siteConfig } from '@/lib/site';
 
 // ─── Static page ─────────────────────────────────────────────
@@ -86,8 +88,41 @@ export default function SpaceSavingDiningTablesPage() {
     { name: ARTICLE.title, url: canonicalUrl },
   ];
 
+  // Hand-built page — not sourced from an Article-typed MDX object, so
+  // this mirrors buildArticleSchema()'s exact output shape by hand
+  // rather than calling it directly (that helper expects the full
+  // types/article.ts Article shape this local ARTICLE const doesn't
+  // satisfy). Every other article page gets Article + BreadcrumbList
+  // JSON-LD via the shared /blog/[slug] template; this page previously
+  // had neither.
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: ARTICLE.title,
+    description: ARTICLE.excerpt,
+    image: [`${siteConfig.url}${ARTICLE.heroImage}`],
+    datePublished: ARTICLE.publishedAt,
+    dateModified: ARTICLE.updatedAt,
+    inLanguage: 'en-US',
+    mainEntityOfPage: { '@type': 'WebPage', '@id': canonicalUrl },
+    url: canonicalUrl,
+    author: {
+      '@type': 'Person',
+      name: ARTICLE.author.name,
+      url: `${siteConfig.url}/about/sarah-bigelow`,
+      jobTitle: ARTICLE.author.credentials.join(', '),
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.publisher.name,
+      logo: { '@type': 'ImageObject', url: siteConfig.publisher.logo },
+    },
+  };
+
   return (
     <>
+      <JsonLd data={[articleSchema, buildBreadcrumbSchema(breadcrumbItems)]} />
+
       {/* ══════════════════════════════════════════════════════
           1. ARTICLE HEADER — narrow centred column
           ══════════════════════════════════════════════════════ */}
