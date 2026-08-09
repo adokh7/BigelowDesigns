@@ -1,0 +1,38 @@
+# Bigelow Designs
+
+> Bigelow Designs is an editorial interior design site publishing honest,
+> tested room guides, furniture reviews, and design trend coverage. Every
+> article is written by lead designer Sarah Bigelow's team and grounded in
+> real homes rather than showroom staging — no sponsored placements.
+
+Canonical base URL: https://www.bigelowdesigns.com
+
+## Core hubs
+
+- [All Room Guides](https://www.bigelowdesigns.com/rooms): Kitchen, living room, bedroom, bathroom, home office, and outdoor design guides organized by room.
+- [Design Trends](https://www.bigelowdesigns.com/design-trends): Coverage of current and upcoming interior design trends, evaluated for what actually holds up in real homes.
+- [Furniture Reviews](https://www.bigelowdesigns.com/reviews): Independent, tested reviews of furniture and home goods.
+- [Global Designs](https://www.bigelowdesigns.com/global-designs): Interior design traditions and aesthetics from around the world.
+- [The Design Studio](https://www.bigelowdesigns.com/tools): Free interactive calculators — curtain and art hanging heights, room lighting planning, and paint color prediction by light exposure.
+- [About Sarah Bigelow](https://www.bigelowdesigns.com/about/sarah-bigelow): Lead designer and founder profile, credentials, and editorial approach.
+
+## Interactive tools
+
+- [Curtain & Art Hanging Height Calculator](https://www.bigelowdesigns.com/tools/hanging-calculator): Calculates exact curtain rod height, rod width, and art nail height for any window or wall.
+- [Room Lighting Calculator](https://www.bigelowdesigns.com/tools/lighting-calculator): Calculates target lumens and the ambient/task/accent lighting split for a given room type and mood.
+- [Paint & Light Harmony Predictor](https://www.bigelowdesigns.com/tools/paint-lrv-predictor): Predicts how a paint color's LRV and undertone will behave in north-, south-, east-, or west-facing light.
+
+## Key guides
+
+- [The Powder Room Edit](https://www.bigelowdesigns.com/blog/luxury-powder-room-design): How to design a high-impact, luxury small bathroom using dark moody walls, dramatic stone, and unlacquered brass.
+- [Honest Bathroom Design](https://www.bigelowdesigns.com/blog/honest-bathroom-design): How to build a calm, elegant bathroom on a real budget, including for renters.
+- [Modern Beige Bathroom Ideas](https://www.bigelowdesigns.com/blog/modern-beige-bathroom-ideas): How to make a beige bathroom feel current using texture, warm light, and natural wood instead of stark white.
+- [Small Kitchen Design](https://www.bigelowdesigns.com/blog/small-kitchen-design): How to make a tight kitchen feel open and functional without a full remodel.
+- [Kitchen Layout](https://www.bigelowdesigns.com/blog/kitchen-layout-plan-space-flow): How to plan a kitchen around the work triangle, covering L-shape, U-shape, galley, and island layouts.
+- [Home Decor Ideas](https://www.bigelowdesigns.com/blog/home-decor-ideas): Affordable and DIY ways to style a room on a real budget, including for renters.
+- [2026 Design Trends Worth Your Money](https://www.bigelowdesigns.com/blog/2026-design-trends-worth-your-money): Which widely-forecast 2026 trends are actually worth adopting, and which ones to skip.
+
+## Additional resources
+
+- [Sitemap](https://www.bigelowdesigns.com/sitemap.xml): Full list of indexable pages, updated automatically as content is published.
+- [About](https://www.bigelowdesigns.com/about): Editorial standards and independence disclosure.

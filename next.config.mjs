@@ -49,6 +49,35 @@ const nextConfig = {
    * statusCode: 301 (not `permanent: true`, which emits 308) — 301 is the
    * universally understood "moved permanently" signal SEO tooling expects.
    */
+  /**
+   * Baseline security headers, applied to every route.
+   *
+   * Deliberately NOT including a Content-Security-Policy here — this site
+   * depends on several third-party scripts/iframes (Google AdSense,
+   * Facebook Comments, embedded video) that a CSP tight enough to matter
+   * would need careful per-directive tuning to avoid breaking. Adding one
+   * blind, in the same pass as everything else below, is exactly the kind
+   * of change that should ship on its own with its own verification pass,
+   * not bundled in silently.
+   */
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: [
+          { key: 'X-Content-Type-Options', value: 'nosniff' },
+          { key: 'X-Frame-Options', value: 'DENY' },
+          { key: 'Referrer-Policy', value: 'strict-origin-when-cross-origin' },
+          {
+            key: 'Permissions-Policy',
+            value: 'camera=(), microphone=(), geolocation=()',
+          },
+          { key: 'X-DNS-Prefetch-Control', value: 'on' },
+        ],
+      },
+    ];
+  },
+
   async redirects() {
     return [
       // /tc and everything beneath it (e.g. /tc/757706/757706mls.html)
