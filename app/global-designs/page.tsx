@@ -32,6 +32,7 @@ const GLOBAL_TABS = [
   'Japanese',
   'Mediterranean',
   'Scandinavian',
+  'Australian',
 ] as const;
 
 function toFilterable(
