@@ -258,7 +258,7 @@ export default function HomePage() {
                   trust claim that matters for both readers and E-E-A-T. */}
               <h1
                 id="hero-heading"
-                className="animate-fade-rise mt-3 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.08] md:text-5xl lg:text-6xl xl:text-[64px]"
+                className="animate-fade-rise mt-3 font-serif text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] font-bold tracking-tight text-stone-900 leading-[1.12]"
                 style={{ animationDelay: '120ms' }}
               >
                 Helping you create{' '}
@@ -275,7 +275,7 @@ export default function HomePage() {
               {/* Sub — keeps the trust claims (real homes, no sponsored
                   bias) but in a warmer, first-person editorial voice. */}
               <p
-                className="animate-fade-rise mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl"
+                className="animate-fade-rise mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-stone-600"
                 style={{ animationDelay: '240ms' }}
               >
                 Practical layout rules, cozy styling ideas, and honest reviews —
@@ -565,7 +565,7 @@ export default function HomePage() {
               </p>
               <h2
                 id="latest-heading"
-                className="mt-3 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
+                className="mt-3 font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900"
               >
                 Trending Room Design Guides
               </h2>
@@ -667,14 +667,14 @@ export default function HomePage() {
 
               <h2
                 id="global-aesthetics-heading"
-                className="mt-5 font-serif text-4xl font-bold tracking-tight text-stone-900 leading-[1.05] md:text-5xl lg:text-6xl"
+                className="mt-5 font-serif text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-stone-900 leading-[1.12]"
               >
                 Modern{' '}
                 <span className="italic text-[#B0552B]">Marrakech</span>{' '}
                 Luxury
               </h2>
 
-              <p className="mt-6 max-w-xl text-lg leading-relaxed text-stone-600 md:text-xl">
+              <p className="mt-6 max-w-xl text-base sm:text-lg leading-relaxed text-stone-600">
                 Discover the perfect blend of traditional Moroccan
                 craftsmanship and contemporary high-end design — warm earthy
                 tones, intricate textures, and timeless elegance, considered
@@ -749,11 +749,11 @@ export default function HomePage() {
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
               The Design Studio
             </p>
-            <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl">
+            <h2 className="mt-4 font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900">
               Your room,{' '}
               <span className="italic text-brand">measured properly.</span>
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-stone-600">
+            <p className="mt-4 text-base sm:text-lg leading-relaxed text-stone-600">
               Three interactive guides that answer the questions every project runs into — how high,
               how bright, and which colour. The same rules we work to, applied to your space in
               seconds.
@@ -821,11 +821,11 @@ export default function HomePage() {
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-brand" />
               The Newsletter
             </p>
-            <h2 className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl">
+            <h2 className="mt-4 font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900">
               One thoughtful email,{' '}
               <span className="italic text-brand">every Sunday.</span>
             </h2>
-            <p className="mt-5 text-lg leading-relaxed text-stone-600">
+            <p className="mt-4 text-base sm:text-lg leading-relaxed text-stone-600">
               Room guides, honest reviews, and the trends worth knowing — delivered to your inbox. No spam, just considered design.
             </p>
             <div className="mt-8 flex justify-center">

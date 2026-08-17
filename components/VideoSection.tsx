@@ -31,12 +31,12 @@ export default function VideoSection() {
           </p>
           <h2
             id="video-section-heading"
-            className="mt-4 font-serif text-3xl font-bold tracking-tight text-stone-900 md:text-4xl lg:text-5xl"
+            className="mt-4 font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-stone-900"
           >
             A 30-Second{' '}
             <span className="italic text-brand">Visual Tour.</span>
           </h2>
-          <p className="mx-auto mt-5 max-w-xl text-base italic leading-relaxed text-stone-600 md:text-lg">
+          <p className="mx-auto mt-4 max-w-xl text-base italic leading-relaxed text-stone-600">
             Get a quick, real-world look at the texture, scale, and styling.
             Press play for a brief 30-second walk-through to see how the
             piece naturally anchors the space and catches the daylight.

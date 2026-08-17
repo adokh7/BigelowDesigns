@@ -162,16 +162,16 @@ export default async function RoomCategoryPage({ params }: PageProps) {
             </p>
 
             {/* H1 — keyword-rich for search; the poetic line moves below */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tight text-ink-900 leading-tight text-balance">
               {label} Design Guides, Ideas &amp; Reviews
             </h1>
 
             {/* Editorial headline — styled subheading under the H1 */}
-            <p className="font-serif text-h3 italic text-ink-600">
+            <p className="font-serif text-lg sm:text-xl md:text-2xl italic text-ink-600">
               {meta.headline}
             </p>
 
-            <p className="text-pretty text-body-lg text-ink-600">
+            <p className="text-pretty text-base sm:text-lg text-ink-600">
               {meta.description}
             </p>
 

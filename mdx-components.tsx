@@ -62,6 +62,28 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     AdSlot,
     AdSense,
 
+    // Heading overrides for consistent responsive scaling
+    h1: ({ children, ...props }) => (
+      <h1 className="mt-8 mb-4 font-serif text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-ink-900 leading-tight" {...props}>
+        {children}
+      </h1>
+    ),
+    h2: ({ children, ...props }) => (
+      <h2 className="mt-10 mb-4 font-serif text-xl sm:text-2xl md:text-3xl font-semibold leading-snug text-ink-900 tracking-tight" {...props}>
+        {children}
+      </h2>
+    ),
+    h3: ({ children, ...props }) => (
+      <h3 className="mt-8 mb-3 font-serif text-lg sm:text-xl md:text-2xl font-semibold text-ink-900 leading-snug" {...props}>
+        {children}
+      </h3>
+    ),
+    p: ({ children, ...props }) => (
+      <p className="my-5 text-[17px] leading-[1.75] text-ink-800" {...props}>
+        {children}
+      </p>
+    ),
+
     // Editorial table & list enhancements matching Bigelow Designs styling
     table: ({ children, ...props }) => (
       <div className="my-8 w-full overflow-x-auto rounded-xl border border-ink-100 bg-surface shadow-xs">
@@ -96,7 +118,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       </ol>
     ),
     li: ({ children, ...props }) => (
-      <li className="pl-1 text-body lg:text-body-lg text-ink-800" {...props}>
+      <li className="pl-1 text-base sm:text-[17px] text-ink-800 leading-relaxed" {...props}>
         {children}
       </li>
     ),

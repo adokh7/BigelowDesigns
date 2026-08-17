@@ -25,7 +25,7 @@ export default function KitchenTrendsArticle() {
         {/* Header Section */}
         <header className="mb-10 text-center">
           <div className="text-sm font-semibold text-slate-500 tracking-wide uppercase mb-3">Kitchen Design</div>
-          <h1 className="text-4xl md:text-5xl font-serif text-slate-900 leading-tight mb-6">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif text-slate-900 leading-tight mb-6">
             The Kitchen Shift: Warm Woods, Statement Stone, and the Return to Comfort in 2026
           </h1>
           <div className="flex items-center justify-center text-slate-600 text-sm space-x-4">

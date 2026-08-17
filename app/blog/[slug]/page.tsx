@@ -206,12 +206,12 @@ export default async function BlogArticlePage({ params }: PageProps) {
             </Link>
 
             {/* Title */}
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-ink-900 leading-tight text-balance">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[2.5rem] font-bold tracking-tight text-ink-900 leading-tight text-balance">
               {article.title}
             </h1>
 
             {/* Deck */}
-            <p className="text-pretty text-body-lg leading-relaxed text-ink-600">
+            <p className="text-pretty text-base sm:text-lg leading-relaxed text-ink-600">
               {article.excerpt}
             </p>
 
@@ -291,7 +291,7 @@ export default async function BlogArticlePage({ params }: PageProps) {
 
           {/* ── Main prose column ── */}
           <main className="min-w-0 max-w-3xl lg:col-span-8">
-            <div className="prose prose-lg max-w-none">
+            <div className="prose prose-neutral md:prose-lg max-w-none">
               <MDXRemote
                 source={article.content}
                 components={{
