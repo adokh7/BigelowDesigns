@@ -10,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
-  const topLevelHubs = ['reviews', 'design-trends', 'room-guides', 'global-designs'];
+  const topLevelHubs = ['reviews', 'furniture-reviews', 'design-trends', 'room-guides', 'global-designs'];
   const categories = getAllCategorySlugs()
     .filter((slug) => !topLevelHubs.includes(slug))
     .map((slug) => ({

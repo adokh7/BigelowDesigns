@@ -121,6 +121,7 @@ export function getArticleBySlugOnly(slug: string): Article | null {
  */
 const CATEGORY_HUBS: Record<string, string> = {
   reviews: '/reviews',
+  'furniture-reviews': '/reviews',
   'design-trends': '/design-trends',
   'room-guides': '/rooms',
   'global-designs': '/global-designs',
